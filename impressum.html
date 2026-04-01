@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impressum &amp; Datenschutz – TechSupport HUB</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-deep:    #080c14;
+      --bg-base:    #0d1117;
+      --surface:    #131929;
+      --border:     rgba(255,255,255,0.07);
+      --neon-green: #00ff88;
+      --text-1:     #f0f6fc;
+      --text-2:     #8b949e;
+      --text-3:     #3d4a60;
+      --radius:     12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg-base);
+      color: var(--text-1);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      background: rgba(8,12,20,0.75);
+      backdrop-filter: blur(22px) saturate(160%);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      text-decoration: none;
+    }
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+    .nav-logo-text span:first-child { font-size: 1rem; font-weight: 700; color: #f0f6fc; letter-spacing: .02em; }
+    .nav-logo-text span:last-child  { font-size: .8rem; font-weight: 700; color: var(--neon-green); letter-spacing: .18em; text-shadow: 0 0 8px rgba(0,255,136,.25); }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      color: var(--text-2);
+      text-decoration: none;
+      font-size: .84rem;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-back:hover { color: var(--neon-green); }
+
+    /* ── PAGE HEADER ── */
+    .page-hero {
+      padding: 5rem 2rem 3.5rem;
+      text-align: center;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,255,136,0.05) 0%, transparent 70%),
+                  var(--bg-deep);
+      border-bottom: 1px solid var(--border);
+    }
+    .page-tag {
+      display: inline-block;
+      padding: .28rem .9rem;
+      border-radius: 2rem;
+      background: rgba(0,255,136,0.08);
+      border: 1px solid rgba(0,255,136,0.2);
+      font-size: .72rem;
+      color: var(--neon-green);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+    .page-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      margin-bottom: .8rem;
+    }
+    .page-hero h1 span { color: var(--neon-green); }
+    .page-hero p {
+      color: var(--text-2);
+      font-size: 1rem;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* ── CONTENT ── */
+    .content-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .section-block {
+      margin-bottom: 3rem;
+    }
+
+    .section-block h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-1);
+      margin-bottom: 1rem;
+      padding-bottom: .6rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .section-block h2 .h2-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--neon-green);
+      box-shadow: 0 0 8px rgba(0,255,136,.5);
+      flex-shrink: 0;
+    }
+
+    .section-block h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-1);
+      margin: 1.5rem 0 .5rem;
+    }
+
+    .section-block p {
+      color: var(--text-2);
+      font-size: .95rem;
+      margin-bottom: .8rem;
+    }
+
+    .section-block ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: .8rem;
+    }
+    .section-block ul li {
+      color: var(--text-2);
+      font-size: .95rem;
+      padding: .2rem 0 .2rem 1.2rem;
+      position: relative;
+    }
+    .section-block ul li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--neon-green);
+      font-weight: 700;
+    }
+
+    .info-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--neon-green);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .info-box p { margin: 0; }
+    .info-box a {
+      color: var(--neon-green);
+      text-decoration: none;
+    }
+    .info-box a:hover { text-decoration: underline; }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
+      opacity: .2;
+      margin: 3rem 0;
+    }
+
+    /* ── DATENSCHUTZ TARGET GLOW ── */
+    #datenschutz {
+      transition: color .4s, text-shadow .4s;
+      scroll-margin-top: 90px;
+    }
+    #datenschutz:target,
+    #datenschutz.glow-active {
+      animation: ds-glow 2.8s ease forwards;
+    }
+    @keyframes ds-glow {
+      0%   { color: #ffffff; text-shadow: 0 0 18px rgba(255,255,255,0.85), 0 0 40px rgba(255,255,255,0.4); }
+      60%  { color: #ffffff; text-shadow: 0 0 18px rgba(255,255,255,0.85), 0 0 40px rgba(255,255,255,0.4); }
+      100% { color: var(--text-1); text-shadow: none; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg-deep);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    footer p {
+      color: var(--text-3);
+      font-size: .83rem;
+      margin-bottom: .5rem;
+    }
+    footer a {
+      color: var(--neon-green);
+      text-decoration: none;
+    }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1.25rem; }
+      .page-hero { padding: 3.5rem 1.25rem 2.5rem; }
+      .content-wrap { padding: 2.5rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════ NAVBAR ═══════ -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 2 L36 11 L36 29 L20 38 L4 29 L4 11 Z" stroke="#00ff88" stroke-width="1.8" fill="rgba(0,255,136,0.07)"/>
+      <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="800" fill="#00ff88" font-family="'Segoe UI',system-ui,sans-serif">TSH</text>
+    </svg>
+    <div class="nav-logo-text">
+      <span>TechSupport</span>
+      <span>HUB</span>
+    </div>
+  </a>
+  <a class="nav-back" href="index.html#footer">
+    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="10,3 5,7.5 10,12"/>
+    </svg>
+    Zurück zur Startseite
+  </a>
+</nav>
+
+<!-- ═══════ PAGE HEADER ═══════ -->
+<div class="page-hero">
+  <div class="page-tag">Rechtliches</div>
+  <h1>Impressum &amp; <span>Datenschutz</span></h1>
+  <p>Angaben gemäß § 5 TMG sowie Datenschutzhinweise für dieses Angebot.</p>
+</div>
+
+<!-- ═══════ CONTENT ═══════ -->
+<div class="content-wrap">
+
+  <!-- IMPRESSUM -->
+  <div class="section-block">
+    <h2><span class="h2-dot"></span>Impressum</h2>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;margin-top:.8rem;">
+      <div>
+        <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-3);margin-bottom:.5rem;">Angaben gemäß § 5 TMG</p>
+        <p style="color:var(--text-1);font-weight:700;margin-bottom:.2rem;">Lukas Trapp</p>
+        <p style="color:var(--text-2);">Kreyßigstraße 16<br>55118 Mainz</p>
+      </div>
+      <div>
+        <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-3);margin-bottom:.5rem;">Kontakt</p>
+        <p style="color:var(--text-2);margin-bottom:.2rem;">Telefon: <a href="tel:+4917662002093" style="color:var(--neon-green);text-decoration:none;">+49 (0) 17662002093</a></p>
+        <p style="color:var(--text-2);margin-bottom:.2rem;">E-Mail: <a href="mailto:lutr5@gmail.com" style="color:var(--neon-green);text-decoration:none;">lutr5@gmail.com</a></p>
+        <p style="color:var(--text-2);">Web: <a href="https://kaaas58.github.io/ltcoding/" target="_blank" rel="noopener" style="color:var(--neon-green);text-decoration:none;">kaaas58.github.io/ltcoding</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HAFTUNG FÜR INHALTE -->
+  <div class="section-block">
+    <h2><span class="h2-dot"></span>Haftungsausschluss</h2>
+    <h3>Haftung für Inhalte</h3>
+    <p>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+    <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+    <h3>Haftung für Links</h3>
+    <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.</p>
+    <p>Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+    <h3>Urheberrecht</h3>
+    <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.</p>
+    <p>Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- DATENSCHUTZ -->
+  <div class="section-block">
+    <h2 id="datenschutz"><span class="h2-dot"></span>Datenschutz</h2>
+    <p>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.</p>
+    <p>Die Nutzung unserer Website ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.</p>
+    <p>Wir weisen darauf hin, dass die Datenübertragung im Internet Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</p>
+
+    <h3>Cookies</h3>
+    <p>Die Internetseiten verwenden teilweise so genannte Cookies. Cookies richten auf Ihrem Rechner keinen Schaden an und enthalten keine Viren. Cookies dienen dazu, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen.</p>
+    <p>Die meisten der von uns verwendeten Cookies sind so genannte „Session-Cookies". Sie werden nach Ende Ihres Besuchs automatisch gelöscht. Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und Cookies nur im Einzelfall erlauben.</p>
+
+    <h3>Server-Log-Files</h3>
+    <p>Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Files. Dies sind:</p>
+    <ul>
+      <li>Browsertyp und Browserversion</li>
+      <li>Verwendetes Betriebssystem</li>
+      <li>Referrer URL</li>
+      <li>Hostname des zugreifenden Rechners</li>
+      <li>Uhrzeit der Serveranfrage</li>
+    </ul>
+    <p>Diese Daten sind nicht bestimmten Personen zuordenbar. Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.</p>
+    <p style="font-size:.83rem;color:var(--text-3);margin-top:1rem;">Quelle: <a href="https://www.e-recht24.de/impressum-generator.html" target="_blank" rel="noopener" style="color:var(--text-3);text-decoration:underline;">e-recht24.de</a></p>
+  </div>
+
+  <!-- BACK BUTTON -->
+  <div style="text-align:center;margin-top:2rem;">
+    <a href="index.html#footer" style="
+      display:inline-flex;align-items:center;gap:.6rem;
+      padding:.75rem 1.8rem;border-radius:.5rem;
+      font-size:.9rem;font-weight:600;text-decoration:none;
+      color:#080c14;background:var(--neon-green);
+      box-shadow:0 0 20px rgba(0,255,136,.3);
+      transition:all .22s;
+    " onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 0 34px rgba(0,255,136,.5)'"
+       onmouseout="this.style.transform='';this.style.boxShadow='0 0 20px rgba(0,255,136,.3)'">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="10,3 5,7.5 10,12"/>
+      </svg>
+      Zurück zur Startseite
+    </a>
+  </div>
+
+</div>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <p>© 2026 TechSupport HUB · <a href="index.html">Startseite</a></p>
+</footer>
+
+<script>
+  // Trigger glow animation wenn #datenschutz als target geladen wird
+  window.addEventListener('load', function () {
+    if (window.location.hash === '#datenschutz') {
+      const el = document.getElementById('datenschutz');
+      if (el) {
+        el.classList.add('glow-active');
+        setTimeout(() => el.classList.remove('glow-active'), 3000);
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
