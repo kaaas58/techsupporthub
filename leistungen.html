@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <script>if(localStorage.getItem('tsh-theme')==='light')document.documentElement.classList.add('light');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Leistungen & Preise – TechSupport HUB</title>
   <style>
@@ -302,6 +303,28 @@
     }
     .footer-bottom a { color: var(--muted); text-decoration: none; }
     .footer-bottom a:hover { color: var(--neon-g); }
+
+    /* ── THEME TOGGLE ── */
+    #theme-toggle { background:transparent; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#6b7a9e; width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:border-color .2s,color .2s; flex-shrink:0; }
+    #theme-toggle:hover { border-color:rgba(0,255,136,0.5); color:#00ff88; }
+    #theme-toggle .icon-sun  { display:block; }
+    #theme-toggle .icon-moon { display:none; }
+
+    /* ── LIGHT MODE ── */
+    html.light { --bg:#edf1f8; --surface:#ffffff; --surface2:#f0f4fb; --border:rgba(0,20,80,0.1); --text:#111827; --muted:#5a6a8a; --neon-g:#00a060; --neon-b:#007fb5; --neon-p:#7c22d8; --neon-o:#c44a10; }
+    html.light body { background:var(--bg); color:var(--text); }
+    html.light nav { background:rgba(237,241,248,0.92) !important; border-color:rgba(0,20,80,0.1); }
+    html.light .page-header { background:var(--bg); }
+    html.light .page-header h1, html.light .cta-box h3, html.light .service-info h3 { color:#111827; }
+    html.light .cta-box { background:linear-gradient(135deg,rgba(0,180,100,.06) 0%,rgba(0,180,200,.04) 100%); border-color:rgba(0,180,100,.2); }
+    html.light footer { background:var(--bg); }
+    html.light .btn-ghost { border-color:rgba(0,20,80,0.18); color:var(--text); }
+    html.light .nav-logo svg path { stroke:#00a060 !important; fill:rgba(0,160,96,0.1) !important; }
+    html.light .nav-logo svg text { fill:#00a060 !important; }
+    html.light .nav-logo-text .t2 { color:#00a060 !important; text-shadow:none !important; }
+    html.light .page-header h1, html.light .cta-box h3, html.light .service-info h3 { color:#1a2540; }
+    html.light .btn-primary:hover { box-shadow:0 6px 28px rgba(0,160,96,0.4); }
+    html.light .btn-ghost:hover { border-color:rgba(0,160,96,0.45); color:#00a060; }
   </style>
 </head>
 <body>
@@ -698,6 +721,7 @@
     }
   }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContact(); });
+  function toggleTheme() { const l=document.documentElement.classList.toggle('light'); localStorage.setItem('tsh-theme',l?'light':'dark'); }
 </script>
 
 </body>

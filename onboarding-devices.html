@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <script>if(localStorage.getItem('tsh-theme')==='light')document.documentElement.classList.add('light');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Onboarding Devices – TechSupport HUB</title>
   <style>
@@ -248,6 +249,28 @@
       transition: border-color .2s, color .2s, transform .18s;
     }
     .btn-top:hover { border-color: rgba(0,255,136,.4); color: var(--neon-g); transform: translateY(-2px); }
+
+    /* ── THEME TOGGLE ── */
+    #theme-toggle { background:transparent; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#6b7a9e; width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:border-color .2s,color .2s; flex-shrink:0; }
+    #theme-toggle:hover { border-color:rgba(0,255,136,0.5); color:#00ff88; }
+    #theme-toggle .icon-sun  { display:block; }
+    #theme-toggle .icon-moon { display:none; }
+
+    /* ── LIGHT MODE ── */
+    html.light { --bg:#edf1f8; --surface:#ffffff; --surface2:#f0f4fb; --border:rgba(0,20,80,0.1); --text:#111827; --muted:#5a6a8a; --neon-g:#00a060; --neon-b:#007fb5; --neon-p:#7c22d8; --neon-o:#c44a10; }
+    html.light body { background:var(--bg); color:var(--text); }
+    html.light nav { background:rgba(237,241,248,0.92) !important; border-color:rgba(0,20,80,0.1); }
+    html.light .bg-watermark { opacity:.3; }
+    html.light .section-block { background:rgba(255,255,255,0.88) !important; border-color:rgba(0,20,80,0.1) !important; box-shadow:0 8px 40px rgba(0,20,80,0.08) !important; }
+    html.light .section-block h2 { color:#111827; }
+    html.light .section-pill { background:rgba(255,255,255,0.7); border-color:rgba(0,20,80,0.12); color:#4b5568; }
+    html.light .btn-back { background:rgba(255,255,255,0.8); border-color:rgba(0,20,80,0.12); color:#111827; }
+    html.light .page-hero h1 { color:#111827; }
+    html.light .nav-logo svg path { stroke:#00a060 !important; fill:rgba(0,160,96,0.1) !important; }
+    html.light .nav-logo svg text { fill:#00a060 !important; }
+    html.light .nav-logo-text .t2 { color:#00a060 !important; text-shadow:none !important; }
+    html.light .page-hero h1, html.light .section-block h2 { color:#1a2540; }
+    html.light .btn-back:hover { border-color:rgba(0,160,96,0.45); color:#00a060; }
   </style>
 </head>
 <body>
@@ -751,6 +774,7 @@
   window.addEventListener('hashchange', () => {
     triggerHighlight(location.hash);
   });
+  function toggleTheme() { const l=document.documentElement.classList.toggle('light'); localStorage.setItem('tsh-theme',l?'light':'dark'); }
 </script>
 </body>
 </html>

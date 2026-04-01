@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <script>if(localStorage.getItem('tsh-theme')==='light')document.documentElement.classList.add('light');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TechSupport HUB</title>
   <style>
@@ -52,6 +53,12 @@
       color: var(--neon-green);
       text-decoration: none;
       letter-spacing: 0.04em;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
     }
 
     .nav-links {
@@ -440,6 +447,7 @@
     @media (max-width: 820px) {
       .two-col, .two-col.flip { grid-template-columns: 1fr; direction: ltr; gap: 2.5rem; }
       .nav-toggle { display: flex; }
+      .nav-right { gap: .8rem; }
       .nav-links {
         display: none;
         flex-direction: column;
@@ -452,6 +460,7 @@
         gap: 0;
       }
       .nav-links.open { display: flex; }
+      html.light .nav-links { background: rgba(237,241,248,0.98); }
       .nav-links li { border-bottom: 1px solid rgba(255,255,255,0.05); }
       .nav-links li:last-child { border-bottom: none; }
       .nav-links a { display: block; padding: 0.9rem 0; font-size: 1rem; }
@@ -462,6 +471,89 @@
       nav { padding: 0 1.25rem; }
       .hero-content { padding: 1.5rem 1rem; }
     }
+
+    /* ── THEME TOGGLE ── */
+    #theme-toggle {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      color: #8b949e;
+      width: 34px; height: 34px;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: border-color .2s, color .2s;
+      flex-shrink: 0;
+    }
+    #theme-toggle:hover { border-color: rgba(0,255,136,0.5); color: #00ff88; }
+    #theme-toggle .icon-sun  { display: block; }
+    #theme-toggle .icon-moon { display: none; }
+
+    /* ── LIGHT MODE ── */
+    html.light {
+      --bg-deep:    #dde5f2;
+      --bg-base:    #edf1f8;
+      --border:     rgba(0,20,80,0.1);
+      --text-1:     #111827;
+      --text-2:     #4b5568;
+      --text-3:     #8896aa;
+      --neon-green: #00a060;
+      --neon-cyan:  #007fb5;
+      --neon-purple:#7c22d8;
+      --neon-orange:#c44a10;
+    }
+    html.light body { background: var(--bg-base); color: var(--text-1); }
+    html.light nav { background: rgba(237,241,248,0.92) !important; border-color: rgba(0,20,80,0.1); }
+    html.light .nav-links { background: rgba(237,241,248,0.98); }
+    html.light .nav-links a { color: var(--text-2); }
+    html.light #hero { background: radial-gradient(ellipse 90% 55% at 50% -5%, rgba(0,180,100,0.06) 0%, transparent 70%), var(--bg-deep); }
+    html.light .hero-grid { background-image: linear-gradient(rgba(0,140,80,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,140,80,0.05) 1px, transparent 1px); }
+    html.light .card { background: linear-gradient(145deg, #ffffff 0%, #f4f7ff 100%); box-shadow: 0 4px 20px rgba(0,20,80,0.07); }
+    html.light .card:hover { box-shadow: 0 10px 36px rgba(0,20,80,0.1), 0 0 0 1px rgba(0,200,100,0.2); }
+    html.light .tag { background: rgba(0,20,80,0.04); border-color: rgba(0,20,80,0.09); color: var(--text-2); }
+    html.light .svg-panel { background: #8fa3b8; border-color: rgba(0,20,80,0.18); box-shadow: 0 8px 40px rgba(0,20,80,0.08) !important; }
+    html.light .panel-bg  { fill: #8fa3b8 !important; }
+    html.light #user-support { background: linear-gradient(180deg, var(--bg-base) 0%, var(--bg-deep) 100%); }
+    html.light #bitcoin { background: linear-gradient(180deg, var(--bg-deep) 0%, #e2eaf6 100%); }
+    html.light #coding  { background: linear-gradient(180deg, #e2eaf6 0%, var(--bg-base) 100%); }
+    html.light footer { background: var(--bg-deep); }
+    html.light .footer-links { background: transparent !important; }
+    html.light .btn-s { border-color: rgba(0,20,80,0.18); background: rgba(0,20,80,0.03); color: var(--text-1); }
+    html.light .btn-cancel { border-color: rgba(0,20,80,0.18); color: var(--text-1); }
+    html.light .modal-box { background: #ffffff !important; border-color: rgba(0,20,80,0.12) !important; }
+    html.light .modal-close { background: rgba(0,20,80,0.05); border-color: rgba(0,20,80,0.1); color: #4b5568; }
+    html.light .modal-close:hover { color: #111827; }
+    html.light .modal-header h3, html.light .modal-success p { color: #111827; }
+    html.light .modal-header p { color: #4b5568; }
+    html.light .form-row label { color: #4b5568; }
+    html.light .form-row input, html.light .form-row textarea { background: #f0f4fa !important; border-color: rgba(0,20,80,0.12) !important; color: #111827 !important; }
+    html.light .form-row input::placeholder, html.light .form-row textarea::placeholder { color: #8896aa !important; }
+    html.light #theme-toggle { border-color: rgba(0,20,80,0.18); color: #4b5568; }
+    html.light #theme-toggle:hover { border-color: rgba(0,160,96,0.5); color: #00a060; }
+    html.light #theme-toggle .icon-sun  { display: none; }
+    html.light #theme-toggle .icon-moon { display: block; }
+    html.light .about-sec-img { border-color: rgba(124,34,216,0.25) !important; }
+
+    /* Logo im Light Mode */
+    html.light .nav-logo svg path { stroke: #00a060 !important; fill: rgba(0,160,96,0.1) !important; }
+    html.light .nav-logo svg text { fill: #00a060 !important; }
+    html.light .nav-logo span:last-child { color: #00a060 !important; text-shadow: none !important; }
+
+    /* Weißer/heller Text → sichtbares Grau */
+    html.light .hero-headline { color: #1a2540; }
+    html.light .sec-title { color: #1a2540; }
+    html.light .card-title { color: #1e2a45; }
+    html.light .footer-brand { color: #00a060; }
+    html.light footer svg path { stroke: #00a060 !important; fill: rgba(0,160,96,0.1) !important; }
+    html.light footer svg text { fill: #00a060 !important; }
+    html.light .footer-brand span:first-child { color: #1a2540 !important; }
+    html.light .footer-brand span:last-child  { color: #00a060 !important; }
+
+    /* Button-Hover im Light Mode */
+    html.light .btn-p:hover { box-shadow: 0 0 28px rgba(0,160,96,0.35); }
+    html.light .btn-s:hover { border-color: rgba(0,160,96,0.45); color: #00a060; background: rgba(0,160,96,0.05); }
+    html.light .btn-green:hover { border-color: rgba(0,160,96,0.45); color: #00a060; background: rgba(0,160,96,0.05); }
+    html.light .btn-purple:hover { border-color: rgba(124,34,216,0.45); color: #7c22d8; background: rgba(124,34,216,0.05); }
+    html.light .btn-cancel:hover { border-color: rgba(180,40,40,0.45); color: rgba(180,40,40,0.9); background: rgba(180,40,40,0.05); }
   </style>
 </head>
 <body>
@@ -474,21 +566,27 @@
       <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="800" fill="#00ff88" font-family="'Segoe UI',system-ui,sans-serif" style="filter:drop-shadow(0 0 2px rgba(0,255,136,.5))">TSH</text>
     </svg>
     <div style="display:flex;flex-direction:column;line-height:1.15;">
-      <span style="font-size:1.1rem;font-weight:700;color:#f0f6fc;letter-spacing:.02em;">TechSupport</span>
+      <span style="font-size:1.1rem;font-weight:700;color:var(--text-1);letter-spacing:.02em;">TechSupport</span>
       <span style="font-size:.88rem;font-weight:700;color:#00ff88;letter-spacing:.18em;text-shadow:0 0 8px rgba(0,255,136,.25);">HUB</span>
     </div>
   </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#hero">Home</a></li>
-    <li><a href="#user-support">User Support</a></li>
-    <li><a href="#bitcoin">Bitcoin</a></li>
-    <li><a href="#coding">Coding</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#" onclick="openContact();return false;">Kontakt</a></li>
-  </ul>
-  <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-right">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#user-support">User Support</a></li>
+      <li><a href="#bitcoin">Bitcoin</a></li>
+      <li><a href="#coding">Coding</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#" onclick="openContact();return false;">Kontakt</a></li>
+    </ul>
+    <button id="theme-toggle" onclick="toggleTheme()" aria-label="Theme wechseln">
+      <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- ═══════════ HERO ═══════════ -->
@@ -577,7 +675,7 @@
               <filter id="gc"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
               <filter id="gg"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
             </defs>
-            <rect width="480" height="300" fill="#060a10"/>
+            <rect class="panel-bg" width="480" height="300" fill="#060a10"/>
             <!-- grid -->
             <line x1="0" y1="75"  x2="480" y2="75"  stroke="rgba(0,212,255,0.05)" stroke-width="1"/>
             <line x1="0" y1="150" x2="480" y2="150" stroke="rgba(0,212,255,0.05)" stroke-width="1"/>
@@ -692,7 +790,7 @@
               <filter id="go"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
               <filter id="go2"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
             </defs>
-            <rect width="480" height="300" fill="#060a10"/>
+            <rect class="panel-bg" width="480" height="300" fill="#060a10"/>
             <!-- Hex grid (faint) -->
             <g opacity="0.10" stroke="#ff6b35" stroke-width="1" fill="none">
               <polygon points="70,42 94,28 118,42 118,70 94,84 70,70"/>
@@ -800,7 +898,7 @@
               <filter id="gpur"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
               <filter id="ggr"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
             </defs>
-            <rect width="480" height="300" fill="#060a10"/>
+            <rect class="panel-bg" width="480" height="300" fill="#060a10"/>
             <!-- Circuit traces -->
             <path d="M0,75 H70 V150 H140"     fill="none" stroke="rgba(0,255,136,0.1)" stroke-width="1.5"/>
             <path d="M480,75 H410 V150 H340"  fill="none" stroke="rgba(0,255,136,0.1)" stroke-width="1.5"/>
@@ -1069,6 +1167,12 @@
     } catch { errBox.style.display=''; btn.disabled=false; btn.textContent='Anfrage senden'; }
   }
   document.addEventListener('keydown', e => { if(e.key==='Escape') closeContact(); });
+
+  // Theme toggle
+  function toggleTheme() {
+    const l = document.documentElement.classList.toggle('light');
+    localStorage.setItem('tsh-theme', l ? 'light' : 'dark');
+  }
 
   // Make hero contact button open modal
   document.querySelector('a[href="#footer"].btn-s') && (() => {

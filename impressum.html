@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <script>if(localStorage.getItem('tsh-theme')==='light')document.documentElement.classList.add('light');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Impressum &amp; Datenschutz – TechSupport HUB</title>
   <style>
@@ -232,6 +233,24 @@
       .page-hero { padding: 3.5rem 1.25rem 2.5rem; }
       .content-wrap { padding: 2.5rem 1.25rem 4rem; }
     }
+
+    /* ── THEME TOGGLE ── */
+    #theme-toggle { background:transparent; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#8b949e; width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:border-color .2s,color .2s; flex-shrink:0; }
+    #theme-toggle:hover { border-color:rgba(0,255,136,0.5); color:#00ff88; }
+    #theme-toggle .icon-sun  { display:block; }
+    #theme-toggle .icon-moon { display:none; }
+
+    /* ── LIGHT MODE ── */
+    html.light { --bg-deep:#dde5f2; --bg-base:#edf1f8; --surface:#ffffff; --border:rgba(0,20,80,0.1); --text-1:#111827; --text-2:#4b5568; --text-3:#8896aa; --neon-green:#00a060; }
+    html.light body { background:var(--bg-base); color:var(--text-1); }
+    html.light nav { background:rgba(237,241,248,0.92) !important; border-color:rgba(0,20,80,0.1); }
+    html.light .page-hero h1, html.light h2 { color:#111827; }
+    html.light footer { background:var(--bg-deep); }
+    html.light .section-block { background: var(--surface) !important; border-color: rgba(0,20,80,0.1) !important; }
+    html.light .nav-logo svg path { stroke:#00a060 !important; fill:rgba(0,160,96,0.1) !important; }
+    html.light .nav-logo svg text { fill:#00a060 !important; }
+    html.light .nav-logo-text span:last-child { color:#00a060 !important; text-shadow:none !important; }
+    html.light .page-hero h1, html.light h2 { color:#1a2540; }
   </style>
 </head>
 <body>
@@ -355,6 +374,7 @@
       }
     }
   });
+  function toggleTheme() { const l=document.documentElement.classList.toggle('light'); localStorage.setItem('tsh-theme',l?'light':'dark'); }
 </script>
 
 </body>
