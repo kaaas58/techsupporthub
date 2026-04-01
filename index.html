@@ -51,7 +51,6 @@
       color: var(--neon-green);
       text-decoration: none;
       letter-spacing: 0.04em;
-      filter: drop-shadow(0 0 10px rgba(0,255,136,0.55));
     }
 
     .nav-links {
@@ -469,13 +468,13 @@
 <!-- ═══════════ NAVBAR ═══════════ -->
 <nav id="navbar">
   <a class="nav-logo" href="#hero" style="display:flex;align-items:center;gap:.7rem;text-decoration:none;">
-    <svg width="38" height="38" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M20 2 L36 11 L36 29 L20 38 L4 29 L4 11 Z" stroke="#00ff88" stroke-width="1.8" fill="rgba(0,255,136,0.07)"/>
       <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="800" fill="#00ff88" font-family="'Segoe UI',system-ui,sans-serif" style="filter:drop-shadow(0 0 2px rgba(0,255,136,.5))">TSH</text>
     </svg>
     <div style="display:flex;flex-direction:column;line-height:1.15;">
-      <span style="font-size:1rem;font-weight:700;color:#f0f6fc;letter-spacing:.02em;">TechSupport</span>
-      <span style="font-size:.8rem;font-weight:700;color:#00ff88;letter-spacing:.18em;text-shadow:0 0 8px rgba(0,255,136,.25);">HUB</span>
+      <span style="font-size:1.1rem;font-weight:700;color:#f0f6fc;letter-spacing:.02em;">TechSupport</span>
+      <span style="font-size:.88rem;font-weight:700;color:#00ff88;letter-spacing:.18em;text-shadow:0 0 8px rgba(0,255,136,.25);">HUB</span>
     </div>
   </a>
   <ul class="nav-links" id="navLinks">
@@ -496,9 +495,15 @@
   <div class="hero-grid"></div>
   <!-- TSH watermark -->
   <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:0;overflow:hidden;">
-    <svg width="540" height="540" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:.038;">
+    <svg width="540" height="540" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:.050;">
       <path d="M20 2 L36 11 L36 29 L20 38 L4 29 L4 11 Z" stroke="#00ff88" stroke-width="1.2" fill="#00ff88"/>
-      <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="800" fill="#080c14" font-family="'Segoe UI',system-ui,sans-serif">TSH</text>
+      <defs>
+        <filter id="tsh-glow">
+          <feGaussianBlur stdDeviation="0.48" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="800" fill="#080c14" stroke="#00ff88" stroke-width="0.3" paint-order="stroke" filter="url(#tsh-glow)" font-family="'Segoe UI',system-ui,sans-serif">TSH</text>
     </svg>
   </div>
   <div class="orb orb-1"></div>
@@ -535,6 +540,13 @@
           Einsteiger und Senioren, die sich mehr Sicherheit im Umgang mit Geräten wünschen.
         </p>
         <div class="card-stack">
+          <a class="card" href="onboarding-devices.html#endgeraete" style="text-decoration:none;color:inherit;cursor:pointer;">
+            <div class="card-ico" style="background:rgba(0,212,255,0.1);">🖥️</div>
+            <div>
+              <div class="card-title">Endgeräte &amp; Devices aller Art</div>
+              <div class="card-text">Tablet, Smart-TV, Router oder Drucker – Einführung und Unterstützung bei allen gängigen Geräten im Haushalt.</div>
+            </div>
+          </a>
           <a class="card" href="onboarding-devices.html#pc" style="text-decoration:none;color:inherit;cursor:pointer;">
             <div class="card-ico" style="background:rgba(0,212,255,0.1);">💻</div>
             <div>
@@ -547,13 +559,6 @@
             <div>
               <div class="card-title">Android-Smartphones einrichten</div>
               <div class="card-text">Grundeinstellungen, Apps installieren, E-Mails &amp; Fotos – ich richte Ihr Gerät ein und erkläre den Alltag damit.</div>
-            </div>
-          </a>
-          <a class="card" href="onboarding-devices.html#endgeraete" style="text-decoration:none;color:inherit;cursor:pointer;">
-            <div class="card-ico" style="background:rgba(0,212,255,0.1);">🖥️</div>
-            <div>
-              <div class="card-title">Endgeräte &amp; Devices aller Art</div>
-              <div class="card-text">Tablet, Smart-TV, Router oder Drucker – Einführung und Unterstützung bei allen gängigen Geräten im Haushalt.</div>
             </div>
           </a>
         </div>
@@ -881,7 +886,7 @@
           box-shadow:0 10px 50px rgba(0,0,0,.55), 0 0 0 1px rgba(168,85,247,.08);
           clip-path:inset(5% 1% 5% 0 round 1.2rem);
         ">
-          <img src="images/IMG_7799-2.jpg" alt="About Me" style="width:100%;display:block;filter:grayscale(20%) contrast(1.05);"/>
+          <img src="images/me.jpg" alt="About Me" style="width:100%;display:block;filter:grayscale(20%) contrast(1.05);"/>
         </div>
       </div>
 
