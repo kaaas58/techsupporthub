@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leistungen & Preise – TechSupport HUB</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg:        #0f1117;
+      --surface:   #181c27;
+      --surface2:  #1e2436;
+      --border:    #2a3050;
+      --text:      #c9d1e8;
+      --muted:     #6b7a9e;
+      --neon-g:    #00ff88;
+      --neon-b:    #00c8ff;
+      --neon-p:    #bf5fff;
+      --neon-o:    #ff8c00;
+      --radius:    14px;
+      --glow-g:    0 0 18px rgba(0,255,136,.35);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* ── Navbar ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 62px;
+      background: rgba(15,17,23,.55);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .nav-logo-text .t1 { font-size: 1.1rem; font-weight: 700; color: #e8edf8; letter-spacing: .02em; }
+    .nav-logo-text .t2 { font-size: .88rem; font-weight: 700; color: var(--neon-g); letter-spacing: .18em; text-shadow: 0 0 8px rgba(0,255,136,.25); }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .87rem;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-back:hover { color: var(--neon-g); }
+    .nav-back svg { width: 16px; height: 16px; }
+
+    /* ── Page header ── */
+    .page-header {
+      padding: 7rem 1.5rem 3.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,255,136,.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-tag {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--neon-g);
+      background: rgba(0,255,136,.08);
+      border: 1px solid rgba(0,255,136,.2);
+      border-radius: 20px;
+      padding: .3rem .9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      color: #e8edf8;
+      margin-bottom: .8rem;
+      line-height: 1.2;
+    }
+    h1 .accent { color: var(--neon-g); }
+
+    .page-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* ── Container ── */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1.5rem 5rem;
+    }
+
+    /* ── Category label ── */
+    .cat-label {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      margin: 3rem 0 1.2rem;
+    }
+    .cat-label h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .cat-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── Service card ── */
+    .service-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.8rem;
+      margin-bottom: .9rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,.35), 0 1px 0 rgba(255,255,255,.03) inset;
+      transition: border-color .2s, box-shadow .2s, transform .18s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-row::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      border-radius: 3px 0 0 3px;
+    }
+    .service-row.cat-support::before { background: var(--neon-g); }
+    .service-row.cat-bitcoin::before { background: var(--neon-o); }
+    .service-row.cat-coding::before  { background: var(--neon-b); }
+
+    .service-row:hover {
+      transform: translateX(4px);
+      border-color: rgba(255,255,255,.12);
+      box-shadow: 0 6px 32px rgba(0,0,0,.45);
+    }
+
+    @media (max-width: 600px) {
+      .service-row { grid-template-columns: 1fr; gap: .8rem; }
+      .price-block { text-align: left; }
+    }
+
+    .service-info { display: flex; flex-direction: column; gap: .3rem; }
+    .service-info h3 { font-size: 1rem; font-weight: 700; color: #e0e6f5; }
+    .service-info p  { font-size: .86rem; color: var(--muted); max-width: 560px; }
+
+    .service-badges { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .4rem; }
+    .badge {
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .2rem .6rem;
+      border-radius: 20px;
+      border: 1px solid;
+    }
+    .badge-g { color: var(--neon-g); border-color: rgba(0,255,136,.3); background: rgba(0,255,136,.07); }
+    .badge-b { color: var(--neon-b); border-color: rgba(0,200,255,.3); background: rgba(0,200,255,.07); }
+    .badge-o { color: var(--neon-o); border-color: rgba(255,140,0,.3);  background: rgba(255,140,0,.07); }
+    .badge-p { color: var(--neon-p); border-color: rgba(191,95,255,.3); background: rgba(191,95,255,.07); }
+
+    .price-block { text-align: right; flex-shrink: 0; }
+    .price-block .price {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #e8edf8;
+      line-height: 1;
+    }
+    .price-block .price-unit {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-top: .2rem;
+    }
+    .price-block .price-note {
+      font-size: .72rem;
+      color: var(--muted);
+      margin-top: .15rem;
+    }
+
+    /* accent color per category */
+    .cat-support .price { color: var(--neon-g); text-shadow: 0 0 12px rgba(0,255,136,.3); }
+    .cat-bitcoin .price { color: var(--neon-o); text-shadow: 0 0 12px rgba(255,140,0,.3); }
+    .cat-coding  .price { color: var(--neon-b); text-shadow: 0 0 12px rgba(0,200,255,.3); }
+
+    /* ── Info note ── */
+    .info-note {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem 1.6rem;
+      font-size: .87rem;
+      color: var(--muted);
+      margin-top: 2.5rem;
+      display: flex;
+      gap: .8rem;
+      align-items: flex-start;
+    }
+    .info-note .icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
+    .info-note strong { color: var(--text); }
+
+    /* ── CTA ── */
+    .cta-box {
+      margin-top: 3rem;
+      background: linear-gradient(135deg, rgba(0,255,136,.08) 0%, rgba(0,200,255,.05) 100%);
+      border: 1px solid rgba(0,255,136,.2);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    .cta-box h3 { font-size: 1.4rem; color: #e8edf8; margin-bottom: .5rem; }
+    .cta-box p  { color: var(--muted); font-size: .95rem; margin-bottom: 1.5rem; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 1.7rem;
+      border-radius: 8px;
+      font-size: .93rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform .18s, box-shadow .18s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--neon-g);
+      color: #0a0f0a;
+      box-shadow: 0 4px 20px rgba(0,255,136,.35);
+    }
+    .btn-primary:hover { box-shadow: 0 6px 30px rgba(0,255,136,.55); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      margin-left: .8rem;
+    }
+    .btn-ghost:hover { border-color: var(--neon-g); color: var(--neon-g); }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+    }
+    .footer-bottom {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: .82rem;
+      color: var(--muted);
+    }
+    .footer-bottom a { color: var(--muted); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--neon-g); }
+  </style>
+</head>
+<body>
+
+<!-- ── Navbar ── -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 2 L36 11 L36 29 L20 38 L4 29 L4 11 Z" stroke="#00ff88" stroke-width="1.8" fill="rgba(0,255,136,0.07)"/>
+      <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="800" fill="#00ff88" font-family="'Segoe UI',system-ui,sans-serif" style="filter:drop-shadow(0 0 2px rgba(0,255,136,.5))">TSH</text>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="t1">TechSupport</span>
+      <span class="t2">HUB</span>
+    </div>
+  </a>
+  <a href="index.html#hero" class="nav-back">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="10,3 5,8 10,13"/>
+    </svg>
+    Zurück zur Startseite
+  </a>
+</nav>
+
+<!-- ── Page Header ── -->
+<div class="page-header">
+  <div class="page-tag">Leistungen & Preise</div>
+  <h1>Was ich für dich tun kann – <span class="accent">transparent</span> bepreist.</h1>
+  <p class="page-sub">Alle Preise verstehen sich pro Stunde (60 Min.) inklusive Beratung, Dokumentation und Nachfragen per Nachricht.</p>
+</div>
+
+<div class="container">
+
+  <!-- ═══ ANWENDER & USER SUPPORT ═══ -->
+  <div class="cat-label">
+    <h2>Anwender & User Support</h2>
+  </div>
+
+  <div class="service-row cat-support">
+    <div class="service-info">
+      <h3>PC-Einführung für Einsteiger & Senioren</h3>
+      <p>Grundlagen der PC-Bedienung, Windows-Oberfläche, Dateiverwaltung, sicher surfen und E-Mails schreiben.</p>
+      <div class="service-badges">
+        <span class="badge badge-g">Vor Ort</span>
+        <span class="badge badge-g">Remote</span>
+        <span class="badge badge-p">Anfänger</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price">45 €</div>
+      <div class="price-unit">pro Stunde</div>
+      <div class="price-note">mind. 1 Std.</div>
+    </div>
+  </div>
+
+  <div class="service-row cat-support">
+    <div class="service-info">
+      <h3>Android-Smartphone Einrichtung</h3>
+      <p>Google-Konto, Grundeinstellungen, wichtige Apps installieren, Datenschutz-Tipps und Nutzungseinführung.</p>
+      <div class="service-badges">
+        <span class="badge badge-g">Vor Ort</span>
+        <span class="badge badge-g">Remote</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price">50 €</div>
+      <div class="price-unit">pro Stunde</div>
+      <div class="price-note">Pauschal ab 60 €</div>
+    </div>
+  </div>
+
+  <div class="service-row cat-support">
+    <div class="service-info">
+      <h3>Geräteproblem & Allgemeiner IT-Support</h3>
+      <p>Fehlersuche, Systemoptimierung, Drucker, WLAN, Passwörter, Updates und alles was im Alltag nervt.</p>
+      <div class="service-badges">
+        <span class="badge badge-g">Vor Ort</span>
+        <span class="badge badge-g">Remote</span>
+        <span class="badge badge-b">Alle Geräte</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price">55 €</div>
+      <div class="price-unit">pro Stunde</div>
+    </div>
+  </div>
+
+  <!-- ═══ BITCOIN JOURNEY ═══ -->
+  <div class="cat-label">
+    <h2>The Bitcoin Journey</h2>
+  </div>
+
+  <div class="service-row cat-bitcoin">
+    <div class="service-info">
+      <h3>Bitcoin Grundlagen & Onboarding</h3>
+      <p>Was ist Bitcoin, wie funktioniert die Blockchain, was sind Private Keys und Wallets – fundiert und verständlich erklärt.</p>
+      <div class="service-badges">
+        <span class="badge badge-o">Remote</span>
+        <span class="badge badge-o">Vor Ort</span>
+        <span class="badge badge-p">Einsteiger</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price">65 €</div>
+      <div class="price-unit">pro Stunde</div>
+    </div>
+  </div>
+
+  <div class="service-row cat-bitcoin">
+    <div class="service-info">
+      <h3>Self-Custody & Cold Storage Einrichtung</h3>
+      <p>Hardware Wallet (Ledger, Trezor, Coldcard u. a.) einrichten, Seed-Phrase sicher verwahren, Coins von der Exchange transferieren.</p>
+      <div class="service-badges">
+        <span class="badge badge-o">Vor Ort</span>
+        <span class="badge badge-o">Remote</span>
+        <span class="badge badge-b">Sicherheit</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price">75 €</div>
+      <div class="price-unit">pro Stunde</div>
+      <div class="price-note">mind. 1,5 Std.</div>
+    </div>
+  </div>
+
+  <div class="service-row cat-bitcoin">
+    <div class="service-info">
+      <h3>Solo Mining Hardware Inbetriebnahme</h3>
+      <p>ASIC-Miner konfigurieren, ans Netz bringen, Pool vs. Solo-Mining, Kalkulation und laufenden Betrieb verstehen.</p>
+      <div class="service-badges">
+        <span class="badge badge-o">Vor Ort</span>
+        <span class="badge badge-p">Fortgeschritten</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price">90 €</div>
+      <div class="price-unit">pro Stunde</div>
+    </div>
+  </div>
+
+  <div class="service-row cat-bitcoin">
+    <div class="service-info">
+      <h3>Risikomanagement & Stolpersteine-Beratung</h3>
+      <p>Scams erkennen, Backup-Strategien, Erbfall-Szenarien, Sicherheitschecks und Protokoll-Überprüfung.</p>
+      <div class="service-badges">
+        <span class="badge badge-o">Remote</span>
+        <span class="badge badge-o">Vor Ort</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price">70 €</div>
+      <div class="price-unit">pro Stunde</div>
+    </div>
+  </div>
+
+  <!-- ═══ CODING & BUGFIXING ═══ -->
+  <div class="cat-label">
+    <h2>Coding & Bugfixing</h2>
+  </div>
+
+  <div class="service-row cat-coding">
+    <div class="service-info">
+      <h3>Statische Website – One-Pager</h3>
+      <p>Design und Umsetzung als einzelne HTML/CSS/JS-Datei – Hero-Bereich, Texte, Bilder, Kontaktbereich, mobil optimiert.</p>
+      <div class="service-badges">
+        <span class="badge badge-b">HTML/CSS/JS</span>
+        <span class="badge badge-b">Responsiv</span>
+        <span class="badge badge-g">Pauschal möglich</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price">85 €</div>
+      <div class="price-unit">pro Stunde</div>
+      <div class="price-note">Pauschal ab 290 €</div>
+    </div>
+  </div>
+
+  <div class="service-row cat-coding">
+    <div class="service-info">
+      <h3>Mehrseiter Website mit Unterseiten</h3>
+      <p>Mehrere verlinkte HTML-Seiten, einheitliches Design, Navigation, Kontaktformular, Galerie und SEO-Grundstruktur.</p>
+      <div class="service-badges">
+        <span class="badge badge-b">HTML/CSS/JS</span>
+        <span class="badge badge-b">Mehrseiter</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price">85 €</div>
+      <div class="price-unit">pro Stunde</div>
+      <div class="price-note">Pauschal ab 490 €</div>
+    </div>
+  </div>
+
+  <div class="service-row cat-coding">
+    <div class="service-info">
+      <h3>Bugfixing & Fehlersuche</h3>
+      <p>Layout-Bugs, JavaScript-Fehler, mobile Darstellungsprobleme, Browser-Kompatibilität – einfacher bis mittlerer Bereich.</p>
+      <div class="service-badges">
+        <span class="badge badge-b">HTML/CSS/JS</span>
+        <span class="badge badge-p">Debugging</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price">80 €</div>
+      <div class="price-unit">pro Stunde</div>
+    </div>
+  </div>
+
+  <div class="service-row cat-coding">
+    <div class="service-info">
+      <h3>Code-Review & Beratung</h3>
+      <p>Bestehendem Code durchleuchten, Schwachstellen aufzeigen, Verbesserungsvorschläge und direkte Erklärungen.</p>
+      <div class="service-badges">
+        <span class="badge badge-b">Remote</span>
+        <span class="badge badge-p">Alle Level</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price">75 €</div>
+      <div class="price-unit">pro Stunde</div>
+    </div>
+  </div>
+
+  <!-- ── Info Note ── -->
+  <div class="info-note">
+    <span class="icon">ℹ️</span>
+    <div>
+      <strong>Hinweis zu Preisen & Abrechnung:</strong> Alle genannten Preise sind Richtwerte und verstehen sich netto zzgl. MwSt. Fahrtkosten werden ab 15 km Entfernung mit 0,30 €/km berechnet. Auf Anfrage sind auch Pauschalpakete und Stundenblöcke (5 Std.) mit Rabatt möglich. Erstgespräch (15 Min.) immer kostenlos.
+    </div>
+  </div>
+
+  <!-- ── CTA ── -->
+  <div class="cta-box">
+    <h3>Bereit loszulegen?</h3>
+    <p>Schreib mir kurz was du brauchst – ich melde mich in der Regel innerhalb von 24 Stunden.</p>
+    <button onclick="openContact()" class="btn btn-primary">Jetzt anfragen</button>
+    <a href="index.html#hero" class="btn btn-ghost">Zurück zur Startseite</a>
+  </div>
+
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-bottom">
+    <span>&copy; 2026 TechSupport HUB – Alle Rechte vorbehalten.</span>
+    <span>
+      <a href="#">Impressum</a> &nbsp;·&nbsp;
+      <a href="#">Datenschutz</a> &nbsp;·&nbsp;
+      <a href="#" onclick="openContact();return false;">Kontakt</a>
+    </span>
+  </div>
+</footer>
+
+<!-- ══ CONTACT MODAL ══ -->
+<div id="contactModal" aria-modal="true" role="dialog">
+  <div class="modal-backdrop" onclick="closeContact()"></div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeContact()" aria-label="Schließen">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="4" y1="4" x2="14" y2="14"/><line x1="14" y1="4" x2="4" y2="14"/>
+      </svg>
+    </button>
+    <div class="modal-header">
+      <span class="modal-tag">Kontakt</span>
+      <h3>Schreib mir eine Nachricht</h3>
+      <p>Ich melde mich in der Regel innerhalb von 24 Stunden.</p>
+    </div>
+    <form id="contactForm" onsubmit="submitContact(event)">
+      <div class="form-row">
+        <label for="cf-name">Name</label>
+        <input id="cf-name" type="text" placeholder="Dein Name" required autocomplete="name"/>
+      </div>
+      <div class="form-row">
+        <label for="cf-email">E-Mail</label>
+        <input id="cf-email" type="email" placeholder="deine@mail.de" required autocomplete="email"/>
+      </div>
+      <div class="form-row">
+        <label for="cf-msg">Nachricht</label>
+        <textarea id="cf-msg" rows="5" placeholder="Was kann ich für dich tun?" required></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Anfrage senden</button>
+        <button type="button" class="btn btn-ghost" onclick="closeContact()">Abbrechen</button>
+      </div>
+    </form>
+    <div id="contactError" style="display:none" class="form-error">
+      Nachricht konnte nicht gesendet werden. Bitte versuche es erneut.
+    </div>
+    <div id="contactSuccess" style="display:none" class="modal-success">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="18" stroke="#00ff88" stroke-width="2"/>
+        <polyline points="12,20 18,26 28,14" stroke="#00ff88" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p>Nachricht gesendet – ich melde mich<br>so schnell wie möglich bei dir!</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  #contactModal {
+    display: none;
+    position: fixed; inset: 0; z-index: 500;
+    align-items: center; justify-content: center; padding: 1rem;
+  }
+  #contactModal.is-open { display: flex; }
+  .modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.65); backdrop-filter: blur(6px); }
+  .modal-box {
+    position: relative; z-index: 1;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 2.2rem 2.4rem; width: 100%; max-width: 480px;
+    box-shadow: 0 24px 80px rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.05) inset;
+    animation: modalIn .22s cubic-bezier(.34,1.4,.64,1);
+  }
+  @keyframes modalIn { from { opacity:0; transform:scale(.93) translateY(12px); } to { opacity:1; transform:scale(1) translateY(0); } }
+  @media (max-width:520px) { .modal-box { padding: 1.6rem 1.4rem; } }
+  .modal-close {
+    position: absolute; top: 1.1rem; right: 1.1rem;
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--muted); width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: color .2s, border-color .2s;
+  }
+  .modal-close:hover { color: var(--text); border-color: rgba(255,255,255,.2); }
+  .modal-header { margin-bottom: 1.6rem; }
+  .modal-tag {
+    display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--neon-g);
+    background: rgba(0,255,136,.08); border: 1px solid rgba(0,255,136,.2);
+    border-radius: 20px; padding: .25rem .8rem; margin-bottom: .7rem;
+  }
+  .modal-header h3 { font-size: 1.35rem; font-weight: 700; color: #e8edf8; margin-bottom: .3rem; }
+  .modal-header p  { font-size: .87rem; color: var(--muted); }
+  .form-row { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+  .form-row label { font-size: .82rem; font-weight: 600; color: var(--muted); letter-spacing: .04em; }
+  .form-row input, .form-row textarea {
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); font-family: inherit; font-size: .95rem;
+    padding: .7rem 1rem; outline: none; transition: border-color .2s, box-shadow .2s; resize: vertical;
+  }
+  .form-row input::placeholder, .form-row textarea::placeholder { color: var(--muted); opacity: .6; }
+  .form-row input:focus, .form-row textarea:focus { border-color: var(--neon-g); box-shadow: 0 0 0 3px rgba(0,255,136,.1); }
+  .form-actions { display: flex; gap: .8rem; margin-top: 1.4rem; flex-wrap: wrap; }
+  .modal-success { text-align: center; padding: 1.5rem 0 .5rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+  .modal-success p { color: var(--text); font-size: .95rem; line-height: 1.6; }
+  .form-error { background: rgba(255,80,80,.08); border: 1px solid rgba(255,80,80,.3); border-radius: 8px; padding: .7rem 1rem; font-size: .87rem; color: #ff8080; margin-top: .8rem; }
+  .btn-primary:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+</style>
+
+<script>
+  const FORMSPREE_URL = 'https://formsubmit.co/ajax/info.tsh@gmx.de';
+
+  const modal = document.getElementById('contactModal');
+  function openContact() {
+    modal.classList.add('is-open');
+    document.getElementById('contactForm').style.display = '';
+    document.getElementById('contactSuccess').style.display = 'none';
+    document.getElementById('contactError').style.display = 'none';
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('cf-name').focus(), 50);
+  }
+  function closeContact() {
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+    document.getElementById('contactForm').reset();
+  }
+  async function submitContact(e) {
+    e.preventDefault();
+    const btn = document.querySelector('#contactForm [type="submit"]');
+    const errBox = document.getElementById('contactError');
+    errBox.style.display = 'none';
+    btn.disabled = true;
+    btn.textContent = 'Wird gesendet …';
+    try {
+      const res = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name:    document.getElementById('cf-name').value.trim(),
+          email:   document.getElementById('cf-email').value.trim(),
+          message: document.getElementById('cf-msg').value.trim()
+        })
+      });
+      if (res.ok) {
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('contactSuccess').style.display = '';
+        setTimeout(closeContact, 4000);
+      } else {
+        throw new Error();
+      }
+    } catch {
+      errBox.style.display = '';
+      btn.disabled = false;
+      btn.textContent = 'Anfrage senden';
+    }
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContact(); });
+</script>
+
+</body>
+</html>
