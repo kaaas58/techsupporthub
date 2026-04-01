@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+  <defs>
+    <filter id="g">
+      <feGaussianBlur stdDeviation="1.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="40" height="40" fill="#0f1117"/>
+  <path d="M20 3 L35 11.5 L35 28.5 L20 37 L5 28.5 L5 11.5 Z" stroke="#00ff88" stroke-width="1.8" fill="rgba(0,255,136,0.08)"/>
+  <text x="20" y="25" text-anchor="middle" font-size="11" font-weight="800" fill="#00ff88"
+    font-family="'Segoe UI',system-ui,sans-serif" filter="url(#g)">TSH</text>
+</svg>
