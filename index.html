@@ -51,7 +51,7 @@
       color: var(--neon-green);
       text-decoration: none;
       letter-spacing: 0.04em;
-      filter: drop-shadow(0 0 8px rgba(0,255,136,0.4));
+      filter: drop-shadow(0 0 10px rgba(0,255,136,0.55));
     }
 
     .nav-links {
@@ -102,8 +102,8 @@
     .hero-grid {
       position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(0,255,136,0.038) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,136,0.038) 1px, transparent 1px);
+        linear-gradient(rgba(0,255,136,0.058) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,136,0.058) 1px, transparent 1px);
       background-size: 56px 56px;
       mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 30%, transparent 100%);
       -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 30%, transparent 100%);
@@ -198,7 +198,7 @@
     .btn-p:hover { transform:translateY(-2px); box-shadow:0 0 38px rgba(0,255,136,0.5); }
 
     .btn-s {
-      border: 1px solid var(--border);
+      border: 1.5px solid rgba(255,255,255,0.18);
       color: var(--text-1);
       padding: 0.72rem 1.8rem;
       border-radius: 0.5rem;
@@ -210,11 +210,52 @@
     }
     .btn-s:hover { border-color:rgba(0,255,136,0.3); color:var(--neon-green); background:rgba(0,255,136,0.04); }
 
+    .btn-cancel {
+      background: transparent;
+      color: var(--text-1);
+      border: 1.5px solid rgba(255,255,255,0.18);
+      padding: 0.72rem 1.8rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.22s;
+    }
+    .btn-cancel:hover { border-color: rgba(255,80,80,0.5); color: rgba(255,100,100,0.9); background: rgba(255,60,60,0.06); }
+
+    .btn-purple {
+      background: rgba(168,85,247,0.07);
+      color: var(--text-1);
+      padding: 0.72rem 1.8rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(168,85,247,0.35);
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: all 0.22s;
+      display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-purple:hover { border-color:rgba(168,85,247,0.5); color:var(--neon-purple); background:rgba(168,85,247,0.04); }
+
+    .btn-green {
+      background: rgba(0,255,136,0.07);
+      color: var(--text-1);
+      padding: 0.72rem 1.8rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(0,255,136,0.35);
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: all 0.22s;
+      display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-green:hover { border-color:rgba(0,255,136,0.5); color:var(--neon-green); background:rgba(0,255,136,0.04); }
+
     /* ── DIVIDERS ── */
     .glow-div { height: 1px; opacity: 0.25; }
 
     /* ── SECTIONS ── */
-    section.content-sec { padding: 6rem 2rem; }
+    section.content-sec { padding: 8rem 2rem; }
 
     .wrap { max-width: 1120px; margin: 0 auto; }
 
@@ -474,7 +515,6 @@
       verständlich erklärt, persönlich begleitet, auf den Punkt gebracht.
     </p>
     <div class="hero-cta">
-      <a href="#user-support" class="btn-p">Leistungen entdecken</a>
       <a href="#footer" class="btn-s">Kontakt aufnehmen</a>
     </div>
   </div>
@@ -826,10 +866,10 @@
         <blockquote style="border-left:3px solid #a855f7;padding:.6rem 0 .6rem 1.2rem;margin:1.2rem 0 1.6rem;font-style:italic;color:var(--text-2);font-size:1rem;line-height:1.7;">
           „Gib dem Menschen kein Essen – gib ihm die Angel."
         </blockquote>
-        <a href="about.html" style="display:inline-flex;align-items:center;gap:.5rem;padding:.68rem 1.5rem;border-radius:.5rem;font-size:.88rem;font-weight:600;text-decoration:none;color:var(--text-1);border:1px solid rgba(168,85,247,.35);background:rgba(168,85,247,.07);transition:all .22s;">
-          Mehr über mich
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,3 9,7 4,11"/></svg>
-        </a>
+        <div style="display:inline-flex;gap:.8rem;flex-wrap:wrap;margin-top:2rem;">
+          <a href="about.html" class="btn-purple">Mehr über mich</a>
+          <a href="leistungen.html" class="btn-green">Leistungen entdecken</a>
+        </div>
       </div>
 
       <div class="fi fi-d2" style="display:flex;justify-content:center;align-items:center;">
@@ -907,8 +947,8 @@
         <textarea id="cf-msg" rows="5" placeholder="Was kann ich für dich tun?" required></textarea>
       </div>
       <div class="form-actions">
-        <button type="submit" class="btn-p" style="border:none;cursor:pointer;">Anfrage senden</button>
-        <button type="button" class="btn-s" style="cursor:pointer;" onclick="closeContact()">Abbrechen</button>
+        <button type="submit" class="btn-green" style="cursor:pointer;">Anfrage senden</button>
+        <button type="button" class="btn-cancel" onclick="closeContact()">Abbrechen</button>
       </div>
     </form>
     <div id="contactError" style="display:none" class="form-error">Nachricht konnte nicht gesendet werden. Bitte versuche es erneut.</div>
@@ -976,10 +1016,12 @@
   const activate = () => {
     let cur = '';
     sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 80) cur = s.id;
+      const top = s.getBoundingClientRect().top;
+      if (top <= 80) cur = s.id;
     });
     navAs.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--neon-green)' : '';
+      const href = a.getAttribute('href');
+      a.style.color = (href === '#' + cur) ? 'var(--neon-green)' : '';
     });
   };
   window.addEventListener('scroll', activate, { passive: true });

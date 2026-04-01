@@ -175,11 +175,7 @@
     .service-row.cat-bitcoin::before { background: var(--neon-o); }
     .service-row.cat-coding::before  { background: var(--neon-b); }
 
-    .service-row:hover {
-      transform: translateX(4px);
-      border-color: rgba(255,255,255,.12);
-      box-shadow: 0 6px 32px rgba(0,0,0,.45);
-    }
+    .service-row:hover {}
 
     @media (max-width: 600px) {
       .service-row { grid-template-columns: 1fr; gap: .8rem; }
@@ -284,7 +280,7 @@
       border: 1px solid var(--border);
       margin-left: .8rem;
     }
-    .btn-ghost:hover { border-color: var(--neon-g); color: var(--neon-g); }
+    .btn-ghost:hover { transform: none; border-color: rgba(0,255,136,0.4); color: var(--neon-g); background: rgba(0,255,136,0.04); }
 
     /* ── Footer ── */
     footer {
@@ -551,8 +547,8 @@
   <div class="footer-bottom">
     <span>&copy; 2026 TechSupport HUB – Alle Rechte vorbehalten.</span>
     <span>
-      <a href="#">Impressum</a> &nbsp;·&nbsp;
-      <a href="#">Datenschutz</a> &nbsp;·&nbsp;
+      <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
+      <a href="impressum.html#datenschutz">Datenschutz</a> &nbsp;·&nbsp;
       <a href="#" onclick="openContact();return false;">Kontakt</a>
     </span>
   </div>
