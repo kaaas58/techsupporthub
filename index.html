@@ -40,20 +40,17 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 2.5rem;
+      padding: 0 2rem;
       background: rgba(8,12,20,0.65);
       backdrop-filter: blur(22px) saturate(160%);
       -webkit-backdrop-filter: blur(22px) saturate(160%);
       border-bottom: 1px solid var(--border);
     }
 
-    .nav-logo {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--neon-green);
-      text-decoration: none;
-      letter-spacing: 0.04em;
-    }
+    .nav-logo { display:flex; align-items:center; gap:.7rem; text-decoration:none; white-space:nowrap; }
+    .nav-logo-text { display:flex; flex-direction:column; line-height:1.15; }
+    .nav-logo-text .t1 { font-size:1.1rem; font-weight:700; color:#e8edf8; letter-spacing:.02em; }
+    .nav-logo-text .t2 { font-size:.88rem; font-weight:700; color:#00ff88; letter-spacing:.18em; text-shadow:0 0 8px rgba(0,255,136,.25); }
 
     .nav-right {
       display: flex;
@@ -556,7 +553,8 @@
     /* Logo im Light Mode */
     html.light .nav-logo svg path { stroke: #00a060 !important; fill: rgba(0,160,96,0.1) !important; }
     html.light .nav-logo svg text { fill: #00a060 !important; }
-    html.light .nav-logo span:last-child { color: #00a060 !important; text-shadow: none !important; }
+    html.light .nav-logo-text .t1 { color:#1a2540 !important; }
+    html.light .nav-logo-text .t2 { color:#00a060 !important; text-shadow:none !important; }
 
     /* Weißer/heller Text → sichtbares Grau */
     html.light .hero-headline { color: #1a2540; }
@@ -580,14 +578,14 @@
 
 <!-- ═══════════ NAVBAR ═══════════ -->
 <nav id="navbar">
-  <a class="nav-logo" href="#hero" style="display:flex;align-items:center;gap:.7rem;text-decoration:none;">
+  <a class="nav-logo" href="#hero">
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M20 2 L36 11 L36 29 L20 38 L4 29 L4 11 Z" stroke="#00ff88" stroke-width="1.8" fill="rgba(0,255,136,0.07)"/>
       <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="800" fill="#00ff88" font-family="'Segoe UI',system-ui,sans-serif" style="filter:drop-shadow(0 0 2px rgba(0,255,136,.5))">TSH</text>
     </svg>
-    <div style="display:flex;flex-direction:column;line-height:1.15;">
-      <span style="font-size:1.1rem;font-weight:700;color:var(--text-1);letter-spacing:.02em;">TechSupport</span>
-      <span style="font-size:.88rem;font-weight:700;color:#00ff88;letter-spacing:.18em;text-shadow:0 0 8px rgba(0,255,136,.25);">HUB</span>
+    <div class="nav-logo-text">
+      <span class="t1">TechSupport</span>
+      <span class="t2">HUB</span>
     </div>
   </a>
   <div class="nav-right">

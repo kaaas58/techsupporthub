@@ -45,19 +45,10 @@
       backdrop-filter: blur(22px) saturate(160%);
       border-bottom: 1px solid var(--border);
     }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: .7rem;
-      text-decoration: none;
-    }
-    .nav-logo-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.15;
-    }
-    .nav-logo-text span:first-child { font-size: 1.1rem; font-weight: 700; color: #f0f6fc; letter-spacing: .02em; }
-    .nav-logo-text span:last-child  { font-size: .88rem; font-weight: 700; color: var(--neon-green); letter-spacing: .18em; text-shadow: 0 0 8px rgba(0,255,136,.25); }
+    .nav-logo { display:flex; align-items:center; gap:.7rem; text-decoration:none; white-space:nowrap; }
+    .nav-logo-text { display:flex; flex-direction:column; line-height:1.15; }
+    .nav-logo-text .t1 { font-size:1.1rem; font-weight:700; color:#e8edf8; letter-spacing:.02em; }
+    .nav-logo-text .t2 { font-size:.88rem; font-weight:700; color:var(--neon-green); letter-spacing:.18em; text-shadow:0 0 8px rgba(0,255,136,.25); }
 
     .nav-back {
       display: inline-flex;
@@ -240,7 +231,7 @@
     html.light .nav-logo svg path { stroke:#00a060 !important; fill:rgba(0,160,96,0.1) !important; }
     html.light .nav-logo svg text { fill:#00a060 !important; }
     html.light .nav-logo-text .t1 { color:#1a2540 !important; }
-    html.light .nav-logo-text span:last-child { color:#00a060 !important; text-shadow:none !important; }
+    html.light .nav-logo-text .t2 { color:#00a060 !important; text-shadow:none !important; }
     html.light .page-hero h1, html.light h2 { color:#1a2540; }
     .back-section { display:flex; justify-content:center; align-items:center; gap:1rem; flex-wrap:wrap; padding:2.5rem 1.5rem 4rem; }
     .btn-back { display:inline-flex; align-items:center; gap:.5rem; padding:.75rem 1.8rem; border-radius:8px; font-size:.93rem; font-weight:600; text-decoration:none; color:var(--text-2); background:transparent; border:1px solid rgba(255,255,255,0.18); backdrop-filter:blur(8px); transition:border-color .2s,color .2s; }
@@ -263,8 +254,8 @@
       <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="800" fill="#00ff88" font-family="'Segoe UI',system-ui,sans-serif" style="filter:drop-shadow(0 0 2px rgba(0,255,136,.5))">TSH</text>
     </svg>
     <div class="nav-logo-text">
-      <span>TechSupport</span>
-      <span>HUB</span>
+      <span class="t1">TechSupport</span>
+      <span class="t2">HUB</span>
     </div>
   </a>
   <a class="nav-back" href="index.html#footer">
