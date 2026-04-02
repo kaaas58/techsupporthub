@@ -382,9 +382,9 @@
       background: #060a10;
     }
     .svg-panel svg { display: block; width: 100%; }
-    #user-support .svg-panel { border-color: rgba(0,212,255,0.35); box-shadow: 0 10px 50px rgba(0,0,0,0.55), 0 0 22px rgba(0,212,255,0.07), inset 0 1px 0 rgba(255,255,255,0.04); }
-    .btc-svg .svg-panel       { border-color: rgba(255,107,53,0.35); box-shadow: 0 10px 50px rgba(0,0,0,0.55), 0 0 22px rgba(255,107,53,0.07), inset 0 1px 0 rgba(255,255,255,0.04); }
-    #coding .svg-panel        { border-color: rgba(0,255,136,0.35); box-shadow: 0 10px 50px rgba(0,0,0,0.55), 0 0 22px rgba(0,255,136,0.07), inset 0 1px 0 rgba(255,255,255,0.04); }
+    #user-support .svg-panel { border-color: rgba(0,212,255,0.30); box-shadow: 0 10px 50px rgba(0,0,0,0.55), 0 0 22px rgba(0,212,255,0.05), inset 0 1px 0 rgba(255,255,255,0.04); }
+    .btc-svg .svg-panel       { border-color: rgba(255,107,53,0.30); box-shadow: 0 10px 50px rgba(0,0,0,0.55), 0 0 22px rgba(255,107,53,0.05), inset 0 1px 0 rgba(255,255,255,0.04); }
+    #coding .svg-panel        { border-color: rgba(0,255,136,0.30); box-shadow: 0 10px 50px rgba(0,0,0,0.55), 0 0 22px rgba(0,255,136,0.05), inset 0 1px 0 rgba(255,255,255,0.04); }
 
     /* ── SECTION BACKGROUNDS ── */
     #user-support {
@@ -646,13 +646,13 @@
   <div class="wrap">
     <p class="sec-label" style="color:var(--neon-cyan);">01 — Anwender &amp; User Support</p>
     <h2 class="sec-title">Technik <span style="color:var(--neon-cyan)">einfach erklärt.</span></h2>
+    <p class="sec-desc">
+      Von der ersten Inbetriebnahme bis zur täglichen Nutzung – ich begleite
+      Einsteiger und Senioren, die sich mehr Sicherheit im Umgang mit Geräten wünschen.
+    </p>
     <div class="two-col">
 
       <div class="fi">
-        <p class="sec-desc">
-          Von der ersten Inbetriebnahme bis zur täglichen Nutzung – ich begleite
-          Einsteiger und Senioren, die sich mehr Sicherheit im Umgang mit Geräten wünschen.
-        </p>
         <div class="card-stack">
           <a class="card" href="onboarding-devices.html#top" style="text-decoration:none;color:inherit;cursor:pointer;">
             <div class="card-ico" style="background:rgba(0,212,255,0.1);">🖥️</div>
@@ -886,13 +886,13 @@
   <div class="wrap">
     <p class="sec-label" style="color:var(--neon-green);">03 — Coding &amp; Bugfixing</p>
     <h2 class="sec-title">Code, der <span style="color:var(--neon-green)">läuft.</span></h2>
+    <p class="sec-desc">
+      Ob statischer One-Pager, Präsentation oder ein hartnäckiger Bug –
+      ich unterstütze bei der Umsetzung und Fehlerbehebung im einfachen bis mittleren Bereich.
+    </p>
     <div class="two-col">
 
       <div class="fi">
-        <p class="sec-desc">
-          Ob statischer One-Pager, Präsentation oder ein hartnäckiger Bug –
-          ich unterstütze bei der Umsetzung und Fehlerbehebung im einfachen bis mittleren Bereich.
-        </p>
         <div class="card-stack">
           <a class="card" href="coding.html#top" style="text-decoration:none;color:inherit;cursor:pointer;">
             <div class="card-ico" style="background:rgba(0,255,136,0.1);">🎨</div>
@@ -1009,15 +1009,11 @@
       </div>
 
       <div class="fi fi-d2" style="display:flex;justify-content:center;align-items:center;">
-        <div style="
-          width:280px;
-          border-radius:1.2rem;
-          overflow:hidden;
-          border:1px solid rgba(168,85,247,.2);
-          box-shadow:0 10px 50px rgba(0,0,0,.55), 0 0 0 1px rgba(168,85,247,.08);
-          clip-path:inset(5% 1% 5% 0 round 1.2rem);
-        ">
-          <img src="images/me.jpg" alt="About Me" style="width:100%;display:block;filter:grayscale(20%) contrast(1.05);"/>
+        <div style="width:280px; position:relative;">
+          <div style="border-radius:1.2rem; overflow:hidden; box-shadow:0 10px 50px rgba(0,0,0,.55); clip-path:inset(5% 1% 5% 0 round 1.2rem);">
+            <img src="images/me.jpg" alt="About Me" style="width:100%;display:block;filter:grayscale(20%) contrast(1.05);"/>
+          </div>
+          <div style="position:absolute;top:8%;bottom:8%;left:0;right:0;border-radius:1.1rem;border:1px solid rgba(168,85,247,.5);box-shadow:0 0 28px rgba(168,85,247,.18),0 0 0 1px rgba(168,85,247,.2);pointer-events:none;"></div>
         </div>
       </div>
 
