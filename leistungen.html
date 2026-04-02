@@ -91,6 +91,11 @@
       background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,255,136,.07) 0%, transparent 70%);
       pointer-events: none;
     }
+    .page-header::after {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 2 L36 11 L36 29 L20 38 L4 29 L4 11 Z' fill='%2300ff88'/%3E%3C/svg%3E") center/320px no-repeat;
+      opacity: .03; pointer-events: none;
+    }
 
     .page-tag {
       display: inline-block;
@@ -129,26 +134,11 @@
       padding: 0 1.5rem 5rem;
     }
 
-    /* ── Category label ── */
-    .cat-label {
-      display: flex;
-      align-items: center;
-      gap: .8rem;
-      margin: 3rem 0 1.2rem;
-    }
-    .cat-label h2 {
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .cat-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
+    /* ── Section header ── */
+    .sec-group { margin-top: 3rem; }
+    .sec-label { font-size:.7rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; margin-bottom:.7rem; display:flex; align-items:center; gap:.6rem; }
+    .sec-label::after { content:''; flex:1; height:1px; background:currentColor; opacity:.2; max-width:60px; }
+    h2.sec-title { font-size:clamp(1.85rem,4.2vw,2.9rem); font-weight:900; line-height:1.14; letter-spacing:-.025em; margin-bottom:1rem; color:#e8edf8; }
 
     /* ── Service card ── */
     .service-row {
@@ -176,6 +166,9 @@
     .service-row.cat-support::before { background: var(--neon-g); }
     .service-row.cat-bitcoin::before { background: var(--neon-o); }
     .service-row.cat-coding::before  { background: var(--neon-b); }
+    .service-row.cat-support:hover { border-color:rgba(0,255,136,.3); box-shadow:0 6px 32px rgba(0,0,0,.45), 0 0 12px rgba(0,255,136,.06); transform:translateY(-2px); }
+    .service-row.cat-bitcoin:hover  { border-color:rgba(255,140,0,.3);  box-shadow:0 6px 32px rgba(0,0,0,.45), 0 0 12px rgba(255,140,0,.06);  transform:translateY(-2px); }
+    .service-row.cat-coding:hover   { border-color:rgba(0,200,255,.3);  box-shadow:0 6px 32px rgba(0,0,0,.45), 0 0 12px rgba(0,200,255,.06);  transform:translateY(-2px); }
 
     @media (max-width: 600px) {
       .service-row { grid-template-columns: 1fr; gap: .8rem; }
@@ -220,6 +213,7 @@
       color: var(--muted);
       margin-top: .15rem;
     }
+    .price-note.blurred { filter: blur(5px); user-select: none; }
 
     /* accent color per category */
     .cat-support .price { color: var(--neon-g); text-shadow: 0 0 12px rgba(0,255,136,.3); }
@@ -313,7 +307,7 @@
     html.light body { background:var(--bg); color:var(--text); }
     html.light nav { background:rgba(237,241,248,0.92) !important; border-color:rgba(0,20,80,0.1); }
     html.light .page-header { background:var(--bg); }
-    html.light .page-header h1, html.light .cta-box h3, html.light .service-info h3 { color:#111827; }
+    html.light .page-header h1, html.light .cta-box h3, html.light .service-info h3, html.light h2.sec-title { color:#111827; }
     html.light .cta-box { background:linear-gradient(135deg,rgba(0,180,100,.06) 0%,rgba(0,180,200,.04) 100%); border-color:rgba(0,180,100,.2); }
     html.light footer { background:var(--bg); }
     html.light .btn-ghost { border-color:rgba(0,20,80,0.18); color:var(--text); }
@@ -321,7 +315,9 @@
     html.light .nav-logo svg text { fill:#00a060 !important; }
     html.light .nav-logo-text .t1 { color:#1a2540 !important; }
     html.light .nav-logo-text .t2 { color:#00a060 !important; text-shadow:none !important; }
-    html.light .page-header h1, html.light .cta-box h3, html.light .service-info h3 { color:#1a2540; }
+    html.light .page-header h1, html.light .cta-box h3, html.light .service-info h3, html.light h2.sec-title { color:#1a2540; }
+    html.light h1 { color:#1a2540 !important; }
+    html.light .price-block .price { color:#1e2a45 !important; }
     html.light .btn-primary:hover { box-shadow:0 6px 28px rgba(0,160,96,0.4); }
     html.light .btn-ghost:hover { border-color:rgba(0,160,96,0.45); color:#00a060; }
     .back-section { display:flex; justify-content:center; align-items:center; gap:1rem; flex-wrap:wrap; padding:2.5rem 1.5rem 4rem; }
@@ -367,14 +363,15 @@
 <div class="container">
 
   <!-- ═══ ANWENDER & USER SUPPORT ═══ -->
-  <div class="cat-label">
-    <h2>Anwender & User Support</h2>
+  <div class="sec-group" id="support">
+    <p class="sec-label" style="color:var(--neon-g);">01 — User Support</p>
+    <h2 class="sec-title">Anwender & <span style="color:var(--neon-g);">User Support</span></h2>
   </div>
 
   <div class="service-row cat-support">
     <div class="service-info">
       <h3>PC-Einführung für Einsteiger & Senioren</h3>
-      <p>Grundlagen der PC-Bedienung, Windows-Oberfläche, Dateiverwaltung, sicher surfen und E-Mails schreiben.</p>
+      <p>Grundlagen der PC-Bedienung, Windows-Oberfläche, Dateiverwaltung, verschiedene Software installieren und bedienen, sicher surfen und E-Mails schreiben.</p>
       <div class="service-badges">
         <span class="badge badge-g">Vor Ort</span>
         <span class="badge badge-g">Remote</span>
@@ -400,7 +397,7 @@
     <div class="price-block">
       <div class="price">50 €</div>
       <div class="price-unit">pro Stunde</div>
-      <div class="price-note">Pauschal ab 60 €</div>
+      <div class="price-note blurred">Pauschal ab 60 €</div>
     </div>
   </div>
 
@@ -421,8 +418,9 @@
   </div>
 
   <!-- ═══ BITCOIN JOURNEY ═══ -->
-  <div class="cat-label">
-    <h2>The Bitcoin Journey</h2>
+  <div class="sec-group" id="bitcoin">
+    <p class="sec-label" style="color:var(--neon-o);">02 — Bitcoin</p>
+    <h2 class="sec-title">The <span style="color:var(--neon-o);">Bitcoin Journey</span></h2>
   </div>
 
   <div class="service-row cat-bitcoin">
@@ -489,8 +487,9 @@
   </div>
 
   <!-- ═══ CODING & BUGFIXING ═══ -->
-  <div class="cat-label">
-    <h2>Coding & Bugfixing</h2>
+  <div class="sec-group" id="coding">
+    <p class="sec-label" style="color:var(--neon-b);">03 — Coding</p>
+    <h2 class="sec-title">Coding & <span style="color:var(--neon-b);">Bugfixing</span></h2>
   </div>
 
   <div class="service-row cat-coding">
@@ -506,7 +505,7 @@
     <div class="price-block">
       <div class="price">85 €</div>
       <div class="price-unit">pro Stunde</div>
-      <div class="price-note">Pauschal ab 290 €</div>
+      <div class="price-note blurred">Pauschal ab 290 €</div>
     </div>
   </div>
 
@@ -522,7 +521,7 @@
     <div class="price-block">
       <div class="price">85 €</div>
       <div class="price-unit">pro Stunde</div>
-      <div class="price-note">Pauschal ab 490 €</div>
+      <div class="price-note blurred">Pauschal ab 490 €</div>
     </div>
   </div>
 
@@ -560,7 +559,7 @@
   <div class="info-note">
     <span class="icon">ℹ️</span>
     <div>
-      <strong>Hinweis zu Preisen & Abrechnung:</strong> Alle genannten Preise sind Richtwerte und verstehen sich netto zzgl. MwSt. Fahrtkosten werden ab 15 km Entfernung mit 0,30 €/km berechnet. Auf Anfrage sind auch Pauschalpakete und Stundenblöcke (5 Std.) mit Rabatt möglich. Erstgespräch (15 Min.) immer kostenlos.
+      <strong>Hinweis zu Preisen & Abrechnung:</strong> Alle genannten Preise sind Richtwerte und verstehen sich netto zzgl. MwSt. Fahrtkosten werden ab 15 km Entfernung mit 0,45 €/km berechnet. Auf Anfrage sind auch Pauschalpakete und Stundenblöcke (5 Std.) mit Rabatt möglich. Erstgespräch (15 Min.) immer kostenlos.
     </div>
   </div>
 

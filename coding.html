@@ -62,7 +62,7 @@
     }
     .bg-watermark svg {
       width: 100%; height: 100%;
-      opacity: 0.48; transform: scale(0.86); transform-origin: center;
+      opacity: 0.48; transform: scale(1); transform-origin: center;
     }
 
     /* ══ CONTENT LAYER ══ */
@@ -198,7 +198,9 @@
     html.light .section-block { background:rgba(255,255,255,0.88) !important; border-color:rgba(0,20,80,0.1) !important; box-shadow:0 8px 40px rgba(0,20,80,0.08) !important; }
     html.light .section-block h2 { color:#1a2540; }
     html.light .section-block p { color:#374151; }
+    html.light .section-block strong { color:#1e2a45 !important; }
     html.light .check-list li { color:#374151; }
+    html.light .check-list li strong { color:#1e2a45 !important; }
     html.light .code-block { background:rgba(20,28,50,.9); border-color:rgba(0,160,96,.15); }
     html.light .code-inline { color:#00a060; background:rgba(0,160,96,.07); border-color:rgba(0,160,96,.18); }
     html.light .code-inline.blue { color:#007fb5; background:rgba(0,127,181,.07); border-color:rgba(0,127,181,.18); }
@@ -407,7 +409,7 @@
         bevor irgendetwas gebaut wird.
       </p>
       <p>
-        Ich helfe dir, deinen <span class="kw kw-g">Webauftritt zu durchdenken</span>: vom
+        Ich helfe dir, deinen <span class="kw kw-g">Webauftritt</span> zu <span class="kw kw-g">durchdenken</span>: vom
         groben Use-Case über Zielgruppe und Inhalte bis hin zu Struktur, Seitenaufbau und
         visueller Sprache. Das Ergebnis ist kein fertiges Design – sondern ein klares Bild davon,
         was entstehen soll und warum. Auf dieser Grundlage entsteht dann echte Umsetzung,
@@ -467,7 +469,7 @@
         <li>Seitenstruktur planen: One-Pager vs. Mehrseiter, Navigationstiefe</li>
         <li>Inhaltliche Hierarchie: Was ist wichtig, was ist nachrangig</li>
         <li>Farbschema, Typografie und visuelle Tonalität abstimmen</li>
-        <li>Technologieentscheidung: statisch, CMS oder Shop-System</li>
+        <li>Technologieentscheidung: statisch, (CMS oder Shop-System / noch im learning)</li>
         <li>Realistische Einschätzung von Aufwand und Kosten vor der Umsetzung</li>
       </ul>
 
@@ -511,7 +513,7 @@
 
       <p><strong style="color:#e8edf8;">Was entsteht konkret?</strong></p>
       <p>
-        Ich baue Seiten vollständig per Hand – kein Page-Builder, kein generiertes Markup.
+        Ich baue Seiten ohne Baukastensystem oder Page-Builder, kein generiertes Markup, kann aber eventuelle Codebasen miteinbeziehen.
         Das bedeutet: sauberer, lesbarer Code, der genau das tut, was er soll.
         Das Ergebnis ist <span class="kw kw-b">responsiv</span> (funktioniert auf Handy, Tablet und
         Desktop), lädt ohne spürbare Verzögerung und ist für Suchmaschinen semantisch korrekt
@@ -519,7 +521,7 @@
       </p>
 
       <div class="code-block">
-        <span class="c-gr">&lt;!-- Typische Struktur eines One-Pagers --&gt;</span><br>
+        <span class="c-gr">&lt;!-- Bsp. einer typischen Struktur eines One-Pagers --&gt;</span><br>
         <span class="c-m">&lt;section</span> <span class="c-b">id</span>=<span class="c-y">"hero"</span><span class="c-m">&gt;</span>  <span class="c-gr">← Einstieg, Headline, CTA</span><br>
         <span class="c-m">&lt;section</span> <span class="c-b">id</span>=<span class="c-y">"leistungen"</span><span class="c-m">&gt;</span>  <span class="c-gr">← Was du anbietest</span><br>
         <span class="c-m">&lt;section</span> <span class="c-b">id</span>=<span class="c-y">"about"</span><span class="c-m">&gt;</span>  <span class="c-gr">← Wer du bist</span><br>

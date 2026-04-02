@@ -75,7 +75,7 @@
     .bg-watermark svg {
       width: 100%; height: 100%;
       opacity: 0.51;
-      transform: scale(0.86);
+      transform: scale(1);
       transform-origin: center;
     }
 
@@ -259,6 +259,10 @@
     html.light .bg-watermark { opacity:.3; }
     html.light .section-block { background:rgba(255,255,255,0.88) !important; border-color:rgba(0,20,80,0.1) !important; box-shadow:0 8px 40px rgba(0,20,80,0.08) !important; }
     html.light .section-block h2 { color:#111827; }
+    html.light .section-block p { color:#374151; }
+    html.light .section-block strong { color:#1e2a45 !important; }
+    html.light .check-list li { color:#374151; }
+    html.light .check-list li strong { color:#1e2a45 !important; }
     html.light .section-pill { background:rgba(255,255,255,0.7); border-color:rgba(0,20,80,0.12); color:#4b5568; }
     html.light .btn-back { background:rgba(255,255,255,0.8); border-color:rgba(0,20,80,0.12); color:#111827; }
     html.light .page-hero h1 { color:#111827; }
@@ -268,6 +272,7 @@
     html.light .nav-logo-text .t2 { color:#00a060 !important; text-shadow:none !important; }
     html.light .page-hero h1, html.light .section-block h2 { color:#1a2540; }
     html.light .btn-back:hover { border-color:rgba(0,127,181,0.5); color:#007fb5; }
+    html.light .btn-top  { background:rgba(255,255,255,0.85); border-color:rgba(0,20,80,0.15); color:#5a6a8a; }
     html.light .btn-top:hover  { border-color:rgba(0,127,181,0.4); color:#007fb5; }
   </style>
 </head>
@@ -584,7 +589,7 @@
       <div class="divider-line divider-g"></div>
 
       <p>
-        <span id="word-endgeraete" class="kw kw-b">Endgeräte</span> aller Art – ob Smartphone, Tablet oder PC –
+        Endgeräte aller Art – ob Smartphone, Tablet oder PC –
         sind heute aus dem Alltag nicht mehr wegzudenken. Und doch fühlt sich der erste Umgang mit einem neuen Gerät
         oft überwältigend an: zu viele Einstellungen, unbekannte Begriffe, und nirgendwo jemand, der in Ruhe erklärt,
         was gerade passiert.
@@ -629,7 +634,7 @@
       <div class="divider-line divider-b"></div>
 
       <p>
-        Ein neuer <span id="word-pc" class="kw kw-b">PC</span> – oder ein frisch aufgesetzter – ist zunächst
+        Ein neuer PC – oder ein frisch aufgesetzter – ist zunächst
         nichts als ein leeres Versprechen. Damit er wirklich funktioniert und zu deinem Alltag passt, braucht es
         die richtige Software, die richtigen Einstellungen und angeschlossene Hardware, die auch tatsächlich läuft.
         Ich begleite diesen Prozess von Anfang bis Ende.
@@ -641,8 +646,8 @@
         warum es gebraucht wird, und wie du es künftig selbst bedienen kannst.
       </p>
       <p>
-        Besonderes Augenmerk lege ich auf die Peripherie: Drucker, die tatsächlich drucken; Bildschirme, die
-        korrekt erkannt werden und die richtige Auflösung haben; Webcams, die in jedem Videocall funktionieren;
+        Besonderes Augenmerk lege ich auf die Peripherie: Drucker, die tatsächlich drucken, Bildschirme, die
+        korrekt erkannt werden und die richtige Auflösung haben, Webcams, die in jedem Videocall funktionieren,
         Mäuse und Tastaturen, die sofort reagieren. Klingt selbstverständlich – ist es in der Praxis leider oft
         nicht. Treiber, Kompatibilitätsprobleme und Windows-Updates machen da gerne einen Strich durch die Rechnung.
         Ich kenne diese Stolpersteine und navigiere dich sicher daran vorbei.
@@ -685,7 +690,7 @@
       <div class="divider-line divider-p"></div>
 
       <p>
-        <span id="word-android" class="kw kw-p">Android Smartphones</span> sind leistungsstark, flexibel und
+        Android Smartphones sind leistungsstark, flexibel und
         überall dabei. Doch genau diese Flexibilität macht die Einrichtung für viele Menschen zur echten
         Herausforderung: Wo richtet man das Google-Konto ein? Wie stellt man Benachrichtigungen ab, die man
         nicht braucht? Warum fragt jede App nach der Standortberechtigung – und was erlaubt man davon bedenkenlos?
@@ -745,9 +750,9 @@
       <div class="divider-line divider-o"></div>
 
       <p>
-        <span class="kw kw-o">Linux</span> ist kein Geheimtipp für Nerds mehr. Distributionen wie
-        <strong style="color:#e8edf8;">Ubuntu</strong>, <strong style="color:#e8edf8;">Linux Mint</strong>
-        oder <strong style="color:#e8edf8;">Fedora</strong> bieten eine vollwertige Desktop-Umgebung,
+        Linux ist kein Geheimtipp für Nerds mehr. Distributionen wie
+        <strong style="color:#e8edf8;">Ubuntu</strong>, <strong>Linux Mint</strong>
+        oder <strong>Fedora</strong> bieten eine vollwertige Desktop-Umgebung,
         die sich für die meisten alltäglichen Aufgaben genauso gut – und in manchen Punkten besser –
         eignet als Windows. Kein Aktivierungsschlüssel, keine Zwangs-Updates zur falschen Zeit,
         kein Tracking im Hintergrund. Und das Beste: kostenlos.
@@ -755,8 +760,8 @@
       <p>
         Gerade für ältere Hardware, die unter Windows 11 nicht mehr offiziell unterstützt wird,
         ist Linux eine ernsthafte Alternative. Ein Laptop, der sich unter Windows 10 quält, kann
-        mit einem leichtgewichtigen Linux wie <span class="kw kw-o">Linux Mint Xfce</span> oder
-        <span class="kw kw-o">Zorin OS Lite</span> wieder flüssig und zuverlässig laufen – ohne
+        mit einem leichtgewichtigen Linux wie Linux Mint Xfce oder
+        Zorin OS Lite wieder flüssig und zuverlässig laufen – ohne
         dass man neue Hardware kaufen muss.
       </p>
 
@@ -777,12 +782,12 @@
       <p><strong style="color:#e8edf8;">Installation Schritt für Schritt</strong></p>
       <p>
         Eine Linux-Installation beginnt mit dem Erstellen eines
-        <span class="kw kw-o">bootfähigen USB-Sticks</span> – das klingt komplizierter als es ist.
-        Mit Tools wie <strong style="color:#e8edf8;">Balena Etcher</strong> oder dem offiziellen
+        bootfähigen USB-Sticks – das klingt komplizierter als es ist.
+        Mit Tools wie <strong>Balena Etcher</strong> oder dem offiziellen
         Ubuntu Startup Disk Creator ist das in wenigen Minuten erledigt. Dann starten wir den Rechner
         vom USB-Stick, testen das System im Live-Modus, und installieren es anschließend auf der
         Festplatte – entweder als alleiniges Betriebssystem oder im
-        <span class="kw kw-o">Dual-Boot</span> neben Windows, falls du beide behalten möchtest.
+        <span>Dual-Boot</span> neben Windows, falls du beide behalten möchtest.
       </p>
       <p>
         Nach der Installation richten wir gemeinsam alles ein: WLAN, Browser, E-Mail, Office

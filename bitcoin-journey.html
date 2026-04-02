@@ -75,7 +75,7 @@
     .bg-watermark svg {
       width: 100%; height: 100%;
       opacity: 0.48;
-      transform: scale(0.86);
+      transform: scale(1);
       transform-origin: center;
     }
 
@@ -247,11 +247,14 @@
     html.light .section-block { background:rgba(255,255,255,0.88) !important; border-color:rgba(0,20,80,0.1) !important; box-shadow:0 8px 40px rgba(0,20,80,0.08) !important; }
     html.light .section-block h2 { color:#1a2540; }
     html.light .section-block p { color:#374151; }
+    html.light .section-block strong { color:#1e2a45 !important; }
     html.light .check-list li { color:#374151; }
+    html.light .check-list li strong { color:#1e2a45 !important; }
     html.light .section-pill { background:rgba(255,255,255,0.7); border-color:rgba(0,20,80,0.12); color:#4b5568; }
     html.light .section-pill:hover { color:#c44a10; border-color:rgba(196,74,16,0.4); }
     html.light .btn-back { background:rgba(255,255,255,0.8); border-color:rgba(0,20,80,0.12); color:#111827; }
     html.light .btn-back:hover { border-color:rgba(196,74,16,0.5); color:#c44a10; }
+    html.light .btn-top  { background:rgba(255,255,255,0.85); border-color:rgba(0,20,80,0.15); color:#5a6a8a; }
     html.light .btn-top:hover { border-color:rgba(196,74,16,0.4); color:#c44a10; }
     html.light .page-hero h1 { color:#1a2540; }
     html.light .nav-logo svg path { stroke:#00a060 !important; fill:rgba(0,160,96,0.1) !important; }
@@ -430,7 +433,7 @@
       <div class="divider-line divider-o"></div>
 
       <p>
-        <span class="kw kw-o">Bitcoin</span> ist kein Unternehmen, keine App und keine Investmentplattform. Es ist ein dezentrales,
+        <strong>Bitcoin</strong> ist kein Unternehmen, keine App und keine Investmentplattform. Es ist ein dezentrales,
         digitales Netzwerk, das ohne zentrale Kontrolle funktioniert – kein Staat, keine Bank, kein CEO.
         Das klingt zunächst abstrakt, aber das Prinzip dahinter ist erstaunlich simpel: Menschen können
         weltweit Wert übertragen, ohne einen Mittelsmann zu brauchen.
@@ -444,30 +447,28 @@
 
       <p><strong style="color:#e8edf8;">Was ist eine Wallet?</strong></p>
       <p>
-        Eine <span class="kw kw-o">Wallet</span> ist kein Geldbeutel – sie enthält keine Bitcoin. Sie verwaltet
+        Eine <strong>Wallet</strong> ist kein Geldbeutel – sie enthält keine Bitcoin. Sie verwaltet
         <em>Schlüssel</em>. Ähnlich wie ein Haustürschlüssel nicht das Haus „enthält", aber dir Zugang
         verschafft, kontrolliert eine Wallet deinen privaten Schlüssel – und damit den Zugriff auf deine
-        Bitcoin im Netzwerk. Wer deinen privaten Schlüssel hat, hat deine Bitcoin. Wer ihn verliert, auch.
+        Bitcoin im Netzwerk. Wer deinen privaten Schlüssel hat, hat deine Bitcoin.
       </p>
       <p>
         Es gibt zwei grundlegende Wallet-Typen: <span class="kw kw-o">Hot Wallets</span> (verbunden mit dem
         Internet, praktisch, aber anfälliger) und <span class="kw kw-b">Cold Wallets</span> (offline, deutlich sicherer –
-        mehr dazu im nächsten Abschnitt). Für den Einstieg empfehle ich eine gute Software-Wallet wie
-        <strong style="color:#e8edf8;">Sparrow Wallet</strong> oder <strong style="color:#e8edf8;">BlueWallet</strong>,
-        die dir gleichzeitig zeigt, was im Hintergrund passiert.
+        mehr dazu gerne im Gespräch.
       </p>
 
       <p><strong style="color:#e8edf8;">Keys, Adressen und das Grundprinzip</strong></p>
       <p>
-        Jede Bitcoin-Transaktion basiert auf einem Schlüsselpaar: einem <span class="kw kw-o">Public Key</span>
+        Jede Bitcoin-Transaktion basiert auf einem Schlüsselpaar: einem <strong>Public Key</strong>
         (vergleichbar mit deiner Kontonummer – du kannst sie teilen) und einem
-        <span class="kw kw-o">Private Key</span> (vergleichbar mit deiner PIN – niemals teilen).
+        <strong>Private Key</strong> (vergleichbar mit deiner PIN – niemals teilen).
         Aus dem Public Key wird eine <em>Bitcoin-Adresse</em> berechnet. Wenn jemand Bitcoin an dich
         sendet, schickt er sie an diese Adresse. Du gibst die Transaktion mit deinem Private Key frei.
         Das Netzwerk bestätigt sie – ohne Bank, ohne Vermittler.
       </p>
       <p>
-        Das Bitcoin-Netzwerk besteht aus tausenden von <span class="kw kw-o">Nodes</span> – Computern weltweit,
+        Das Bitcoin-Netzwerk besteht aus tausenden von <strong">Nodes</strong> – Computern weltweit,
         die eine vollständige Kopie aller Transaktionen seit 2009 vorhalten und jede neue Transaktion
         unabhängig prüfen. Du kannst selbst einen Node betreiben – auf einem kleinen Einplatinencomputer,
         einem alten Laptop oder einem dedizierten Gerät. Damit bist du nicht mehr auf fremde Server
@@ -513,13 +514,13 @@
         USB-Sticks – das deinen Private Key isoliert vom Internet generiert und speichert. Selbst wenn
         du es an einen kompromittierten Computer anschließt, verlässt der Key das Gerät nie. Die
         gängigsten und bekanntesten Geräte sind <strong style="color:#e8edf8;">Coldcard</strong>,
-        <strong style="color:#e8edf8;">Trezor</strong> und <strong style="color:#e8edf8;">Ledger</strong>
+        <strong style="color:#e8edf8;">Trezor</strong>, <strong style="color:#e8edf8;">Bitbox</strong> und <strong style="color:#e8edf8;">Ledger</strong>
         – jedes mit eigenen Sicherheitsphilosophien, die ich dir erläutere.
       </p>
 
       <p><strong style="color:#e8edf8;">Die Seed Phrase – dein wichtigstes Backup</strong></p>
       <p>
-        Beim Einrichten eines Hardware-Wallets erhältst du eine <span class="kw kw-b">Seed Phrase</span>:
+        Beim Einrichten eines Hardware-Wallets erhältst du eine <strong">Seed Phrase</strong>:
         12 oder 24 zufällige Wörter in einer festgelegten Reihenfolge. Diese Wörter sind dein
         vollständiges Backup. Wer sie kennt, kann jederzeit auf alle damit gesicherten Bitcoin zugreifen –
         auf jedem kompatiblen Gerät, weltweit, ohne Passwort, ohne Benutzerkonto.
@@ -533,7 +534,7 @@
 
       <p><strong style="color:#e8edf8;">Multisig – wenn eine Unterschrift nicht genug ist</strong></p>
       <p>
-        Für größere Mengen empfiehlt sich <span class="kw kw-b">Multisignatur</span>: eine Wallet, die
+        Für größere Mengen empfiehlt sich <strong>Multisignatur</strong>: eine Wallet, die
         erst dann eine Transaktion genehmigt, wenn mehrere private Schlüssel gleichzeitig unterschreiben –
         z. B. 2 von 3. Selbst wenn ein Gerät gestohlen oder ein Backup gefunden wird, sind deine
         Bitcoin sicher. Das klingt komplex, ist aber mit der richtigen Software (z. B. Sparrow Wallet
@@ -541,11 +542,11 @@
       </p>
 
       <ul class="check-list blue">
-        <li>Hardware-Wallet auswählen und sicher einrichten (Coldcard, Trezor, Ledger)</li>
+        <li>Hardware-Wallet auswählen und sicher einrichten (Coldcard, Trezor, Bitbox, Ledger)</li>
         <li>Seed Phrase richtig sichern – Papier, Metall, sichere Aufbewahrung</li>
         <li>Passphrase als zusätzliche Sicherheitsebene verstehen und einsetzen</li>
         <li>Multisig-Setups für erhöhte Sicherheit bei größeren Beträgen</li>
-        <li>Verifikation: kontrollieren ob das Backup funktioniert, bevor du Bitcoin sendest</li>
+        <li>Verifikation: kontrollieren ob das Backup funktioniert, bevor du Bitcoin auf eine HW sendest.</li>
         <li>Erbschaft und Notfallplan – Bitcoin für die Nachwelt sichern</li>
       </ul>
 
@@ -571,13 +572,13 @@
       <div class="divider-line divider-p"></div>
 
       <p>
-        <span class="kw kw-p">Bitcoin-Mining</span> ist der Prozess, durch den neue Blöcke zur Blockchain
+        <strong>Bitcoin-Mining</strong> ist der Prozess, durch den neue Blöcke zur Blockchain
         hinzugefügt werden. Miner bündeln ausstehende Transaktionen, lösen ein mathematisches Rätsel
         (Proof of Work) und erhalten als Belohnung neu erzeugte Bitcoin plus Transaktionsgebühren.
         Das sichert das Netzwerk und macht es praktisch unveränderbar.
       </p>
       <p>
-        <span class="kw kw-p">Solo-Mining</span> bedeutet: du schürfst auf eigene Faust, ohne Mining-Pool.
+        <strong>Solo-Mining</strong> bedeutet: du schürfst auf eigene Faust, ohne Mining-Pool.
         Die Wahrscheinlichkeit, einen Block zu finden, ist klein – aber wenn du ihn findest, gehört die
         vollständige Belohnung dir. Es ist der bitcoinischste Weg zu minen: vollständig souverän,
         ohne Drittpartei, die deine Hashrate kennt oder steuert.
@@ -585,7 +586,7 @@
 
       <p><strong style="color:#e8edf8;">Welche Hardware eignet sich?</strong></p>
       <p>
-        Für Solo-Mining zu Hause haben sich vor allem <span class="kw kw-p">ASIC-Miner</span> etabliert –
+        Für Solo-Mining zu Hause haben sich vor allem <strong>ASIC-Miner</strong> etabliert –
         hochspezialisierte Chips, die ausschließlich für den SHA-256-Algorithmus von Bitcoin optimiert
         sind. Bekannte Einstiegsgeräte sind der <strong style="color:#e8edf8;">Bitaxe</strong>
         (Open-Source, sehr sparsam, ideal als Lerngerät), der
@@ -601,7 +602,7 @@
 
       <p><strong style="color:#e8edf8;">Node + Miner: vollständige Souveränität</strong></p>
       <p>
-        Wer solo mint, braucht einen eigenen <span class="kw kw-p">Bitcoin Node</span> – idealerweise mit
+        Wer solo mint, kann zusätzlich oder einzeln auch einen eigenen <strong>Bitcoin Node betreiben</strong> – idealerweise mit
         <strong style="color:#e8edf8;">Bitcoin Core</strong> und dem
         <strong style="color:#e8edf8;">stratum-v1</strong>-Protokoll (z. B. über
         <strong style="color:#e8edf8;">public-pool.io</strong> oder einen selbst gehosteten Pool
@@ -609,18 +610,20 @@
         verbindet den Miner direkt mit dem Netzwerk – kein fremdes Vertrauen nötig.
       </p>
       <p>
-        Ein <span class="kw kw-p">Raspberry Pi</span> oder ein alter Mini-PC genügt für den Node. Ich
+        Ein <strong>Raspberry Pi</strong> oder ein alter Mini-PC genügt für den Node. Ich
         helfe dir beim vollständigen Setup: Bitcoin Core installieren, IBD (Initial Block Download)
         abwarten, Stratum-Verbindung zum Miner einrichten und alles auf Funktion testen.
+        <br>
+        (noch im aneignen)
       </p>
 
       <ul class="check-list purple">
         <li>ASIC-Miner auswählen – von Bitaxe bis Antminer, alt bis neu</li>
         <li>Inbetriebnahme: Firmware, Netzwerk, Ventilation und Stromversorgung</li>
-        <li>Bitcoin Node aufsetzen (Raspberry Pi oder Mini-PC, Bitcoin Core)</li>
         <li>Solo-Mining-Pool konfigurieren und Miner verbinden</li>
         <li>Monitoring: Hashrate, Temperatur und Uptime im Blick behalten</li>
         <li>Realistisches Erwartungsmanagement – Wahrscheinlichkeiten und Geduld</li>
+        <li>Bitcoin Node aufsetzen (Raspberry Pi oder Mini-PC, Bitcoin Core) (noch im aneignen)</li>
       </ul>
 
       <div class="info-box purple">
