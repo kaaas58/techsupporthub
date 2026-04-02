@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
   <script>if(localStorage.getItem('tsh-theme')==='light')document.documentElement.classList.add('light');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Leistungen & Preise – TechSupport HUB</title>
@@ -177,8 +177,6 @@
     .service-row.cat-bitcoin::before { background: var(--neon-o); }
     .service-row.cat-coding::before  { background: var(--neon-b); }
 
-    .service-row:hover {}
-
     @media (max-width: 600px) {
       .service-row { grid-template-columns: 1fr; gap: .8rem; }
       .price-block { text-align: left; }
@@ -321,10 +319,20 @@
     html.light .btn-ghost { border-color:rgba(0,20,80,0.18); color:var(--text); }
     html.light .nav-logo svg path { stroke:#00a060 !important; fill:rgba(0,160,96,0.1) !important; }
     html.light .nav-logo svg text { fill:#00a060 !important; }
+    html.light .nav-logo-text .t1 { color:#1a2540 !important; }
     html.light .nav-logo-text .t2 { color:#00a060 !important; text-shadow:none !important; }
     html.light .page-header h1, html.light .cta-box h3, html.light .service-info h3 { color:#1a2540; }
     html.light .btn-primary:hover { box-shadow:0 6px 28px rgba(0,160,96,0.4); }
     html.light .btn-ghost:hover { border-color:rgba(0,160,96,0.45); color:#00a060; }
+    .back-section { display:flex; justify-content:center; align-items:center; gap:1rem; flex-wrap:wrap; padding:2.5rem 1.5rem 4rem; }
+    .btn-back { display:inline-flex; align-items:center; gap:.5rem; padding:.75rem 1.8rem; border-radius:8px; font-size:.93rem; font-weight:600; text-decoration:none; color:var(--text); background:rgba(24,28,39,.8); border:1px solid var(--border); backdrop-filter:blur(8px); transition:border-color .2s,color .2s; }
+    .btn-back:hover { border-color:var(--neon-g); color:var(--neon-g); }
+    .btn-top  { display:inline-flex; align-items:center; gap:.5rem; padding:.75rem 1.4rem; border-radius:8px; font-size:.93rem; font-weight:600; text-decoration:none; color:var(--muted); background:rgba(24,28,39,.8); border:1px solid var(--border); backdrop-filter:blur(8px); transition:border-color .2s,color .2s; }
+    .btn-top:hover  { border-color:rgba(0,255,136,.4); color:var(--neon-g); }
+    html.light .btn-back { background:rgba(255,255,255,0.85); border-color:rgba(0,20,80,0.15); color:#111827; }
+    html.light .btn-back:hover { border-color:rgba(0,160,96,0.5); color:#00a060; }
+    html.light .btn-top  { background:rgba(255,255,255,0.85); border-color:rgba(0,20,80,0.15); color:#5a6a8a; }
+    html.light .btn-top:hover  { border-color:rgba(0,160,96,0.4); color:#00a060; }
   </style>
 </head>
 <body>
@@ -350,7 +358,7 @@
 </nav>
 
 <!-- ── Page Header ── -->
-<div class="page-header">
+<div class="page-header" id="top">
   <div class="page-tag">Leistungen & Preise</div>
   <h1>Was ich für dich tun kann – <span class="accent">transparent</span> bepreist.</h1>
   <p class="page-sub">Alle Preise verstehen sich pro Stunde (60 Min.) inklusive Beratung, Dokumentation und Nachfragen per Nachricht.</p>
@@ -561,9 +569,23 @@
     <h3>Bereit loszulegen?</h3>
     <p>Schreib mir kurz was du brauchst – ich melde mich in der Regel innerhalb von 24 Stunden.</p>
     <button onclick="openContact()" class="btn btn-primary">Jetzt anfragen</button>
-    <a href="index.html#about" class="btn btn-ghost">Zurück zur Startseite</a>
   </div>
 
+</div>
+
+<div class="back-section">
+  <a href="index.html#about" class="btn-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="10,3 5,8 10,13"/>
+    </svg>
+    Zurück zur Startseite
+  </a>
+  <a href="#top" class="btn-top">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="3,10 8,5 13,10"/>
+    </svg>
+    Nach oben
+  </a>
 </div>
 
 <!-- ── Footer ── -->

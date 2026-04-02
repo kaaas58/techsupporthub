@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <script>if(localStorage.getItem('tsh-theme')==='light')document.documentElement.classList.add('light');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dein Weg zu Bitcoin – TechSupport HUB</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg:      #0f1117;
+      --surface: #181c27;
+      --surface2:#1e2436;
+      --border:  #2a3050;
+      --text:    #c9d1e8;
+      --muted:   #6b7a9e;
+      --neon-g:  #00ff88;
+      --neon-b:  #00c8ff;
+      --neon-p:  #bf5fff;
+      --neon-o:  #ff8c00;
+      --radius:  14px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* ══ NAVBAR ══ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 62px;
+      background: rgba(15,17,23,.6);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: .7rem;
+      text-decoration: none; white-space: nowrap;
+    }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .nav-logo-text .t1 { font-size: 1.1rem; font-weight: 700; color: #e8edf8; letter-spacing: .02em; }
+    .nav-logo-text .t2 { font-size: .88rem; font-weight: 700; color: var(--neon-g); letter-spacing: .18em; text-shadow: 0 0 8px rgba(0,255,136,.25); }
+    .nav-back {
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: var(--muted); text-decoration: none; font-size: .87rem; font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-back:hover { color: var(--neon-o); }
+
+    /* ══ BACKGROUND WATERMARK ══ */
+    .bg-watermark {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .bg-watermark svg {
+      width: 100%; height: 100%;
+      opacity: 0.48;
+      transform: scale(0.86);
+      transform-origin: center;
+    }
+
+    /* ══ CONTENT LAYER ══ */
+    .page-content {
+      position: relative;
+      z-index: 10;
+      padding-top: 62px;
+    }
+
+    /* ══ PAGE HERO ══ */
+    .page-hero {
+      padding: 5rem 1.5rem 3rem;
+      text-align: center;
+    }
+    .page-tag {
+      display: inline-block;
+      font-size: .72rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--neon-o);
+      background: rgba(255,140,0,.08);
+      border: 1px solid rgba(255,140,0,.22);
+      border-radius: 20px; padding: .3rem .9rem; margin-bottom: 1.2rem;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.9rem, 5vw, 3rem);
+      font-weight: 800; color: #e8edf8; line-height: 1.2; margin-bottom: .8rem;
+    }
+    .page-hero h1 .accent { color: var(--neon-o); }
+    .page-hero p {
+      font-size: 1.05rem; color: var(--muted);
+      max-width: 560px; margin: 0 auto;
+    }
+
+    /* ══ SECTION NAV PILLS ══ */
+    .section-nav {
+      display: flex; justify-content: center; gap: .8rem;
+      flex-wrap: wrap; padding: 0 1.5rem 3rem;
+    }
+    .section-pill {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .5rem 1.2rem; border-radius: 25px;
+      font-size: .85rem; font-weight: 600; text-decoration: none;
+      border: 1px solid var(--border); color: var(--muted);
+      background: rgba(24,28,39,.7);
+      backdrop-filter: blur(8px);
+      transition: color .2s, border-color .2s, background .2s;
+    }
+    .section-pill:hover { color: var(--neon-o); border-color: rgba(255,140,0,.4); }
+
+    /* ══ TEXT SECTIONS ══ */
+    .text-section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem 5rem;
+    }
+
+    .section-block {
+      background: rgba(24,28,39,.82);
+      backdrop-filter: blur(24px) saturate(150%);
+      -webkit-backdrop-filter: blur(24px) saturate(150%);
+      border: 1px solid rgba(42,48,80,.8);
+      border-radius: var(--radius);
+      padding: 2.5rem 2.8rem;
+      margin-bottom: 5rem;
+      box-shadow: 0 8px 48px rgba(0,0,0,.55), 0 1px 0 rgba(255,255,255,.04) inset;
+      scroll-margin-top: 80px;
+    }
+    @media (max-width: 600px) { .section-block { padding: 1.8rem 1.4rem; } }
+
+    .section-block .section-tag-small {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .7rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .tag-o { color: var(--neon-o); }
+    .tag-b { color: var(--neon-b); }
+    .tag-p { color: var(--neon-p); }
+
+    .section-block h2 {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800; color: #e8edf8;
+      margin-bottom: .5rem; line-height: 1.2;
+    }
+    .divider-line {
+      height: 2px; width: 80px; border-radius: 2px;
+      margin: .8rem 0 1.6rem;
+    }
+    .divider-o { background: linear-gradient(90deg, var(--neon-o), transparent); }
+    .divider-b { background: linear-gradient(90deg, var(--neon-b), transparent); }
+    .divider-p { background: linear-gradient(90deg, var(--neon-p), transparent); }
+
+    .section-block p {
+      font-size: .97rem; color: var(--text);
+      margin-bottom: 1.1rem; line-height: 1.75;
+    }
+    .section-block p:last-of-type { margin-bottom: 0; }
+
+    .kw { font-weight: 700; }
+    .kw-o { color: var(--neon-o); }
+    .kw-b { color: var(--neon-b); }
+    .kw-p { color: var(--neon-p); }
+
+    /* Bullet list */
+    .check-list {
+      list-style: none;
+      margin: 1rem 0 1.2rem;
+      display: flex; flex-direction: column; gap: .55rem;
+    }
+    .check-list li {
+      display: flex; align-items: flex-start; gap: .7rem;
+      font-size: .94rem; color: var(--text);
+    }
+    .check-list li::before {
+      content: '›';
+      color: var(--neon-o); font-weight: 700; font-size: 1.1rem;
+      line-height: 1.5; flex-shrink: 0;
+    }
+    .check-list.blue li::before   { color: var(--neon-b); }
+    .check-list.purple li::before { color: var(--neon-p); }
+
+    /* Info-box */
+    .info-box {
+      background: rgba(255,140,0,.05);
+      border: 1px solid rgba(255,140,0,.18);
+      border-radius: 10px; padding: 1rem 1.3rem;
+      font-size: .88rem; color: var(--text);
+      margin-top: 1.5rem; line-height: 1.6;
+    }
+    .info-box.blue   { background: rgba(0,200,255,.05);  border-color: rgba(0,200,255,.18); }
+    .info-box.purple { background: rgba(191,95,255,.05); border-color: rgba(191,95,255,.18); }
+    .info-box strong { color: var(--neon-o); }
+    .info-box.blue   strong { color: var(--neon-b); }
+    .info-box.purple strong { color: var(--neon-p); }
+
+    /* ══ BACK LINK ══ */
+    .back-section {
+      text-align: center;
+      padding: 1rem 1.5rem 5rem;
+      display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap;
+    }
+    .btn-back {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .75rem 1.8rem; border-radius: 8px;
+      font-size: .93rem; font-weight: 600;
+      text-decoration: none; color: var(--text);
+      background: rgba(24,28,39,.8);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+      transition: border-color .2s, color .2s, transform .18s;
+    }
+    .btn-back:hover { border-color: var(--neon-o); color: var(--neon-o); }
+    .btn-top {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .75rem 1.4rem; border-radius: 8px;
+      font-size: .93rem; font-weight: 600;
+      text-decoration: none; color: var(--muted);
+      background: rgba(24,28,39,.8);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+      transition: border-color .2s, color .2s;
+    }
+    .btn-top:hover { border-color: rgba(255,140,0,.4); color: var(--neon-o); }
+
+    /* ── LIGHT MODE ── */
+    html.light { --bg:#edf1f8; --surface:#ffffff; --surface2:#f0f4fb; --border:rgba(0,20,80,0.1); --text:#111827; --muted:#5a6a8a; --neon-g:#00a060; --neon-b:#007fb5; --neon-p:#7c22d8; --neon-o:#c44a10; }
+    html.light body { background:var(--bg); color:var(--text); }
+    html.light nav { background:rgba(237,241,248,0.92) !important; border-color:rgba(0,20,80,0.1); }
+    html.light .bg-watermark { opacity:.28; }
+    html.light .section-block { background:rgba(255,255,255,0.88) !important; border-color:rgba(0,20,80,0.1) !important; box-shadow:0 8px 40px rgba(0,20,80,0.08) !important; }
+    html.light .section-block h2 { color:#1a2540; }
+    html.light .section-block p { color:#374151; }
+    html.light .check-list li { color:#374151; }
+    html.light .section-pill { background:rgba(255,255,255,0.7); border-color:rgba(0,20,80,0.12); color:#4b5568; }
+    html.light .section-pill:hover { color:#c44a10; border-color:rgba(196,74,16,0.4); }
+    html.light .btn-back { background:rgba(255,255,255,0.8); border-color:rgba(0,20,80,0.12); color:#111827; }
+    html.light .btn-back:hover { border-color:rgba(196,74,16,0.5); color:#c44a10; }
+    html.light .btn-top:hover { border-color:rgba(196,74,16,0.4); color:#c44a10; }
+    html.light .page-hero h1 { color:#1a2540; }
+    html.light .nav-logo svg path { stroke:#00a060 !important; fill:rgba(0,160,96,0.1) !important; }
+    html.light .nav-logo svg text { fill:#00a060 !important; }
+    html.light .nav-logo-text .t1 { color:#1a2540 !important; }
+    html.light .nav-logo-text .t2 { color:#00a060 !important; text-shadow:none !important; }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 2 L36 11 L36 29 L20 38 L4 29 L4 11 Z" stroke="#00ff88" stroke-width="1.8" fill="rgba(0,255,136,0.07)"/>
+      <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="800" fill="#00ff88"
+        font-family="'Segoe UI',system-ui,sans-serif"
+        style="filter:drop-shadow(0 0 2px rgba(0,255,136,.5))">TSH</text>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="t1">TechSupport</span>
+      <span class="t2">HUB</span>
+    </div>
+  </a>
+  <a href="index.html#bitcoin" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="10,3 5,8 10,13"/>
+    </svg>
+    Zurück
+  </a>
+</nav>
+
+<!-- ══ BACKGROUND WATERMARK SVG ══ -->
+<div class="bg-watermark">
+  <svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice"
+       fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="glow-wm">
+        <feGaussianBlur stdDeviation="3" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <filter id="glow-sm">
+        <feGaussianBlur stdDeviation="2" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+
+    <!-- Background grid -->
+    <line x1="0" y1="100" x2="1400" y2="100" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="0" y1="200" x2="1400" y2="200" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="0" y1="300" x2="1400" y2="300" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="0" y1="400" x2="1400" y2="400" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="0" y1="500" x2="1400" y2="500" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="0" y1="600" x2="1400" y2="600" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="0" y1="700" x2="1400" y2="700" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="0" y1="800" x2="1400" y2="800" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="100" y1="0" x2="100" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="200" y1="0" x2="200" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="300" y1="0" x2="300" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="400" y1="0" x2="400" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="500" y1="0" x2="500" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="600" y1="0" x2="600" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="700" y1="0" x2="700" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="800" y1="0" x2="800" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="900" y1="0" x2="900" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="1000" y1="0" x2="1000" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="1100" y1="0" x2="1100" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="1200" y1="0" x2="1200" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="1300" y1="0" x2="1300" y2="900" stroke="#1a1f30" stroke-width="1"/>
+
+    <!-- ══ HEX GRID (left cluster) ══ -->
+    <g opacity="0.09" stroke="#ff8c00" stroke-width="1" fill="none">
+      <polygon points="80,120 110,103 140,120 140,154 110,171 80,154"/>
+      <polygon points="140,120 170,103 200,120 200,154 170,171 140,154"/>
+      <polygon points="200,120 230,103 260,120 260,154 230,171 200,154"/>
+      <polygon points="80,188 110,171 140,188 140,222 110,239 80,222"/>
+      <polygon points="140,188 170,171 200,188 200,222 170,239 140,222"/>
+      <polygon points="200,188 230,171 260,188 260,222 230,239 200,222"/>
+      <polygon points="80,256 110,239 140,256 140,290 110,307 80,290"/>
+      <polygon points="140,256 170,239 200,256 200,290 170,307 140,290"/>
+      <polygon points="200,256 230,239 260,256 260,290 230,307 200,290"/>
+    </g>
+    <!-- Active hex + BTC symbol (left) -->
+    <polygon points="140,188 170,171 200,188 200,222 170,239 140,222"
+      fill="rgba(255,140,0,0.1)" stroke="#ff8c00" stroke-width="1.8" filter="url(#glow-wm)"/>
+    <text x="170" y="212" text-anchor="middle" font-family="serif" font-size="22" fill="#ff8c00"
+      font-weight="bold" filter="url(#glow-wm)" opacity=".85">&#x20BF;</text>
+    <!-- Pulse ring -->
+    <circle cx="170" cy="205" r="28" fill="none" stroke="#ff8c00" stroke-width="1.2" opacity="0.4">
+      <animate attributeName="r" values="28;44;28" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.4;0;0.4" dur="3s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- ══ HEX GRID (center-right) ══ -->
+    <g opacity="0.08" stroke="#ff8c00" stroke-width="1" fill="none">
+      <polygon points="900,60  930,43  960,60  960,94  930,111 900,94"/>
+      <polygon points="960,60  990,43  1020,60 1020,94 990,111 960,94"/>
+      <polygon points="1020,60 1050,43 1080,60 1080,94 1050,111 1020,94"/>
+      <polygon points="900,128 930,111 960,128 960,162 930,179 900,162"/>
+      <polygon points="960,128 990,111 1020,128 1020,162 990,179 960,162"/>
+      <polygon points="1020,128 1050,111 1080,128 1080,162 1050,179 1020,162"/>
+      <polygon points="900,196 930,179 960,196 960,230 930,247 900,230"/>
+      <polygon points="960,196 990,179 1020,196 1020,230 990,247 960,230"/>
+      <polygon points="1020,196 1050,179 1080,196 1080,230 1050,247 1020,230"/>
+    </g>
+    <!-- Cold storage icon (center-right) — shield shape -->
+    <path d="M990,140 L1018,128 L1018,165 Q1018,185 990,195 Q962,185 962,165 L962,128 Z"
+      fill="rgba(0,200,255,0.06)" stroke="#00c8ff" stroke-width="1.5" filter="url(#glow-sm)" opacity=".6"/>
+    <path d="M979,163 L986,170 L1002,154" fill="none" stroke="#00c8ff" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+
+    <!-- ══ MINING RIG (bottom-right) ══ -->
+    <!-- Miner chassis -->
+    <rect x="1080" y="580" width="260" height="120" rx="10"
+      fill="rgba(191,95,255,0.03)" stroke="#bf5fff" stroke-width="1.6"
+      opacity=".5" filter="url(#glow-wm)"/>
+    <!-- Fan circles -->
+    <circle cx="1130" cy="640" r="32" fill="none" stroke="#bf5fff" stroke-width="1.2" opacity=".4"/>
+    <circle cx="1130" cy="640" r="20" fill="none" stroke="#bf5fff" stroke-width="1" opacity=".25"/>
+    <circle cx="1130" cy="640" r="8"  fill="rgba(191,95,255,.1)" stroke="#bf5fff" stroke-width="1.2" opacity=".5"/>
+    <circle cx="1210" cy="640" r="32" fill="none" stroke="#bf5fff" stroke-width="1.2" opacity=".4"/>
+    <circle cx="1210" cy="640" r="20" fill="none" stroke="#bf5fff" stroke-width="1" opacity=".25"/>
+    <circle cx="1210" cy="640" r="8"  fill="rgba(191,95,255,.1)" stroke="#bf5fff" stroke-width="1.2" opacity=".5"/>
+    <circle cx="1290" cy="640" r="32" fill="none" stroke="#bf5fff" stroke-width="1.2" opacity=".4"/>
+    <circle cx="1290" cy="640" r="20" fill="none" stroke="#bf5fff" stroke-width="1" opacity=".25"/>
+    <circle cx="1290" cy="640" r="8"  fill="rgba(191,95,255,.1)" stroke="#bf5fff" stroke-width="1.2" opacity=".5"/>
+    <!-- LED strip -->
+    <rect x="1088" y="586" width="244" height="6" rx="3" fill="#bf5fff" opacity=".15"/>
+    <!-- Label -->
+    <text x="1200" y="730" text-anchor="middle" font-size="11" font-weight="600"
+      fill="#bf5fff" font-family="'Segoe UI',system-ui,sans-serif"
+      opacity=".4" letter-spacing="2">MINING RIG</text>
+
+    <!-- Connecting dotted lines -->
+    <line x1="260" y1="205" x2="960" y2="165" stroke="#ff8c00" stroke-width="1"
+      stroke-dasharray="6,6" opacity=".12"/>
+    <line x1="1080" y1="165" x2="1130" y2="580" stroke="#bf5fff" stroke-width="1"
+      stroke-dasharray="5,6" opacity=".1"/>
+
+    <!-- Ambient glows -->
+    <ellipse cx="170" cy="220" rx="160" ry="130" fill="#ff8c00" opacity=".018"/>
+    <ellipse cx="990" cy="165" rx="180" ry="130" fill="#00c8ff" opacity=".018"/>
+    <ellipse cx="1200" cy="640" rx="200" ry="120" fill="#bf5fff" opacity=".02"/>
+  </svg>
+</div>
+
+<!-- ══ CONTENT ══ -->
+<div class="page-content">
+
+  <!-- Page hero -->
+  <div class="page-hero" id="top">
+    <div class="page-tag">02 — The Bitcoin Journey</div>
+    <h1>Dein Weg zu <span class="accent">Bitcoin.</span></h1>
+    <p>Vom ersten Verständnis bis zur sicheren Verwahrung und eigenem Mining-Betrieb – hier erkläre ich Schritt für Schritt, was hinter Bitcoin wirklich steckt.</p>
+  </div>
+
+  <!-- Section nav pills -->
+  <div class="section-nav">
+    <a class="section-pill" href="#onboarding">&#x20BF; Onboarding &amp; Grundlagen</a>
+    <a class="section-pill" href="#coldstorage">🔐 Cold Storage &amp; Sicherheit</a>
+    <a class="section-pill" href="#mining">⛏️ Solo-Mining Hardware</a>
+  </div>
+
+  <div class="text-section">
+
+    <!-- ══════ SECTION 1: Bitcoin-Onboarding & Grundlagen ══════ -->
+    <div class="section-block" id="onboarding">
+      <div class="section-tag-small tag-o">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <circle cx="7" cy="7" r="6" stroke="#ff8c00" stroke-width="1.5"/>
+          <text x="7" y="11" text-anchor="middle" font-size="9" font-weight="800" fill="#ff8c00" font-family="serif">&#x20BF;</text>
+        </svg>
+        Bitcoin-Onboarding &amp; Grundlagen
+      </div>
+      <h2>Was ist Bitcoin – und warum sollte mich das interessieren?</h2>
+      <div class="divider-line divider-o"></div>
+
+      <p>
+        <span class="kw kw-o">Bitcoin</span> ist kein Unternehmen, keine App und keine Investmentplattform. Es ist ein dezentrales,
+        digitales Netzwerk, das ohne zentrale Kontrolle funktioniert – kein Staat, keine Bank, kein CEO.
+        Das klingt zunächst abstrakt, aber das Prinzip dahinter ist erstaunlich simpel: Menschen können
+        weltweit Wert übertragen, ohne einen Mittelsmann zu brauchen.
+      </p>
+      <p>
+        Der erste Schritt auf der Bitcoin-Journey ist das <span class="kw kw-o">Verstehen</span>. Nicht das Kaufen,
+        nicht das Investieren – das Verstehen. Denn wer Bitcoin kauft ohne zu verstehen, was er da eigentlich
+        hält, handelt wie jemand, der Gold in einem Schuhkarton unter dem Bett versteckt ohne zu wissen,
+        dass der Schuhkarton ungesichert ist.
+      </p>
+
+      <p><strong style="color:#e8edf8;">Was ist eine Wallet?</strong></p>
+      <p>
+        Eine <span class="kw kw-o">Wallet</span> ist kein Geldbeutel – sie enthält keine Bitcoin. Sie verwaltet
+        <em>Schlüssel</em>. Ähnlich wie ein Haustürschlüssel nicht das Haus „enthält", aber dir Zugang
+        verschafft, kontrolliert eine Wallet deinen privaten Schlüssel – und damit den Zugriff auf deine
+        Bitcoin im Netzwerk. Wer deinen privaten Schlüssel hat, hat deine Bitcoin. Wer ihn verliert, auch.
+      </p>
+      <p>
+        Es gibt zwei grundlegende Wallet-Typen: <span class="kw kw-o">Hot Wallets</span> (verbunden mit dem
+        Internet, praktisch, aber anfälliger) und <span class="kw kw-b">Cold Wallets</span> (offline, deutlich sicherer –
+        mehr dazu im nächsten Abschnitt). Für den Einstieg empfehle ich eine gute Software-Wallet wie
+        <strong style="color:#e8edf8;">Sparrow Wallet</strong> oder <strong style="color:#e8edf8;">BlueWallet</strong>,
+        die dir gleichzeitig zeigt, was im Hintergrund passiert.
+      </p>
+
+      <p><strong style="color:#e8edf8;">Keys, Adressen und das Grundprinzip</strong></p>
+      <p>
+        Jede Bitcoin-Transaktion basiert auf einem Schlüsselpaar: einem <span class="kw kw-o">Public Key</span>
+        (vergleichbar mit deiner Kontonummer – du kannst sie teilen) und einem
+        <span class="kw kw-o">Private Key</span> (vergleichbar mit deiner PIN – niemals teilen).
+        Aus dem Public Key wird eine <em>Bitcoin-Adresse</em> berechnet. Wenn jemand Bitcoin an dich
+        sendet, schickt er sie an diese Adresse. Du gibst die Transaktion mit deinem Private Key frei.
+        Das Netzwerk bestätigt sie – ohne Bank, ohne Vermittler.
+      </p>
+      <p>
+        Das Bitcoin-Netzwerk besteht aus tausenden von <span class="kw kw-o">Nodes</span> – Computern weltweit,
+        die eine vollständige Kopie aller Transaktionen seit 2009 vorhalten und jede neue Transaktion
+        unabhängig prüfen. Du kannst selbst einen Node betreiben – auf einem kleinen Einplatinencomputer,
+        einem alten Laptop oder einem dedizierten Gerät. Damit bist du nicht mehr auf fremde Server
+        angewiesen und prüfst Transaktionen eigenständig.
+      </p>
+
+      <ul class="check-list">
+        <li>Was Bitcoin ist und was es von anderen Kryptowährungen unterscheidet</li>
+        <li>Hot Wallet vs. Cold Wallet – wann was sinnvoll ist</li>
+        <li>Erste eigene Wallet erstellen und eine Transaktion verstehen</li>
+        <li>Public Key, Private Key und Seed Phrase – das Schlüsseldreieck</li>
+        <li>Was ein Node ist und warum es sich lohnt, einen zu betreiben</li>
+        <li>Vertrauenslose Systeme: warum du niemandem vertrauen musst</li>
+      </ul>
+
+      <div class="info-box">
+        <strong>Mein Ansatz:</strong> Ich erkläre Bitcoin nicht als Spekulationsobjekt, sondern als Technologie
+        und monetäres System. Wer es wirklich verstanden hat, entscheidet selbst – informiert und ohne Druck.
+      </div>
+    </div>
+
+    <!-- ══════ SECTION 2: Cold Storage & Sicherheit ══════ -->
+    <div class="section-block" id="coldstorage">
+      <div class="section-tag-small tag-b">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M7,1 L13,4 L13,9 Q13,13 7,14 Q1,13 1,9 L1,4 Z" stroke="#00c8ff" stroke-width="1.5" fill="none"/>
+          <path d="M4.5,7 L6.2,8.8 L9.5,5.5" stroke="#00c8ff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Cold Storage &amp; Sicherheit
+      </div>
+      <h2>Deine Bitcoin sicher verwahren – für immer.</h2>
+      <div class="divider-line divider-b"></div>
+
+      <p>
+        Die häufigste Art, Bitcoin zu verlieren, ist nicht Hacking – es ist
+        <span class="kw kw-b">Fahrlässigkeit</span>. Seed Phrases auf einem Screenshot gespeichert,
+        Hardware-Wallet an einen PC angeschlossen, den ein Virus befallen hat, oder schlicht die
+        Backup-Phrase weggeworfen, weil man dachte, sie brauche man nie. Cold Storage ist die Antwort
+        auf all das: dein Private Key verlässt niemals eine internetfähige Umgebung.
+      </p>
+      <p>
+        Ein <span class="kw kw-b">Hardware-Wallet</span> ist ein kleines Gerät – meist in der Größe eines
+        USB-Sticks – das deinen Private Key isoliert vom Internet generiert und speichert. Selbst wenn
+        du es an einen kompromittierten Computer anschließt, verlässt der Key das Gerät nie. Die
+        gängigsten und bekanntesten Geräte sind <strong style="color:#e8edf8;">Coldcard</strong>,
+        <strong style="color:#e8edf8;">Trezor</strong> und <strong style="color:#e8edf8;">Ledger</strong>
+        – jedes mit eigenen Sicherheitsphilosophien, die ich dir erläutere.
+      </p>
+
+      <p><strong style="color:#e8edf8;">Die Seed Phrase – dein wichtigstes Backup</strong></p>
+      <p>
+        Beim Einrichten eines Hardware-Wallets erhältst du eine <span class="kw kw-b">Seed Phrase</span>:
+        12 oder 24 zufällige Wörter in einer festgelegten Reihenfolge. Diese Wörter sind dein
+        vollständiges Backup. Wer sie kennt, kann jederzeit auf alle damit gesicherten Bitcoin zugreifen –
+        auf jedem kompatiblen Gerät, weltweit, ohne Passwort, ohne Benutzerkonto.
+      </p>
+      <p>
+        Die Seed Phrase gehört <em>niemals</em> auf ein Foto, niemals in die Cloud, niemals in eine
+        Textnachricht. Sie gehört handschriftlich auf Papier – besser noch in graviertes Metall, das
+        Feuer und Wasser übersteht. Ich zeige dir konkrete Produkte und Methoden, die Hobbyisten
+        und Profis gleichermaßen nutzen.
+      </p>
+
+      <p><strong style="color:#e8edf8;">Multisig – wenn eine Unterschrift nicht genug ist</strong></p>
+      <p>
+        Für größere Mengen empfiehlt sich <span class="kw kw-b">Multisignatur</span>: eine Wallet, die
+        erst dann eine Transaktion genehmigt, wenn mehrere private Schlüssel gleichzeitig unterschreiben –
+        z. B. 2 von 3. Selbst wenn ein Gerät gestohlen oder ein Backup gefunden wird, sind deine
+        Bitcoin sicher. Das klingt komplex, ist aber mit der richtigen Software (z. B. Sparrow Wallet
+        oder Specter Desktop) gut beherrschbar – und ich führe dich Schritt für Schritt durch das Setup.
+      </p>
+
+      <ul class="check-list blue">
+        <li>Hardware-Wallet auswählen und sicher einrichten (Coldcard, Trezor, Ledger)</li>
+        <li>Seed Phrase richtig sichern – Papier, Metall, sichere Aufbewahrung</li>
+        <li>Passphrase als zusätzliche Sicherheitsebene verstehen und einsetzen</li>
+        <li>Multisig-Setups für erhöhte Sicherheit bei größeren Beträgen</li>
+        <li>Verifikation: kontrollieren ob das Backup funktioniert, bevor du Bitcoin sendest</li>
+        <li>Erbschaft und Notfallplan – Bitcoin für die Nachwelt sichern</li>
+      </ul>
+
+      <div class="info-box blue">
+        <strong>Wichtig:</strong> Kein seriöser Bitcoin-Support bittet dich jemals um deine Seed Phrase.
+        Wer das tut, ist ein Betrüger – ohne Ausnahme.
+      </div>
+    </div>
+
+    <!-- ══════ SECTION 3: Solo-Mining Hardware ══════ -->
+    <div class="section-block" id="mining">
+      <div class="section-tag-small tag-p">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <rect x="1" y="5" width="12" height="7" rx="2" stroke="#bf5fff" stroke-width="1.5"/>
+          <circle cx="4.5" cy="8.5" r="2" stroke="#bf5fff" stroke-width="1.2"/>
+          <circle cx="9.5" cy="8.5" r="2" stroke="#bf5fff" stroke-width="1.2"/>
+          <line x1="4" y1="5" x2="4" y2="2" stroke="#bf5fff" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="10" y1="5" x2="10" y2="2" stroke="#bf5fff" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        Solo-Mining Hardware
+      </div>
+      <h2>Bitcoin selbst schürfen – zu Hause, solo.</h2>
+      <div class="divider-line divider-p"></div>
+
+      <p>
+        <span class="kw kw-p">Bitcoin-Mining</span> ist der Prozess, durch den neue Blöcke zur Blockchain
+        hinzugefügt werden. Miner bündeln ausstehende Transaktionen, lösen ein mathematisches Rätsel
+        (Proof of Work) und erhalten als Belohnung neu erzeugte Bitcoin plus Transaktionsgebühren.
+        Das sichert das Netzwerk und macht es praktisch unveränderbar.
+      </p>
+      <p>
+        <span class="kw kw-p">Solo-Mining</span> bedeutet: du schürfst auf eigene Faust, ohne Mining-Pool.
+        Die Wahrscheinlichkeit, einen Block zu finden, ist klein – aber wenn du ihn findest, gehört die
+        vollständige Belohnung dir. Es ist der bitcoinischste Weg zu minen: vollständig souverän,
+        ohne Drittpartei, die deine Hashrate kennt oder steuert.
+      </p>
+
+      <p><strong style="color:#e8edf8;">Welche Hardware eignet sich?</strong></p>
+      <p>
+        Für Solo-Mining zu Hause haben sich vor allem <span class="kw kw-p">ASIC-Miner</span> etabliert –
+        hochspezialisierte Chips, die ausschließlich für den SHA-256-Algorithmus von Bitcoin optimiert
+        sind. Bekannte Einstiegsgeräte sind der <strong style="color:#e8edf8;">Bitaxe</strong>
+        (Open-Source, sehr sparsam, ideal als Lerngerät), der
+        <strong style="color:#e8edf8;">Antminer S9</strong> (günstig gebraucht erhältlich, laut, aber
+        bewährt) oder neuere, effizientere Modelle wie der
+        <strong style="color:#e8edf8;">Antminer S21</strong> für ambitioniertere Setups.
+      </p>
+      <p>
+        Beim Kauf gebrauchter Hardware sind Stromverbrauch und Hashrate die entscheidenden Kennzahlen.
+        Ich helfe dir, die Wirtschaftlichkeit realistisch zu kalkulieren – auch und gerade dann, wenn
+        der Fokus nicht auf Profit, sondern auf Netzwerkbeteiligung und Lernen liegt.
+      </p>
+
+      <p><strong style="color:#e8edf8;">Node + Miner: vollständige Souveränität</strong></p>
+      <p>
+        Wer solo mint, braucht einen eigenen <span class="kw kw-p">Bitcoin Node</span> – idealerweise mit
+        <strong style="color:#e8edf8;">Bitcoin Core</strong> und dem
+        <strong style="color:#e8edf8;">stratum-v1</strong>-Protokoll (z. B. über
+        <strong style="color:#e8edf8;">public-pool.io</strong> oder einen selbst gehosteten Pool
+        wie <strong style="color:#e8edf8;">ckpool</strong>). Der Node verifiziert selbst alle Blöcke,
+        verbindet den Miner direkt mit dem Netzwerk – kein fremdes Vertrauen nötig.
+      </p>
+      <p>
+        Ein <span class="kw kw-p">Raspberry Pi</span> oder ein alter Mini-PC genügt für den Node. Ich
+        helfe dir beim vollständigen Setup: Bitcoin Core installieren, IBD (Initial Block Download)
+        abwarten, Stratum-Verbindung zum Miner einrichten und alles auf Funktion testen.
+      </p>
+
+      <ul class="check-list purple">
+        <li>ASIC-Miner auswählen – von Bitaxe bis Antminer, alt bis neu</li>
+        <li>Inbetriebnahme: Firmware, Netzwerk, Ventilation und Stromversorgung</li>
+        <li>Bitcoin Node aufsetzen (Raspberry Pi oder Mini-PC, Bitcoin Core)</li>
+        <li>Solo-Mining-Pool konfigurieren und Miner verbinden</li>
+        <li>Monitoring: Hashrate, Temperatur und Uptime im Blick behalten</li>
+        <li>Realistisches Erwartungsmanagement – Wahrscheinlichkeiten und Geduld</li>
+      </ul>
+
+      <div class="info-box purple">
+        <strong>Hinweis:</strong> Solo-Mining ist kein Weg zum schnellen Reichtum. Es ist eine Form der
+        aktiven Netzwerkbeteiligung – und eine der faszinierendsten Möglichkeiten, Bitcoin von Grund
+        auf zu verstehen.
+      </div>
+    </div>
+
+  </div><!-- /.text-section -->
+
+  <!-- Back links -->
+  <div class="back-section">
+    <a href="index.html#bitcoin" class="btn-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="10,3 5,8 10,13"/>
+      </svg>
+      Zurück zur Startseite
+    </a>
+    <a href="#top" class="btn-top">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="3,10 8,5 13,10"/>
+      </svg>
+      Nach oben
+    </a>
+  </div>
+
+</div><!-- /.page-content -->
+
+<script>
+  function toggleTheme() {
+    const l = document.documentElement.classList.toggle('light');
+    localStorage.setItem('tsh-theme', l ? 'light' : 'dark');
+  }
+</script>
+</body>
+</html>

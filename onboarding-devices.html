@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
   <script>if(localStorage.getItem('tsh-theme')==='light')document.documentElement.classList.add('light');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Onboarding Devices – TechSupport HUB</title>
@@ -237,7 +237,7 @@
       backdrop-filter: blur(8px);
       transition: border-color .2s, color .2s, transform .18s;
     }
-    .btn-back:hover { border-color: var(--neon-g); color: var(--neon-g); transform: translateY(-2px); }
+    .btn-back:hover { border-color: var(--neon-g); color: var(--neon-g); }
     .btn-top {
       display: inline-flex; align-items: center; gap: .5rem;
       padding: .75rem 1.4rem; border-radius: 8px;
@@ -246,9 +246,9 @@
       background: rgba(24,28,39,.8);
       border: 1px solid var(--border);
       backdrop-filter: blur(8px);
-      transition: border-color .2s, color .2s, transform .18s;
+      transition: border-color .2s, color .2s;
     }
-    .btn-top:hover { border-color: rgba(0,255,136,.4); color: var(--neon-g); transform: translateY(-2px); }
+    .btn-top:hover { border-color: rgba(0,255,136,.4); color: var(--neon-g); }
 
     /* ── THEME TOGGLE ── */
     #theme-toggle { background:transparent; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#6b7a9e; width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:border-color .2s,color .2s; flex-shrink:0; }
@@ -268,6 +268,7 @@
     html.light .page-hero h1 { color:#111827; }
     html.light .nav-logo svg path { stroke:#00a060 !important; fill:rgba(0,160,96,0.1) !important; }
     html.light .nav-logo svg text { fill:#00a060 !important; }
+    html.light .nav-logo-text .t1 { color:#1a2540 !important; }
     html.light .nav-logo-text .t2 { color:#00a060 !important; text-shadow:none !important; }
     html.light .page-hero h1, html.light .section-block h2 { color:#1a2540; }
     html.light .btn-back:hover { border-color:rgba(0,160,96,0.45); color:#00a060; }
@@ -556,7 +557,7 @@
 <div class="page-content">
 
   <!-- Page hero -->
-  <div class="page-hero" id="endgeraete">
+  <div class="page-hero" id="top">
     <div class="page-tag">Onboarding Devices</div>
     <h1>Deine Technik – <span class="accent">eingerichtet, erklärt, verstanden.</span></h1>
     <p style="color:#a8b4ce;">Vom ersten Smartphone bis zum vollständigen PC-Arbeitsplatz – ich begleite dich Schritt für Schritt, ohne Zeitdruck und ohne Fachchinesisch.</p>
@@ -572,7 +573,7 @@
   <div class="text-section">
 
     <!-- ══════ SECTION 1: Endgeräte & Devices ══════ -->
-    <div class="section-block" id="endgeraete-section">
+    <div class="section-block" id="endgeraete">
       <div class="section-tag-small tag-g">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
           <rect x="1" y="1" width="12" height="12" rx="3" stroke="#00ff88" stroke-width="1.5"/>
@@ -734,7 +735,16 @@
   <!-- Back to home -->
   <div class="back-section">
     <a href="index.html#user-support" class="btn-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="10,3 5,8 10,13"/>
+      </svg>
       Zurück zur Startseite
+    </a>
+    <a href="#top" class="btn-top">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="3,10 8,5 13,10"/>
+      </svg>
+      Nach oben
     </a>
   </div>
 

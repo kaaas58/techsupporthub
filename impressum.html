@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
   <script>if(localStorage.getItem('tsh-theme')==='light')document.documentElement.classList.add('light');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Impressum &amp; Datenschutz – TechSupport HUB</title>
@@ -249,8 +249,18 @@
     html.light .section-block { background: var(--surface) !important; border-color: rgba(0,20,80,0.1) !important; }
     html.light .nav-logo svg path { stroke:#00a060 !important; fill:rgba(0,160,96,0.1) !important; }
     html.light .nav-logo svg text { fill:#00a060 !important; }
+    html.light .nav-logo-text .t1 { color:#1a2540 !important; }
     html.light .nav-logo-text span:last-child { color:#00a060 !important; text-shadow:none !important; }
     html.light .page-hero h1, html.light h2 { color:#1a2540; }
+    .back-section { display:flex; justify-content:center; align-items:center; gap:1rem; flex-wrap:wrap; padding:2.5rem 1.5rem 4rem; }
+    .btn-back { display:inline-flex; align-items:center; gap:.5rem; padding:.75rem 1.8rem; border-radius:8px; font-size:.93rem; font-weight:600; text-decoration:none; color:var(--text-2); background:transparent; border:1px solid rgba(255,255,255,0.18); backdrop-filter:blur(8px); transition:border-color .2s,color .2s; }
+    .btn-back:hover { border-color:rgba(0,255,136,0.5); color:var(--neon-green); }
+    .btn-top  { display:inline-flex; align-items:center; gap:.5rem; padding:.75rem 1.4rem; border-radius:8px; font-size:.93rem; font-weight:600; text-decoration:none; color:var(--text-3); background:transparent; border:1px solid rgba(255,255,255,0.12); backdrop-filter:blur(8px); transition:border-color .2s,color .2s; }
+    .btn-top:hover  { border-color:rgba(0,255,136,0.4); color:var(--neon-green); }
+    html.light .btn-back { border-color:rgba(0,20,80,0.18); color:#111827; background:rgba(255,255,255,0.85); }
+    html.light .btn-back:hover { border-color:rgba(0,160,96,0.5); color:#00a060; }
+    html.light .btn-top  { border-color:rgba(0,20,80,0.12); color:#5a6a8a; background:rgba(255,255,255,0.85); }
+    html.light .btn-top:hover  { border-color:rgba(0,160,96,0.4); color:#00a060; }
   </style>
 </head>
 <body>
@@ -276,7 +286,7 @@
 </nav>
 
 <!-- ═══════ PAGE HEADER ═══════ -->
-<div class="page-hero">
+<div class="page-hero" id="top">
   <div class="page-tag">Rechtliches</div>
   <h1>Impressum &amp; <span>Datenschutz</span></h1>
   <p>Angaben gemäß § 5 TMG sowie Datenschutzhinweise für dieses Angebot.</p>
@@ -342,20 +352,21 @@
     <p style="font-size:.83rem;color:var(--text-3);margin-top:1rem;">Quelle: <a href="https://www.e-recht24.de/impressum-generator.html" target="_blank" rel="noopener" style="color:var(--text-3);text-decoration:underline;">e-recht24.de</a></p>
   </div>
 
-  <!-- BACK BUTTON -->
-  <div style="text-align:center;margin-top:2rem;">
-    <a href="index.html#footer" class="btn-back-white" style="
-      display:inline-flex;align-items:center;gap:.6rem;
-      padding:.75rem 1.7rem;border-radius:8px;
-      font-size:.93rem;font-weight:600;text-decoration:none;
-      color:#ffffff;background:transparent;
-      border:1px solid rgba(255,255,255,0.35);
-      transition:border-color .18s, color .18s, transform .18s;
-    " >
-      Zurück
-    </a>
-  </div>
+</div>
 
+<div class="back-section">
+  <a href="index.html" class="btn-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="10,3 5,8 10,13"/>
+    </svg>
+    Zurück zur Startseite
+  </a>
+  <a href="#top" class="btn-top">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="3,10 8,5 13,10"/>
+    </svg>
+    Nach oben
+  </a>
 </div>
 
 <!-- ═══════ FOOTER ═══════ -->
