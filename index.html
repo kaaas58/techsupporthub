@@ -19,7 +19,7 @@
       --neon-orange:#ff6b35;
       --text-1:     #f0f6fc;
       --text-2:     #8b949e;
-      --text-3:     #3d4a60;
+      --text-3:     #6b7a9e;
     }
 
     html { scroll-behavior: smooth; }
@@ -306,10 +306,21 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 3.5rem;
-      align-items: center;
+      align-items: start;
     }
     .two-col.flip { direction: rtl; }
     .two-col.flip > * { direction: ltr; }
+    /* Bitcoin 2×2 grid: heading top-right, SVG bottom-left, cards bottom-right */
+    .btc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      column-gap: 3.5rem;
+      row-gap: 0;
+    }
+    .btc-header { grid-column: 2; grid-row: 1; }
+    .btc-svg    { grid-column: 1; grid-row: 2; align-self: start; }
+    .btc-cards  { grid-column: 2; grid-row: 2; }
 
     /* ── CARDS ── */
     .card-stack { display: flex; flex-direction: column; gap: 1rem; }
@@ -371,6 +382,9 @@
       background: #060a10;
     }
     .svg-panel svg { display: block; width: 100%; }
+    #user-support .svg-panel { border-color: rgba(0,212,255,0.35); box-shadow: 0 10px 50px rgba(0,0,0,0.55), 0 0 22px rgba(0,212,255,0.07), inset 0 1px 0 rgba(255,255,255,0.04); }
+    .btc-svg .svg-panel       { border-color: rgba(255,107,53,0.35); box-shadow: 0 10px 50px rgba(0,0,0,0.55), 0 0 22px rgba(255,107,53,0.07), inset 0 1px 0 rgba(255,255,255,0.04); }
+    #coding .svg-panel        { border-color: rgba(0,255,136,0.35); box-shadow: 0 10px 50px rgba(0,0,0,0.55), 0 0 22px rgba(0,255,136,0.07), inset 0 1px 0 rgba(255,255,255,0.04); }
 
     /* ── SECTION BACKGROUNDS ── */
     #user-support {
@@ -398,6 +412,7 @@
       background: var(--bg-deep);
       border-top: 1px solid var(--border);
       padding: 3.5rem 2.5rem 2rem;
+      margin-top: 3rem;
     }
     .footer-top {
       max-width: 1120px;
@@ -629,17 +644,17 @@
 <!-- ═══════════ USER SUPPORT ═══════════ -->
 <section id="user-support" class="content-sec">
   <div class="wrap">
+    <p class="sec-label" style="color:var(--neon-cyan);">01 — Anwender &amp; User Support</p>
+    <h2 class="sec-title">Technik <span style="color:var(--neon-cyan)">einfach erklärt.</span></h2>
     <div class="two-col">
 
       <div class="fi">
-        <p class="sec-label" style="color:var(--neon-cyan);">01 — Anwender &amp; User Support</p>
-        <h2 class="sec-title">Technik <span style="color:var(--neon-cyan)">einfach erklärt.</span></h2>
         <p class="sec-desc">
           Von der ersten Inbetriebnahme bis zur täglichen Nutzung – ich begleite
           Einsteiger und Senioren, die sich mehr Sicherheit im Umgang mit Geräten wünschen.
         </p>
         <div class="card-stack">
-          <a class="card" href="onboarding-devices.html#endgeraete" style="text-decoration:none;color:inherit;cursor:pointer;">
+          <a class="card" href="onboarding-devices.html#top" style="text-decoration:none;color:inherit;cursor:pointer;">
             <div class="card-ico" style="background:rgba(0,212,255,0.1);">🖥️</div>
             <div>
               <div class="card-title">Endgeräte &amp; Devices aller Art</div>
@@ -651,6 +666,13 @@
             <div>
               <div class="card-title">PC-Nutzung für Anfänger &amp; Senioren</div>
               <div class="card-text">Schritt für Schritt erkläre ich, wie ein Computer oder Laptop funktioniert – ohne Fachjargon, in Ihrem Tempo.</div>
+            </div>
+          </a>
+          <a class="card" href="onboarding-devices.html#linux" style="text-decoration:none;color:inherit;cursor:pointer;">
+            <div class="card-ico" style="background:rgba(0,212,255,0.1);">🐧</div>
+            <div>
+              <div class="card-title">Linux OS / Betriebssystem installieren</div>
+              <div class="card-text">Ich wähle mit dir eine Linux-Distribution und bringe diese gemeinsam ans Laufen.</div>
             </div>
           </a>
           <a class="card" href="onboarding-devices.html#android" style="text-decoration:none;color:inherit;cursor:pointer;">
@@ -744,46 +766,18 @@
 <!-- ═══════════ BITCOIN ═══════════ -->
 <section id="bitcoin" class="content-sec">
   <div class="wrap">
-    <div class="two-col flip">
+    <div class="btc-grid">
 
-      <div class="fi">
+      <div class="btc-header">
         <p class="sec-label" style="color:var(--neon-orange);">02 — The Bitcoin Journey</p>
         <h2 class="sec-title">Dein Weg zu <span style="color:var(--neon-orange)">Bitcoin.</span></h2>
         <p class="sec-desc">
           Vom ersten Verständnis bis zur sicheren Verwahrung – ich begleite dich auf der
           Bitcoin-Journey, zeige Stolpersteine und helfe bei Hardware-Einrichtung.
         </p>
-        <div class="card-stack">
-          <a class="card" href="bitcoin-journey.html#onboarding" style="text-decoration:none;color:inherit;cursor:pointer;">
-            <div class="card-ico" style="background:rgba(255,107,53,0.1); font-size:1.3rem;">&#x20BF;</div>
-            <div>
-              <div class="card-title">Bitcoin-Onboarding &amp; Grundlagen</div>
-              <div class="card-text">Was ist Bitcoin? Wallets, Keys, Nodes – ich erkläre die Grundlagen verständlich und baue echtes Wissen auf.</div>
-            </div>
-          </a>
-          <a class="card" href="bitcoin-journey.html#coldstorage" style="text-decoration:none;color:inherit;cursor:pointer;">
-            <div class="card-ico" style="background:rgba(255,107,53,0.1);">🔐</div>
-            <div>
-              <div class="card-title">Cold Storage &amp; Sicherheit</div>
-              <div class="card-text">Hardware-Wallets einrichten, Seed-Phrases sichern, Risikomanagement – so schützt du deine Bitcoin langfristig.</div>
-            </div>
-          </a>
-          <a class="card" href="bitcoin-journey.html#mining" style="text-decoration:none;color:inherit;cursor:pointer;">
-            <div class="card-ico" style="background:rgba(255,107,53,0.1);">⛏️</div>
-            <div>
-              <div class="card-title">Solo-Mining Hardware</div>
-              <div class="card-text">Inbetriebnahme von Bitcoin-Solo-Mining-Hardware, Node-Setup und technische Unterstützung für den Heimbergbau.</div>
-            </div>
-          </a>
-        </div>
-        <div class="tags">
-          <span class="tag">Bitcoin</span><span class="tag">Hardware Wallet</span>
-          <span class="tag">Cold Storage</span><span class="tag">Lightning</span>
-          <span class="tag">Node Setup</span><span class="tag">Solo Mining</span>
-        </div>
       </div>
 
-      <div class="fi fi-d2">
+      <div class="fi fi-d2 btc-svg">
         <div class="svg-panel">
           <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -850,6 +844,37 @@
         </div>
       </div>
 
+      <div class="fi btc-cards">
+        <div class="card-stack">
+          <a class="card" href="bitcoin-journey.html#top" style="text-decoration:none;color:inherit;cursor:pointer;">
+            <div class="card-ico" style="background:rgba(255,107,53,0.1); font-size:1.3rem;">&#x20BF;</div>
+            <div>
+              <div class="card-title">Bitcoin-Onboarding &amp; Grundlagen</div>
+              <div class="card-text">Was ist Bitcoin? Wallets, Keys, Nodes – ich erkläre die Grundlagen verständlich und baue echtes Wissen auf.</div>
+            </div>
+          </a>
+          <a class="card" href="bitcoin-journey.html#coldstorage" style="text-decoration:none;color:inherit;cursor:pointer;">
+            <div class="card-ico" style="background:rgba(255,107,53,0.1);">🔐</div>
+            <div>
+              <div class="card-title">Cold Storage &amp; Sicherheit</div>
+              <div class="card-text">Hardware-Wallets einrichten, Seed-Phrases sichern, Risikomanagement – so schützt du deine Bitcoin langfristig.</div>
+            </div>
+          </a>
+          <a class="card" href="bitcoin-journey.html#mining" style="text-decoration:none;color:inherit;cursor:pointer;">
+            <div class="card-ico" style="background:rgba(255,107,53,0.1);">⛏️</div>
+            <div>
+              <div class="card-title">Solo-Mining Hardware</div>
+              <div class="card-text">Inbetriebnahme von Bitcoin-Solo-Mining-Hardware, Node-Setup und technische Unterstützung für den Heimbergbau.</div>
+            </div>
+          </a>
+        </div>
+        <div class="tags">
+          <span class="tag">Bitcoin</span><span class="tag">Hardware Wallet</span>
+          <span class="tag">Cold Storage</span><span class="tag">Lightning</span>
+          <span class="tag">Node Setup</span><span class="tag">Solo Mining</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -859,30 +884,37 @@
 <!-- ═══════════ CODING ═══════════ -->
 <section id="coding" class="content-sec">
   <div class="wrap">
+    <p class="sec-label" style="color:var(--neon-green);">03 — Coding &amp; Bugfixing</p>
+    <h2 class="sec-title">Code, der <span style="color:var(--neon-green)">läuft.</span></h2>
     <div class="two-col">
 
       <div class="fi">
-        <p class="sec-label" style="color:var(--neon-green);">03 — Coding &amp; Bugfixing</p>
-        <h2 class="sec-title">Code, der <span style="color:var(--neon-green)">läuft.</span></h2>
         <p class="sec-desc">
           Ob statischer One-Pager, Präsentation oder ein hartnäckiger Bug –
           ich unterstütze bei der Umsetzung und Fehlerbehebung im einfachen bis mittleren Bereich.
         </p>
         <div class="card-stack">
-          <div class="card">
+          <a class="card" href="coding.html#top" style="text-decoration:none;color:inherit;cursor:pointer;">
+            <div class="card-ico" style="background:rgba(0,255,136,0.1);">🎨</div>
+            <div>
+              <div class="card-title">Webdesign-Beratung &amp; Konzept</div>
+              <div class="card-text">Von der Idee zur fertigen Struktur – ich helfe dir, deinen Webauftritt zu denken, bevor die erste Zeile Code geschrieben wird.</div>
+            </div>
+          </a>
+          <a class="card" href="coding.html#websites" style="text-decoration:none;color:inherit;cursor:pointer;">
             <div class="card-ico" style="background:rgba(0,255,136,0.1);">🌐</div>
             <div>
               <div class="card-title">Statische Websites &amp; One-Pager</div>
               <div class="card-text">Erstellung von One-Pagern mit Hero-Slider, Fotos, Texten und Kontaktformular – sauber, schnell und mobil optimiert.</div>
             </div>
-          </div>
-          <div class="card">
+          </a>
+          <a class="card" href="coding.html#bugfixing" style="text-decoration:none;color:inherit;cursor:pointer;">
             <div class="card-ico" style="background:rgba(0,255,136,0.1);">🐛</div>
             <div>
               <div class="card-title">Bugfixing &amp; Debugging</div>
               <div class="card-text">Fehler in HTML, CSS und JavaScript aufspüren und systematisch beheben – nachvollziehbar und dokumentiert.</div>
             </div>
-          </div>
+          </a>
         </div>
         <div class="tags">
           <span class="tag">HTML / CSS</span><span class="tag">JavaScript</span>

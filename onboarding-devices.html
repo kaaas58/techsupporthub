@@ -62,7 +62,7 @@
       color: var(--muted); text-decoration: none; font-size: .87rem; font-weight: 500;
       transition: color .2s;
     }
-    .nav-back:hover { color: var(--neon-g); }
+    .nav-back:hover { color: var(--neon-b); }
 
     /* ══ BACKGROUND WATERMARK ══ */
     .bg-watermark {
@@ -153,6 +153,7 @@
     .tag-g { color: var(--neon-g); }
     .tag-b { color: var(--neon-b); }
     .tag-p { color: var(--neon-p); }
+    .tag-o { color: var(--neon-o); }
 
     .section-block h2 {
       font-size: clamp(1.4rem, 3.5vw, 2rem);
@@ -166,6 +167,7 @@
     .divider-g { background: linear-gradient(90deg, var(--neon-g), transparent); }
     .divider-b { background: linear-gradient(90deg, var(--neon-b), transparent); }
     .divider-p { background: linear-gradient(90deg, var(--neon-p), transparent); }
+    .divider-o { background: linear-gradient(90deg, var(--neon-o), transparent); }
 
     .section-block p {
       font-size: .97rem; color: var(--text);
@@ -178,16 +180,7 @@
     .kw-g { color: var(--neon-g); }
     .kw-b { color: var(--neon-b); }
     .kw-p { color: var(--neon-p); }
-
-    /* Glow animation triggered by JS */
-    @keyframes wordGlow {
-      0%   { text-shadow: none; }
-      15%  { text-shadow: 0 0 10px currentColor, 0 0 30px currentColor, 0 0 60px currentColor; letter-spacing: .03em; }
-      100% { text-shadow: none; letter-spacing: normal; }
-    }
-    .word-flash {
-      animation: wordGlow 2.8s cubic-bezier(.4,0,.2,1) forwards;
-    }
+    .kw-o { color: var(--neon-o); }
 
     /* Bullet list */
     .check-list {
@@ -204,8 +197,9 @@
       color: var(--neon-g); font-weight: 700; font-size: 1.1rem;
       line-height: 1.5; flex-shrink: 0;
     }
-    .check-list.blue li::before  { color: var(--neon-b); }
+    .check-list.blue li::before   { color: var(--neon-b); }
     .check-list.purple li::before { color: var(--neon-p); }
+    .check-list.orange li::before { color: var(--neon-o); }
 
     /* Info-box */
     .info-box {
@@ -215,11 +209,13 @@
       font-size: .88rem; color: var(--text);
       margin-top: 1.5rem; line-height: 1.6;
     }
-    .info-box.blue { background: rgba(0,200,255,.05); border-color: rgba(0,200,255,.18); }
-    .info-box.purple { background: rgba(191,95,255,.05); border-color: rgba(191,95,255,.18); }
+    .info-box.blue   { background: rgba(0,200,255,.05);   border-color: rgba(0,200,255,.18); }
+    .info-box.purple { background: rgba(191,95,255,.05);  border-color: rgba(191,95,255,.18); }
+    .info-box.orange { background: rgba(255,140,0,.05);   border-color: rgba(255,140,0,.18); }
     .info-box strong { color: var(--neon-g); }
-    .info-box.blue strong { color: var(--neon-b); }
+    .info-box.blue   strong { color: var(--neon-b); }
     .info-box.purple strong { color: var(--neon-p); }
+    .info-box.orange strong { color: var(--neon-o); }
 
     /* ══ BACK LINK ══ */
     .back-section {
@@ -237,7 +233,7 @@
       backdrop-filter: blur(8px);
       transition: border-color .2s, color .2s, transform .18s;
     }
-    .btn-back:hover { border-color: var(--neon-g); color: var(--neon-g); }
+    .btn-back:hover { border-color: var(--neon-b); color: var(--neon-b); }
     .btn-top {
       display: inline-flex; align-items: center; gap: .5rem;
       padding: .75rem 1.4rem; border-radius: 8px;
@@ -248,7 +244,7 @@
       backdrop-filter: blur(8px);
       transition: border-color .2s, color .2s;
     }
-    .btn-top:hover { border-color: rgba(0,255,136,.4); color: var(--neon-g); }
+    .btn-top:hover { border-color: rgba(0,200,255,.4); color: var(--neon-b); }
 
     /* ── THEME TOGGLE ── */
     #theme-toggle { background:transparent; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#6b7a9e; width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:border-color .2s,color .2s; flex-shrink:0; }
@@ -271,7 +267,8 @@
     html.light .nav-logo-text .t1 { color:#1a2540 !important; }
     html.light .nav-logo-text .t2 { color:#00a060 !important; text-shadow:none !important; }
     html.light .page-hero h1, html.light .section-block h2 { color:#1a2540; }
-    html.light .btn-back:hover { border-color:rgba(0,160,96,0.45); color:#00a060; }
+    html.light .btn-back:hover { border-color:rgba(0,127,181,0.5); color:#007fb5; }
+    html.light .btn-top:hover  { border-color:rgba(0,127,181,0.4); color:#007fb5; }
   </style>
 </head>
 <body>
@@ -559,7 +556,7 @@
   <!-- Page hero -->
   <div class="page-hero" id="top">
     <div class="page-tag">Onboarding Devices</div>
-    <h1>Deine Technik – <span class="accent">eingerichtet, erklärt, verstanden.</span></h1>
+    <h1>Deine Technik – <span class="accent" style="color:var(--neon-b);">eingerichtet, erklärt, verstanden.</span></h1>
     <p style="color:#a8b4ce;">Vom ersten Smartphone bis zum vollständigen PC-Arbeitsplatz – ich begleite dich Schritt für Schritt, ohne Zeitdruck und ohne Fachchinesisch.</p>
   </div>
 
@@ -567,6 +564,7 @@
   <div class="section-nav">
     <a class="section-pill" href="#endgeraete">🖥️ Endgeräte & Devices</a>
     <a class="section-pill" href="#pc">💻 PC-Einrichtung</a>
+    <a class="section-pill" href="#linux">🐧 Linux installieren</a>
     <a class="section-pill" href="#android">📱 Android Smartphones</a>
   </div>
 
@@ -585,13 +583,13 @@
       <h2>Neue Technik muss kein Rätsel sein.</h2>
       <div class="divider-line divider-g"></div>
 
-      <p>
-        <span id="word-endgeraete" class="kw kw-g">Endgeräte</span> aller Art – ob Smartphone, Tablet oder PC –
+      <p style="color:var(--neon-b);">
+        <span id="word-endgeraete" class="kw kw-b">Endgeräte</span> aller Art – ob Smartphone, Tablet oder PC –
         sind heute aus dem Alltag nicht mehr wegzudenken. Und doch fühlt sich der erste Umgang mit einem neuen Gerät
         oft überwältigend an: zu viele Einstellungen, unbekannte Begriffe, und nirgendwo jemand, der in Ruhe erklärt,
         was gerade passiert.
       </p>
-      <p>
+      <p style="color:var(--neon-g);">
         Genau hier komme ich ins Spiel. Ich helfe dir dabei, jedes Gerät – egal welche Marke, welches Betriebssystem
         oder welches Modell – so einzurichten, dass es zu dir und deinem Alltag passt. Das bedeutet nicht nur das
         technische Aufsetzen, sondern vor allem das Erklären: was macht welcher Knopf, warum erscheint diese
@@ -730,6 +728,88 @@
       </div>
     </div>
 
+    <!-- ══════ SECTION 4: Linux ══════ -->
+    <div class="section-block" id="linux">
+      <div class="section-tag-small tag-o">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <!-- Tux body -->
+          <ellipse cx="7" cy="8.5" rx="4.5" ry="4" stroke="#ff8c00" stroke-width="1.4"/>
+          <!-- Tux head -->
+          <circle cx="7" cy="3.5" r="2.5" stroke="#ff8c00" stroke-width="1.3"/>
+          <!-- Tux belly -->
+          <ellipse cx="7" cy="9" rx="2.5" ry="2.8" fill="rgba(255,140,0,0.12)"/>
+        </svg>
+        Linux OS installieren
+      </div>
+      <h2>Linux – frei, sicher und überraschend alltagstauglich.</h2>
+      <div class="divider-line divider-o"></div>
+
+      <p>
+        <span class="kw kw-o">Linux</span> ist kein Geheimtipp für Nerds mehr. Distributionen wie
+        <strong style="color:#e8edf8;">Ubuntu</strong>, <strong style="color:#e8edf8;">Linux Mint</strong>
+        oder <strong style="color:#e8edf8;">Fedora</strong> bieten eine vollwertige Desktop-Umgebung,
+        die sich für die meisten alltäglichen Aufgaben genauso gut – und in manchen Punkten besser –
+        eignet als Windows. Kein Aktivierungsschlüssel, keine Zwangs-Updates zur falschen Zeit,
+        kein Tracking im Hintergrund. Und das Beste: kostenlos.
+      </p>
+      <p>
+        Gerade für ältere Hardware, die unter Windows 11 nicht mehr offiziell unterstützt wird,
+        ist Linux eine ernsthafte Alternative. Ein Laptop, der sich unter Windows 10 quält, kann
+        mit einem leichtgewichtigen Linux wie <span class="kw kw-o">Linux Mint Xfce</span> oder
+        <span class="kw kw-o">Zorin OS Lite</span> wieder flüssig und zuverlässig laufen – ohne
+        dass man neue Hardware kaufen muss.
+      </p>
+
+      <p><strong style="color:#e8edf8;">Welche Distribution passt zu dir?</strong></p>
+      <p>
+        Die Wahl der richtigen Distribution hängt davon ab, was du mit dem Rechner machst, wie
+        vertraut du mit Computern bist, und welche Hardware du verwendest. Ich helfe dir bei dieser
+        Entscheidung und erkläre die Unterschiede ohne Marketing-Versprechen:
+      </p>
+      <ul class="check-list orange">
+        <li><strong style="color:#e8edf8;">Ubuntu / Linux Mint</strong> – ideal für Einsteiger, große Community, viel Dokumentation</li>
+        <li><strong style="color:#e8edf8;">Fedora</strong> – modern, aktuell, gut für neuere Hardware und technikaffine Nutzer</li>
+        <li><strong style="color:#e8edf8;">Zorin OS</strong> – optisch an Windows angelehnt, leichter Umstieg für Windows-Nutzer</li>
+        <li><strong style="color:#e8edf8;">Debian</strong> – stabil, bewährt, ideal für Langzeitbetrieb ohne viele Updates</li>
+        <li><strong style="color:#e8edf8;">Pop!_OS</strong> – optimiert für Entwickler und Leute mit NVIDIA-Grafik</li>
+      </ul>
+
+      <p><strong style="color:#e8edf8;">Installation Schritt für Schritt</strong></p>
+      <p>
+        Eine Linux-Installation beginnt mit dem Erstellen eines
+        <span class="kw kw-o">bootfähigen USB-Sticks</span> – das klingt komplizierter als es ist.
+        Mit Tools wie <strong style="color:#e8edf8;">Balena Etcher</strong> oder dem offiziellen
+        Ubuntu Startup Disk Creator ist das in wenigen Minuten erledigt. Dann starten wir den Rechner
+        vom USB-Stick, testen das System im Live-Modus, und installieren es anschließend auf der
+        Festplatte – entweder als alleiniges Betriebssystem oder im
+        <span class="kw kw-o">Dual-Boot</span> neben Windows, falls du beide behalten möchtest.
+      </p>
+      <p>
+        Nach der Installation richten wir gemeinsam alles ein: WLAN, Browser, E-Mail, Office
+        (z. B. <strong style="color:#e8edf8;">LibreOffice</strong>), Drucker und alle weiteren
+        Programme, die du brauchst. Ich zeige dir, wie der Software-Manager funktioniert, wie du
+        Updates einspielst und was du tun kannst, wenn etwas nicht auf Anhieb klappt. Denn Linux
+        ist nicht fehlerlos – aber die meisten Probleme haben bekannte Lösungen.
+      </p>
+
+      <ul class="check-list orange">
+        <li>Distribution gemeinsam auswählen – passend zu Hardware und Nutzungsgewohnheiten</li>
+        <li>Bootfähigen USB-Stick erstellen und vom Stick starten</li>
+        <li>Live-System testen: Treiber, WLAN, Audio – alles prüfen bevor installiert wird</li>
+        <li>Installation durchführen – Einzel- oder Dual-Boot-Setup</li>
+        <li>Grundeinstellungen: Sprache, Nutzer, Zeitzone, Energiesparmodus</li>
+        <li>Software installieren: Browser, Office, Medienwiedergabe, Drucker</li>
+        <li>Erste Schritte erklären: Dateimanager, Terminal-Grundlagen, Updates</li>
+        <li>Häufige Treiber-Probleme (NVIDIA, WLAN) erkennen und lösen</li>
+      </ul>
+
+      <div class="info-box orange">
+        <strong>Tipp:</strong> Dual-Boot ist eine gute Brücke – du behältst Windows als Rückfallebene
+        und kannst Linux in Ruhe kennenlernen, ohne dich sofort festzulegen. Viele entscheiden sich
+        nach ein paar Wochen, Windows ganz abzuschalten.
+      </div>
+    </div>
+
   </div><!-- /text-section -->
 
   <!-- Back to home -->
@@ -751,39 +831,6 @@
 </div><!-- /page-content -->
 
 <script>
-  // Highlight the keyword corresponding to the URL hash
-  const hashMap = {
-    '#endgeraete': 'word-endgeraete',
-    '#pc':         'word-pc',
-    '#android':    'word-android'
-  };
-
-  function triggerHighlight(hash) {
-    const wordId = hashMap[hash];
-    if (!wordId) return;
-    const el = document.getElementById(wordId);
-    if (!el) return;
-    // Remove class first in case of re-trigger
-    el.classList.remove('word-flash');
-    // Force reflow
-    void el.offsetWidth;
-    el.classList.add('word-flash');
-    el.addEventListener('animationend', () => el.classList.remove('word-flash'), { once: true });
-  }
-
-  // On load: check initial hash
-  window.addEventListener('DOMContentLoaded', () => {
-    const hash = location.hash;
-    if (hash && hashMap[hash]) {
-      // Small delay to let the scroll settle
-      setTimeout(() => triggerHighlight(hash), 500);
-    }
-  });
-
-  // On hash change (e.g. clicking section nav pills)
-  window.addEventListener('hashchange', () => {
-    triggerHighlight(location.hash);
-  });
   function toggleTheme() { const l=document.documentElement.classList.toggle('light'); localStorage.setItem('tsh-theme',l?'light':'dark'); }
 </script>
 </body>

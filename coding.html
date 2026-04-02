@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <script>if(localStorage.getItem('tsh-theme')==='light')document.documentElement.classList.add('light');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code, der läuft – TechSupport HUB</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg:      #0f1117;
+      --surface: #181c27;
+      --surface2:#1e2436;
+      --border:  #2a3050;
+      --text:    #c9d1e8;
+      --muted:   #6b7a9e;
+      --neon-g:  #00ff88;
+      --neon-b:  #00c8ff;
+      --neon-p:  #bf5fff;
+      --neon-o:  #ff8c00;
+      --radius:  14px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* ══ NAVBAR ══ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 62px;
+      background: rgba(15,17,23,.6);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-logo { display: flex; align-items: center; gap: .7rem; text-decoration: none; white-space: nowrap; }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .nav-logo-text .t1 { font-size: 1.1rem; font-weight: 700; color: #e8edf8; letter-spacing: .02em; }
+    .nav-logo-text .t2 { font-size: .88rem; font-weight: 700; color: var(--neon-g); letter-spacing: .18em; text-shadow: 0 0 8px rgba(0,255,136,.25); }
+    .nav-back {
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: var(--muted); text-decoration: none; font-size: .87rem; font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-back:hover { color: var(--neon-g); }
+
+    /* ══ BACKGROUND WATERMARK ══ */
+    .bg-watermark {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+    .bg-watermark svg {
+      width: 100%; height: 100%;
+      opacity: 0.48; transform: scale(0.86); transform-origin: center;
+    }
+
+    /* ══ CONTENT LAYER ══ */
+    .page-content { position: relative; z-index: 10; padding-top: 62px; }
+
+    /* ══ PAGE HERO ══ */
+    .page-hero { padding: 5rem 1.5rem 3rem; text-align: center; }
+    .page-tag {
+      display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--neon-g);
+      background: rgba(0,255,136,.08); border: 1px solid rgba(0,255,136,.22);
+      border-radius: 20px; padding: .3rem .9rem; margin-bottom: 1.2rem;
+    }
+    .page-hero h1 { font-size: clamp(1.9rem,5vw,3rem); font-weight: 800; color: #e8edf8; line-height: 1.2; margin-bottom: .8rem; }
+    .page-hero h1 .accent { color: var(--neon-g); }
+    .page-hero p { font-size: 1.05rem; color: var(--muted); max-width: 560px; margin: 0 auto; }
+
+    /* ══ SECTION NAV PILLS ══ */
+    .section-nav { display: flex; justify-content: center; gap: .8rem; flex-wrap: wrap; padding: 0 1.5rem 3rem; }
+    .section-pill {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .5rem 1.2rem; border-radius: 25px;
+      font-size: .85rem; font-weight: 600; text-decoration: none;
+      border: 1px solid var(--border); color: var(--muted);
+      background: rgba(24,28,39,.7); backdrop-filter: blur(8px);
+      transition: color .2s, border-color .2s;
+    }
+    .section-pill:hover { color: var(--neon-g); border-color: rgba(0,255,136,.4); }
+
+    /* ══ TEXT SECTIONS ══ */
+    .text-section { max-width: 760px; margin: 0 auto; padding: 1rem 1.5rem 5rem; }
+
+    .section-block {
+      background: rgba(24,28,39,.82);
+      backdrop-filter: blur(24px) saturate(150%);
+      -webkit-backdrop-filter: blur(24px) saturate(150%);
+      border: 1px solid rgba(42,48,80,.8);
+      border-radius: var(--radius);
+      padding: 2.5rem 2.8rem; margin-bottom: 5rem;
+      box-shadow: 0 8px 48px rgba(0,0,0,.55), 0 1px 0 rgba(255,255,255,.04) inset;
+      scroll-margin-top: 80px;
+    }
+    @media (max-width: 600px) { .section-block { padding: 1.8rem 1.4rem; } }
+
+    .section-tag-small {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .7rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .tag-g { color: var(--neon-g); }
+    .tag-b { color: var(--neon-b); }
+
+    .section-block h2 { font-size: clamp(1.4rem,3.5vw,2rem); font-weight: 800; color: #e8edf8; margin-bottom: .5rem; line-height: 1.2; }
+
+    .divider-line { height: 2px; width: 80px; border-radius: 2px; margin: .8rem 0 1.6rem; }
+    .divider-g { background: linear-gradient(90deg, var(--neon-g), transparent); }
+    .divider-b { background: linear-gradient(90deg, var(--neon-b), transparent); }
+
+    .section-block p { font-size: .97rem; color: var(--text); margin-bottom: 1.1rem; line-height: 1.75; }
+    .section-block p:last-of-type { margin-bottom: 0; }
+
+    .kw { font-weight: 700; }
+    .kw-g { color: var(--neon-g); }
+    .kw-b { color: var(--neon-b); }
+
+    /* Code snippet inline */
+    .code-inline {
+      font-family: 'Cascadia Code','Fira Code',monospace;
+      font-size: .88em; color: var(--neon-g);
+      background: rgba(0,255,136,.07); border: 1px solid rgba(0,255,136,.15);
+      border-radius: 4px; padding: .1em .4em;
+    }
+    .code-inline.blue { color: var(--neon-b); background: rgba(0,200,255,.07); border-color: rgba(0,200,255,.15); }
+
+    /* Code block */
+    .code-block {
+      font-family: 'Cascadia Code','Fira Code',monospace;
+      font-size: .87rem; line-height: 1.65;
+      background: rgba(6,10,16,.85); border: 1px solid rgba(0,255,136,.12);
+      border-radius: 10px; padding: 1.2rem 1.4rem;
+      margin: 1.2rem 0; overflow-x: auto; color: #c9d1e8;
+    }
+    .code-block .c-g  { color: #00ff88; }
+    .code-block .c-b  { color: #00c8ff; }
+    .code-block .c-y  { color: #e3b341; }
+    .code-block .c-m  { color: #f97583; }
+    .code-block .c-gr { color: #6b7a9e; }
+
+    /* Bullet list */
+    .check-list { list-style: none; margin: 1rem 0 1.2rem; display: flex; flex-direction: column; gap: .55rem; }
+    .check-list li { display: flex; align-items: flex-start; gap: .7rem; font-size: .94rem; color: var(--text); }
+    .check-list li::before { content: '›'; color: var(--neon-g); font-weight: 700; font-size: 1.1rem; line-height: 1.5; flex-shrink: 0; }
+    .check-list.blue li::before { color: var(--neon-b); }
+
+    /* Info-box */
+    .info-box { background: rgba(0,255,136,.05); border: 1px solid rgba(0,255,136,.18); border-radius: 10px; padding: 1rem 1.3rem; font-size: .88rem; color: var(--text); margin-top: 1.5rem; line-height: 1.6; }
+    .info-box.blue { background: rgba(0,200,255,.05); border-color: rgba(0,200,255,.18); }
+    .info-box strong { color: var(--neon-g); }
+    .info-box.blue strong { color: var(--neon-b); }
+
+    /* ══ BACK SECTION ══ */
+    .back-section { display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; padding: 1rem 1.5rem 5rem; }
+    .btn-back {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .75rem 1.8rem; border-radius: 8px;
+      font-size: .93rem; font-weight: 600; text-decoration: none;
+      color: var(--text); background: rgba(24,28,39,.8);
+      border: 1px solid var(--border); backdrop-filter: blur(8px);
+      transition: border-color .2s, color .2s;
+    }
+    .btn-back:hover { border-color: var(--neon-g); color: var(--neon-g); }
+    .btn-top {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .75rem 1.4rem; border-radius: 8px;
+      font-size: .93rem; font-weight: 600; text-decoration: none;
+      color: var(--muted); background: rgba(24,28,39,.8);
+      border: 1px solid var(--border); backdrop-filter: blur(8px);
+      transition: border-color .2s, color .2s;
+    }
+    .btn-top:hover { border-color: rgba(0,255,136,.4); color: var(--neon-g); }
+
+    /* ── LIGHT MODE ── */
+    html.light { --bg:#edf1f8; --surface:#ffffff; --surface2:#f0f4fb; --border:rgba(0,20,80,0.1); --text:#111827; --muted:#5a6a8a; --neon-g:#00a060; --neon-b:#007fb5; --neon-p:#7c22d8; --neon-o:#c44a10; }
+    html.light body { background:var(--bg); color:var(--text); }
+    html.light nav { background:rgba(237,241,248,0.92) !important; border-color:rgba(0,20,80,0.1); }
+    html.light .bg-watermark { opacity:.28; }
+    html.light .section-block { background:rgba(255,255,255,0.88) !important; border-color:rgba(0,20,80,0.1) !important; box-shadow:0 8px 40px rgba(0,20,80,0.08) !important; }
+    html.light .section-block h2 { color:#1a2540; }
+    html.light .section-block p { color:#374151; }
+    html.light .check-list li { color:#374151; }
+    html.light .code-block { background:rgba(20,28,50,.9); border-color:rgba(0,160,96,.15); }
+    html.light .code-inline { color:#00a060; background:rgba(0,160,96,.07); border-color:rgba(0,160,96,.18); }
+    html.light .code-inline.blue { color:#007fb5; background:rgba(0,127,181,.07); border-color:rgba(0,127,181,.18); }
+    html.light .section-pill { background:rgba(255,255,255,0.7); border-color:rgba(0,20,80,0.12); color:#4b5568; }
+    html.light .section-pill:hover { color:#00a060; border-color:rgba(0,160,96,0.4); }
+    html.light .page-hero h1 { color:#1a2540; }
+    html.light .nav-logo svg path { stroke:#00a060 !important; fill:rgba(0,160,96,0.1) !important; }
+    html.light .nav-logo svg text { fill:#00a060 !important; }
+    html.light .nav-logo-text .t1 { color:#1a2540 !important; }
+    html.light .nav-logo-text .t2 { color:#00a060 !important; text-shadow:none !important; }
+    html.light .btn-back { background:rgba(255,255,255,0.85); border-color:rgba(0,20,80,0.15); color:#111827; }
+    html.light .btn-back:hover { border-color:rgba(0,160,96,0.5); color:#00a060; }
+    html.light .btn-top  { background:rgba(255,255,255,0.85); border-color:rgba(0,20,80,0.15); color:#5a6a8a; }
+    html.light .btn-top:hover  { border-color:rgba(0,160,96,0.4); color:#00a060; }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 2 L36 11 L36 29 L20 38 L4 29 L4 11 Z" stroke="#00ff88" stroke-width="1.8" fill="rgba(0,255,136,0.07)"/>
+      <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="800" fill="#00ff88"
+        font-family="'Segoe UI',system-ui,sans-serif"
+        style="filter:drop-shadow(0 0 2px rgba(0,255,136,.5))">TSH</text>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="t1">TechSupport</span>
+      <span class="t2">HUB</span>
+    </div>
+  </a>
+  <a href="index.html#coding" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="10,3 5,8 10,13"/>
+    </svg>
+    Zurück
+  </a>
+</nav>
+
+<!-- ══ BACKGROUND WATERMARK ══ -->
+<div class="bg-watermark">
+  <svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="glow-wm">
+        <feGaussianBlur stdDeviation="3" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <filter id="glow-sm">
+        <feGaussianBlur stdDeviation="1.8" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+
+    <!-- Grid -->
+    <line x1="0" y1="100" x2="1400" y2="100" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="0" y1="200" x2="1400" y2="200" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="0" y1="300" x2="1400" y2="300" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="0" y1="400" x2="1400" y2="400" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="0" y1="500" x2="1400" y2="500" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="0" y1="600" x2="1400" y2="600" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="0" y1="700" x2="1400" y2="700" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="0" y1="800" x2="1400" y2="800" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="100" y1="0" x2="100" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="200" y1="0" x2="200" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="300" y1="0" x2="300" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="400" y1="0" x2="400" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="500" y1="0" x2="500" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="600" y1="0" x2="600" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="700" y1="0" x2="700" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="800" y1="0" x2="800" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="900" y1="0" x2="900" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="1000" y1="0" x2="1000" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="1100" y1="0" x2="1100" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="1200" y1="0" x2="1200" y2="900" stroke="#1a1f30" stroke-width="1"/>
+    <line x1="1300" y1="0" x2="1300" y2="900" stroke="#1a1f30" stroke-width="1"/>
+
+    <!-- ══ LARGE TERMINAL WINDOW (center) ══ -->
+    <rect x="300" y="80" width="800" height="520" rx="14"
+      fill="rgba(0,255,136,0.02)" stroke="#00ff88" stroke-width="1.6"
+      opacity=".35" filter="url(#glow-wm)"/>
+    <!-- Title bar -->
+    <rect x="300" y="80" width="800" height="38" rx="14" fill="rgba(0,255,136,0.06)" opacity=".6"/>
+    <rect x="300" y="106" width="800" height="12" fill="rgba(0,255,136,0.06)" opacity=".6"/>
+    <circle cx="326" cy="99" r="6" fill="#ff5f57" opacity=".5"/>
+    <circle cx="346" cy="99" r="6" fill="#febc2e" opacity=".5"/>
+    <circle cx="366" cy="99" r="6" fill="#28c840" opacity=".5"/>
+    <text x="700" y="103" text-anchor="middle" font-family="monospace" font-size="10" fill="#00ff88" opacity=".35">bash — ~/projects</text>
+    <!-- Code lines (left column) -->
+    <rect x="320" y="130" width="60" height="8" rx="4" fill="#00ff88" opacity=".18"/>
+    <rect x="340" y="148" width="200" height="7" rx="3.5" fill="#00ff88" opacity=".09"/>
+    <rect x="340" y="163" width="160" height="7" rx="3.5" fill="#00c8ff" opacity=".09"/>
+    <rect x="340" y="178" width="180" height="7" rx="3.5" fill="#e3b341" opacity=".08"/>
+    <rect x="340" y="193" width="140" height="7" rx="3.5" fill="#00ff88" opacity=".09"/>
+    <rect x="320" y="210" width="50" height="7" rx="3.5" fill="#00ff88" opacity=".15"/>
+    <rect x="340" y="226" width="220" height="7" rx="3.5" fill="#f97583" opacity=".09"/>
+    <rect x="340" y="241" width="170" height="7" rx="3.5" fill="#00c8ff" opacity=".09"/>
+    <rect x="340" y="256" width="190" height="7" rx="3.5" fill="#e3b341" opacity=".08"/>
+    <rect x="320" y="273" width="60" height="8" rx="4" fill="#00ff88" opacity=".18"/>
+    <!-- Separator -->
+    <line x1="600" y1="118" x2="600" y2="590" stroke="#00ff88" stroke-width="1" opacity=".08" stroke-dasharray="4,4"/>
+    <!-- Right column: terminal output -->
+    <rect x="620" y="130" width="50" height="8" rx="4" fill="#00ff88" opacity=".25"/>
+    <text x="620" y="160" font-family="monospace" font-size="10" fill="#00ff88" opacity=".22">$ git status</text>
+    <rect x="620" y="168" width="180" height="6" rx="3" fill="#6b7a9e" opacity=".18"/>
+    <rect x="620" y="182" width="220" height="6" rx="3" fill="#6b7a9e" opacity=".12"/>
+    <text x="620" y="212" font-family="monospace" font-size="10" fill="#00ff88" opacity=".22">$ npm run build</text>
+    <rect x="620" y="220" width="140" height="6" rx="3" fill="#28c840" opacity=".18"/>
+    <rect x="620" y="234" width="200" height="6" rx="3" fill="#6b7a9e" opacity=".1"/>
+    <text x="620" y="262" font-family="monospace" font-size="10" fill="#00ff88" opacity=".22">$ npx tsc --noEmit</text>
+    <rect x="620" y="270" width="240" height="6" rx="3" fill="#f97583" opacity=".15"/>
+    <rect x="620" y="284" width="160" height="6" rx="3" fill="#6b7a9e" opacity=".1"/>
+    <!-- Blinking cursor -->
+    <rect x="620" y="305" width="8" height="12" rx="1" fill="#00ff88" opacity=".5">
+      <animate attributeName="opacity" values="0.5;0;0.5" dur="1.1s" repeatCount="indefinite"/>
+    </rect>
+    <!-- Corner marks -->
+    <path d="M300,80 L300,68 L312,68"    fill="none" stroke="#00ff88" stroke-width="1.4" opacity=".3"/>
+    <path d="M1100,80 L1100,68 L1088,68" fill="none" stroke="#00ff88" stroke-width="1.4" opacity=".3"/>
+    <path d="M300,600 L300,612 L312,612" fill="none" stroke="#00ff88" stroke-width="1.4" opacity=".3"/>
+    <path d="M1100,600 L1100,612 L1088,612" fill="none" stroke="#00ff88" stroke-width="1.4" opacity=".3"/>
+
+    <!-- ══ BRACKET DECORATIONS (left) ══ -->
+    <text x="50" y="400" font-family="monospace" font-size="200" fill="rgba(0,255,136,0.04)" font-weight="bold">{</text>
+    <!-- Circuit traces (left) -->
+    <path d="M60,300 H180 V450 H260" fill="none" stroke="rgba(0,255,136,0.08)" stroke-width="1.5"/>
+    <circle cx="60"  cy="300" r="4" fill="#00ff88" opacity=".25" filter="url(#glow-sm)"/>
+    <circle cx="180" cy="300" r="3" fill="#00ff88" opacity=".2"/>
+    <circle cx="180" cy="450" r="3" fill="#00ff88" opacity=".2"/>
+    <path d="M60,600 H160 V500 H240" fill="none" stroke="rgba(0,255,136,0.06)" stroke-width="1.5"/>
+    <circle cx="60"  cy="600" r="4" fill="#00ff88" opacity=".2" filter="url(#glow-sm)"/>
+
+    <!-- ══ BRACKET DECORATIONS (right) ══ -->
+    <text x="1190" y="400" font-family="monospace" font-size="200" fill="rgba(0,255,136,0.04)" font-weight="bold">}</text>
+    <!-- Circuit traces (right) -->
+    <path d="M1340,300 H1220 V450 H1140" fill="none" stroke="rgba(0,255,136,0.08)" stroke-width="1.5"/>
+    <circle cx="1340" cy="300" r="4" fill="#00ff88" opacity=".25" filter="url(#glow-sm)"/>
+    <circle cx="1220" cy="300" r="3" fill="#00ff88" opacity=".2"/>
+    <circle cx="1220" cy="450" r="3" fill="#00ff88" opacity=".2"/>
+
+    <!-- ══ BUG ICON (bottom left) ══ -->
+    <ellipse cx="130" cy="750" rx="28" ry="20" fill="rgba(0,200,255,0.05)" stroke="#00c8ff" stroke-width="1.5" opacity=".45"/>
+    <ellipse cx="130" cy="730" rx="14" ry="12" fill="rgba(0,200,255,0.05)" stroke="#00c8ff" stroke-width="1.4" opacity=".4"/>
+    <line x1="108" y1="742" x2="88"  y2="728" stroke="#00c8ff" stroke-width="1.2" opacity=".35"/>
+    <line x1="108" y1="752" x2="84"  y2="752" stroke="#00c8ff" stroke-width="1.2" opacity=".35"/>
+    <line x1="108" y1="762" x2="88"  y2="775" stroke="#00c8ff" stroke-width="1.2" opacity=".35"/>
+    <line x1="152" y1="742" x2="172" y2="728" stroke="#00c8ff" stroke-width="1.2" opacity=".35"/>
+    <line x1="152" y1="752" x2="176" y2="752" stroke="#00c8ff" stroke-width="1.2" opacity=".35"/>
+    <line x1="152" y1="762" x2="172" y2="775" stroke="#00c8ff" stroke-width="1.2" opacity=".35"/>
+    <text x="130" y="820" text-anchor="middle" font-size="10" font-weight="600" fill="#00c8ff" font-family="'Segoe UI',system-ui,sans-serif" opacity=".35" letter-spacing="2">BUGFIX</text>
+
+    <!-- ══ GLOBE / WEB ICON (bottom right) ══ -->
+    <circle cx="1260" cy="750" r="50" fill="none" stroke="#00ff88" stroke-width="1.4" opacity=".3" filter="url(#glow-wm)"/>
+    <ellipse cx="1260" cy="750" rx="24" ry="50" fill="none" stroke="#00ff88" stroke-width="1" opacity=".2"/>
+    <line x1="1210" y1="750" x2="1310" y2="750" stroke="#00ff88" stroke-width="1" opacity=".2"/>
+    <line x1="1210" y1="728" x2="1310" y2="728" stroke="#00ff88" stroke-width="1" opacity=".12"/>
+    <line x1="1210" y1="772" x2="1310" y2="772" stroke="#00ff88" stroke-width="1" opacity=".12"/>
+    <text x="1260" y="825" text-anchor="middle" font-size="10" font-weight="600" fill="#00ff88" font-family="'Segoe UI',system-ui,sans-serif" opacity=".3" letter-spacing="2">WEB</text>
+
+    <!-- Ambient glow -->
+    <ellipse cx="700" cy="340" rx="400" ry="260" fill="#00ff88" opacity=".015"/>
+    <ellipse cx="130" cy="750" rx="120" ry="90" fill="#00c8ff" opacity=".015"/>
+    <ellipse cx="1260" cy="750" rx="120" ry="90" fill="#00ff88" opacity=".015"/>
+  </svg>
+</div>
+
+<!-- ══ CONTENT ══ -->
+<div class="page-content">
+
+  <!-- Page hero -->
+  <div class="page-hero" id="top">
+    <div class="page-tag">03 — Coding &amp; Bugfixing</div>
+    <h1>Code, der <span class="accent">läuft.</span></h1>
+    <p>Statische Websites, One-Pager und hartnäckige Bugs – hier erkläre ich, wie ich vorgehe und was du erwarten kannst.</p>
+  </div>
+
+  <!-- Section nav pills -->
+  <div class="section-nav">
+    <a class="section-pill" href="#beratung">🎨 Webdesign-Beratung &amp; Konzept</a>
+    <a class="section-pill" href="#websites">🌐 Statische Websites &amp; One-Pager</a>
+    <a class="section-pill" href="#bugfixing">🐛 Bugfixing &amp; Debugging</a>
+  </div>
+
+  <div class="text-section">
+
+    <!-- ══════ SECTION 1: Webdesign-Beratung & Konzept ══════ -->
+    <div class="section-block" id="beratung">
+      <div class="section-tag-small tag-g">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <rect x="1" y="2" width="12" height="9" rx="2" stroke="#00ff88" stroke-width="1.5"/>
+          <line x1="4" y1="13" x2="10" y2="13" stroke="#00ff88" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="7" y1="11" x2="7" y2="13" stroke="#00ff88" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="3" y1="5.5" x2="8" y2="5.5" stroke="#00ff88" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="3" y1="7.5" x2="10" y2="7.5" stroke="#00ff88" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        Webdesign-Beratung &amp; Konzept
+      </div>
+      <h2>Erst denken, dann bauen – der Unterschied liegt im Konzept.</h2>
+      <div class="divider-line divider-g"></div>
+
+      <p>
+        Die meisten Websites scheitern nicht am Code, sondern an fehlender Klarheit davor.
+        Was soll die Seite leisten? Für wen ist sie gemacht? Welche Aktion soll ein Besucher
+        als nächstes tun – und macht der aktuelle Aufbau das überhaupt möglich?
+        <span class="kw kw-g">Webdesign-Beratung</span> bedeutet, genau diese Fragen zu stellen,
+        bevor irgendetwas gebaut wird.
+      </p>
+      <p style="color:var(--neon-b);">
+        Ich helfe dir, deinen <span class="kw kw-b">Webauftritt zu durchdenken</span>: vom
+        groben Use-Case über Zielgruppe und Inhalte bis hin zu Struktur, Seitenaufbau und
+        visueller Sprache. Das Ergebnis ist kein fertiges Design – sondern ein klares Bild davon,
+        was entstehen soll und warum. Auf dieser Grundlage entsteht dann echte Umsetzung,
+        die funktioniert, statt gut aussehender Baustellen.
+      </p>
+
+      <p><strong style="color:#e8edf8;">Use-Case und Ziel klären</strong></p>
+      <p style="color:var(--neon-p);">
+        Der erste Schritt ist immer die Frage nach dem <span class="kw kw-p">Zweck</span>.
+        Eine Handwerker-Website braucht vor allem eine gut sichtbare Telefonnummer und
+        Bilder von Projekten. Ein Portfolioauftritt braucht Fokus auf das Werk und eine
+        klare Kontaktmöglichkeit. Ein kleiner Online-Shop braucht Vertrauen und einfache
+        Navigation. Jeder dieser Fälle sieht strukturell völlig anders aus – und das ist kein
+        Zufall, sondern das Ergebnis bewusster Entscheidungen.
+      </p>
+      <p>
+        Ich stelle dir gezielte Fragen: Wer besucht die Seite? Was wissen sie schon?
+        Was sollen sie tun oder denken, wenn sie sie verlassen? Wie viel Content existiert
+        bereits, was muss noch entstehen? Aus diesen Antworten ergibt sich eine Struktur,
+        die nicht aus einer Vorlage kommt, sondern aus deiner konkreten Situation.
+      </p>
+
+      <p><strong style="color:#e8edf8;">Struktur und Seitenarchitektur</strong></p>
+      <p>
+        Wie viele Seiten braucht es wirklich? Ist ein One-Pager die richtige Wahl, oder
+        macht eine Mehrseiter-Struktur mehr Sinn? Welche Inhalte gehören auf die Startseite,
+        was gehört tiefer in die Navigation? Ich skizziere eine
+        <span class="kw kw-g">Seitenarchitektur</span>, die Besucher intuitiv durch dein
+        Angebot führt – ohne dass sie suchen müssen.
+      </p>
+      <p>
+        Dabei denke ich auch an die Ladezeiten, an <span class="kw kw-g">mobile Nutzung</span>
+        (die meisten Besucher kommen mit dem Handy) und an die Lesbarkeit: Schriftgrößen,
+        Kontraste, Abstände. Diese Entscheidungen sehen marginal aus, machen aber den
+        Unterschied zwischen einer Seite, die man sofort versteht, und einer, bei der man
+        sofort wieder wegklickt.
+      </p>
+
+      <p><strong style="color:#e8edf8;">Visuelles Konzept und Designsprache</strong></p>
+      <p>
+        Farben, Schriften und Bildsprache sind keine Geschmackssache – sie sind
+        <span class="kw kw-g">Kommunikation</span>. Eine handwerkliche Dienstleistungsseite
+        braucht Seriosität und Klarheit. Eine kreative Agentur darf mutig sein. Ein Arzt oder
+        Therapeut braucht Ruhe und Vertrauen. Ich helfe dir zu definieren, welche visuelle
+        Tonalität zu deinem Angebot und deiner Zielgruppe passt – und welche konkreten
+        Entscheidungen daraus folgen.
+      </p>
+      <p>
+        Das bedeutet nicht, dass du ein ausgefeiltes Brand Manual bekommst. Es bedeutet,
+        dass wir gemeinsam auf zwei bis drei Farben, eine Schriftpaarung und einen klaren
+        Bildstil einigen – so dass alles aus einem Guss wirkt und nicht wie zusammengewürfelt.
+      </p>
+
+      <ul class="check-list">
+        <li>Ziel und Use-Case der Website gemeinsam herausarbeiten</li>
+        <li>Zielgruppe definieren und Inhalte darauf abstimmen</li>
+        <li>Seitenstruktur planen: One-Pager vs. Mehrseiter, Navigationstiefe</li>
+        <li>Inhaltliche Hierarchie: Was ist wichtig, was ist nachrangig</li>
+        <li>Farbschema, Typografie und visuelle Tonalität abstimmen</li>
+        <li>Technologieentscheidung: statisch, CMS oder Shop-System</li>
+        <li>Realistische Einschätzung von Aufwand und Kosten vor der Umsetzung</li>
+      </ul>
+
+      <div class="info-box">
+        <strong>Meine Empfehlung:</strong> Plane 1–2 Stunden für ein erstes Konzeptgespräch ein,
+        bevor du irgendetwas beauftragst oder selbst anfängst zu bauen. Was dabei entsteht,
+        spart dir in der Umsetzung ein Vielfaches an Zeit – und sorgt dafür, dass das Ergebnis
+        wirklich zu dir passt.
+      </div>
+    </div>
+
+    <!-- ══════ SECTION 2: Statische Websites & One-Pager ══════ -->
+    <div class="section-block" id="websites">
+      <div class="section-tag-small tag-g">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <circle cx="7" cy="7" r="6" stroke="#00ff88" stroke-width="1.5"/>
+          <line x1="7" y1="1" x2="7" y2="13" stroke="#00ff88" stroke-width="1.2"/>
+          <ellipse cx="7" cy="7" rx="3.5" ry="6" stroke="#00ff88" stroke-width="1"/>
+          <line x1="1.5" y1="5" x2="12.5" y2="5" stroke="#00ff88" stroke-width="1"/>
+          <line x1="1.5" y1="9" x2="12.5" y2="9" stroke="#00ff88" stroke-width="1"/>
+        </svg>
+        Statische Websites &amp; One-Pager
+      </div>
+      <h2>Eine Seite, die wirkt – ohne unnötigen Overhead.</h2>
+      <div class="divider-line divider-g"></div>
+
+      <p>
+        Eine <span class="kw kw-g">statische Website</span> braucht kein CMS, keine Datenbank und kein
+        monatliches Hosting-Abo für ein komplexes Backend. Sie besteht aus
+        <span class="kw kw-g">HTML</span>, <span class="kw kw-g">CSS</span> und optional ein wenig
+        <span class="kw kw-g">JavaScript</span> – und ist damit blitzschnell, günstig zu hosten und
+        praktisch wartungsfrei. Für Visitenkartenseiten, Portfolios, Landingpages und kleine
+        Unternehmensauftritte ist das in vielen Fällen die ehrlichste und beste Lösung.
+      </p>
+      <p>
+        Ein <span class="kw kw-g">One-Pager</span> bündelt alles auf einer einzigen, durchgängig
+        scrollbaren Seite: ein Hero-Bereich mit klarer Botschaft, eine Leistungsübersicht, ein
+        Über-mich-Abschnitt, Fotos und ein Kontaktformular. Die Navigation springt per Anker direkt
+        zum richtigen Abschnitt – kein Laden einer neuen Seite, keine Wartezeit.
+      </p>
+
+      <p><strong style="color:#e8edf8;">Was entsteht konkret?</strong></p>
+      <p>
+        Ich baue Seiten vollständig per Hand – kein Page-Builder, kein generiertes Markup.
+        Das bedeutet: sauberer, lesbarer Code, der genau das tut, was er soll.
+        Das Ergebnis ist <span class="kw kw-g">responsiv</span> (funktioniert auf Handy, Tablet und
+        Desktop), lädt ohne spürbare Verzögerung und ist für Suchmaschinen semantisch korrekt
+        aufgebaut.
+      </p>
+
+      <div class="code-block">
+        <span class="c-gr">&lt;!-- Typische Struktur eines One-Pagers --&gt;</span><br>
+        <span class="c-m">&lt;section</span> <span class="c-b">id</span>=<span class="c-y">"hero"</span><span class="c-m">&gt;</span>  <span class="c-gr">← Einstieg, Headline, CTA</span><br>
+        <span class="c-m">&lt;section</span> <span class="c-b">id</span>=<span class="c-y">"leistungen"</span><span class="c-m">&gt;</span>  <span class="c-gr">← Was du anbietest</span><br>
+        <span class="c-m">&lt;section</span> <span class="c-b">id</span>=<span class="c-y">"about"</span><span class="c-m">&gt;</span>  <span class="c-gr">← Wer du bist</span><br>
+        <span class="c-m">&lt;section</span> <span class="c-b">id</span>=<span class="c-y">"galerie"</span><span class="c-m">&gt;</span>  <span class="c-gr">← Fotos / Referenzen</span><br>
+        <span class="c-m">&lt;section</span> <span class="c-b">id</span>=<span class="c-y">"kontakt"</span><span class="c-m">&gt;</span>  <span class="c-gr">← Formular oder Direktkontakt</span>
+      </div>
+
+      <p>
+        Das Kontaktformular wird über einen externen Dienst wie
+        <span class="code-inline">formsubmit.co</span> oder
+        <span class="code-inline">formspree.io</span> abgewickelt – kein eigener Server nötig.
+        Nachrichten landen direkt in deiner Inbox, das Formular ist spam-geschützt und
+        funktioniert zuverlässig ohne Backend-Kenntnisse.
+      </p>
+      <p>
+        Wer die Seite später selbst pflegen möchte, bekommt von mir eine kurze Einweisung:
+        wo Texte geändert werden, wie Bilder ausgetauscht werden und was beim Hochladen
+        zu beachten ist. Hosting-Optionen erkläre ich ebenfalls – von
+        <span class="code-inline">GitHub Pages</span> (kostenlos) bis zu
+        <span class="code-inline">Netlify</span> oder einem einfachen Webhosting-Paket.
+      </p>
+
+      <ul class="check-list">
+        <li>One-Pager mit Hero, Leistungen, Galerie und Kontaktformular</li>
+        <li>Mehrseiter mit einheitlichem Design und konsistenter Navigation</li>
+        <li>Responsives Layout – optimiert für Handy, Tablet und Desktop</li>
+        <li>Semantisch korrektes HTML für solide SEO-Grundlage</li>
+        <li>Einbindung eigener Fotos, Logos und Markenfarben</li>
+        <li>Übergabe mit Einweisung – du verstehst, was wo steht</li>
+      </ul>
+
+      <div class="info-box">
+        <strong>Mein Anspruch:</strong> Du bekommst keine Black Box übergeben. Der Code ist kommentiert,
+        die Struktur nachvollziehbar – und wenn etwas geändert werden muss, weißt du oder jemand
+        anderes danach, wo anzufassen ist.
+      </div>
+    </div>
+
+    <!-- ══════ SECTION 2: Bugfixing & Debugging ══════ -->
+    <div class="section-block" id="bugfixing">
+      <div class="section-tag-small tag-b">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <ellipse cx="7" cy="8" rx="4.5" ry="3.5" stroke="#00c8ff" stroke-width="1.4"/>
+          <ellipse cx="7" cy="5.5" rx="2.5" ry="2.2" stroke="#00c8ff" stroke-width="1.3"/>
+          <line x1="3" y1="7"  x2="0.5" y2="5.5" stroke="#00c8ff" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="3" y1="8.5" x2="0.5" y2="8.5" stroke="#00c8ff" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="3" y1="10" x2="0.5" y2="11.5" stroke="#00c8ff" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="11" y1="7"  x2="13.5" y2="5.5" stroke="#00c8ff" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="11" y1="8.5" x2="13.5" y2="8.5" stroke="#00c8ff" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="11" y1="10" x2="13.5" y2="11.5" stroke="#00c8ff" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        Bugfixing &amp; Debugging
+      </div>
+      <h2>Den Fehler finden – und wirklich verstehen, warum.</h2>
+      <div class="divider-line divider-b"></div>
+
+      <p>
+        Bugs sind frustrierend – besonders dann, wenn man nicht versteht, warum etwas funktioniert
+        hat, und jetzt plötzlich nicht mehr. <span class="kw kw-b">Debugging</span> ist kein Raten:
+        es ist ein systematischer Prozess, bei dem man die Ursache einkreist, statt blind Varianten
+        auszuprobieren. Genau das unterscheidet eine nachhaltige Lösung von einem Workaround, der
+        beim nächsten Update wieder bricht.
+      </p>
+      <p>
+        Ich arbeite im Bereich <span class="kw kw-b">HTML</span>, <span class="kw kw-b">CSS</span> und
+        <span class="kw kw-b">JavaScript</span> – also dem klassischen Frontend-Stack, der hinter fast
+        jeder Website steckt. Typische Probleme, die ich löse: Layouts, die auf manchen
+        Bildschirmen brechen, Animationen die haken, Formulare die nicht senden,
+        JavaScript-Fehler in der Browser-Konsole, oder eine Seite, die nach einem Update
+        plötzlich anders aussieht als erwartet.
+      </p>
+
+      <p><strong style="color:#e8edf8;">Wie gehe ich vor?</strong></p>
+      <p>
+        Zuerst das Problem <em>reproduzieren</em>: Unter welchen Bedingungen tritt es auf? Immer?
+        Nur auf bestimmten Browsern? Nur auf Mobilgeräten? Dann
+        <span class="kw kw-b">isolieren</span>: den kleinsten Code-Ausschnitt finden, der das
+        Problem zeigt. Dann <span class="kw kw-b">verstehen</span>: warum verhält sich der Code so?
+        Was erwartet der Browser, was bekommt er, was gibt er aus? Erst dann kommt die Lösung –
+        und die wird erklärt, nicht nur eingespielt.
+      </p>
+
+      <div class="code-block">
+        <span class="c-gr">/* Häufiges CSS-Problem: Element verschwindet auf Mobile */</span><br>
+        <br>
+        <span class="c-gr">/* ❌ Problem */</span><br>
+        <span class="c-b">.hero-text</span> &#123; <span class="c-g">position</span>: <span class="c-y">absolute</span>; <span class="c-g">left</span>: <span class="c-y">320px</span>; &#125;<br>
+        <br>
+        <span class="c-gr">/* ✓ Fix: relativ zur Viewport-Breite denken */</span><br>
+        <span class="c-b">.hero-text</span> &#123;<br>
+        &nbsp;&nbsp;<span class="c-g">position</span>: <span class="c-y">relative</span>;<br>
+        &nbsp;&nbsp;<span class="c-g">max-width</span>: <span class="c-y">min(520px, 90vw)</span>;<br>
+        &nbsp;&nbsp;<span class="c-g">margin</span>: <span class="c-y">0 auto</span>;<br>
+        &#125;
+      </div>
+
+      <p>
+        Bei <span class="kw kw-b">JavaScript-Fehlern</span> ist die Browser-Konsole
+        (<span class="code-inline blue">F12 → Console</span>) der erste Anlaufpunkt.
+        Fehlermeldungen wie <span class="code-inline blue">TypeError: Cannot read properties of null</span>
+        sagen oft genau, was fehlt – wenn man weiß, wie man sie liest. Ich zeige dir, wie du
+        selbst Fehler in der Konsole einordnest und was die häufigsten Meldungen bedeuten.
+      </p>
+      <p>
+        Manchmal ist das Problem kein Fehler im Code, sondern ein
+        <span class="kw kw-b">Caching-Problem</span>: der Browser zeigt eine alte Version der Seite,
+        weil er die CSS-Datei aus dem Cache lädt. Manchmal liegt es an einem
+        <span class="kw kw-b">Leerzeichen zu viel</span> oder einer fehlenden schließenden Klammer.
+        Manchmal steckt der Bug in einer externen Bibliothek, die in einer neuen Version sich
+        anders verhält. Ich helfe dir, das auseinanderzuhalten.
+      </p>
+
+      <ul class="check-list blue">
+        <li>Layout-Bugs in CSS – Flexbox, Grid, Positionierung, responsive Brüche</li>
+        <li>JavaScript-Fehler in der Konsole lokalisieren und beheben</li>
+        <li>Formular-Probleme: Validierung, Senden, Fehleranzeige</li>
+        <li>Verhalten in verschiedenen Browsern prüfen und angleichen</li>
+        <li>Caching-Probleme identifizieren und Workarounds erklären</li>
+        <li>Code-Review: bestehenden Code lesen, erklären und verbessern</li>
+      </ul>
+
+      <div class="info-box blue">
+        <strong>Wichtig:</strong> Ich arbeite im einfachen bis mittleren Bereich – also klassisches
+        Frontend ohne komplexe Frameworks wie React oder Vue. Wenn dein Projekt darüber hinausgeht,
+        sage ich das klar und verweise lieber ehrlich weiter, als etwas zu versprechen,
+        was ich nicht liefern kann.
+      </div>
+    </div>
+
+  </div><!-- /.text-section -->
+
+  <!-- Back links -->
+  <div class="back-section">
+    <a href="index.html#coding" class="btn-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="10,3 5,8 10,13"/>
+      </svg>
+      Zurück zur Startseite
+    </a>
+    <a href="#top" class="btn-top">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="3,10 8,5 13,10"/>
+      </svg>
+      Nach oben
+    </a>
+  </div>
+
+</div><!-- /.page-content -->
+
+<script>
+  function toggleTheme() {
+    const l = document.documentElement.classList.toggle('light');
+    localStorage.setItem('tsh-theme', l ? 'light' : 'dark');
+  }
+</script>
+</body>
+</html>
