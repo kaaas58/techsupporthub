@@ -197,17 +197,7 @@
 
     /* ── DATENSCHUTZ TARGET GLOW ── */
     #datenschutz {
-      transition: color .4s, text-shadow .4s;
       scroll-margin-top: 90px;
-    }
-    #datenschutz:target,
-    #datenschutz.glow-active {
-      animation: ds-glow 2.8s ease forwards;
-    }
-    @keyframes ds-glow {
-      0%   { color: #ffffff; text-shadow: 0 0 18px rgba(255,255,255,0.85), 0 0 40px rgba(255,255,255,0.4); }
-      60%  { color: #ffffff; text-shadow: 0 0 18px rgba(255,255,255,0.85), 0 0 40px rgba(255,255,255,0.4); }
-      100% { color: var(--text-1); text-shadow: none; }
     }
 
     /* ── FOOTER ── */
@@ -307,7 +297,7 @@
       <div>
         <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-3);margin-bottom:.5rem;">Kontakt</p>
         <p style="color:var(--text-2);margin-bottom:.2rem;">E-Mail: <a href="mailto:info.tsh@gmx.de" style="color:var(--neon-green);text-decoration:none;">info.tsh@gmx.de</a></p>
-        <p style="color:var(--text-2);">Web: <a href="https://kaaas58.github.io/ltcoding/" target="_blank" rel="noopener" style="color:var(--neon-green);text-decoration:none;">kaaas58.github.io/ltcoding</a></p>
+        <p style="color:var(--text-2);">Web: <a href="index.html" style="color:var(--neon-green);text-decoration:none;">kaaas58.github.io/techsupporthub</a></p>
       </div>
     </div>
   </div>
@@ -375,16 +365,6 @@
 </footer>
 
 <script>
-  // Trigger glow animation wenn #datenschutz als target geladen wird
-  window.addEventListener('load', function () {
-    if (window.location.hash === '#datenschutz') {
-      const el = document.getElementById('datenschutz');
-      if (el) {
-        el.classList.add('glow-active');
-        setTimeout(() => el.classList.remove('glow-active'), 3000);
-      }
-    }
-  });
   function toggleTheme() { const l=document.documentElement.classList.toggle('light'); localStorage.setItem('tsh-theme',l?'light':'dark'); }
 </script>
 
