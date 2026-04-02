@@ -114,12 +114,14 @@
     }
     .tag-g { color: var(--neon-g); }
     .tag-b { color: var(--neon-b); }
+    .tag-p { color: var(--neon-p); }
 
     .section-block h2 { font-size: clamp(1.4rem,3.5vw,2rem); font-weight: 800; color: #e8edf8; margin-bottom: .5rem; line-height: 1.2; }
 
     .divider-line { height: 2px; width: 80px; border-radius: 2px; margin: .8rem 0 1.6rem; }
     .divider-g { background: linear-gradient(90deg, var(--neon-g), transparent); }
     .divider-b { background: linear-gradient(90deg, var(--neon-b), transparent); }
+    .divider-p { background: linear-gradient(90deg, var(--neon-p), transparent); }
 
     .section-block p { font-size: .97rem; color: var(--text); margin-bottom: 1.1rem; line-height: 1.75; }
     .section-block p:last-of-type { margin-bottom: 0; }
@@ -127,6 +129,7 @@
     .kw { font-weight: 700; }
     .kw-g { color: var(--neon-g); }
     .kw-b { color: var(--neon-b); }
+    .kw-p { color: var(--neon-p); }
 
     /* Code snippet inline */
     .code-inline {
@@ -156,12 +159,15 @@
     .check-list li { display: flex; align-items: flex-start; gap: .7rem; font-size: .94rem; color: var(--text); }
     .check-list li::before { content: '›'; color: var(--neon-g); font-weight: 700; font-size: 1.1rem; line-height: 1.5; flex-shrink: 0; }
     .check-list.blue li::before { color: var(--neon-b); }
+    .check-list.purple li::before { color: var(--neon-p); }
 
     /* Info-box */
     .info-box { background: rgba(0,255,136,.05); border: 1px solid rgba(0,255,136,.18); border-radius: 10px; padding: 1rem 1.3rem; font-size: .88rem; color: var(--text); margin-top: 1.5rem; line-height: 1.6; }
     .info-box.blue { background: rgba(0,200,255,.05); border-color: rgba(0,200,255,.18); }
+    .info-box.purple { background: rgba(191,95,255,.05); border-color: rgba(191,95,255,.18); }
     .info-box strong { color: var(--neon-g); }
     .info-box.blue strong { color: var(--neon-b); }
+    .info-box.purple strong { color: var(--neon-p); }
 
     /* ══ BACK SECTION ══ */
     .back-section { display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; padding: 1rem 1.5rem 5rem; }
@@ -401,7 +407,7 @@
         bevor irgendetwas gebaut wird.
       </p>
       <p>
-        Ich helfe dir, deinen <span class="kw kw-b">Webauftritt zu durchdenken</span>: vom
+        Ich helfe dir, deinen <span class="kw kw-g">Webauftritt zu durchdenken</span>: vom
         groben Use-Case über Zielgruppe und Inhalte bis hin zu Struktur, Seitenaufbau und
         visueller Sprache. Das Ergebnis ist kein fertiges Design – sondern ein klares Bild davon,
         was entstehen soll und warum. Auf dieser Grundlage entsteht dann echte Umsetzung,
@@ -410,7 +416,7 @@
 
       <p><strong style="color:#e8edf8;">Use-Case und Ziel klären</strong></p>
       <p>
-        Der erste Schritt ist immer die Frage nach dem <span class="kw kw-p">Zweck</span>.
+        Der erste Schritt ist immer die Frage nach dem <span class="kw kw-g">Zweck</span>.
         Eine Handwerker-Website braucht vor allem eine gut sichtbare Telefonnummer und
         Bilder von Projekten. Ein Portfolioauftritt braucht Fokus auf das Werk und eine
         klare Kontaktmöglichkeit. Ein kleiner Online-Shop braucht Vertrauen und einfache
@@ -455,7 +461,7 @@
         Bildstil einigen – so dass alles aus einem Guss wirkt und nicht wie zusammengewürfelt.
       </p>
 
-      <ul class="check-list">
+      <ul class="check-list green">
         <li>Ziel und Use-Case der Website gemeinsam herausarbeiten</li>
         <li>Zielgruppe definieren und Inhalte darauf abstimmen</li>
         <li>Seitenstruktur planen: One-Pager vs. Mehrseiter, Navigationstiefe</li>
@@ -465,7 +471,7 @@
         <li>Realistische Einschätzung von Aufwand und Kosten vor der Umsetzung</li>
       </ul>
 
-      <div class="info-box">
+      <div class="info-box green">
         <strong>Meine Empfehlung:</strong> Plane 1–2 Stunden für ein erstes Konzeptgespräch ein,
         bevor du irgendetwas beauftragst oder selbst anfängst zu bauen. Was dabei entsteht,
         spart dir in der Umsetzung ein Vielfaches an Zeit – und sorgt dafür, dass das Ergebnis
@@ -475,29 +481,29 @@
 
     <!-- ══════ SECTION 2: Statische Websites & One-Pager ══════ -->
     <div class="section-block" id="websites">
-      <div class="section-tag-small tag-g">
+      <div class="section-tag-small tag-b">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <circle cx="7" cy="7" r="6" stroke="#00ff88" stroke-width="1.5"/>
-          <line x1="7" y1="1" x2="7" y2="13" stroke="#00ff88" stroke-width="1.2"/>
-          <ellipse cx="7" cy="7" rx="3.5" ry="6" stroke="#00ff88" stroke-width="1"/>
-          <line x1="1.5" y1="5" x2="12.5" y2="5" stroke="#00ff88" stroke-width="1"/>
-          <line x1="1.5" y1="9" x2="12.5" y2="9" stroke="#00ff88" stroke-width="1"/>
+          <circle cx="7" cy="7" r="6" stroke="#00c8ff" stroke-width="1.5"/>
+          <line x1="7" y1="1" x2="7" y2="13" stroke="#00c8ff" stroke-width="1.2"/>
+          <ellipse cx="7" cy="7" rx="3.5" ry="6" stroke="#00c8ff" stroke-width="1"/>
+          <line x1="1.5" y1="5" x2="12.5" y2="5" stroke="#00c8ff" stroke-width="1"/>
+          <line x1="1.5" y1="9" x2="12.5" y2="9" stroke="#00c8ff" stroke-width="1"/>
         </svg>
         Statische Websites &amp; One-Pager
       </div>
       <h2>Eine Seite, die wirkt – ohne unnötigen Overhead.</h2>
-      <div class="divider-line divider-g"></div>
+      <div class="divider-line divider-b"></div>
 
       <p>
-        Eine <span class="kw kw-g">statische Website</span> braucht kein CMS, keine Datenbank und kein
+        Eine <span class="kw kw-b">statische Website</span> braucht kein CMS, keine Datenbank und kein
         monatliches Hosting-Abo für ein komplexes Backend. Sie besteht aus
-        <span class="kw kw-g">HTML</span>, <span class="kw kw-g">CSS</span> und optional ein wenig
-        <span class="kw kw-g">JavaScript</span> – und ist damit blitzschnell, günstig zu hosten und
+        <span class="kw kw-b">HTML</span>, <span class="kw kw-b">CSS</span> und optional ein wenig
+        <span class="kw kw-b">JavaScript</span> – und ist damit blitzschnell, günstig zu hosten und
         praktisch wartungsfrei. Für Visitenkartenseiten, Portfolios, Landingpages und kleine
         Unternehmensauftritte ist das in vielen Fällen die ehrlichste und beste Lösung.
       </p>
       <p>
-        Ein <span class="kw kw-g">One-Pager</span> bündelt alles auf einer einzigen, durchgängig
+        Ein <span class="kw kw-b">One-Pager</span> bündelt alles auf einer einzigen, durchgängig
         scrollbaren Seite: ein Hero-Bereich mit klarer Botschaft, eine Leistungsübersicht, ein
         Über-mich-Abschnitt, Fotos und ein Kontaktformular. Die Navigation springt per Anker direkt
         zum richtigen Abschnitt – kein Laden einer neuen Seite, keine Wartezeit.
@@ -507,7 +513,7 @@
       <p>
         Ich baue Seiten vollständig per Hand – kein Page-Builder, kein generiertes Markup.
         Das bedeutet: sauberer, lesbarer Code, der genau das tut, was er soll.
-        Das Ergebnis ist <span class="kw kw-g">responsiv</span> (funktioniert auf Handy, Tablet und
+        Das Ergebnis ist <span class="kw kw-b">responsiv</span> (funktioniert auf Handy, Tablet und
         Desktop), lädt ohne spürbare Verzögerung und ist für Suchmaschinen semantisch korrekt
         aufgebaut.
       </p>
@@ -536,7 +542,7 @@
         <span class="code-inline">Netlify</span> oder einem einfachen Webhosting-Paket.
       </p>
 
-      <ul class="check-list">
+      <ul class="check-list blue">
         <li>One-Pager mit Hero, Leistungen, Galerie und Kontaktformular</li>
         <li>Mehrseiter mit einheitlichem Design und konsistenter Navigation</li>
         <li>Responsives Layout – optimiert für Handy, Tablet und Desktop</li>
@@ -545,7 +551,7 @@
         <li>Übergabe mit Einweisung – du verstehst, was wo steht</li>
       </ul>
 
-      <div class="info-box">
+      <div class="info-box blue">
         <strong>Mein Anspruch:</strong> Du bekommst keine Black Box übergeben. Der Code ist kommentiert,
         die Struktur nachvollziehbar – und wenn etwas geändert werden muss, weißt du oder jemand
         anderes danach, wo anzufassen ist.
@@ -554,32 +560,32 @@
 
     <!-- ══════ SECTION 2: Bugfixing & Debugging ══════ -->
     <div class="section-block" id="bugfixing">
-      <div class="section-tag-small tag-b">
+      <div class="section-tag-small tag-p">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <ellipse cx="7" cy="8" rx="4.5" ry="3.5" stroke="#00c8ff" stroke-width="1.4"/>
-          <ellipse cx="7" cy="5.5" rx="2.5" ry="2.2" stroke="#00c8ff" stroke-width="1.3"/>
-          <line x1="3" y1="7"  x2="0.5" y2="5.5" stroke="#00c8ff" stroke-width="1.2" stroke-linecap="round"/>
-          <line x1="3" y1="8.5" x2="0.5" y2="8.5" stroke="#00c8ff" stroke-width="1.2" stroke-linecap="round"/>
-          <line x1="3" y1="10" x2="0.5" y2="11.5" stroke="#00c8ff" stroke-width="1.2" stroke-linecap="round"/>
-          <line x1="11" y1="7"  x2="13.5" y2="5.5" stroke="#00c8ff" stroke-width="1.2" stroke-linecap="round"/>
-          <line x1="11" y1="8.5" x2="13.5" y2="8.5" stroke="#00c8ff" stroke-width="1.2" stroke-linecap="round"/>
-          <line x1="11" y1="10" x2="13.5" y2="11.5" stroke="#00c8ff" stroke-width="1.2" stroke-linecap="round"/>
+          <ellipse cx="7" cy="8" rx="4.5" ry="3.5" stroke="#bf5fff" stroke-width="1.4"/>
+          <ellipse cx="7" cy="5.5" rx="2.5" ry="2.2" stroke="#bf5fff" stroke-width="1.3"/>
+          <line x1="3" y1="7"  x2="0.5" y2="5.5" stroke="#bf5fff" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="3" y1="8.5" x2="0.5" y2="8.5" stroke="#bf5fff" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="3" y1="10" x2="0.5" y2="11.5" stroke="#bf5fff" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="11" y1="7"  x2="13.5" y2="5.5" stroke="#bf5fff" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="11" y1="8.5" x2="13.5" y2="8.5" stroke="#bf5fff" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="11" y1="10" x2="13.5" y2="11.5" stroke="#bf5fff" stroke-width="1.2" stroke-linecap="round"/>
         </svg>
         Bugfixing &amp; Debugging
       </div>
       <h2>Den Fehler finden – und wirklich verstehen, warum.</h2>
-      <div class="divider-line divider-b"></div>
+      <div class="divider-line divider-p"></div>
 
       <p>
         Bugs sind frustrierend – besonders dann, wenn man nicht versteht, warum etwas funktioniert
-        hat, und jetzt plötzlich nicht mehr. <span class="kw kw-b">Debugging</span> ist kein Raten:
+        hat, und jetzt plötzlich nicht mehr. <span class="kw kw-p">Debugging</span> ist kein Raten:
         es ist ein systematischer Prozess, bei dem man die Ursache einkreist, statt blind Varianten
         auszuprobieren. Genau das unterscheidet eine nachhaltige Lösung von einem Workaround, der
         beim nächsten Update wieder bricht.
       </p>
       <p>
-        Ich arbeite im Bereich <span class="kw kw-b">HTML</span>, <span class="kw kw-b">CSS</span> und
-        <span class="kw kw-b">JavaScript</span> – also dem klassischen Frontend-Stack, der hinter fast
+        Ich arbeite im Bereich <span class="kw kw-p">HTML</span>, <span class="kw kw-p">CSS</span> und
+        <span class="kw kw-p">JavaScript</span> – also dem klassischen Frontend-Stack, der hinter fast
         jeder Website steckt. Typische Probleme, die ich löse: Layouts, die auf manchen
         Bildschirmen brechen, Animationen die haken, Formulare die nicht senden,
         JavaScript-Fehler in der Browser-Konsole, oder eine Seite, die nach einem Update
@@ -590,8 +596,8 @@
       <p>
         Zuerst das Problem <em>reproduzieren</em>: Unter welchen Bedingungen tritt es auf? Immer?
         Nur auf bestimmten Browsern? Nur auf Mobilgeräten? Dann
-        <span class="kw kw-b">isolieren</span>: den kleinsten Code-Ausschnitt finden, der das
-        Problem zeigt. Dann <span class="kw kw-b">verstehen</span>: warum verhält sich der Code so?
+        <span class="kw kw-p">isolieren</span>: den kleinsten Code-Ausschnitt finden, der das
+        Problem zeigt. Dann <span class="kw kw-p">verstehen</span>: warum verhält sich der Code so?
         Was erwartet der Browser, was bekommt er, was gibt er aus? Erst dann kommt die Lösung –
         und die wird erklärt, nicht nur eingespielt.
       </p>
@@ -611,7 +617,7 @@
       </div>
 
       <p>
-        Bei <span class="kw kw-b">JavaScript-Fehlern</span> ist die Browser-Konsole
+        Bei <span class="kw kw-p">JavaScript-Fehlern</span> ist die Browser-Konsole
         (<span class="code-inline blue">F12 → Console</span>) der erste Anlaufpunkt.
         Fehlermeldungen wie <span class="code-inline blue">TypeError: Cannot read properties of null</span>
         sagen oft genau, was fehlt – wenn man weiß, wie man sie liest. Ich zeige dir, wie du
@@ -619,14 +625,14 @@
       </p>
       <p>
         Manchmal ist das Problem kein Fehler im Code, sondern ein
-        <span class="kw kw-b">Caching-Problem</span>: der Browser zeigt eine alte Version der Seite,
+        <span class="kw kw-p">Caching-Problem</span>: der Browser zeigt eine alte Version der Seite,
         weil er die CSS-Datei aus dem Cache lädt. Manchmal liegt es an einem
-        <span class="kw kw-b">Leerzeichen zu viel</span> oder einer fehlenden schließenden Klammer.
+        <span class="kw kw-p">Leerzeichen zu viel</span> oder einer fehlenden schließenden Klammer.
         Manchmal steckt der Bug in einer externen Bibliothek, die in einer neuen Version sich
         anders verhält. Ich helfe dir, das auseinanderzuhalten.
       </p>
 
-      <ul class="check-list blue">
+      <ul class="check-list purple">
         <li>Layout-Bugs in CSS – Flexbox, Grid, Positionierung, responsive Brüche</li>
         <li>JavaScript-Fehler in der Konsole lokalisieren und beheben</li>
         <li>Formular-Probleme: Validierung, Senden, Fehleranzeige</li>
@@ -635,7 +641,7 @@
         <li>Code-Review: bestehenden Code lesen, erklären und verbessern</li>
       </ul>
 
-      <div class="info-box blue">
+      <div class="info-box purple">
         <strong>Wichtig:</strong> Ich arbeite im einfachen bis mittleren Bereich – also klassisches
         Frontend ohne komplexe Frameworks wie React oder Vue. Wenn dein Projekt darüber hinausgeht,
         sage ich das klar und verweise lieber ehrlich weiter, als etwas zu versprechen,
