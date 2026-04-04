@@ -248,7 +248,10 @@
 
     /* ── THEME TOGGLE ── */
     #theme-toggle { background:transparent; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#6b7a9e; width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:border-color .2s,color .2s; flex-shrink:0; }
-    #theme-toggle:hover { border-color:rgba(0,255,136,0.5); color:#00ff88; }
+    @media (hover: hover) {
+      #theme-toggle:hover { border-color:rgba(0,255,136,0.5); color:#00ff88; }
+    }
+    #theme-toggle:active { border-color:rgba(0,255,136,0.5); color:#00ff88; }
     #theme-toggle .icon-sun  { display:block; }
     #theme-toggle .icon-moon { display:none; }
 
