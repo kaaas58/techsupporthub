@@ -531,7 +531,7 @@
     #theme-toggle .icon-moon { display: none; }
 
     /* ── LIGHT MODE ── */
-    html.light {
+    html:not([data-theme]) {
       --bg-deep:    #dde5f2;
       --bg-base:    #edf1f8;
       --border:     rgba(0,20,80,0.1);
@@ -543,63 +543,63 @@
       --neon-purple:#7c22d8;
       --neon-orange:#c44a10;
     }
-    html.light body { background: var(--bg-base); color: var(--text-1); }
-    html.light nav { background: rgba(237,241,248,0.92) !important; border-color: rgba(0,20,80,0.1); }
-    html.light .nav-links { background: rgba(237,241,248,0.98); }
-    html.light .nav-links a { color: var(--text-2); }
-    html.light #hero { background: radial-gradient(ellipse 90% 55% at 50% -5%, rgba(0,180,100,0.06) 0%, transparent 70%), var(--bg-deep); }
-    html.light .hero-grid { background-image: linear-gradient(rgba(0,140,80,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,140,80,0.05) 1px, transparent 1px); }
-    html.light .card { background: linear-gradient(145deg, #ffffff 0%, #f4f7ff 100%); box-shadow: 0 4px 20px rgba(0,20,80,0.07); }
-    html.light .card:hover { box-shadow: 0 10px 36px rgba(0,20,80,0.1), 0 0 0 1px rgba(0,200,100,0.2); }
-    html.light .tag { background: rgba(0,20,80,0.04); border-color: rgba(0,20,80,0.09); color: var(--text-2); }
-    html.light .svg-panel { background: #8fa3b8; border-color: rgba(0,20,80,0.18); box-shadow: 0 8px 40px rgba(0,20,80,0.08) !important; }
-    html.light .panel-bg  { fill: #8fa3b8 !important; }
-    html.light #user-support { background: linear-gradient(180deg, var(--bg-base) 0%, var(--bg-deep) 100%); }
-    html.light #bitcoin { background: linear-gradient(180deg, var(--bg-deep) 0%, #e2eaf6 100%); }
-    html.light #coding  { background: linear-gradient(180deg, #e2eaf6 0%, var(--bg-base) 100%); }
-    html.light footer { background: var(--bg-deep); }
-    html.light .footer-links { background: transparent !important; }
-    html.light .btn-s { border-color: rgba(0,20,80,0.18); background: rgba(0,20,80,0.03); color: var(--text-1); }
-    html.light .btn-cancel { border-color: rgba(0,20,80,0.18); color: var(--text-1); }
-    html.light .modal-box { background: #ffffff !important; border-color: rgba(0,20,80,0.12) !important; }
-    html.light .modal-close { background: rgba(0,20,80,0.05); border-color: rgba(0,20,80,0.1); color: #4b5568; }
-    html.light .modal-close:hover { color: #111827; }
-    html.light .modal-header h3, html.light .modal-success p { color: #111827; }
-    html.light .modal-header p { color: #4b5568; }
-    html.light .form-row label { color: #4b5568; }
-    html.light .form-row input, html.light .form-row textarea { background: #f0f4fa !important; border-color: rgba(0,20,80,0.12) !important; color: #111827 !important; }
-    html.light .form-row input::placeholder, html.light .form-row textarea::placeholder { color: #8896aa !important; }
-    html.light #theme-toggle { border-color: rgba(0,20,80,0.18); color: #4b5568; }
+    html:not([data-theme]) body { background: var(--bg-base); color: var(--text-1); }
+    html:not([data-theme]) nav { background: rgba(237,241,248,0.92) !important; border-color: rgba(0,20,80,0.1); }
+    html:not([data-theme]) .nav-links { background: rgba(237,241,248,0.98); }
+    html:not([data-theme]) .nav-links a { color: var(--text-2); }
+    html:not([data-theme]) #hero { background: radial-gradient(ellipse 90% 55% at 50% -5%, rgba(0,180,100,0.06) 0%, transparent 70%), var(--bg-deep); }
+    html:not([data-theme]) .hero-grid { background-image: linear-gradient(rgba(0,140,80,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,140,80,0.05) 1px, transparent 1px); }
+    html:not([data-theme]) .card { background: linear-gradient(145deg, #ffffff 0%, #f4f7ff 100%); box-shadow: 0 4px 20px rgba(0,20,80,0.07); }
+    html:not([data-theme]) .card:hover { box-shadow: 0 10px 36px rgba(0,20,80,0.1), 0 0 0 1px rgba(0,200,100,0.2); }
+    html:not([data-theme]) .tag { background: rgba(0,20,80,0.04); border-color: rgba(0,20,80,0.09); color: var(--text-2); }
+    html:not([data-theme]) .svg-panel { background: #8fa3b8; border-color: rgba(0,20,80,0.18); box-shadow: 0 8px 40px rgba(0,20,80,0.08) !important; }
+    html:not([data-theme]) .panel-bg  { fill: #8fa3b8 !important; }
+    html:not([data-theme]) #user-support { background: linear-gradient(180deg, var(--bg-base) 0%, var(--bg-deep) 100%); }
+    html:not([data-theme]) #bitcoin { background: linear-gradient(180deg, var(--bg-deep) 0%, #e2eaf6 100%); }
+    html:not([data-theme]) #coding  { background: linear-gradient(180deg, #e2eaf6 0%, var(--bg-base) 100%); }
+    html:not([data-theme]) footer { background: var(--bg-deep); }
+    html:not([data-theme]) .footer-links { background: transparent !important; }
+    html:not([data-theme]) .btn-s { border-color: rgba(0,20,80,0.18); background: rgba(0,20,80,0.03); color: var(--text-1); }
+    html:not([data-theme]) .btn-cancel { border-color: rgba(0,20,80,0.18); color: var(--text-1); }
+    html:not([data-theme]) .modal-box { background: #ffffff !important; border-color: rgba(0,20,80,0.12) !important; }
+    html:not([data-theme]) .modal-close { background: rgba(0,20,80,0.05); border-color: rgba(0,20,80,0.1); color: #4b5568; }
+    html:not([data-theme]) .modal-close:hover { color: #111827; }
+    html:not([data-theme]) .modal-header h3, html:not([data-theme]) .modal-success p { color: #111827; }
+    html:not([data-theme]) .modal-header p { color: #4b5568; }
+    html:not([data-theme]) .form-row label { color: #4b5568; }
+    html:not([data-theme]) .form-row input, html:not([data-theme]) .form-row textarea { background: #f0f4fa !important; border-color: rgba(0,20,80,0.12) !important; color: #111827 !important; }
+    html:not([data-theme]) .form-row input::placeholder, html:not([data-theme]) .form-row textarea::placeholder { color: #8896aa !important; }
+    html:not([data-theme]) #theme-toggle { border-color: rgba(0,20,80,0.18); color: #4b5568; }
     @media (hover: hover) {
-      html.light #theme-toggle:hover { border-color: rgba(0,160,96,0.5); color: #00a060; }
+      html:not([data-theme]) #theme-toggle:hover { border-color: rgba(0,160,96,0.5); color: #00a060; }
     }
-    html.light #theme-toggle:active { border-color: rgba(0,160,96,0.5); color: #00a060; }
-    html.light #theme-toggle .icon-sun  { display: none; }
-    html.light #theme-toggle .icon-moon { display: block; }
-    html.light .about-sec-img { border-color: rgba(124,34,216,0.25) !important; }
+    html:not([data-theme]) #theme-toggle:active { border-color: rgba(0,160,96,0.5); color: #00a060; }
+    html:not([data-theme]) #theme-toggle .icon-sun  { display: none; }
+    html:not([data-theme]) #theme-toggle .icon-moon { display: block; }
+    html:not([data-theme]) .about-sec-img { border-color: rgba(124,34,216,0.25) !important; }
 
     /* Logo im Light Mode */
-    html.light .nav-logo svg path { stroke: #00a060 !important; fill: rgba(0,160,96,0.1) !important; }
-    html.light .nav-logo svg text { fill: #00a060 !important; }
-    html.light .nav-logo-text .t1 { color:#1a2540 !important; }
-    html.light .nav-logo-text .t2 { color:#00a060 !important; text-shadow:none !important; }
+    html:not([data-theme]) .nav-logo svg path { stroke: #00a060 !important; fill: rgba(0,160,96,0.1) !important; }
+    html:not([data-theme]) .nav-logo svg text { fill: #00a060 !important; }
+    html:not([data-theme]) .nav-logo-text .t1 { color:#1a2540 !important; }
+    html:not([data-theme]) .nav-logo-text .t2 { color:#00a060 !important; text-shadow:none !important; }
 
     /* Weißer/heller Text → sichtbares Grau */
-    html.light .hero-headline { color: #1a2540; }
-    html.light .sec-title { color: #1a2540; }
-    html.light .card-title { color: #1e2a45; }
-    html.light .footer-brand { color: #00a060; }
-    html.light footer svg path { stroke: #00a060 !important; fill: rgba(0,160,96,0.1) !important; }
-    html.light footer svg text { fill: #00a060 !important; }
-    html.light .footer-brand span:first-child { color: #1a2540 !important; }
-    html.light .footer-brand span:last-child  { color: #00a060 !important; }
+    html:not([data-theme]) .hero-headline { color: #1a2540; }
+    html:not([data-theme]) .sec-title { color: #1a2540; }
+    html:not([data-theme]) .card-title { color: #1e2a45; }
+    html:not([data-theme]) .footer-brand { color: #00a060; }
+    html:not([data-theme]) footer svg path { stroke: #00a060 !important; fill: rgba(0,160,96,0.1) !important; }
+    html:not([data-theme]) footer svg text { fill: #00a060 !important; }
+    html:not([data-theme]) .footer-brand span:first-child { color: #1a2540 !important; }
+    html:not([data-theme]) .footer-brand span:last-child  { color: #00a060 !important; }
 
     /* Button-Hover im Light Mode */
-    html.light .btn-p:hover { box-shadow: 0 0 28px rgba(0,160,96,0.35); }
-    html.light .btn-s:hover { border-color: rgba(0,160,96,0.45); color: #00a060; background: rgba(0,160,96,0.05); }
-    html.light .btn-green:hover { border-color: rgba(0,160,96,0.45); color: #00a060; background: rgba(0,160,96,0.05); }
-    html.light .btn-purple:hover { border-color: rgba(124,34,216,0.45); color: #7c22d8; background: rgba(124,34,216,0.05); }
-    html.light .btn-cancel:hover { border-color: rgba(180,40,40,0.45); color: rgba(180,40,40,0.9); background: rgba(180,40,40,0.05); }
+    html:not([data-theme]) .btn-p:hover { box-shadow: 0 0 28px rgba(0,160,96,0.35); }
+    html:not([data-theme]) .btn-s:hover { border-color: rgba(0,160,96,0.45); color: #00a060; background: rgba(0,160,96,0.05); }
+    html:not([data-theme]) .btn-green:hover { border-color: rgba(0,160,96,0.45); color: #00a060; background: rgba(0,160,96,0.05); }
+    html:not([data-theme]) .btn-purple:hover { border-color: rgba(124,34,216,0.45); color: #7c22d8; background: rgba(124,34,216,0.05); }
+    html:not([data-theme]) .btn-cancel:hover { border-color: rgba(180,40,40,0.45); color: rgba(180,40,40,0.9); background: rgba(180,40,40,0.05); }
   </style>
 </head>
 <body>
