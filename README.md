@@ -1,22 +1,15 @@
 # TechSupport HUB
 
 Persönliche IT-Support-Website – verständlich erklärt, persönlich begleitet, auf den Punkt gebracht.  
-Hilfe bei Alltagstechnik, Bitcoin-Einstieg, Coding & Bugfixing – alles auf einer Seite.
+Hilfe bei Alltagstechnik, Bitcoin-Einstieg, Coding & Bugfixing – auf einer Seite.
 
 ## Screenshot
 
-<table>
-  <tr>
-    <td><img src="screenshots/thumb_1.png" alt="Hero – Startseite"/></td>
-    <td><img src="screenshots/thumb_2.png" alt="User Support"/></td>
-    <td><img src="screenshots/thumb_3.png" alt="Bitcoin Journey"/></td>
-  </tr>
-  <tr>
-    <td><img src="screenshots/thumb_4.png" alt="Coding & Bugfixing"/></td>
-    <td><img src="screenshots/thumb_5.png" alt="About & Footer"/></td>
-    <td></td>
-  </tr>
-</table>
+![Hero – Startseite](screenshots/thumb_1.png)
+![User Support](screenshots/thumb_2.png)
+![Bitcoin Journey](screenshots/thumb_3.png)
+![Coding & Bugfixing](screenshots/thumb_4.png)
+![About & Footer](screenshots/thumb_5.png)
 
 ## Features
 
