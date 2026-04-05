@@ -5,11 +5,19 @@ Hilfe bei Alltagstechnik, Bitcoin-Einstieg, Coding & Bugfixing – auf einer Sei
 
 ## Screenshot
 
+<div align="center">
+
 ![Hero – Startseite](screenshots/thumb_1.png)
+
 ![User Support](screenshots/thumb_2.png)
+
 ![Bitcoin Journey](screenshots/thumb_3.png)
+
 ![Coding & Bugfixing](screenshots/thumb_4.png)
+
 ![About & Footer](screenshots/thumb_5.png)
+
+</div>
 
 ## Features
 
