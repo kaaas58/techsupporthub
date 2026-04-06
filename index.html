@@ -468,7 +468,8 @@
     .footer-links { display: flex; gap: 1.6rem; flex-wrap: wrap; align-items: center; }
     .footer-links a {
       color: var(--text-3);
-      text-decoration: none;
+      text-decoration: none !important;
+      border-bottom: none !important;
       font-size: 0.83rem;
       transition: color 0.2s;
     }
@@ -645,7 +646,7 @@
       <li><a href="#bitcoin">Bitcoin</a></li>
       <li><a href="#coding">Coding</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#" onclick="openContact();return false;">Kontakt</a></li>
+      <li></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
       <span></span><span></span><span></span>
@@ -1106,13 +1107,12 @@
     <nav class="footer-links" aria-label="Footer Navigation">
       <a href="impressum.html">Impressum</a>
       <a href="impressum.html#datenschutz">Datenschutz</a>
-      <a href="#" onclick="openContact();return false;">Kontakt</a>
-      <a href="leistungen.html">Leistungen</a>
+      
+      
     </nav>
   </div>
   <div class="footer-bottom">
     <span>© 2026 TechSupport HUB. Alle Rechte vorbehalten.</span>
-    <span class="built-with">Built with ♥ &amp; 🧠</span>
   </div>
 </footer>
 

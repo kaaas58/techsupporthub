@@ -192,6 +192,31 @@
     .btn-top:hover  { border-color:rgba(191,95,255,.4); color:var(--neon-p); }
     html.light .btn-back { background:rgba(255,255,255,0.85); border-color:rgba(0,20,80,0.15); color:#111827; }
     html.light .btn-back:hover { border-color:rgba(124,34,216,0.5); color:#7c22d8; }
+
+    /* ── Lernmethoden-Liste ── */
+    .learn-list { list-style:none; display:flex; flex-direction:column; gap:.6rem; margin-top:1.2rem; }
+    .learn-list li {
+      display:flex; align-items:center; gap:.75rem;
+      font-size:.94rem; color:var(--text);
+    }
+    .learn-list li::before {
+      content:''; display:block; width:7px; height:7px; border-radius:50%;
+      background:var(--neon-g); flex-shrink:0;
+      box-shadow:0 0 6px rgba(0,255,136,.4);
+    }
+    html.light .learn-list li::before { background:var(--neon-g); box-shadow:none; }
+
+    /* ── Coding-Grid ── */
+    .coding-grid { display:grid; grid-template-columns:200px 1fr; gap:2.8rem; align-items:start; }
+    @media(max-width:680px) { .coding-grid { grid-template-columns:1fr; } }
+    .coding-img {
+      width:100%; aspect-ratio:3/4;
+      border-radius:12px; overflow:hidden;
+      border:1px solid var(--border);
+      box-shadow:0 0 0 1px rgba(0,255,136,.1);
+    }
+    .coding-img img { width:100%; height:100%; object-fit:cover; object-position:top; display:block; }
+    .divider-g { height:2px; width:80px; border-radius:2px; background:linear-gradient(90deg,var(--neon-g),transparent); margin:.8rem 0 1.4rem; }
     html.light .btn-top  { background:rgba(255,255,255,0.85); border-color:rgba(0,20,80,0.15); color:#5a6a8a; }
     html.light .btn-top:hover  { border-color:rgba(124,34,216,0.4); color:#7c22d8; }
   </style>
@@ -309,6 +334,20 @@
       Bitcoin fasziniert mich dabei besonders – nicht als Spekulationsobjekt, sondern als Technologie und als Idee: ein offenes, zensurresistentes Geldnetzwerk, das niemandem gehört und allen offensteht. Das dezentrale Denken dahinter spiegelt sich auch in meinem Umgang mit Wissen wider.
     </p>
   </div>
+
+  <!-- ── Über mich – Programmierung ── -->
+  <div class="card">
+    <h2 class="section-h">Warum ich programmiere</h2>
+    <div class="divider"></div>
+    <p class="body-text">
+      Ich liebe das Programmieren – vor allem aber das Designen und die vielen Feinheiten, die man beachten muss, wenn man eine in sich funktionierende Website baut. Wie viel auf welche Seite verlinkt wird und wohin zurück. Wie die Hauptseite aufgebaut ist, wie die Journey verläuft, was erfüllt sein muss, damit der User per Maus und Touch bedienen kann – und wie sich die Seite im Mobile-Modus verhalten soll, über das responsive Design hinaus. Jeden Tag lerne ich Neues dazu. Ich stelle mir eine vielversprechende Zukunft vor, voller aufregender technologischer Fortschritte, die Menschen verbinden, den Austausch von Ideen fördern und gemeinsames Wachstum ermöglichen.
+    </p>
+    <p class="body-text">
+      Dabei ist es mir wichtig, meine Kunden und mein Gegenüber wirklich zu verstehen – ihre Perspektiven und Gedanken nachzuvollziehen. Dieses Verständnis ermöglicht es uns, gemeinsam <span class="highlight-g">optimale Lösungen zu entwickeln</span> und umzusetzen.
+    </p>
+  </div>
+
+
 
 </div>
 
