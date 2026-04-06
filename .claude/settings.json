@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(grep -rn \"border-radius.*8px\" c:/Users/lutr5/DEV/DEV_websides/TSH/*.html)"
+      "Bash(grep -rn \"border-radius.*8px\" c:/Users/lutr5/DEV/DEV_websides/TSH/*.html)",
+      "WebFetch(domain:kaaas58.github.io)",
+      "Bash(curl -s \"https://kaaas58.github.io/ltcoding/\")",
+      "Bash(curl -s \"https://kaaas58.github.io/ltcoding/css/style.css\")",
+      "Bash(curl -s \"https://kaaas58.github.io/ltcoding/js/main.js\")"
     ]
   }
 }
