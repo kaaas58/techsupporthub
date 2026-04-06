@@ -212,7 +212,7 @@
       background: var(--neon-green);
       color: #080c14;
       padding: 0.72rem 1.8rem;
-      border-radius: 0.5rem;
+      border-radius: 1rem;
       font-weight: 800;
       font-size: 0.88rem;
       text-decoration: none;
@@ -225,7 +225,7 @@
       border: 1.5px solid rgba(255,255,255,0.28);
       color: var(--text-1);
       padding: 0.72rem 1.8rem;
-      border-radius: 0.5rem;
+      border-radius: 1rem;
       font-weight: 600;
       font-size: 0.88rem;
       text-decoration: none;
@@ -234,12 +234,34 @@
     }
     .btn-s:hover { border-color:rgba(0,255,136,0.3); color:var(--neon-green); background:rgba(0,255,136,0.04); }
 
+    .btn-projects {
+      border-color: rgba(0,255,136,0.45);
+      color: var(--neon-green);
+      box-shadow: 0 0 10px rgba(0,255,136,0.18), 0 0 22px rgba(0,255,136,0.08);
+      transition: box-shadow 0.22s, border-color 0.22s, background 0.22s, color 0.22s;
+    }
+    .btn-projects:hover {
+      border-color: rgba(0,255,136,0.8);
+      background: rgba(0,255,136,0.07);
+      box-shadow: 0 0 18px rgba(0,255,136,0.45), 0 0 40px rgba(0,255,136,0.2);
+    }
+    .coding-grid { align-items: stretch; }
+    .coding-svg-col { display: flex; flex-direction: column; }
+    .coding-svg-col .svg-panel { flex: 1; min-height: 0; display: flex; }
+    .coding-svg-col .svg-panel svg { width: 100%; height: 100%; }
+    .coding-btn-wrap { padding-top: 2.1rem; display: flex; justify-content: stretch; }
+    .coding-btn-wrap .btn-projects { flex: 1; justify-content: center; }
+    @media (max-width: 820px) {
+      .coding-svg-col .svg-panel { flex: none; }
+      .coding-btn-wrap { justify-content: center; }
+    }
+
     .btn-cancel {
       background: transparent;
       color: var(--text-1);
       border: 1.5px solid rgba(255,255,255,0.28);
       padding: 0.72rem 1.8rem;
-      border-radius: 0.5rem;
+      border-radius: 1rem;
       font-weight: 600;
       font-size: 0.88rem;
       cursor: pointer;
@@ -251,7 +273,7 @@
       background: rgba(168,85,247,0.14);
       color: var(--text-1);
       padding: 0.72rem 1.8rem;
-      border-radius: 0.5rem;
+      border-radius: 1rem;
       border: 1px solid rgba(168,85,247,0.52);
       font-weight: 600;
       font-size: 0.88rem;
@@ -265,7 +287,7 @@
       background: rgba(0,255,136,0.14);
       color: var(--text-1);
       padding: 0.72rem 1.8rem;
-      border-radius: 0.5rem;
+      border-radius: 1rem;
       border: 1px solid rgba(0,255,136,0.52);
       font-weight: 600;
       font-size: 0.88rem;
@@ -515,7 +537,7 @@
     #theme-toggle {
       background: transparent;
       border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 8px;
+      border-radius: 1rem;
       color: #8b949e;
       width: 34px; height: 34px;
       display: inline-flex; align-items: center; justify-content: center;
@@ -921,10 +943,17 @@
       Ob statischer One-Pager, Präsentation oder ein hartnäckiger Bug –
       ich unterstütze bei der Umsetzung und Fehlerbehebung im einfachen bis mittleren Bereich.
     </p>
-    <div class="two-col">
+    <div class="two-col coding-grid">
 
       <div class="fi">
         <div class="card-stack">
+          <a class="card" href="coding.html#bugfixing" style="text-decoration:none;color:inherit;cursor:pointer;">
+            <div class="card-ico" style="background:rgba(0,255,136,0.1);">🐛</div>
+            <div>
+              <div class="card-title">Bugfixing &amp; Debugging</div>
+              <div class="card-text">Fehler in HTML, CSS und JavaScript aufspüren und systematisch beheben – nachvollziehbar und dokumentiert.</div>
+            </div>
+          </a>
           <a class="card" href="coding.html#top" style="text-decoration:none;color:inherit;cursor:pointer;">
             <div class="card-ico" style="background:rgba(0,255,136,0.1);">🎨</div>
             <div>
@@ -939,22 +968,10 @@
               <div class="card-text">Erstellung von One-Pagern mit Hero-Slider, Fotos, Texten und Kontaktformular – sauber, schnell und auch responsiv für mobile Devices umgesetzt.</div>
             </div>
           </a>
-          <a class="card" href="coding.html#bugfixing" style="text-decoration:none;color:inherit;cursor:pointer;">
-            <div class="card-ico" style="background:rgba(0,255,136,0.1);">🐛</div>
-            <div>
-              <div class="card-title">Bugfixing &amp; Debugging</div>
-              <div class="card-text">Fehler in HTML, CSS und JavaScript aufspüren und systematisch beheben – nachvollziehbar und dokumentiert.</div>
-            </div>
-          </a>
-        </div>
-        <div class="tags">
-          <span class="tag">HTML / CSS</span><span class="tag">JavaScript</span>
-          <span class="tag">One-Pager</span><span class="tag">Responsive Design</span>
-          <span class="tag">Debugging</span><span class="tag">Git</span>
         </div>
       </div>
 
-      <div class="fi fi-d2">
+      <div class="fi fi-d2 coding-svg-col">
         <div class="svg-panel">
           <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -1008,8 +1025,22 @@
             <path d="M462,282 L462,294 L450,294" fill="none" stroke="#00ff88" stroke-width="1.4" opacity="0.3"/>
           </svg>
         </div>
+        <div class="coding-btn-wrap">
+          <a href="https://kaaas58.github.io/ltcoding/#projects" target="_blank" rel="noopener"
+             class="btn-s btn-projects" style="display:inline-flex;align-items:center;gap:.45rem;text-decoration:none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            Beispiel Webseiten &amp; Projekte
+          </a>
+        </div>
       </div>
 
+    </div>
+    <div class="fi">
+      <div class="tags" style="margin-top:1rem;">
+        <span class="tag">HTML / CSS</span><span class="tag">JavaScript</span>
+        <span class="tag">One-Pager</span><span class="tag">Responsive Design</span>
+        <span class="tag">Debugging</span><span class="tag">Git</span>
+      </div>
     </div>
   </div>
 </section>

@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -rn \"border-radius.*8px\" c:/Users/lutr5/DEV/DEV_websides/TSH/*.html)"
+    ]
+  }
+}
