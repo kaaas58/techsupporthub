@@ -533,9 +533,14 @@
   let currentLogical = 0; // logical index 0..total-1
   let busy           = false;
 
+  function slideW() { return inner.offsetWidth; }
+  function setTrack(pos, animated) {
+    track.style.transition = animated ? 'transform .4s cubic-bezier(.4,0,.2,1)' : 'none';
+    track.style.transform  = `translateX(-${pos * slideW()}px)`;
+  }
+
   // Init position without transition
-  track.style.transition = 'none';
-  track.style.transform  = 'translateX(-100%)';
+  setTrack(trackPos, false);
 
   // Build dots
   slides.forEach((_, i) => {
@@ -579,8 +584,7 @@
     const prevLogical = currentLogical;
     trackPos      += dir;
     currentLogical = (currentLogical + dir + total) % total;
-    track.style.transition = 'transform .4s cubic-bezier(.4,0,.2,1)';
-    track.style.transform  = `translateX(-${trackPos * 100}%)`;
+    setTrack(trackPos, true);
     updateDots(currentLogical);
     updateInfo(currentLogical, prevLogical, dir);
   }
@@ -592,8 +596,7 @@
     const prevLog  = currentLogical;
     currentLogical = logicalIdx;
     trackPos       = logicalIdx + 1;
-    track.style.transition = 'transform .4s cubic-bezier(.4,0,.2,1)';
-    track.style.transform  = `translateX(-${trackPos * 100}%)`;
+    setTrack(trackPos, true);
     updateDots(currentLogical);
     updateInfo(currentLogical, prevLog, dir);
   }
@@ -602,17 +605,18 @@
   track.addEventListener('transitionend', () => {
     busy = false;
     if (trackPos === 0) {
-      track.style.transition = 'none';
       trackPos = total;
-      track.style.transform = `translateX(-${trackPos * 100}%)`;
+      setTrack(trackPos, false);
       track.offsetHeight;
     } else if (trackPos === total + 1) {
-      track.style.transition = 'none';
       trackPos = 1;
-      track.style.transform = `translateX(-${trackPos * 100}%)`;
+      setTrack(trackPos, false);
       track.offsetHeight;
     }
   });
+
+  // Recalculate on resize (pixel values must stay correct)
+  window.addEventListener('resize', () => setTrack(trackPos, false));
 
   document.getElementById('prevBtn').addEventListener('click', () => move(-1));
   document.getElementById('nextBtn').addEventListener('click', () => move( 1));
