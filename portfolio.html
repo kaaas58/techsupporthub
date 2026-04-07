@@ -138,7 +138,6 @@
     .carousel-track {
       display: flex;
       height: 100%;
-      transition: transform .4s cubic-bezier(.4,0,.2,1);
       will-change: transform;
     }
     .carousel-slide {
@@ -293,12 +292,14 @@
 
     /* ══ RESPONSIVE ══ */
     @media (max-width: 700px) {
+      .page-hero { padding: 2.5rem 1.5rem 1rem; }
       .carousel-section { padding: 1.5rem 2.8rem 5rem; }
       .carousel-prev { left: -26px; }
       .carousel-next { right: -26px; }
       .carousel-inner { height: 300px; }
     }
     @media (max-width: 480px) {
+      .page-hero { padding: 1.8rem 1.2rem 0.8rem; }
       .carousel-section { padding: 1.5rem 1.8rem 5rem; }
       .carousel-prev { left: -18px; }
       .carousel-next { right: -18px; }
@@ -516,92 +517,123 @@
 </div>
 
 <script>
-  // ── Carousel ──
-  const track   = document.getElementById('carouselTrack');
-  const inner   = document.getElementById('carouselInner');
-  const dotsEl  = document.getElementById('carouselDots');
-  const infos   = document.querySelectorAll('.slide-info');
-  const slides  = track.querySelectorAll('.carousel-slide');
-  const total   = slides.length;
-  let current   = 0;
+  // ── Carousel (infinite loop) ──
+  const track  = document.getElementById('carouselTrack');
+  const inner  = document.getElementById('carouselInner');
+  const dotsEl = document.getElementById('carouselDots');
+  const slides = track.querySelectorAll('.carousel-slide');
+  const total  = slides.length;
+
+  // Clone first + last slide for seamless looping
+  // Track order: [lastClone | slide0 | slide1 | ... | slideN | firstClone]
+  track.appendChild(slides[0].cloneNode(true));
+  track.insertBefore(slides[total - 1].cloneNode(true), slides[0]);
+
+  let trackPos       = 1; // physical position in extended track (1 = real slide 0)
+  let currentLogical = 0; // logical index 0..total-1
+  let busy           = false;
+
+  // Init position without transition
+  track.style.transition = 'none';
+  track.style.transform  = 'translateX(-100%)';
 
   // Build dots
   slides.forEach((_, i) => {
     const d = document.createElement('button');
     d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
     d.setAttribute('aria-label', 'Slide ' + (i + 1));
-    d.addEventListener('click', () => goTo(i));
+    d.addEventListener('click', () => jumpTo(i));
     dotsEl.appendChild(d);
   });
   const dots = dotsEl.querySelectorAll('.carousel-dot');
 
-  // Set initial info active (cover = no text, so index 0)
-  // First real info shown will be index 1
-  // On load: show nothing (cover slide has no text)
-  // We activate the cover info (empty) at start
-  infos.forEach(el => el.classList.remove('active'));
-  // cover info stays hidden (empty, no visible effect needed)
+  document.querySelectorAll('.slide-info').forEach(el => el.classList.remove('active'));
 
-  function goTo(index, dir) {
-    const prev = current;
-    current = (index + total) % total;
-    const direction = dir !== undefined ? dir : (current > prev ? 1 : -1);
+  function updateDots(idx) {
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  }
 
-    // Slide carousel
-    track.style.transform = `translateX(-${current * 100}%)`;
-
-    // Update dots
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
-
-    // Animate slide info
+  function updateInfo(idx, prevIdx, dir) {
     const prevInfo = document.querySelector('.slide-info.active');
-    const nextInfo = document.querySelector(`.slide-info[data-index="${current}"]`);
-
+    const nextInfo = document.querySelector(`.slide-info[data-index="${idx}"]`);
     if (prevInfo) {
       prevInfo.classList.remove('active');
-      prevInfo.classList.add(direction >= 0 ? 'exit-left' : 'exit-right');
+      prevInfo.classList.add(dir >= 0 ? 'exit-left' : 'exit-right');
       setTimeout(() => prevInfo.classList.remove('exit-left', 'exit-right'), 400);
     }
-
-    if (nextInfo && current > 0) {
-      // enter from right if going forward, from left if going back
-      nextInfo.style.transform = direction >= 0 ? 'translateX(60px)' : 'translateX(-60px)';
-      nextInfo.style.opacity = '0';
+    if (nextInfo && idx > 0) {
+      nextInfo.style.transform  = dir >= 0 ? 'translateX(60px)' : 'translateX(-60px)';
+      nextInfo.style.opacity    = '0';
       nextInfo.style.transition = 'none';
-      // force reflow
       nextInfo.offsetHeight;
       nextInfo.style.transition = '';
-      nextInfo.style.transform = '';
-      nextInfo.style.opacity = '';
+      nextInfo.style.transform  = '';
+      nextInfo.style.opacity    = '';
       nextInfo.classList.add('active');
     }
   }
 
-  document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1, -1));
-  document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1,  1));
+  function move(dir) {
+    if (busy) return;
+    busy = true;
+    const prevLogical = currentLogical;
+    trackPos      += dir;
+    currentLogical = (currentLogical + dir + total) % total;
+    track.style.transition = 'transform .4s cubic-bezier(.4,0,.2,1)';
+    track.style.transform  = `translateX(-${trackPos * 100}%)`;
+    updateDots(currentLogical);
+    updateInfo(currentLogical, prevLogical, dir);
+  }
+
+  function jumpTo(logicalIdx) {
+    if (busy) return;
+    busy = true;
+    const dir      = logicalIdx >= currentLogical ? 1 : -1;
+    const prevLog  = currentLogical;
+    currentLogical = logicalIdx;
+    trackPos       = logicalIdx + 1;
+    track.style.transition = 'transform .4s cubic-bezier(.4,0,.2,1)';
+    track.style.transform  = `translateX(-${trackPos * 100}%)`;
+    updateDots(currentLogical);
+    updateInfo(currentLogical, prevLog, dir);
+  }
+
+  // After transition: snap back from clone to real slide (invisible)
+  track.addEventListener('transitionend', () => {
+    busy = false;
+    if (trackPos === 0) {
+      track.style.transition = 'none';
+      trackPos = total;
+      track.style.transform = `translateX(-${trackPos * 100}%)`;
+      track.offsetHeight;
+    } else if (trackPos === total + 1) {
+      track.style.transition = 'none';
+      trackPos = 1;
+      track.style.transform = `translateX(-${trackPos * 100}%)`;
+      track.offsetHeight;
+    }
+  });
+
+  document.getElementById('prevBtn').addEventListener('click', () => move(-1));
+  document.getElementById('nextBtn').addEventListener('click', () => move( 1));
 
   // Touch / mouse drag
   let startX = 0, dragging = false;
-
   inner.addEventListener('mousedown', e => { startX = e.clientX; dragging = true; e.preventDefault(); });
   document.addEventListener('mouseup', e => {
-    if (!dragging) return;
-    dragging = false;
+    if (!dragging) return; dragging = false;
     const diff = e.clientX - startX;
-    if (Math.abs(diff) > 40) diff < 0 ? goTo(current + 1, 1) : goTo(current - 1, -1);
+    if (Math.abs(diff) > 40) diff < 0 ? move(1) : move(-1);
   });
   document.addEventListener('mouseleave', () => { dragging = false; });
-
   inner.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
   inner.addEventListener('touchend',   e => {
     const diff = e.changedTouches[0].clientX - startX;
-    if (Math.abs(diff) > 40) diff < 0 ? goTo(current + 1, 1) : goTo(current - 1, -1);
+    if (Math.abs(diff) > 40) diff < 0 ? move(1) : move(-1);
   }, { passive: true });
-
-  // Keyboard
   document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft')  goTo(current - 1, -1);
-    if (e.key === 'ArrowRight') goTo(current + 1,  1);
+    if (e.key === 'ArrowLeft')  move(-1);
+    if (e.key === 'ArrowRight') move( 1);
   });
 </script>
 </body>
