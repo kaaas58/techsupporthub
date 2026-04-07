@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
-  <script>if(localStorage.getItem('tsh-theme')==='light')document.documentElement.classList.add('light');</script>
+  <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Impressum &amp; Datenschutz – TechSupport HUB</title>
   <style>
@@ -230,7 +230,7 @@
     html.light nav { background:rgba(237,241,248,0.92) !important; border-color:rgba(0,20,80,0.1); }
     html.light .page-hero h1, html.light h2 { color:#111827; }
     html.light footer { background:var(--bg-deep); }
-    html.light .section-block { background: var(--surface) !important; border-color: rgba(0,20,80,0.1) !important; }
+    html.light .section-block { background: var(--bg-base) !important; border-color: rgba(0,20,80,0.1) !important; }
     html.light .nav-logo svg path { stroke:#00a060 !important; fill:rgba(0,160,96,0.1) !important; }
     html.light .nav-logo svg text { fill:#00a060 !important; }
     html.light .nav-logo-text .t1 { color:#1a2540 !important; }
@@ -359,7 +359,7 @@
 </footer>
 
 <script>
-  function toggleTheme() { const l=document.documentElement.classList.toggle('light'); localStorage.setItem('tsh-theme',l?'light':'dark'); }
+  function toggleTheme() { const l=document.documentElement.classList.toggle('light'); localStorage.setItem('theme',l?'light':'dark'); }
 </script>
 
 </body>

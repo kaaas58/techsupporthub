@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
-  <script>if(localStorage.getItem('tsh-theme')==='light')document.documentElement.classList.add('light');</script>
+  <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Code, der läuft – TechSupport HUB</title>
   <style>
@@ -681,7 +681,7 @@
 <script>
   function toggleTheme() {
     const l = document.documentElement.classList.toggle('light');
-    localStorage.setItem('tsh-theme', l ? 'light' : 'dark');
+    localStorage.setItem('theme', l ? 'light' : 'dark');
   }
 </script>
 </body>
