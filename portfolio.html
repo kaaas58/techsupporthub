@@ -299,24 +299,20 @@
     /* ══ RESPONSIVE ══ */
     @media (max-width: 700px) {
       .page-hero { padding: 1.5rem 1.5rem 0.5rem; }
-      .carousel-section { padding: 1rem 2.8rem 5rem; }
-      .carousel-prev { left: -26px; }
-      .carousel-next { right: -26px; }
-      .carousel-inner { height: 300px; }
+      .carousel-section { padding: 1rem 0 4rem; max-width: 100%; }
+      .carousel-prev { left: 8px; }
+      .carousel-next { right: 8px; }
+      .carousel-arrow { width: 36px; height: 36px; background: rgba(14,20,32,.75); }
+      .carousel-arrow svg { width: 18px; height: 18px; }
+      .carousel-inner { height: 320px; border-radius: 0; }
+      .carousel { border-radius: 0; border-left: none; border-right: none; }
     }
     @media (max-width: 480px) {
       .page-hero { padding: 1rem 1.2rem 0.4rem; }
-      .carousel-section { padding: 0.8rem 1.8rem 5rem; }
-      .carousel-prev { left: -18px; }
-      .carousel-next { right: -18px; }
-      .carousel-inner { height: 240px; }
+      .carousel-inner { height: 260px; }
     }
     @media (max-width: 380px) {
-      .carousel-section { padding: 0.8rem 0.7rem 5rem; max-width: 100%; }
-      .carousel-prev { left: -12px; }
-      .carousel-next { right: -12px; }
-      .carousel-inner { height: 222px; }
-      .project-img { width: 100%; object-fit: cover; }
+      .carousel-inner { height: 220px; }
     }
 
     /* ══ LIGHT MODE ══ */
