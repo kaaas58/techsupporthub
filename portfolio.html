@@ -275,7 +275,7 @@
     /* ══ BACK SECTION ══ */
     .back-section {
       display: flex; justify-content: center; align-items: center;
-      gap: 1rem; flex-wrap: wrap; padding: 0 1.5rem 5rem; margin-top: -49px;
+      gap: 1rem; flex-wrap: wrap; padding: 2.5rem 1.5rem 5rem; margin-top: 0;
     }
     .btn-back {
       display: inline-flex; align-items: center; gap: .5rem;
@@ -360,6 +360,84 @@
     html.light .btn-back:hover { border-color: rgba(0,160,96,0.5); color: #00a060; }
     html.light .btn-top  { background: rgba(255,255,255,0.85); border-color: rgba(0,20,80,0.15); color: #5a6a8a; }
     html.light .btn-top:hover { border-color: rgba(0,160,96,0.4); color: #00a060; }
+
+    /* ══ VORHER / NACHHER ══ */
+    .compare-section { padding: 4rem 1.5rem 2rem; max-width: 900px; margin: 0 auto; }
+    .compare-head { text-align: center; margin-bottom: 2.4rem; }
+    .compare-tag {
+      display: inline-block; font-size: .68rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--neon-g);
+      background: rgba(0,255,136,.08); border: 1px solid rgba(0,255,136,.2);
+      border-radius: 20px; padding: .25rem .9rem; margin-bottom: .7rem;
+    }
+    .compare-title { font-size: clamp(1.5rem,4vw,2.2rem); font-weight: 900; color: #e8edf8; line-height: 1.1; letter-spacing: -.02em; margin-bottom: .5rem; }
+    .compare-accent { color: var(--neon-g); }
+    .compare-sub { font-size: .88rem; color: var(--muted); }
+    .compare-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.1rem; }
+    @media (max-width: 680px) { .compare-grid { grid-template-columns: repeat(2,1fr); gap: .8rem; } }
+    @media (max-width: 400px) { .compare-grid { grid-template-columns: 1fr; } }
+
+    .compare-card {
+      background: #1a2038; border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px; overflow: hidden; cursor: pointer;
+      padding: 0; text-align: left; width: 100%;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .compare-card:hover { border-color: rgba(0,255,136,.4); box-shadow: 0 0 18px rgba(0,255,136,.12), 0 8px 32px rgba(0,0,0,.4); transform: translateY(-2px); }
+    .compare-pair { display: flex; height: 155px; }
+    .compare-half { flex: 1; overflow: hidden; position: relative; }
+    .before-half { background: linear-gradient(135deg, #1c2744 0%, #111928 100%); }
+    .after-half  { background: linear-gradient(135deg, #0d2518 0%, #0e1624 100%); }
+    .compare-half img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pair-label {
+      position: absolute; bottom: 6px;
+      font-size: .6rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      padding: .15rem .5rem; border-radius: 4px; pointer-events: none;
+    }
+    .lbl-before { left: 6px; background: rgba(0,0,0,.55); color: #9ba8c0; }
+    .lbl-after  { right: 6px; background: rgba(0,255,136,.15); color: var(--neon-g); border: 1px solid rgba(0,255,136,.3); }
+    .pair-divider { width: 2px; flex-shrink: 0; background: rgba(255,255,255,.18); position: relative; }
+    .compare-card-foot { display: flex; align-items: center; justify-content: space-between; padding: .55rem .85rem; border-top: 1px solid rgba(255,255,255,.06); }
+    .compare-card-name { font-size: .82rem; font-weight: 600; color: #c9d1e8; }
+    .compare-card-hint { display: flex; align-items: center; gap: .3rem; font-size: .7rem; color: var(--neon-g); opacity: .75; }
+
+    /* ══ COMPARE MODAL ══ */
+    .cm-overlay { display: none; position: fixed; inset: 0; z-index: 600; align-items: center; justify-content: center; padding: 1rem; }
+    .cm-overlay.open { display: flex; }
+    .cm-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.82); backdrop-filter: blur(8px); }
+    .cm-box { position: relative; z-index: 1; background: #13192a; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; overflow-y: auto; overflow-x: hidden; width: 100%; max-width: 860px; max-height: 92vh; box-shadow: 0 32px 80px rgba(0,0,0,.7); animation: cmIn .22s cubic-bezier(.34,1.4,.64,1); }
+    .cm-box::-webkit-scrollbar { width: 5px; }
+    .cm-box::-webkit-scrollbar-track { background: transparent; }
+    .cm-box::-webkit-scrollbar-thumb { background: rgba(255,255,255,.15); border-radius: 4px; }
+    .cm-sliders { display: flex; flex-direction: column; }
+    @keyframes cmIn { from{opacity:0;transform:scale(.93)} to{opacity:1;transform:scale(1)} }
+    .cm-close { position: absolute; top: .85rem; right: .85rem; z-index: 5; background: rgba(0,0,0,.5); border: 1px solid rgba(255,255,255,.12); border-radius: 8px; color: #8b949e; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: color .2s, transform .3s, border-color .2s; }
+    .cm-close:hover { color: #e53e3e; border-color: rgba(229,62,62,.4); transform: rotate(90deg); }
+    .cm-title { position: absolute; top: .9rem; left: 1.1rem; z-index: 5; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.45); }
+    .cm-slider-wrap { position: relative; user-select: none; touch-action: none; cursor: ew-resize; }
+    .cm-slider-wrap + .cm-slider-wrap { border-top: 1px solid rgba(255,255,255,.07); }
+    .cm-img { width: 100%; display: block; height: auto; }
+    .cm-img-after  { background: linear-gradient(135deg, #0d2518, #0e1624); }
+    .cm-before-clip { position: absolute; top: 0; left: 0; width: 100%; height: 100%; clip-path: inset(0 50% 0 0); pointer-events: none; overflow: hidden; }
+    .cm-img-before { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; background: linear-gradient(135deg, #1c2744, #111928); }
+    .cm-handle { position: absolute; top: 0; left: 50%; height: 100%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; cursor: ew-resize; z-index: 3; width: 40px; }
+    .cm-handle-line { width: 2px; height: 100%; background: rgba(255,255,255,.7); pointer-events: none; }
+    .cm-handle-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px rgba(0,0,0,.25), 0 4px 16px rgba(0,0,0,.5); color: #1a2140; }
+    .cm-badge { position: absolute; top: 10px; font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .2rem .55rem; border-radius: 4px; pointer-events: none; z-index: 2; }
+    .cm-badge-before { left: 10px; background: rgba(0,0,0,.6); color: #9ba8c0; }
+    .cm-badge-after  { right: 10px; background: rgba(0,255,136,.15); color: var(--neon-g); border: 1px solid rgba(0,255,136,.35); }
+
+    html.light .compare-card { background: #f0f4fb; border-color: rgba(0,20,80,.1); }
+    html.light .compare-card:hover { border-color: rgba(0,160,96,.4); box-shadow: 0 0 18px rgba(0,160,96,.1), 0 8px 32px rgba(0,20,80,.08); }
+    html.light .before-half { background: linear-gradient(135deg, #d0d8f0, #c4cde4); }
+    html.light .after-half  { background: linear-gradient(135deg, #c4e4d4, #d0ead8); }
+    html.light .compare-title { color: #1a2540; }
+    html.light .compare-card-name { color: #1a2540; }
+    html.light .compare-card-foot { border-top-color: rgba(0,20,80,.08); }
+    html.light .cm-box { background: #fff; border-color: rgba(0,20,80,.12); }
+    html.light .cm-close { background: rgba(0,20,80,.06); border-color: rgba(0,20,80,.12); color: #4b5568; }
+    html.light .cm-img-after  { background: linear-gradient(135deg, #c4e4d4, #d0ead8); }
+    html.light .cm-img-before { background: linear-gradient(135deg, #d0d8f0, #c4cde4); }
   </style>
 </head>
 <body>
@@ -525,15 +603,94 @@
 
   </div>
 
+  <!-- ═══ VORHER / NACHHER ═══ -->
+  <div class="compare-section">
+    <div class="compare-head">
+      <span class="compare-tag">Vorher / Nachher</span>
+      <h2 class="compare-title">Schau, was sich <span class="compare-accent">verändert.</span></h2>
+      <p class="compare-sub">Klick auf eine Kachel für den direkten Vergleich.</p>
+    </div>
+
+    <div class="compare-grid">
+
+      <button class="compare-card" onclick="openCompare(0)">
+        <div class="compare-pair">
+          <div class="compare-half before-half">
+            <img src="images/johan_bevore_small.jpg" alt="Vorher" />
+            <span class="pair-label lbl-before">Vorher</span>
+          </div>
+          <div class="pair-divider"></div>
+          <div class="compare-half after-half">
+            <img src="images/johan_later_small.jpg" alt="Nachher" />
+            <span class="pair-label lbl-after">Nachher</span>
+          </div>
+        </div>
+        <div class="compare-card-foot">
+          <span class="compare-card-name">CoachJohan</span>
+          <span class="compare-card-hint"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="5,12 3,10 5,8"/><polyline points="19,12 21,10 19,8"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Vergleichen</span>
+        </div>
+      </button>
+
+      <button class="compare-card" onclick="openCompare(1)">
+        <div class="compare-pair">
+          <div class="compare-half before-half">
+            <img src="images/compare-2-before.jpg" alt="Vorher" />
+            <span class="pair-label lbl-before">Vorher</span>
+          </div>
+          <div class="pair-divider"></div>
+          <div class="compare-half after-half">
+            <img src="images/compare-2-after.jpg" alt="Nachher" />
+            <span class="pair-label lbl-after">Nachher</span>
+          </div>
+        </div>
+        <div class="compare-card-foot">
+          <span class="compare-card-name">Projekt 2</span>
+          <span class="compare-card-hint"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="5,12 3,10 5,8"/><polyline points="19,12 21,10 19,8"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Vergleichen</span>
+        </div>
+      </button>
+
+      <button class="compare-card" onclick="openCompare(2)">
+        <div class="compare-pair">
+          <div class="compare-half before-half">
+            <img src="images/compare-3-before.jpg" alt="Vorher" />
+            <span class="pair-label lbl-before">Vorher</span>
+          </div>
+          <div class="pair-divider"></div>
+          <div class="compare-half after-half">
+            <img src="images/compare-3-after.jpg" alt="Nachher" />
+            <span class="pair-label lbl-after">Nachher</span>
+          </div>
+        </div>
+        <div class="compare-card-foot">
+          <span class="compare-card-name">Projekt 3</span>
+          <span class="compare-card-hint"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="5,12 3,10 5,8"/><polyline points="19,12 21,10 19,8"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Vergleichen</span>
+        </div>
+      </button>
+
+    </div>
+  </div>
+
   <div class="back-section">
-    <a href="index.html#coding" class="btn-back">
+    <a href="index.html#web-dev" class="btn-back">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="10,3 5,8 10,13"/>
       </svg>
-      Zurück zu Coding
+      Zurück zu Website Dev
     </a>
   </div>
 
+</div>
+
+<!-- ═══ COMPARE MODAL ═══ -->
+<div id="compareModal" class="cm-overlay" role="dialog" aria-modal="true">
+  <div class="cm-backdrop" onclick="closeCompare()"></div>
+  <div class="cm-box">
+    <button class="cm-close" onclick="closeCompare()" aria-label="Schließen">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="14" y2="14"/><line x1="14" y1="4" x2="4" y2="14"/></svg>
+    </button>
+    <div class="cm-title" id="cmTitle"></div>
+    <div class="cm-sliders" id="cmSliders"></div>
+  </div>
 </div>
 
 <script>
@@ -659,6 +816,116 @@
     if (e.key === 'ArrowLeft')  move(-1);
     if (e.key === 'ArrowRight') move( 1);
   });
+
+  // ── Vorher / Nachher ──
+  const compareItems = [
+    {
+      title: 'CoachJohan',
+      pairs: [
+        { before: 'images/johan_bevore_small.jpg', after: 'images/johan_later_small.jpg' },
+      ]
+    },
+    {
+      title: 'Projekt 2',
+      pairs: [
+        { before: 'images/compare-2a-before.jpg', after: 'images/compare-2a-after.jpg' },
+        { before: 'images/compare-2b-before.jpg', after: 'images/compare-2b-after.jpg' },
+        { before: 'images/compare-2c-before.jpg', after: 'images/compare-2c-after.jpg' },
+      ]
+    },
+    {
+      title: 'Projekt 3',
+      pairs: [
+        { before: 'images/compare-3a-before.jpg', after: 'images/compare-3a-after.jpg' },
+        { before: 'images/compare-3b-before.jpg', after: 'images/compare-3b-after.jpg' },
+        { before: 'images/compare-3c-before.jpg', after: 'images/compare-3c-after.jpg' },
+      ]
+    },
+  ];
+
+  const cmModal   = document.getElementById('compareModal');
+  const cmTitleEl = document.getElementById('cmTitle');
+  const cmSlidersEl = document.getElementById('cmSliders');
+  const cmBox     = cmModal.querySelector('.cm-box');
+  let activeSlider = null;
+
+  const HANDLE_SVG = `<svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="7,6 3,10 7,14"/><polyline points="13,6 17,10 13,14"/></svg>`;
+
+
+  function buildSliders(pairs) {
+    cmSlidersEl.innerHTML = '';
+    pairs.forEach(pair => {
+      const wrap = document.createElement('div');
+      wrap.className = 'cm-slider-wrap';
+      wrap.innerHTML = `
+        <img class="cm-img cm-img-after"  src="${pair.after}"  alt="Nachher" />
+        <div class="cm-before-clip">
+          <img class="cm-img cm-img-before" src="${pair.before}" alt="Vorher" />
+        </div>
+        <div class="cm-handle">
+          <div class="cm-handle-line"></div>
+          <div class="cm-handle-btn">${HANDLE_SVG}</div>
+        </div>
+        <span class="cm-badge cm-badge-before">Vorher</span>
+        <span class="cm-badge cm-badge-after">Nachher</span>
+      `;
+      cmSlidersEl.appendChild(wrap);
+      initSlider(wrap);
+    });
+  }
+
+  function initSlider(wrap) {
+    const clip   = wrap.querySelector('.cm-before-clip');
+    const handle = wrap.querySelector('.cm-handle');
+    function setPos(pct) {
+      pct = Math.max(2, Math.min(98, pct));
+      clip.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+      handle.style.left   = pct + '%';
+    }
+    setPos(50);
+    handle.addEventListener('mousedown', e => { activeSlider = { wrap, setPos }; e.stopPropagation(); });
+    wrap.addEventListener('touchstart', e => {
+      const r = wrap.getBoundingClientRect();
+      activeSlider = { wrap, setPos };
+      setPos(((e.touches[0].clientX - r.left) / r.width) * 100);
+      e.preventDefault();
+    }, { passive: false });
+  }
+
+  document.addEventListener('mouseup',   () => activeSlider = null);
+  document.addEventListener('mousemove', e => {
+    if (!activeSlider) return;
+    const r = activeSlider.wrap.getBoundingClientRect();
+    activeSlider.setPos(((e.clientX - r.left) / r.width) * 100);
+  });
+  document.addEventListener('touchend',  () => activeSlider = null);
+  document.addEventListener('touchmove', e => {
+    if (!activeSlider) return;
+    const r = activeSlider.wrap.getBoundingClientRect();
+    activeSlider.setPos(((e.touches[0].clientX - r.left) / r.width) * 100);
+  }, { passive: true });
+
+  let _scrollY = 0;
+
+  function openCompare(idx) {
+    const d = compareItems[idx];
+    cmTitleEl.textContent = d.title;
+    buildSliders(d.pairs);
+    _scrollY = window.scrollY;
+    cmModal.classList.add('open');
+    document.body.style.position = 'fixed';
+    document.body.style.top      = `-${_scrollY}px`;
+    document.body.style.width    = '100%';
+  }
+  function closeCompare() {
+    cmModal.classList.remove('open');
+    document.body.style.position = '';
+    document.body.style.top      = '';
+    document.body.style.width    = '';
+    window.scrollTo(0, _scrollY);
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCompare(); });
 </script>
 </body>
 </html>
