@@ -884,9 +884,10 @@
       const dx = e.touches[0].clientX - tsX;
       const dy = e.touches[0].clientY - tsY;
       if (!tsDecided) {
-        if (Math.abs(dx) > Math.abs(dy) + 4) { tsHoriz = true;  tsDecided = true; }
-        else if (Math.abs(dy) > Math.abs(dx) + 4) { tsHoriz = false; tsDecided = true; }
-        else return;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 10) return;
+        tsHoriz = Math.abs(dx) > Math.abs(dy) * 1.8;
+        tsDecided = true;
       }
       if (!tsHoriz) return;
       e.preventDefault();
