@@ -316,6 +316,11 @@
       .carousel-inner { height: 220px; }
     }
 
+    @media (max-width: 600px) {
+      .cm-overlay { align-items: flex-start; padding: 3rem .5rem 3rem; overflow-y: auto; }
+      .cm-box { max-height: none; min-height: 70vh; border-radius: 14px; }
+    }
+
     /* ══ LIGHT MODE ══ */
     html.light {
       --bg: #edf1f8; --surface: #ffffff; --border: rgba(0,20,80,0.1);
@@ -414,8 +419,7 @@
     html.light .compare-title { background: linear-gradient(100deg, #1a2540 0%, #1a2540 55%, #00a060 100%); -webkit-background-clip: text; background-clip: text; }
     .compare-accent { color: inherit; }
     .compare-sub { font-size: 1.05rem; color: var(--muted); margin-bottom: 1.5rem; }
-    .compare-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 320px)); gap: 1.2rem; justify-content: center; }
-    .compare-card-right { grid-column: 2; }
+    .compare-grid { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
 
     .compare-card {
       background: #1a2038; border: 1.5px solid rgba(0,255,136,.3);
@@ -691,24 +695,6 @@
         </div>
       </button>
 
-      <button class="compare-card compare-card-right" onclick="openCompare(2)">
-        <div class="compare-pair">
-          <div class="compare-half before-half">
-            <img src="images/tplb.png" alt="Vorher" />
-            <span class="pair-label lbl-before">Vorher</span>
-          </div>
-          <div class="pair-divider"></div>
-          <div class="compare-half after-half">
-            <img src="images/tpla.png" alt="Nachher" />
-            <span class="pair-label lbl-after">Nachher</span>
-          </div>
-        </div>
-        <div class="compare-card-foot">
-          <span class="compare-card-name">YouCanReach-it / P2</span>
-          <span class="compare-card-hint"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="5,12 3,10 5,8"/><polyline points="19,12 21,10 19,8"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Vergleichen</span>
-        </div>
-      </button>
-
     </div>
   </div>
 
@@ -872,12 +858,6 @@
       title: 'YouCanReach-it',
       pairs: [
         { before: 'images/ycrib.png', after: 'images/ycria.png' },
-      ]
-    },
-    {
-      title: 'YouCanReach-it / P2',
-      pairs: [
-        { before: 'images/tplb.png', after: 'images/tpla.png' },
       ]
     },
   ];
