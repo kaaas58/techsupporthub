@@ -167,10 +167,7 @@
     .service-row.cat-webdev::before  { background: #4080f0; }
     .service-row.cat-coding::before  { background: var(--neon-b); }
     .service-row.cat-bitcoin::before { background: var(--neon-o); }
-    .service-row.cat-support:hover { border-color:rgba(0,255,136,.3);  box-shadow:0 6px 32px rgba(0,0,0,.45), 0 0 12px rgba(0,255,136,.06);  transform:translateY(-2px); }
-    .service-row.cat-webdev:hover  { border-color:rgba(64,128,240,.3); box-shadow:0 6px 32px rgba(0,0,0,.45), 0 0 12px rgba(64,128,240,.06); transform:translateY(-2px); }
-    .service-row.cat-coding:hover  { border-color:rgba(0,200,255,.3);  box-shadow:0 6px 32px rgba(0,0,0,.45), 0 0 12px rgba(0,200,255,.06);  transform:translateY(-2px); }
-    .service-row.cat-bitcoin:hover { border-color:rgba(255,140,0,.3);  box-shadow:0 6px 32px rgba(0,0,0,.45), 0 0 12px rgba(255,140,0,.06);  transform:translateY(-2px); }
+    .service-row:hover { border-color: var(--border); box-shadow: none; transform: none; cursor: default; }
 
     @media (max-width: 600px) {
       .service-row { grid-template-columns: 1fr; gap: .8rem; }
@@ -221,7 +218,6 @@
     .badge-c { color: #00d4ff; border-color: rgba(0,212,255,.5); background: rgba(0,212,255,.14); }
 
     .service-row.cat-seminar::before { background: #00d4ff; }
-    .service-row.cat-seminar:hover { border-color: rgba(0,212,255,.3); box-shadow: 0 6px 32px rgba(0,0,0,.45), 0 0 12px rgba(0,212,255,.08); transform: translateY(-2px); }
     .cat-seminar .price { color: #00d4ff; text-shadow: 0 0 12px rgba(0,212,255,.3); }
     .service-row.cat-seminar { text-decoration: none; display: grid; color: inherit; }
 
