@@ -366,7 +366,7 @@
 <!-- ── Footer ── -->
 <footer>
   <div class="footer-bottom">
-    <span>&copy; 2026 TechSupport HUB – Alle Rechte vorbehalten.</span>
+    <span>&copy; <script>document.write(new Date().getFullYear())</script> TechSupport HUB – Alle Rechte vorbehalten.</span>
     <span>
       <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
       <a href="impressum.html#datenschutz">Datenschutz</a> &nbsp;·&nbsp;
@@ -390,6 +390,7 @@
       <p>Ich melde mich in der Regel innerhalb von 24 Stunden.</p>
     </div>
     <form id="contactForm" onsubmit="submitContact(event)">
+      <input type="hidden" id="cf-source" value="General"/>
       <div class="form-row">
         <label for="cf-name">Name</label>
         <input id="cf-name" type="text" placeholder="Dein Name" required autocomplete="name"/>
@@ -469,7 +470,7 @@
       const res = await fetch(FORMSPREE_URL, {
         method:'POST',
         headers:{'Accept':'application/json','Content-Type':'application/json'},
-        body:JSON.stringify({ name:document.getElementById('cf-name').value.trim(), email:document.getElementById('cf-email').value.trim(), message:document.getElementById('cf-msg').value.trim() })
+        body:JSON.stringify({ name:document.getElementById('cf-name').value.trim(), email:document.getElementById('cf-email').value.trim(), message:document.getElementById('cf-msg').value.trim(), source:document.getElementById('cf-source').value })
       });
       if (res.ok) {
         document.getElementById('contactForm').style.display = 'none';

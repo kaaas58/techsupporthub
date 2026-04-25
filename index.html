@@ -782,7 +782,7 @@
       verständlich erklärt, persönlich begleitet, auf den Punkt gebracht.
     </p>
     <div class="hero-cta">
-      <a href="#footer" class="btn-s">Kontakt aufnehmen</a>
+      <a href="#" onclick="openContact();return false;" class="btn-s">Kontakt aufnehmen</a>
     </div>
   </div>
 </section>
@@ -907,14 +907,14 @@
           <a class="card" href="seminar-keinenangst.html" style="text-decoration:none;color:inherit;cursor:pointer;height:100%;align-self:stretch;">
             <div class="card-ico" style="background:rgba(0,212,255,0.1);">🎓</div>
             <div>
-              <div class="card-title">Keine Angst vor Technik<br><span style="font-weight:600;color:var(--neon-cyan);">(Seminar)</span></div>
-              <div class="card-text">Seminar für Einsteiger &amp; Senioren – Technik verstehen, Hemmungen abbauen, Alltagsgeräte sicher nutzen. Ideal für Seniorenstiftungen, 4–8 Personen.</div>
+              <div class="card-title">Keine Angst vor Technik<br><span style="font-weight:600;color:var(--neon-cyan);">(Seminar / Workshop)</span></div>
+              <div class="card-text">Seminar / Workshop für Einsteiger &amp; Senioren – Technik verstehen, Hemmungen abbauen, Alltagsgeräte sicher nutzen. Ideal für Seniorenstiftungen, 4–8 Personen.</div>
             </div>
           </a>
           <a class="card" href="seminar-onboard.html" style="text-decoration:none;color:inherit;cursor:pointer;height:100%;align-self:stretch;">
             <div class="card-ico" style="background:rgba(0,212,255,0.1);">🚀</div>
             <div>
-              <div class="card-title">Onboard Yourself with me<br><span style="font-weight:600;color:var(--neon-cyan);">(Seminar)</span></div>
+              <div class="card-title">Onboard Yourself with me<br><span style="font-weight:600;color:var(--neon-cyan);">(Seminar / Workshop)</span></div>
               <div class="card-text">Workshop: Digital selbstständig werden – E-Mail, Video-Telefonie, sicheres Online-Banking und mehr. Für Senioren, die das Netz wirklich nutzen wollen.</div>
             </div>
           </a>
@@ -1324,7 +1324,7 @@
     </nav>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 TechSupport HUB. Alle Rechte vorbehalten.</span>
+    <span>© <script>document.write(new Date().getFullYear())</script> TechSupport HUB. Alle Rechte vorbehalten.</span>
   </div>
 </footer>
 
@@ -1343,6 +1343,7 @@
       <p>Ich melde mich in der Regel innerhalb von 24 Stunden.</p>
     </div>
     <form id="contactForm" onsubmit="submitContact(event)">
+      <input type="hidden" id="cf-source" value="General"/>
       <div class="form-row">
         <label for="cf-name">Name</label>
         <input id="cf-name" type="text" placeholder="Dein Name" required autocomplete="name"/>
@@ -1464,7 +1465,7 @@
       const res = await fetch(FORMSPREE_URL, {
         method:'POST',
         headers:{'Accept':'application/json','Content-Type':'application/json'},
-        body:JSON.stringify({ name:document.getElementById('cf-name').value.trim(), email:document.getElementById('cf-email').value.trim(), message:document.getElementById('cf-msg').value.trim() })
+        body:JSON.stringify({ name:document.getElementById('cf-name').value.trim(), email:document.getElementById('cf-email').value.trim(), message:document.getElementById('cf-msg').value.trim(), source:document.getElementById('cf-source').value })
       });
       if (res.ok) {
         document.getElementById('contactForm').style.display = 'none';

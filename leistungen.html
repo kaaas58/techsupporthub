@@ -218,6 +218,12 @@
     .price-note.blurred { filter: blur(5px); user-select: none; }
 
     .badge-w { color: #4080f0; border-color: rgba(64,128,240,.5); background: rgba(64,128,240,.14); }
+    .badge-c { color: #00d4ff; border-color: rgba(0,212,255,.5); background: rgba(0,212,255,.14); }
+
+    .service-row.cat-seminar::before { background: #00d4ff; }
+    .service-row.cat-seminar:hover { border-color: rgba(0,212,255,.3); box-shadow: 0 6px 32px rgba(0,0,0,.45), 0 0 12px rgba(0,212,255,.08); transform: translateY(-2px); }
+    .cat-seminar .price { color: #00d4ff; text-shadow: 0 0 12px rgba(0,212,255,.3); }
+    .service-row.cat-seminar { text-decoration: none; display: grid; color: inherit; }
 
     /* accent color per category */
     .cat-support .price { color: var(--neon-g); text-shadow: 0 0 12px rgba(0,255,136,.3); }
@@ -602,6 +608,44 @@
     </div>
   </div>
 
+  <!-- ═══ 05 SEMINARE ═══ -->
+  <div class="sec-group" id="seminare">
+    <p class="sec-label" style="color:#00d4ff;">05 — Seminare / Workshops</p>
+    <h2 class="sec-title">Seminare &amp; <span style="color:#00d4ff;">Workshops.</span></h2>
+  </div>
+
+  <a href="seminar-keinenangst.html" class="service-row cat-seminar">
+    <div class="service-info">
+      <h3>Keine Angst vor Technik <span style="color:#00d4ff;font-weight:400;">(Seminar / Workshop)</span></h3>
+      <p>Seminar für Einsteiger & Senioren – Technik verstehen, Hemmungen abbauen, Alltagsgeräte sicher nutzen. Ideal für Seniorenstiftungen, 4–8 Personen.</p>
+      <div class="service-badges">
+        <span class="badge badge-c">Vor Ort</span>
+        <span class="badge badge-c">Gruppe</span>
+        <span class="badge badge-p">Einsteiger</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price">auf Anfrage</div>
+      <div class="price-unit">pro Seminar</div>
+    </div>
+  </a>
+
+  <a href="seminar-onboard.html" class="service-row cat-seminar">
+    <div class="service-info">
+      <h3>Onboard Yourself with me <span style="color:#00d4ff;font-weight:400;">(Seminar / Workshop)</span></h3>
+      <p>Workshop: Digital selbstständig werden – E-Mail, Video-Telefonie, sicheres Online-Banking und mehr. Für Senioren, die das Netz wirklich nutzen wollen.</p>
+      <div class="service-badges">
+        <span class="badge badge-c">Vor Ort</span>
+        <span class="badge badge-c">Workshop</span>
+        <span class="badge badge-p">Einsteiger</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price">auf Anfrage</div>
+      <div class="price-unit">pro Workshop</div>
+    </div>
+  </a>
+
   <!-- ── Info Note ── -->
   <div class="info-note">
     <span class="icon">ℹ️</span>
@@ -637,7 +681,7 @@
 <!-- ── Footer ── -->
 <footer>
   <div class="footer-bottom">
-    <span>&copy; 2026 TechSupport HUB – Alle Rechte vorbehalten.</span>
+    <span>&copy; <script>document.write(new Date().getFullYear())</script> TechSupport HUB – Alle Rechte vorbehalten.</span>
     <span>
       <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
       <a href="impressum.html#datenschutz">Datenschutz</a> &nbsp;·&nbsp;
@@ -661,6 +705,7 @@
       <p>Ich melde mich in der Regel innerhalb von 24 Stunden.</p>
     </div>
     <form id="contactForm" onsubmit="submitContact(event)">
+      <input type="hidden" id="cf-source" value="General"/>
       <div class="form-row">
         <label for="cf-name">Name</label>
         <input id="cf-name" type="text" placeholder="Dein Name" required autocomplete="name"/>
@@ -772,7 +817,8 @@
         body: JSON.stringify({
           name:    document.getElementById('cf-name').value.trim(),
           email:   document.getElementById('cf-email').value.trim(),
-          message: document.getElementById('cf-msg').value.trim()
+          message: document.getElementById('cf-msg').value.trim(),
+          source:  document.getElementById('cf-source').value
         })
       });
       if (res.ok) {
