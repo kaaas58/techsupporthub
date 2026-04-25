@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keine Angst vor Technik – TechSupport HUB</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg: #0f1117; --surface: #1f2438; --surface2: #252e48;
+      --border: #3a4568; --text: #c9d1e8; --muted: #8090b8;
+      --neon-g: #00ff88; --neon-c: #00d4ff; --neon-p: #bf5fff;
+      --radius: 14px;
+    }
+
+    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.65; overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 62px;
+      background: rgba(15,17,23,.55);
+      backdrop-filter: blur(18px) saturate(160%);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-logo { display: flex; align-items: center; gap: .7rem; text-decoration: none; }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .nav-logo-text .t1 { font-size: 1.1rem; font-weight: 700; color: #e8edf8; letter-spacing: .02em; }
+    .nav-logo-text .t2 { font-size: .88rem; font-weight: 700; color: var(--neon-g); letter-spacing: .18em; text-shadow: 0 0 8px rgba(0,255,136,.25); }
+    .nav-back { display: inline-flex; align-items: center; gap: .4rem; color: var(--muted); text-decoration: none; font-size: .87rem; font-weight: 500; transition: color .2s; }
+    .nav-back:hover { color: var(--neon-c); }
+
+    .page-header {
+      padding: 7rem 1.5rem 4rem; text-align: center; position: relative; overflow: hidden;
+    }
+    .page-header::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 55% at 50% 0%, rgba(0,212,255,.09) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-tag {
+      display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--neon-c);
+      background: rgba(0,212,255,.08); border: 1px solid rgba(0,212,255,.2);
+      border-radius: 20px; padding: .3rem .9rem; margin-bottom: 1.2rem;
+    }
+    h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; color: #e8edf8; margin-bottom: .8rem; line-height: 1.2; }
+    h1 .accent { color: var(--neon-c); }
+    .page-sub { font-size: 1.05rem; color: var(--muted); max-width: 560px; margin: 0 auto 1.8rem; }
+
+    .badge-row { display: flex; gap: .6rem; flex-wrap: wrap; justify-content: center; margin-top: .8rem; }
+    .pill { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .3rem .8rem; border-radius: 20px; border: 1px solid; }
+    .pill-c { color: var(--neon-c); border-color: rgba(0,212,255,.4); background: rgba(0,212,255,.08); }
+    .pill-g { color: var(--neon-g); border-color: rgba(0,255,136,.4); background: rgba(0,255,136,.08); }
+    .pill-p { color: var(--neon-p); border-color: rgba(191,95,255,.4); background: rgba(191,95,255,.08); }
+
+    .container { max-width: 820px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+    /* ── Intro block ── */
+    .intro-box {
+      background: var(--surface); border: 1px solid rgba(0,212,255,.2);
+      border-radius: var(--radius); padding: 2rem 2.2rem; margin-bottom: 2.5rem;
+      box-shadow: 0 0 32px rgba(0,212,255,.06), 0 8px 40px rgba(0,0,0,.4);
+    }
+    .intro-box p { font-size: 1rem; color: var(--text); line-height: 1.75; }
+    .intro-box p + p { margin-top: .9rem; }
+    .intro-box strong { color: #e8edf8; }
+
+    /* ── Section heading ── */
+    .sec-label { font-size: .7rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--neon-c); margin-bottom: .5rem; }
+    h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 800; color: #e8edf8; margin-bottom: 1.2rem; }
+
+    /* ── Module list ── */
+    .modules { display: flex; flex-direction: column; gap: .9rem; margin-bottom: 2.5rem; }
+    .module {
+      display: grid; grid-template-columns: 48px 1fr; gap: 1.2rem; align-items: start;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.3rem 1.6rem;
+      transition: border-color .2s, box-shadow .2s, transform .18s;
+    }
+    .module:hover { border-color: rgba(0,212,255,.35); box-shadow: 0 6px 28px rgba(0,0,0,.45), 0 0 12px rgba(0,212,255,.07); transform: translateY(-2px); }
+    .module-num {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(0,212,255,.12); border: 1px solid rgba(0,212,255,.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .8rem; font-weight: 800; color: var(--neon-c); flex-shrink: 0;
+    }
+    .module-body h3 { font-size: .97rem; font-weight: 700; color: #e0e6f5; margin-bottom: .3rem; }
+    .module-body p { font-size: .86rem; color: var(--muted); }
+
+    /* ── Info grid ── */
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+    .info-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.2rem 1.4rem;
+    }
+    .info-card .ico { font-size: 1.4rem; margin-bottom: .5rem; }
+    .info-card .label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .25rem; }
+    .info-card .val { font-size: .96rem; font-weight: 700; color: #e0e6f5; }
+    .info-card .sub { font-size: .8rem; color: var(--muted); margin-top: .15rem; }
+
+    /* ── Target group ── */
+    .target-list { list-style: none; display: flex; flex-direction: column; gap: .6rem; margin-bottom: 2.5rem; }
+    .target-list li { display: flex; align-items: flex-start; gap: .75rem; font-size: .93rem; color: var(--text); }
+    .target-list li::before { content: '✓'; color: var(--neon-c); font-weight: 800; flex-shrink: 0; margin-top: .05rem; }
+
+    /* ── CTA ── */
+    .cta-box {
+      margin-top: 2.5rem;
+      background: linear-gradient(135deg, rgba(0,212,255,.08) 0%, rgba(0,255,136,.05) 100%);
+      border: 1px solid rgba(0,212,255,.2); border-radius: var(--radius);
+      padding: 2.5rem 2rem; text-align: center;
+    }
+    .cta-box h3 { font-size: 1.4rem; color: #e8edf8; margin-bottom: .5rem; }
+    .cta-box p { color: var(--muted); font-size: .95rem; margin-bottom: 1.5rem; }
+    .btn-cta {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--neon-c); color: #060c14;
+      padding: .78rem 2rem; border-radius: 1rem; font-size: .95rem;
+      font-weight: 800; text-decoration: none; border: none; cursor: pointer;
+      box-shadow: 0 4px 22px rgba(0,212,255,.4);
+      transition: transform .18s, box-shadow .18s;
+    }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 32px rgba(0,212,255,.6); }
+
+    /* ── Back ── */
+    .back-section { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; padding: 2rem 1.5rem 4rem; }
+    .btn-back { display: inline-flex; align-items: center; gap: .5rem; padding: .72rem 1.7rem; border-radius: 1rem; font-size: .9rem; font-weight: 600; text-decoration: none; color: var(--text); background: rgba(30,38,60,.88); border: 1px solid var(--border); transition: border-color .2s, color .2s; }
+    .btn-back:hover { border-color: var(--neon-c); color: var(--neon-c); }
+
+    footer { background: var(--bg); border-top: 1px solid var(--border); padding: 2rem 1.5rem; }
+    .footer-inner { max-width: 820px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .8rem; font-size: .82rem; color: var(--muted); }
+    .footer-inner a { color: var(--muted); text-decoration: none; }
+    .footer-inner a:hover { color: var(--neon-g); }
+
+    html.light { --bg:#edf1f8; --surface:#fff; --surface2:#f0f4fb; --border:rgba(0,20,80,0.1); --text:#111827; --muted:#5a6a8a; --neon-g:#00a060; --neon-c:#007fb5; --neon-p:#7c22d8; }
+    html.light body { background: var(--bg); color: var(--text); }
+    html.light nav { background: rgba(237,241,248,.92) !important; border-color: rgba(0,20,80,.1); }
+    html.light h1, html.light h2, html.light .module-body h3, html.light .cta-box h3 { color: #1a2540; }
+    html.light .nav-logo-text .t1 { color: #1a2540 !important; }
+    html.light .nav-logo-text .t2 { color: #00a060 !important; text-shadow: none !important; }
+    html.light .btn-back { background: rgba(255,255,255,.85); border-color: rgba(0,20,80,.15); color: #111827; }
+    html.light .btn-back:hover { border-color: rgba(0,127,181,.5); color: #007fb5; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 2 L36 11 L36 29 L20 38 L4 29 L4 11 Z" stroke="#00ff88" stroke-width="1.8" fill="rgba(0,255,136,0.07)"/>
+      <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="800" fill="#00ff88" font-family="'Segoe UI',system-ui,sans-serif">TSH</text>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="t1">TechSupport</span>
+      <span class="t2">HUB</span>
+    </div>
+  </a>
+  <a href="index.html#user-support" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="10,3 5,8 10,13"/></svg>
+    User Support
+  </a>
+</nav>
+
+<div class="page-header">
+  <div class="page-tag">Seminar · User Support</div>
+  <h1>Keine Angst vor <span class="accent">Technik.</span></h1>
+  <p class="page-sub">Ein Seminar für Menschen, die Technik bisher gemieden haben – und jetzt in kleiner Gruppe, ohne Druck und auf Augenhöhe, den ersten Schritt wagen.</p>
+  <div class="badge-row">
+    <span class="pill pill-c">4–8 Personen</span>
+    <span class="pill pill-g">Vor Ort</span>
+    <span class="pill pill-p">Einsteiger</span>
+    <span class="pill pill-c">Seniorenstiftungen</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="intro-box">
+    <p>Viele Menschen wachsen ohne Smartphone auf – und stehen heute vor Geräten, die sie überfordern, einschüchtern oder schlicht verwirrend finden. Das ist völlig normal. <strong>Dieses Seminar setzt genau dort an.</strong></p>
+    <p>In kleinen Gruppen von 4 bis 8 Teilnehmenden nehmen wir uns Zeit. Keine Frage ist zu einfach, kein Tempo zu langsam. Ziel ist nicht das perfekte Bedienen eines Geräts, sondern das <strong>Gefühl: Ich kann das.</strong></p>
+    <p>Das Seminar ist speziell für Seniorenstiftungen, Altenheime, Tagespflegeeinrichtungen und Bildungsträger konzipiert und kann direkt in Ihrer Einrichtung stattfinden.</p>
+  </div>
+
+  <div class="sec-label">Seminarinhalte</div>
+  <h2>Was wir gemeinsam <span style="color:var(--neon-c)">erarbeiten.</span></h2>
+
+  <div class="modules">
+    <div class="module">
+      <div class="module-num">1</div>
+      <div class="module-body">
+        <h3>Was ist eigentlich ein Smartphone? – Grundlagen ohne Fachchinesisch</h3>
+        <p>Wie sieht ein Smartphone aus, was kann es – und was kann es nicht? Wir lernen Bildschirm, Tasten und Grundgesten kennen: Wischen, Tippen, Zoomen. Alles in Ihrem Tempo.</p>
+      </div>
+    </div>
+    <div class="module">
+      <div class="module-num">2</div>
+      <div class="module-body">
+        <h3>Anrufen & Erreichbar sein – Telefonieren leicht gemacht</h3>
+        <p>Wie rufe ich jemanden an? Wie nehme ich ab? Kontakte speichern, Lautstärke einstellen, Anruf ablehnen – die wichtigsten Alltagsfunktionen sicher beherrschen.</p>
+      </div>
+    </div>
+    <div class="module">
+      <div class="module-num">3</div>
+      <div class="module-body">
+        <h3>Fotos machen & teilen – Erinnerungen festhalten</h3>
+        <p>Die Kamera öffnen, ein Bild aufnehmen, im Album wiederfinden und an Familie oder Freunde schicken. Freude an Technik statt Frust.</p>
+      </div>
+    </div>
+    <div class="module">
+      <div class="module-num">4</div>
+      <div class="module-body">
+        <h3>Nachrichten schreiben – WhatsApp & SMS verstehen</h3>
+        <p>Eine Nachricht schreiben, senden und empfangen. Gruppenunterhaltungen verstehen. Umgang mit Sprach­nachrichten. Was tun, wenn etwas unklar ist?</p>
+      </div>
+    </div>
+    <div class="module">
+      <div class="module-num">5</div>
+      <div class="module-body">
+        <h3>Sicher im Netz – Betrug erkennen & Vertrauen aufbauen</h3>
+        <p>Was sind verdächtige Nachrichten? Wie erkenne ich einen Betrugsversuch? Was sollte ich niemals preisgeben? Einfache Regeln für mehr Sicherheit im Alltag.</p>
+      </div>
+    </div>
+    <div class="module">
+      <div class="module-num">6</div>
+      <div class="module-body">
+        <h3>Übung & offene Fragen – Alles, was noch unklar ist</h3>
+        <p>Freie Übungseinheit: Jede Teilnehmerin, jeder Teilnehmer bringt die eigene Frage mit. Wir üben gemeinsam, wiederholen Gelerntes und festigen das neue Selbstvertrauen.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label">Format & Organisation</div>
+  <h2>So läuft das <span style="color:var(--neon-c)">Seminar ab.</span></h2>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="ico">👥</div>
+      <div class="label">Gruppengröße</div>
+      <div class="val">4–8 Personen</div>
+      <div class="sub">Maximal 8 für optimale Betreuung</div>
+    </div>
+    <div class="info-card">
+      <div class="ico">📅</div>
+      <div class="label">Einheiten</div>
+      <div class="val">6 × 2 Stunden</div>
+      <div class="sub">Wöchentlich oder nach Absprache</div>
+    </div>
+    <div class="info-card">
+      <div class="ico">📍</div>
+      <div class="label">Ort</div>
+      <div class="val">Vor Ort bei Ihnen</div>
+      <div class="sub">In Ihrer Einrichtung</div>
+    </div>
+    <div class="info-card">
+      <div class="ico">🎒</div>
+      <div class="label">Mitbringen</div>
+      <div class="val">Eigenes Gerät</div>
+      <div class="sub">Smartphone, Tablet oder Laptop</div>
+    </div>
+    <div class="info-card">
+      <div class="ico">📋</div>
+      <div class="label">Unterlagen</div>
+      <div class="val">Inklusive</div>
+      <div class="sub">Schritt-für-Schritt-Merkblätter</div>
+    </div>
+    <div class="info-card">
+      <div class="ico">💬</div>
+      <div class="label">Nachbetreuung</div>
+      <div class="val">Fragen per Nachricht</div>
+      <div class="sub">2 Wochen nach Seminarende</div>
+    </div>
+  </div>
+
+  <div class="sec-label">Für wen ist dieses Seminar</div>
+  <h2>Das Seminar richtet sich an <span style="color:var(--neon-c)">Menschen, die …</span></h2>
+
+  <ul class="target-list">
+    <li>noch nie oder kaum ein Smartphone, Tablet oder einen Computer benutzt haben</li>
+    <li>Berührungsängste gegenüber Technik haben und sich gerne sicher fühlen möchten</li>
+    <li>in Ruhe und ohne Druck lernen wollen – auf Augenhöhe, ohne Fachjargon</li>
+    <li>den Wunsch haben, mit Familie oder Freunden per Nachricht oder Videoanruf in Kontakt zu bleiben</li>
+    <li>in einer Seniorenstiftung, Tagespflege oder ähnlichen Einrichtung wohnen oder betreut werden</li>
+    <li>von Einrichtungen, Stiftungen oder Sozialträgern für ein Gruppenangebot angemeldet werden</li>
+  </ul>
+
+  <div class="cta-box">
+    <h3>Interesse? Sprechen wir darüber.</h3>
+    <p>Ich besuche Ihre Einrichtung für ein kostenloses Vorgespräch und erstelle ein individuelles Angebot für Ihre Gruppe.</p>
+    <a href="index.html" onclick="setTimeout(()=>document.dispatchEvent(new CustomEvent('openContact')),200);return true;" class="btn-cta">Jetzt Kontakt aufnehmen</a>
+  </div>
+
+</div>
+
+<div class="back-section">
+  <a href="index.html#user-support" class="btn-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="10,3 5,8 10,13"/></svg>
+    Zurück zu User Support
+  </a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span>&copy; 2026 TechSupport HUB – Alle Rechte vorbehalten.</span>
+    <span>
+      <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
+      <a href="impressum.html#datenschutz">Datenschutz</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -8,7 +8,7 @@
   <title>Portfolio – TechSupport HUB</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-x: hidden; }
+    html { scroll-behavior: smooth; }
 
     :root {
       --bg:      #0f1117;
@@ -29,7 +29,8 @@
     }
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb { background: rgba(0,255,136,0.35); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(0,255,136,0.6); }
 
     /* ══ NAVBAR ══ */
     nav {
@@ -62,7 +63,7 @@
     .page-content { position: relative; z-index: 10; padding-top: 62px; }
 
     /* ══ HERO ══ */
-    .page-hero { padding: 4.5rem 1.5rem 1.5rem; text-align: center; }
+    .page-hero { padding: 4.5rem 1.5rem 0.75rem; text-align: center; }
     .page-tag {
       display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .12em;
       text-transform: uppercase; color: var(--neon-g);
@@ -73,7 +74,7 @@
     .page-hero h1 .accent { color: var(--neon-g); }
     .page-hero > p { font-size: 1.05rem; color: var(--muted); max-width: 560px; margin: 0 auto; }
     .click-hint { color: var(--neon-g); font-weight: 600; display: block; margin-top: .3rem; }
-    .click-arrow { display: block; text-align: center; animation: bounce-down 1.2s ease-in-out infinite; margin-top: .8rem; }
+    .click-arrow { display: block; text-align: center; animation: bounce-down 1.2s ease-in-out infinite; margin-top: .4rem; }
     .click-arrow svg { stroke: var(--neon-g); }
     @keyframes bounce-down { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 
@@ -116,7 +117,7 @@
     .carousel-section {
       max-width: 700px;
       margin: 0 auto;
-      padding: 1.5rem 4rem 6rem;
+      padding: 1.5rem 4rem 4rem;
       position: relative;
     }
 
@@ -133,7 +134,7 @@
       overflow: hidden;
       user-select: none;
       -webkit-user-select: none;
-      height: 430px;
+      height: 340px;
       cursor: grab;
       position: relative;
       transform: translateZ(0);
@@ -361,18 +362,57 @@
     html.light .btn-top  { background: rgba(255,255,255,0.85); border-color: rgba(0,20,80,0.15); color: #5a6a8a; }
     html.light .btn-top:hover { border-color: rgba(0,160,96,0.4); color: #00a060; }
 
+    /* ══ COMPARE FLOATING BUTTON ══ */
+    .compare-layout { display: flex; gap: 1.2rem; align-items: flex-start; }
+    .compare-sticky-col { flex-shrink: 0; width: 44px; }
+    .float-compare {
+      position: fixed;
+      right: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 190;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .45rem;
+      background: rgba(15,17,23,.82);
+      border: 1px solid rgba(0,255,136,.4);
+      border-radius: 2rem;
+      color: var(--neon-g);
+      font-size: .58rem;
+      font-weight: 700;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      padding: .9rem .55rem;
+      cursor: pointer;
+      transition: background .25s, box-shadow .25s, border-color .25s;
+      box-shadow: 0 0 18px rgba(0,255,136,.12), 0 4px 24px rgba(0,0,0,.5);
+      backdrop-filter: blur(10px);
+      writing-mode: vertical-rl;
+      width: 44px;
+      text-decoration: none;
+    }
+    .float-compare:hover {
+      background: rgba(0,255,136,.12);
+      border-color: rgba(0,255,136,.75);
+      box-shadow: 0 0 30px rgba(0,255,136,.28);
+    }
+    .float-compare svg { writing-mode: horizontal-tb; }
+    html.light .float-compare { background: rgba(255,255,255,.9); border-color: rgba(0,160,96,.4); color: #00a060; box-shadow: 0 2px 16px rgba(0,20,80,.1); }
+    html.light .float-compare:hover { background: rgba(0,160,96,.08); border-color: rgba(0,160,96,.7); }
+
     /* ══ VORHER / NACHHER ══ */
-    .compare-section { padding: 4rem 1.5rem 2rem; max-width: 900px; margin: 0 auto; }
-    .compare-head { text-align: center; margin-bottom: 2.4rem; }
+    .compare-section { padding: 0.2rem 1.5rem 0.5rem; max-width: 900px; margin: 0 auto; }
+    .compare-head { text-align: center; margin-bottom: 0.2rem; }
     .compare-tag {
-      display: inline-block; font-size: .68rem; font-weight: 700;
+      display: inline-block; font-size: .72rem; font-weight: 700;
       letter-spacing: .12em; text-transform: uppercase; color: var(--neon-g);
       background: rgba(0,255,136,.08); border: 1px solid rgba(0,255,136,.2);
-      border-radius: 20px; padding: .25rem .9rem; margin-bottom: .7rem;
+      border-radius: 20px; padding: .25rem .9rem; margin-bottom: 1.2rem;
     }
-    .compare-title { font-size: clamp(1.5rem,4vw,2.2rem); font-weight: 900; color: #e8edf8; line-height: 1.1; letter-spacing: -.02em; margin-bottom: .5rem; }
+    .compare-title { font-size: clamp(1.9rem,5vw,3rem); font-weight: 900; color: #e8edf8; line-height: 1.2; letter-spacing: -.02em; margin-bottom: .25rem; }
     .compare-accent { color: var(--neon-g); }
-    .compare-sub { font-size: .88rem; color: var(--muted); }
+    .compare-sub { font-size: 1.05rem; color: var(--muted); margin-bottom: 1.5rem; }
     .compare-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.1rem; }
     @media (max-width: 680px) { .compare-grid { grid-template-columns: repeat(2,1fr); gap: .8rem; } }
     @media (max-width: 400px) { .compare-grid { grid-template-columns: 1fr; } }
@@ -408,7 +448,8 @@
     .cm-box { position: relative; z-index: 1; background: #13192a; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; overflow-y: auto; overflow-x: hidden; width: 100%; max-width: 860px; max-height: 92vh; box-shadow: 0 32px 80px rgba(0,0,0,.7); animation: cmIn .22s cubic-bezier(.34,1.4,.64,1); }
     .cm-box::-webkit-scrollbar { width: 5px; }
     .cm-box::-webkit-scrollbar-track { background: transparent; }
-    .cm-box::-webkit-scrollbar-thumb { background: rgba(255,255,255,.15); border-radius: 4px; }
+    .cm-box::-webkit-scrollbar-thumb { background: rgba(0,255,136,.35); border-radius: 4px; }
+    .cm-box::-webkit-scrollbar-thumb:hover { background: rgba(0,255,136,.6); }
     .cm-sliders { display: flex; flex-direction: column; }
     @keyframes cmIn { from{opacity:0;transform:scale(.93)} to{opacity:1;transform:scale(1)} }
     .cm-close { position: absolute; top: .85rem; right: .85rem; z-index: 5; background: rgba(0,0,0,.5); border: 1px solid rgba(255,255,255,.12); border-radius: 8px; color: #8b949e; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: color .2s, transform .3s, border-color .2s; }
@@ -604,7 +645,7 @@
   </div>
 
   <!-- ═══ VORHER / NACHHER ═══ -->
-  <div class="compare-section">
+  <div class="compare-section" id="compareSection">
     <div class="compare-head">
       <span class="compare-tag">Vorher / Nachher</span>
       <h2 class="compare-title">Schau, was sich <span class="compare-accent">verändert.</span></h2>
@@ -680,6 +721,7 @@
   </div>
 
 </div>
+
 
 <!-- ═══ COMPARE MODAL ═══ -->
 <div id="compareModal" class="cm-overlay" role="dialog" aria-modal="true">
@@ -905,6 +947,19 @@
     activeSlider.setPos(((e.touches[0].clientX - r.left) / r.width) * 100);
   }, { passive: true });
 
+  function syncHandleButtons() {
+    document.querySelectorAll('.cm-slider-wrap').forEach(wrap => {
+      const btn  = wrap.querySelector('.cm-handle-btn');
+      const rect = wrap.getBoundingClientRect();
+      const center = window.innerHeight / 2;
+      const topInWrap = center - rect.top;
+      const clamped = Math.max(18, Math.min(rect.height - 18, topInWrap));
+      btn.style.top       = clamped + 'px';
+      btn.style.transform = 'translateX(-50%)';
+    });
+  }
+  cmBox.addEventListener('scroll', syncHandleButtons);
+
   let _scrollY = 0;
 
   function openCompare(idx) {
@@ -916,6 +971,7 @@
     document.body.style.position = 'fixed';
     document.body.style.top      = `-${_scrollY}px`;
     document.body.style.width    = '100%';
+    requestAnimationFrame(syncHandleButtons);
   }
   function closeCompare() {
     cmModal.classList.remove('open');
