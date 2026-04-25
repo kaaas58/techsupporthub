@@ -455,7 +455,7 @@
     .cm-close { position: absolute; top: 2.4rem; right: .85rem; z-index: 5; background: rgba(0,0,0,.5); border: 1px solid rgba(255,255,255,.12); border-radius: 8px; color: #8b949e; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: color .2s, transform .3s, border-color .2s; }
     .cm-close:hover { color: #e53e3e; border-color: rgba(229,62,62,.4); transform: rotate(90deg); }
     .cm-title { position: absolute; top: .9rem; left: 1.1rem; z-index: 5; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.45); }
-    .cm-slider-wrap { position: relative; user-select: none; touch-action: none; cursor: ew-resize; }
+    .cm-slider-wrap { position: relative; user-select: none; touch-action: pan-y; cursor: ew-resize; }
     .cm-slider-wrap + .cm-slider-wrap { border-top: 1px solid rgba(255,255,255,.07); }
     .cm-img { width: 100%; display: block; height: auto; }
     .cm-img-after  { background: linear-gradient(135deg, #0d2518, #0e1624); }
@@ -875,12 +875,25 @@
     }
     setPos(50);
     handle.addEventListener('mousedown', e => { activeSlider = { wrap, setPos }; e.stopPropagation(); });
+    let tsX = 0, tsY = 0, tsDecided = false, tsHoriz = false;
     wrap.addEventListener('touchstart', e => {
-      const r = wrap.getBoundingClientRect();
-      activeSlider = { wrap, setPos };
-      setPos(((e.touches[0].clientX - r.left) / r.width) * 100);
+      tsX = e.touches[0].clientX; tsY = e.touches[0].clientY;
+      tsDecided = false; tsHoriz = false;
+    }, { passive: true });
+    wrap.addEventListener('touchmove', e => {
+      const dx = e.touches[0].clientX - tsX;
+      const dy = e.touches[0].clientY - tsY;
+      if (!tsDecided) {
+        if (Math.abs(dx) > Math.abs(dy) + 4) { tsHoriz = true;  tsDecided = true; }
+        else if (Math.abs(dy) > Math.abs(dx) + 4) { tsHoriz = false; tsDecided = true; }
+        else return;
+      }
+      if (!tsHoriz) return;
       e.preventDefault();
+      const r = wrap.getBoundingClientRect();
+      setPos(((e.touches[0].clientX - r.left) / r.width) * 100);
     }, { passive: false });
+    wrap.addEventListener('touchend', () => { tsDecided = false; tsHoriz = false; });
   }
 
   document.addEventListener('mouseup',   () => activeSlider = null);
