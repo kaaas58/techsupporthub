@@ -223,12 +223,12 @@
     .btn-p:hover { transform:translateY(-2px); box-shadow:0 0 38px rgba(0,255,136,0.5); }
 
     @keyframes btn-pulse {
-      0%   { box-shadow: 0 0 28px rgba(64,128,240,.38), 0 0 0 1px rgba(64,128,240,.28), 0 4px 20px rgba(0,0,0,.3); transform: scale(1); }
-      8%   { box-shadow: 0 0 33px rgba(64,128,240,.45), 0 0 0 1px rgba(64,128,240,.35), 0 4px 20px rgba(0,0,0,.3); transform: scale(1.005); }
-      16%  { box-shadow: 0 0 28px rgba(64,128,240,.38), 0 0 0 1px rgba(64,128,240,.28), 0 4px 20px rgba(0,0,0,.3); transform: scale(1); }
-      26%  { box-shadow: 0 0 32px rgba(64,128,240,.44), 0 0 0 1px rgba(64,128,240,.33), 0 4px 20px rgba(0,0,0,.3); transform: scale(1.004); }
-      36%  { box-shadow: 0 0 28px rgba(64,128,240,.38), 0 0 0 1px rgba(64,128,240,.28), 0 4px 20px rgba(0,0,0,.3); transform: scale(1); }
-      100% { box-shadow: 0 0 28px rgba(64,128,240,.38), 0 0 0 1px rgba(64,128,240,.28), 0 4px 20px rgba(0,0,0,.3); transform: scale(1); }
+      0%   { transform: scale(1);     filter: drop-shadow(0 0 7px rgba(64,128,240,.45)); }
+      8%   { transform: scale(1.005); filter: drop-shadow(0 0 14px rgba(64,128,240,.7)); }
+      16%  { transform: scale(1);     filter: drop-shadow(0 0 7px rgba(64,128,240,.45)); }
+      26%  { transform: scale(1.004); filter: drop-shadow(0 0 12px rgba(64,128,240,.62)); }
+      36%  { transform: scale(1);     filter: drop-shadow(0 0 7px rgba(64,128,240,.45)); }
+      100% { transform: scale(1);     filter: drop-shadow(0 0 7px rgba(64,128,240,.45)); }
     }
     .btn-portfolio {
       display: block;
@@ -246,6 +246,7 @@
       transition: transform .2s, box-shadow .2s, border-color .2s, background .2s;
       box-sizing: border-box;
       animation: btn-pulse 2.8s ease-in-out infinite;
+      will-change: transform, filter;
     }
     .btn-portfolio:hover {
       animation-play-state: paused;
@@ -956,7 +957,7 @@
           </a>
         </div>
         <div style="margin-top:1.2rem;">
-          <a href="portfolio.html" class="btn-portfolio">🖼️&nbsp; Beispielprojekte &amp; Portfolio ansehen</a>
+          <a href="portfolio.html" class="btn-portfolio">Beispielprojekte &amp; Portfolio ansehen</a>
         </div>
         <div class="tags">
           <span class="tag">HTML / CSS</span><span class="tag">JavaScript</span>
