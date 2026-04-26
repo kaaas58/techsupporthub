@@ -1596,6 +1596,9 @@
     const cursor = document.querySelector('.type-cursor');
     if (!hl || !cursor) return;
     const text = 'die funktioniert.';
+    const mobile = window.innerWidth <= 640;
+    const startDelay = mobile ? 1070 : 1200;
+    const charDelay  = mobile ? 64   : 72;
     hl.textContent = '';
     setTimeout(() => {
       cursor.style.opacity = '1';
@@ -1606,8 +1609,8 @@
           clearInterval(iv);
           cursor.style.opacity = '0';
         }
-      }, 72);
-    }, 1200);
+      }, charDelay);
+    }, startDelay);
   })();
 </script>
 </body>
