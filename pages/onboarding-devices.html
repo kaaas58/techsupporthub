@@ -1,14 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
-  <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');</script>
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
+  <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');var _ph=location.hash;if(_ph)history.replaceState(null,'',location.pathname+location.search);</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Onboarding Devices – TechSupport HUB</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: auto; }
 
     :root {
       --bg:      #0f1117;
@@ -141,7 +141,7 @@
       padding: 2.5rem 2.8rem;
       margin-bottom: 5rem;
       box-shadow: 0 8px 48px rgba(0,0,0,.55), 0 1px 0 rgba(255,255,255,.04) inset;
-      scroll-margin-top: 80px;
+      scroll-margin-top: 110px;
     }
     @media (max-width: 600px) { .section-block { padding: 1.8rem 1.4rem; } }
 
@@ -256,18 +256,18 @@
     #theme-toggle .icon-moon { display:none; }
 
     /* ── LIGHT MODE ── */
-    html.light { --bg:#edf1f8; --surface:#ffffff; --surface2:#f0f4fb; --border:rgba(0,20,80,0.1); --text:#111827; --muted:#5a6a8a; --neon-g:#00a060; --neon-b:#007fb5; --neon-p:#7c22d8; --neon-o:#c44a10; }
+    html.light { --bg:#d0daf0; --surface:#ffffff; --surface2:#f0f4fb; --border:rgba(0,25,90,0.22); --text:#111827; --muted:#3f506e; --neon-g:#00a060; --neon-b:#007fb5; --neon-p:#7c22d8; --neon-o:#c44a10; }
     html.light body { background:var(--bg); color:var(--text); }
-    html.light nav { background:rgba(237,241,248,0.92) !important; border-color:rgba(0,20,80,0.1); }
+    html.light nav { background:rgba(208,218,240,0.96) !important; border-color:rgba(0,25,90,0.22); }
     html.light .bg-watermark { opacity:.3; }
-    html.light .section-block { background:rgba(255,255,255,0.88) !important; border-color:rgba(0,20,80,0.1) !important; box-shadow:0 8px 40px rgba(0,20,80,0.08) !important; }
+    html.light .section-block { background:#ffffff !important; border-color:rgba(0,25,90,0.2) !important; border-width:1.5px !important; box-shadow:0 4px 24px rgba(0,25,90,0.11),0 1px 3px rgba(0,25,90,0.07) !important; }
     html.light .section-block h2 { color:#111827; }
     html.light .section-block p { color:#374151; }
     html.light .section-block strong { color:#1e2a45 !important; }
     html.light .check-list li { color:#374151; }
     html.light .check-list li strong { color:#1e2a45 !important; }
-    html.light .section-pill { background:rgba(255,255,255,0.7); border-color:rgba(0,20,80,0.12); color:#4b5568; }
-    html.light .btn-back { background:rgba(255,255,255,0.8); border-color:rgba(0,20,80,0.12); color:#111827; }
+    html.light .section-pill { background:#ffffff; border-color:rgba(0,25,90,0.28); color:#2d3a54; }
+    html.light .btn-back { background:#ffffff; border-color:rgba(0,25,90,0.25); color:#111827; }
     html.light .page-hero h1 { color:#111827; }
     html.light .nav-logo svg path { stroke:#00a060 !important; fill:rgba(0,160,96,0.1) !important; }
     html.light .nav-logo svg text { fill:#00a060 !important; }
@@ -275,15 +275,21 @@
     html.light .nav-logo-text .t2 { color:#00a060 !important; text-shadow:none !important; }
     html.light .page-hero h1, html.light .section-block h2 { color:#1a2540; }
     html.light .btn-back:hover { border-color:rgba(0,127,181,0.5); color:#007fb5; }
-    html.light .btn-top  { background:rgba(255,255,255,0.85); border-color:rgba(0,20,80,0.15); color:#5a6a8a; }
+    html.light .btn-top  { background:#ffffff; border-color:rgba(0,25,90,0.22); color:#3f506e; }
     html.light .btn-top:hover  { border-color:rgba(0,127,181,0.4); color:#007fb5; }
+    html.light .page-tag { background:rgba(0,160,96,0.12); border-color:rgba(0,130,70,0.42); color:#005c38; }
+    html.light .info-box { background:rgba(0,160,96,0.1); border:1.5px solid rgba(0,130,70,0.45); }
+    html.light .info-box.blue { background:rgba(0,127,181,0.1); border-color:rgba(0,100,155,0.45); }
+    html.light .info-box strong { color:#004d2a; }
+    html.light .info-box.blue strong { color:#004070; }
+    html.light .section-pill { background:#ffffff; border-color:rgba(0,25,90,0.28); color:#2d3a54; }
   </style>
 </head>
 <body>
 
 <!-- ══ NAVBAR ══ -->
 <nav>
-  <a href="index.html" class="nav-logo">
+  <a href="../index.html" class="nav-logo">
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M20 2 L36 11 L36 29 L20 38 L4 29 L4 11 Z" stroke="#00ff88" stroke-width="1.8" fill="rgba(0,255,136,0.07)"/>
       <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="800" fill="#00ff88"
@@ -295,7 +301,7 @@
       <span class="t2">HUB</span>
     </div>
   </a>
-  <a href="index.html#user-support" class="nav-back">
+  <a href="../index.html#user-support" class="nav-back">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="10,3 5,8 10,13"/>
     </svg>
@@ -822,7 +828,7 @@
 
   <!-- Back to home -->
   <div class="back-section">
-    <a href="index.html#user-support" class="btn-back">
+    <a href="../index.html#user-support" class="btn-back">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="10,3 5,8 10,13"/>
       </svg>
@@ -840,6 +846,33 @@
 
 <script>
   function toggleTheme() { const l=document.documentElement.classList.toggle('light'); localStorage.setItem('theme',l?'light':'dark'); }
+
+  function smoothScroll(top) {
+    const start = window.pageYOffset, dist = top - start, t0 = performance.now();
+    (function step(t) {
+      const p = Math.min((t - t0) / 800, 1), e = p < .5 ? 2*p*p : -1+(4-2*p)*p;
+      window.scrollTo(0, start + dist * e);
+      if (p < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', ev => {
+        const el = document.querySelector(a.getAttribute('href'));
+        if (!el) return;
+        ev.preventDefault();
+        smoothScroll(el.getBoundingClientRect().top + window.pageYOffset - 110);
+      });
+    });
+  });
+
+  window.addEventListener('load', () => {
+    if (_ph) {
+      const el = document.querySelector(_ph);
+      if (el) smoothScroll(el.getBoundingClientRect().top + window.pageYOffset - 110);
+    }
+  });
 </script>
 </body>
 </html>

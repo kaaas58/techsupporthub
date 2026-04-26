@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
   <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Onboard Yourself – TechSupport HUB</title>
@@ -134,14 +134,35 @@
     .footer-inner a { color: var(--muted); text-decoration: none; }
     .footer-inner a:hover { color: var(--neon-g); }
 
-    html.light { --bg:#edf1f8; --surface:#fff; --surface2:#f0f4fb; --border:rgba(0,20,80,0.1); --text:#111827; --muted:#5a6a8a; --neon-g:#00a060; --neon-c:#007fb5; --neon-p:#7c22d8; }
+    html.light { --bg:#d0daf0; --surface:#fff; --surface2:#f0f4fb; --border:rgba(0,25,90,0.22); --text:#111827; --muted:#3f506e; --neon-g:#00a060; --neon-c:#007fb5; --neon-p:#7c22d8; }
     html.light body { background: var(--bg); color: var(--text); }
-    html.light nav { background: rgba(237,241,248,.92) !important; border-color: rgba(0,20,80,.1); }
+    html.light nav { background: rgba(208,218,240,0.96) !important; border-color: rgba(0,25,90,0.22); }
     html.light h1, html.light h2, html.light .module-body h3, html.light .cta-box h3 { color: #1a2540; }
     html.light .nav-logo-text .t1 { color: #1a2540 !important; }
     html.light .nav-logo-text .t2 { color: #00a060 !important; text-shadow: none !important; }
     html.light .btn-back { background: rgba(255,255,255,.85); border-color: rgba(0,20,80,.15); color: #111827; }
     html.light .btn-back:hover { border-color: rgba(0,160,96,.5); color: #00a060; }
+    html.light .page-tag { color:#00845a; border-color:rgba(0,150,90,.3); background:rgba(0,160,96,.08); }
+    html.light .page-sub { color:#3f506e; }
+    html.light .pill-c { color:#005f90; border-color:rgba(0,100,160,.35); background:rgba(0,130,180,.09); }
+    html.light .pill-g { color:#00845a; border-color:rgba(0,150,90,.35); background:rgba(0,160,96,.09); }
+    html.light .pill-p { color:#6c1fc4; border-color:rgba(120,50,200,.35); background:rgba(130,50,200,.09); }
+    html.light .intro-box { background:#ffffff; border-color:rgba(0,150,90,.25); box-shadow:0 4px 20px rgba(0,25,90,0.1); }
+    html.light .intro-box p { color:#3f506e; }
+    html.light .intro-box strong { color:#1a2540; }
+    html.light .module { background:#ffffff; border-color:rgba(0,25,90,0.18); box-shadow:0 2px 10px rgba(0,25,90,0.09); }
+    html.light .module-num { background:rgba(0,160,96,.1); border-color:rgba(0,160,96,.35); color:#00845a; }
+    html.light .module-body h3 { color:#1a2540; }
+    html.light .module-body p { color:#3f506e; }
+    html.light .info-card { background:#f0f4fb; border-color:rgba(0,25,90,0.18); }
+    html.light .info-card .label { color:#5a6a8a; }
+    html.light .info-card .val { color:#1a2540; }
+    html.light .info-card .sub { color:#3f506e; }
+    html.light .target-list li { color:#2a3550; }
+    html.light .cta-box { background:linear-gradient(135deg,rgba(0,160,96,.07) 0%,rgba(0,200,220,.05) 100%); border-color:rgba(0,160,96,.3); }
+    html.light .cta-box p { color:#3f506e; }
+    html.light .nav-logo svg path { stroke:#00a060 !important; fill:rgba(0,160,96,0.1) !important; }
+    html.light .nav-logo svg text { fill:#00a060 !important; }
 
     .bg-watermark {
       position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
@@ -153,7 +174,7 @@
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">
+  <a href="../index.html" class="nav-logo">
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M20 2 L36 11 L36 29 L20 38 L4 29 L4 11 Z" stroke="#00ff88" stroke-width="1.8" fill="rgba(0,255,136,0.07)"/>
       <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="800" fill="#00ff88" font-family="'Segoe UI',system-ui,sans-serif">TSH</text>
@@ -163,7 +184,7 @@
       <span class="t2">HUB</span>
     </div>
   </a>
-  <a href="index.html#user-support" class="nav-back">
+  <a href="../index.html#user-support" class="nav-back">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="10,3 5,8 10,13"/></svg>
     User Support
   </a>
@@ -454,7 +475,7 @@
 </div>
 
 <div class="back-section">
-  <a href="index.html#user-support" class="btn-back">
+  <a href="../index.html#user-support" class="btn-back">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="10,3 5,8 10,13"/></svg>
     Zurück zu User Support
   </a>

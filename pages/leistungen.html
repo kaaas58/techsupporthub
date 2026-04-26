@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
   <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Leistungen & Preise – TechSupport HUB</title>
@@ -313,14 +313,14 @@
     #theme-toggle .icon-moon { display:none; }
 
     /* ── LIGHT MODE ── */
-    html.light { --bg:#edf1f8; --surface:#ffffff; --surface2:#f0f4fb; --border:rgba(0,20,80,0.1); --text:#111827; --muted:#5a6a8a; --neon-g:#00a060; --neon-b:#007fb5; --neon-p:#7c22d8; --neon-o:#c44a10; }
+    html.light { --bg:#d0daf0; --surface:#ffffff; --surface2:#f0f4fb; --border:rgba(0,25,90,0.22); --text:#111827; --muted:#3f506e; --neon-g:#00a060; --neon-b:#007fb5; --neon-p:#7c22d8; --neon-o:#c44a10; }
     html.light body { background:var(--bg); color:var(--text); }
-    html.light nav { background:rgba(237,241,248,0.92) !important; border-color:rgba(0,20,80,0.1); }
+    html.light nav { background:rgba(208,218,240,0.96) !important; border-color:rgba(0,25,90,0.22); }
     html.light .page-header { background:var(--bg); }
     html.light .page-header h1, html.light .cta-box h3, html.light .service-info h3, html.light h2.sec-title { color:#111827; }
     html.light .cta-box { background:linear-gradient(135deg,rgba(0,180,100,.06) 0%,rgba(0,180,200,.04) 100%); border-color:rgba(0,180,100,.2); }
     html.light footer { background:var(--bg); }
-    html.light .btn-ghost { border-color:rgba(0,20,80,0.18); color:var(--text); }
+    html.light .btn-ghost { border-color:rgba(0,25,90,0.28); color:var(--text); }
     html.light .nav-logo svg path { stroke:#00a060 !important; fill:rgba(0,160,96,0.1) !important; }
     html.light .nav-logo svg text { fill:#00a060 !important; }
     html.light .nav-logo-text .t1 { color:#1a2540 !important; }
@@ -335,17 +335,33 @@
     .btn-back:hover { border-color:var(--neon-g); color:var(--neon-g); }
     .btn-top  { display:inline-flex; align-items:center; gap:.5rem; padding:.75rem 1.4rem; border-radius:1rem; font-size:.93rem; font-weight:600; text-decoration:none; color:var(--muted); background:rgba(30,38,60,.88); border:1px solid var(--border); backdrop-filter:blur(8px); transition:border-color .2s,color .2s; }
     .btn-top:hover  { border-color:rgba(0,255,136,.4); color:var(--neon-g); }
-    html.light .btn-back { background:rgba(255,255,255,0.85); border-color:rgba(0,20,80,0.15); color:#111827; }
+    html.light .btn-back { background:#ffffff; border-color:rgba(0,25,90,0.26); color:#111827; }
     html.light .btn-back:hover { border-color:rgba(0,160,96,0.5); color:#00a060; }
-    html.light .btn-top  { background:rgba(255,255,255,0.85); border-color:rgba(0,20,80,0.15); color:#5a6a8a; }
+    html.light .btn-top  { background:#ffffff; border-color:rgba(0,25,90,0.22); color:#3f506e; }
     html.light .btn-top:hover  { border-color:rgba(0,160,96,0.4); color:#00a060; }
+
+    html.light .service-row { background:#ffffff; border-color:rgba(0,25,90,0.2); box-shadow:0 2px 12px rgba(0,20,80,0.1); }
+    html.light .service-info h3 { color:#1a2540; }
+    html.light .service-info p  { color:#3f506e; }
+    html.light .price-block .price-unit, html.light .price-block .price-note { color:#3f506e; }
+    html.light .badge-g { color:#00845a; border-color:rgba(0,160,90,.45); background:rgba(0,160,90,.1); }
+    html.light .badge-b { color:#007fb5; border-color:rgba(0,130,180,.45); background:rgba(0,130,180,.1); }
+    html.light .badge-o { color:#b84a00; border-color:rgba(190,90,0,.45);  background:rgba(190,90,0,.1); }
+    html.light .badge-p { color:#6c1fc4; border-color:rgba(130,50,200,.45); background:rgba(130,50,200,.1); }
+    html.light .badge-w { color:#2a5cc4; border-color:rgba(50,100,210,.45); background:rgba(50,100,210,.1); }
+    html.light .badge-c { color:#007a99; border-color:rgba(0,130,160,.45); background:rgba(0,130,160,.1); }
+    html.light .info-note { background:#edf1fb; border-color:rgba(0,25,90,0.2); color:#3f506e; }
+    html.light .info-note strong { color:#1a2540; }
+    html.light .cta-box { background:linear-gradient(135deg,rgba(0,160,90,.07) 0%,rgba(0,150,200,.05) 100%); border-color:rgba(0,160,90,.3); }
+    html.light .page-tag { color:#1a2540; border-color:rgba(0,25,90,0.25); background:rgba(255,255,255,0.7); }
+    html.light .sec-label { opacity:.85; }
   </style>
 </head>
 <body>
 
 <!-- ── Navbar ── -->
 <nav>
-  <a href="index.html" class="nav-logo">
+  <a href="../index.html" class="nav-logo">
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M20 2 L36 11 L36 29 L20 38 L4 29 L4 11 Z" stroke="#00ff88" stroke-width="1.8" fill="rgba(0,255,136,0.07)"/>
       <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="800" fill="#00ff88" font-family="'Segoe UI',system-ui,sans-serif" style="filter:drop-shadow(0 0 2px rgba(0,255,136,.5))">TSH</text>
@@ -355,7 +371,7 @@
       <span class="t2">HUB</span>
     </div>
   </a>
-  <a href="index.html" class="nav-back">
+  <a href="../index.html" class="nav-back">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="10,3 5,8 10,13"/>
     </svg>
@@ -660,7 +676,7 @@
 </div>
 
 <div class="back-section">
-  <a href="index.html" class="btn-back">
+  <a href="../index.html" class="btn-back">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="10,3 5,8 10,13"/>
     </svg>
