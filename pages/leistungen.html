@@ -177,8 +177,19 @@
     .service-row:hover { box-shadow: none; transform: none; cursor: default; }
 
     @media (max-width: 600px) {
-      .service-row { grid-template-columns: 1fr; gap: .8rem; }
-      .price-block { text-align: left; }
+      .service-row {
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: .6rem;
+        padding: .85rem 1rem .85rem 1.2rem;
+      }
+      .service-info p       { display: none; }
+      .service-badges       { display: none; }
+      .service-info h3      { font-size: .92rem; line-height: 1.35; }
+      .price-block          { text-align: right; flex-shrink: 0; }
+      .price-block .price   { font-size: 1.1rem; filter: blur(4px); }
+      .price-block .price-unit { font-size: .7rem; }
+      .price-block .price-note { display: none; }
     }
 
     .service-info { display: flex; flex-direction: column; gap: .3rem; }
