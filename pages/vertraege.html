@@ -196,7 +196,10 @@
       nav { padding:0 1.25rem; }
       .page-header { padding:4rem 1.25rem 2.5rem; }
       .doc-card-info, .doc-card-bottom { padding:1.2rem 1.25rem; }
-      .doc-btns { flex-direction:row; flex-wrap:wrap; }
+      .doc-card-bottom { flex-direction:column; align-items:center; gap:1rem; }
+      .doc-thumb-outer { flex-shrink:0; }
+      .doc-btns { flex-direction:row; flex-wrap:wrap; justify-content:center; width:100%; gap:.6rem; }
+      .btn-dl, .btn-view { flex:1; justify-content:center; min-height:2.6rem; }
     }
   </style>
 </head>
@@ -266,6 +269,12 @@
           tabindex="-1" aria-hidden="true"></iframe>
       </div>
       <div class="doc-btns">
+        <button onclick="openPdfModal('../docs/Webdesign_Einverstaendniserklaerung_TSH.pdf','Einverständniserklärung – Website Design & Erstellung')" class="btn-view">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+          </svg>
+          Großansicht
+        </button>
         <a href="../docs/Webdesign_Einverstaendniserklaerung_TSH.pdf"
            download="Webdesign_Einverstaendniserklaerung_TSH.pdf" class="btn-dl">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -275,12 +284,6 @@
           </svg>
           Download
         </a>
-        <button onclick="openPdfModal('../docs/Webdesign_Einverstaendniserklaerung_TSH.pdf','Einverständniserklärung – Website Design & Erstellung')" class="btn-view">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
-          </svg>
-          Großansicht
-        </button>
       </div>
     </div>
   </div>
