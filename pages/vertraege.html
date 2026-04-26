@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
+  <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verträge & Dokumente – TechSupport HUB</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117; --surface: #1a2235; --surface2: #1e2840;
+      --border: rgba(255,255,255,0.1); --text: #edf0f8; --muted: #9aabc8;
+      --neon-g: #00ff88; --neon-b: #00c8ff; --radius: 14px;
+    }
+
+    body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; line-height:1.65; overflow-x:hidden; }
+
+    /* ── NAV ── */
+    nav {
+      position:sticky; top:0; z-index:200; height:62px;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 2.5rem;
+      background:rgba(13,17,23,0.82); backdrop-filter:blur(22px) saturate(160%);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-logo { display:flex; align-items:center; gap:.7rem; text-decoration:none; white-space:nowrap; }
+    .nav-logo-text { display:flex; flex-direction:column; line-height:1.15; }
+    .nav-logo-text .t1 { font-size:1.1rem; font-weight:700; color:#e8edf8; letter-spacing:.02em; }
+    .nav-logo-text .t2 { font-size:.88rem; font-weight:700; color:var(--neon-g); letter-spacing:.18em; text-shadow:0 0 8px rgba(0,255,136,.25); }
+    .nav-back { display:inline-flex; align-items:center; gap:.4rem; color:var(--muted); text-decoration:none; font-size:.87rem; font-weight:500; transition:color .2s; }
+    .nav-back:hover { color:var(--neon-g); }
+    .nav-right { display:flex; align-items:center; gap:.9rem; }
+
+    /* ── PAGE HEADER ── */
+    .page-header { padding:5.5rem 1.5rem 3rem; text-align:center; position:relative; overflow:hidden; }
+    .page-header::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,200,255,.07) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .page-tag {
+      display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:.12em;
+      text-transform:uppercase; color:var(--neon-b);
+      background:rgba(0,200,255,.07); border:1px solid rgba(0,200,255,.2);
+      border-radius:20px; padding:.3rem .9rem; margin-bottom:1.2rem;
+    }
+    .page-header h1 { font-size:clamp(2rem,5vw,3rem); font-weight:800; color:#e8edf8; letter-spacing:-.025em; line-height:1.2; margin-bottom:.8rem; }
+    .page-header h1 span { color:var(--neon-b); }
+    .page-header p { font-size:1.05rem; color:var(--muted); max-width:560px; margin:0 auto; }
+
+    /* ── CONTAINER ── */
+    .container { max-width:900px; margin:0 auto; padding:0 1.5rem 5rem; }
+
+    /* ── DOC CARD ── */
+    .doc-card {
+      background:var(--surface); border:1.5px solid rgba(0,200,255,.5);
+      border-radius:var(--radius); overflow:hidden;
+      box-shadow:0 8px 40px rgba(0,0,0,.4), 0 0 0 1px rgba(0,200,255,.06);
+      margin-bottom:2rem;
+    }
+    .doc-card-info { padding:1.5rem 2rem 1.3rem; border-bottom:1px solid rgba(0,200,255,.15); }
+    .doc-label {
+      display:inline-block; font-size:.7rem; font-weight:800; letter-spacing:.16em;
+      text-transform:uppercase; color:var(--neon-b);
+      background:rgba(0,200,255,.08); border:1px solid rgba(0,200,255,.2);
+      border-radius:20px; padding:.2rem .7rem; margin-bottom:.55rem;
+    }
+    .doc-card-info h2 { font-size:1rem; font-weight:700; color:#edf0f8; margin-bottom:.4rem; }
+    .doc-card-info p  { font-size:.86rem; color:var(--muted); line-height:1.6; max-width:620px; }
+
+    /* ── Doc bottom row: thumb + buttons ── */
+    .doc-card-bottom {
+      padding:1.2rem 2rem 1.4rem;
+      display:flex; align-items:center; gap:1.4rem; flex-wrap:wrap;
+    }
+    .doc-thumb-outer {
+      width:120px; height:158px; overflow:hidden; flex-shrink:0;
+      border-radius:6px; border:1px solid var(--border);
+      background:#0d1117; position:relative; cursor:pointer;
+    }
+    .doc-thumb-outer:hover { border-color:rgba(0,200,255,.4); }
+    .doc-thumb-frame {
+      width:860px; height:1200px;
+      transform:scale(0.1395); transform-origin:top left;
+      pointer-events:none; border:none;
+    }
+    .doc-btns { display:flex; flex-direction:column; gap:.65rem; }
+    .btn-dl {
+      display:inline-flex; align-items:center; gap:.45rem;
+      padding:.6rem 1.25rem; border-radius:.85rem; font-size:.84rem; font-weight:600;
+      text-decoration:none; cursor:pointer; border:none;
+      background:var(--neon-g); color:#060c08;
+      box-shadow:0 4px 16px rgba(0,255,136,.3);
+      transition:transform .18s,box-shadow .18s; white-space:nowrap;
+    }
+    .btn-dl:hover { transform:translateY(-2px); box-shadow:0 6px 24px rgba(0,255,136,.5); }
+    .btn-view {
+      display:inline-flex; align-items:center; gap:.45rem;
+      padding:.6rem 1.25rem; border-radius:.85rem; font-size:.84rem; font-weight:600;
+      text-decoration:none; cursor:pointer;
+      background:transparent; color:var(--text);
+      border:1.5px solid rgba(255,255,255,0.45);
+      transition:border-color .2s,color .2s; white-space:nowrap;
+    }
+    .btn-view:hover { border-color:rgba(0,200,255,.6); color:var(--neon-b); }
+
+    /* ── PDF MODAL (Großansicht) ── */
+    #pdf-modal {
+      display:none; position:fixed; inset:0; z-index:600;
+      flex-direction:column; background:rgba(5,8,16,0.97);
+    }
+    #pdf-modal.open { display:flex; }
+    .pdf-modal-bar {
+      display:flex; align-items:center; gap:1rem; flex-shrink:0;
+      padding:.85rem 1.5rem;
+      background:rgba(26,34,53,0.98); border-bottom:1px solid var(--border);
+    }
+    .pdf-modal-title { font-size:.88rem; color:var(--muted); flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .btn-modal-back {
+      display:inline-flex; align-items:center; gap:.45rem;
+      padding:.55rem 1.2rem; border-radius:.8rem; font-size:.85rem; font-weight:600;
+      text-decoration:none; cursor:pointer;
+      background:rgba(255,255,255,.06); color:var(--text);
+      border:1px solid var(--border);
+      transition:border-color .2s,color .2s;
+      flex-shrink:0;
+    }
+    .btn-modal-back:hover { border-color:var(--neon-g); color:var(--neon-g); }
+    #pdf-modal iframe { flex:1; border:none; width:100%; height:100%; }
+
+    /* ── INFO BOX ── */
+    .info-box {
+      background:var(--surface2); border:1.5px solid rgba(0,200,255,.5);
+      border-left:3px solid var(--neon-b); border-radius:var(--radius);
+      padding:1.2rem 1.6rem; margin-bottom:2.5rem;
+      font-size:.87rem; color:var(--muted);
+      display:flex; gap:.8rem; align-items:flex-start;
+    }
+    .info-box .ico { font-size:1.1rem; flex-shrink:0; margin-top:.05rem; }
+    .info-box strong { color:var(--text); }
+
+    /* ── BACK / TOP ── */
+    .back-section { display:flex; justify-content:center; align-items:center; gap:1rem; flex-wrap:wrap; padding:2.5rem 1.5rem 4rem; }
+    .btn-back { display:inline-flex; align-items:center; gap:.5rem; padding:.75rem 1.8rem; border-radius:1rem; font-size:.93rem; font-weight:600; text-decoration:none; color:var(--text); background:rgba(30,38,60,.88); border:1px solid var(--border); backdrop-filter:blur(8px); transition:border-color .2s,color .2s; }
+    .btn-back:hover { border-color:var(--neon-g); color:var(--neon-g); }
+    .btn-top  { display:inline-flex; align-items:center; gap:.5rem; padding:.75rem 1.4rem; border-radius:1rem; font-size:.93rem; font-weight:600; text-decoration:none; color:var(--muted); background:rgba(30,38,60,.88); border:1px solid var(--border); backdrop-filter:blur(8px); transition:border-color .2s,color .2s; }
+    .btn-top:hover  { border-color:rgba(0,255,136,.4); color:var(--neon-g); }
+
+    /* ── FOOTER ── */
+    footer { background:var(--bg); border-top:1px solid var(--border); padding:2rem 1.5rem; }
+    .footer-inner { max-width:900px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.8rem; font-size:.82rem; color:var(--muted); }
+    .footer-inner a { color:var(--muted); text-decoration:none; }
+    .footer-inner a:hover { color:var(--neon-g); }
+
+    /* ── THEME TOGGLE ── */
+    #theme-toggle { background:transparent; border:1px solid rgba(255,255,255,0.15); border-radius:1rem; color:#6b7a9e; width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:border-color .2s,color .2s; flex-shrink:0; }
+    #theme-toggle:hover { border-color:rgba(0,255,136,0.5); color:#00ff88; }
+    #theme-toggle .icon-sun { display:block; }
+    #theme-toggle .icon-moon { display:none; }
+
+    /* ── LIGHT MODE ── */
+    html.light { --bg:#d0daf0; --surface:#ffffff; --surface2:#edf1fb; --border:rgba(0,25,90,0.22); --text:#111827; --muted:#3f506e; --neon-g:#00a060; --neon-b:#007fb5; }
+    html.light body { background:var(--bg); color:var(--text); }
+    html.light nav { background:rgba(208,218,240,0.96) !important; border-color:rgba(0,25,90,0.22); }
+    html.light .nav-logo svg path { stroke:#00a060 !important; fill:rgba(0,160,96,0.1) !important; }
+    html.light .nav-logo svg text { fill:#00a060 !important; }
+    html.light .nav-logo-text .t1 { color:#1a2540 !important; }
+    html.light .nav-logo-text .t2 { color:#00a060 !important; text-shadow:none !important; }
+    html.light .page-header h1 { color:#1a2540; }
+    html.light .page-header p { color:#3f506e; }
+    html.light .page-tag { color:#005f90; border-color:rgba(0,100,160,.3); background:rgba(0,130,180,.08); }
+    html.light .doc-card { background:#ffffff; border-color:rgba(0,100,160,.35); box-shadow:0 4px 24px rgba(0,25,90,0.1); }
+    html.light .doc-card-info { border-color:rgba(0,100,160,.2); }
+    html.light .info-box { border-color:rgba(0,100,160,.35) !important; }
+    html.light .doc-card-info h2 { color:#1a2540; }
+    html.light .doc-card-info p  { color:#3f506e; }
+    html.light .doc-label { color:#005f90; border-color:rgba(0,100,160,.3); background:rgba(0,130,180,.08); }
+    html.light .doc-thumb-outer { background:#dde5f0; border-color:rgba(0,25,90,0.2); }
+    html.light .btn-view { border-color:rgba(0,25,90,0.22); color:#1a2540; }
+    html.light .btn-view:hover { border-color:rgba(0,130,180,.45); color:#005f90; }
+    html.light .info-box { background:#edf1fb; border-color:rgba(0,25,90,0.18); border-left-color:#007fb5; }
+    html.light .info-box strong { color:#1a2540; }
+    html.light footer { background:var(--bg); }
+    html.light .btn-back { background:#ffffff; border-color:rgba(0,25,90,0.22); color:#111827; }
+    html.light .btn-back:hover { border-color:rgba(0,160,96,0.5); color:#00a060; }
+    html.light .btn-top  { background:#ffffff; border-color:rgba(0,25,90,0.22); color:#3f506e; }
+    html.light .btn-top:hover  { border-color:rgba(0,160,96,0.4); color:#00a060; }
+    html.light #theme-toggle { border-color:rgba(0,25,90,0.2); color:#5a6a8a; }
+    html.light #theme-toggle:hover { border-color:rgba(0,160,96,0.5); color:#00a060; }
+    html.light #theme-toggle .icon-sun { display:none; }
+    html.light #theme-toggle .icon-moon { display:block; }
+
+    @media (max-width:640px) {
+      nav { padding:0 1.25rem; }
+      .page-header { padding:4rem 1.25rem 2.5rem; }
+      .doc-card-info, .doc-card-bottom { padding:1.2rem 1.25rem; }
+      .doc-btns { flex-direction:row; flex-wrap:wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navbar ── -->
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 2 L36 11 L36 29 L20 38 L4 29 L4 11 Z" stroke="#00ff88" stroke-width="1.8" fill="rgba(0,255,136,0.07)"/>
+      <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="800" fill="#00ff88" font-family="'Segoe UI',system-ui,sans-serif">TSH</text>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="t1">TechSupport</span>
+      <span class="t2">HUB</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="../index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="10,3 5,8 10,13"/>
+      </svg>
+      Zurück
+    </a>
+    <button id="theme-toggle" aria-label="Theme wechseln">
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Page Header ── -->
+<div class="page-header" id="top">
+  <div class="page-tag">Dokumente & Verträge</div>
+  <h1>Transparenz von <span>Anfang an.</span></h1>
+  <p>Alle relevanten Vereinbarungen und Einverständniserklärungen für meine Leistungen – übersichtlich, klar und jederzeit einsehbar.</p>
+</div>
+
+<div class="container">
+
+  <!-- ── Info ── -->
+  <div class="info-box">
+    <span class="ico">📄</span>
+    <div>
+      <strong>Wozu diese Dokumente?</strong> Vor einem Webdesign-Auftrag halten wir gemeinsam fest, was vereinbart wurde – Umfang, Rechte, Änderungswünsche. Das schützt beide Seiten und schafft Klarheit vom ersten Tag an.
+    </div>
+  </div>
+
+  <!-- ── Webdesign Einverständniserklärung ── -->
+  <div class="doc-card">
+    <div class="doc-card-info">
+      <div class="doc-label">Webdesign & Erstellung</div>
+      <h2>Einverständniserklärung – Website Design & Erstellung</h2>
+      <p>Diese Vereinbarung regelt den Umfang eines Webdesign-Auftrags: Nutzungsrechte, Änderungswünsche, Abnahme und Zahlungsmodalitäten. Sie wird vor Projektbeginn gemeinsam durchgegangen und unterschrieben.</p>
+    </div>
+    <div class="doc-card-bottom">
+      <div class="doc-thumb-outer" onclick="openPdfModal('../docs/Webdesign_Einverstaendniserklaerung_TSH.pdf','Einverständniserklärung – Website Design & Erstellung')" title="Großansicht öffnen">
+        <iframe class="doc-thumb-frame"
+          src="../docs/Webdesign_Einverstaendniserklaerung_TSH.pdf#toolbar=0&navpanes=0&scrollbar=0"
+          tabindex="-1" aria-hidden="true"></iframe>
+      </div>
+      <div class="doc-btns">
+        <a href="../docs/Webdesign_Einverstaendniserklaerung_TSH.pdf"
+           download="Webdesign_Einverstaendniserklaerung_TSH.pdf" class="btn-dl">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download
+        </a>
+        <button onclick="openPdfModal('../docs/Webdesign_Einverstaendniserklaerung_TSH.pdf','Einverständniserklärung – Website Design & Erstellung')" class="btn-view">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+          </svg>
+          Großansicht
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="back-section">
+  <a href="../index.html" class="btn-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="10,3 5,8 10,13"/>
+    </svg>
+    Zurück zur Startseite
+  </a>
+  <a href="#top" class="btn-top">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="3,10 8,5 13,10"/>
+    </svg>
+    Nach oben
+  </a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span>© <script>document.write(new Date().getFullYear())</script> TechSupport HUB – Alle Rechte vorbehalten.</span>
+    <span>
+      <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
+      <a href="impressum.html#datenschutz">Datenschutz</a> &nbsp;·&nbsp;
+      <a href="leistungen.html">Leistungen</a>
+    </span>
+  </div>
+</footer>
+
+<!-- ── PDF Großansicht Modal ── -->
+<div id="pdf-modal">
+  <div class="pdf-modal-bar">
+    <button class="btn-modal-back" onclick="closePdfModal()">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="10,3 5,8 10,13"/>
+      </svg>
+      Zurück
+    </button>
+    <span class="pdf-modal-title">Webdesign Einverständniserklärung – TechSupport HUB</span>
+    <a id="pdf-modal-dl" href="#" download class="btn-dl" style="font-size:.8rem;padding:.5rem 1rem;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Download
+    </a>
+  </div>
+  <iframe src="" id="pdf-modal-frame" title="PDF Großansicht"></iframe>
+</div>
+
+<script>
+  function openPdfModal(src, title) {
+    document.getElementById('pdf-modal-frame').src = src + '#toolbar=1';
+    document.querySelector('.pdf-modal-title').textContent = title || 'Dokument';
+    document.getElementById('pdf-modal-dl').href = src;
+    document.getElementById('pdf-modal-dl').download = src.split('/').pop();
+    document.getElementById('pdf-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePdfModal() {
+    const modal = document.getElementById('pdf-modal');
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { document.getElementById('pdf-modal-frame').src = ''; }, 300);
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePdfModal(); });
+
+  const btn = document.getElementById('theme-toggle');
+  btn.addEventListener('click', () => {
+    const isLight = document.documentElement.classList.toggle('light');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
+  if (document.documentElement.classList.contains('light')) {
+    btn.querySelector('.icon-sun').style.display = 'none';
+    btn.querySelector('.icon-moon').style.display = 'block';
+  }
+</script>
+</body>
+</html>

@@ -167,7 +167,14 @@
     .service-row.cat-webdev::before  { background: #4080f0; }
     .service-row.cat-coding::before  { background: var(--neon-b); }
     .service-row.cat-bitcoin::before { background: var(--neon-o); }
-    .service-row:hover { border-color: var(--border); box-shadow: none; transform: none; cursor: default; }
+    .service-row.cat-seminar::before { background: #00d4ff; }
+
+    .service-row.cat-support { border-color: rgba(0,255,136,.5); }
+    .service-row.cat-webdev  { border-color: rgba(64,128,240,.5); }
+    .service-row.cat-coding  { border-color: rgba(0,200,255,.5); }
+    .service-row.cat-bitcoin { border-color: rgba(255,140,0,.5); }
+    .service-row.cat-seminar { border-color: rgba(0,212,255,.5); }
+    .service-row:hover { box-shadow: none; transform: none; cursor: default; }
 
     @media (max-width: 600px) {
       .service-row { grid-template-columns: 1fr; gap: .8rem; }
@@ -230,7 +237,7 @@
     /* ── Info note ── */
     .info-note {
       background: var(--surface2);
-      border: 1px solid var(--border);
+      border: 1.5px solid rgba(255,255,255,.45);
       border-radius: 10px;
       padding: 1.2rem 1.6rem;
       font-size: .87rem;
@@ -247,7 +254,7 @@
     .cta-box {
       margin-top: 3rem;
       background: linear-gradient(135deg, rgba(0,255,136,.08) 0%, rgba(0,200,255,.05) 100%);
-      border: 1px solid rgba(0,255,136,.2);
+      border: 1.5px solid rgba(0,255,136,.55);
       border-radius: var(--radius);
       padding: 2.5rem 2rem;
       text-align: center;
@@ -302,6 +309,8 @@
     }
     .footer-bottom a { color: var(--muted); text-decoration: none; }
     .footer-bottom a:hover { color: var(--neon-g); }
+    .footer-bottom a.hl-green { color: var(--neon-g); }
+    .footer-bottom a.hl-green:hover { color: var(--neon-g); text-decoration: underline; text-decoration-color: var(--neon-g); }
 
     /* ── THEME TOGGLE ── */
     #theme-toggle { background:transparent; border:1px solid rgba(255,255,255,0.15); border-radius:1rem; color:#6b7a9e; width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:border-color .2s,color .2s; flex-shrink:0; }
@@ -340,7 +349,12 @@
     html.light .btn-top  { background:#ffffff; border-color:rgba(0,25,90,0.22); color:#3f506e; }
     html.light .btn-top:hover  { border-color:rgba(0,160,96,0.4); color:#00a060; }
 
-    html.light .service-row { background:#ffffff; border-color:rgba(0,25,90,0.2); box-shadow:0 2px 12px rgba(0,20,80,0.1); }
+    html.light .service-row { background:#ffffff; box-shadow:0 2px 12px rgba(0,20,80,0.1); }
+    html.light .service-row.cat-support { border-color: rgba(0,160,96,.55); }
+    html.light .service-row.cat-webdev  { border-color: rgba(50,100,210,.55); }
+    html.light .service-row.cat-coding  { border-color: rgba(0,130,180,.55); }
+    html.light .service-row.cat-bitcoin { border-color: rgba(190,90,0,.55); }
+    html.light .service-row.cat-seminar { border-color: rgba(0,130,180,.55); }
     html.light .service-info h3 { color:#1a2540; }
     html.light .service-info p  { color:#3f506e; }
     html.light .price-block .price-unit, html.light .price-block .price-note { color:#3f506e; }
@@ -697,6 +711,7 @@
     <span>
       <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
       <a href="impressum.html#datenschutz">Datenschutz</a> &nbsp;·&nbsp;
+      <a href="vertraege.html" class="hl-green">Verträge</a> &nbsp;·&nbsp;
       <a href="#" onclick="openContact();return false;">Kontakt</a>
     </span>
   </div>
