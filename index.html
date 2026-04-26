@@ -561,6 +561,22 @@
     html:not([data-theme]) .hero-badge::before { background: #00845a; }
     html:not([data-theme]) .tsh-watermark-wrap svg { opacity: 0.1 !important; filter: brightness(0.35) saturate(160%); }
 
+    /* ── HERO ENTRANCE ANIMATIONS ── */
+    @keyframes heroEnter {
+      from { opacity:0; transform:translateY(-28px); filter:blur(10px); }
+      to   { opacity:1; transform:translateY(0);     filter:blur(0); }
+    }
+    .hero-badge    { animation: heroEnter 0.75s cubic-bezier(0.22,1,0.36,1) 0.1s  both; }
+    .hero-headline { animation: heroEnter 0.85s cubic-bezier(0.22,1,0.36,1) 0.4s  both; }
+    .hero-sub      { animation: heroEnter 0.85s cubic-bezier(0.22,1,0.36,1) 2.3s  both; }
+    .hero-cta      { animation: heroEnter 0.89s cubic-bezier(0.22,1,0.36,1) 2.55s both; }
+
+    .hero-content  { z-index: 2; }
+    #hero-particles { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:1; }
+
+    .type-cursor { display:inline-block; color:var(--neon-green); font-weight:300; margin-left:2px; animation:cursorBlink 0.65s step-end infinite; opacity:0; }
+    @keyframes cursorBlink { 0%,100%{opacity:1} 50%{opacity:0} }
+
     /* ── FADE IN ── */
     .fi {
       opacity: 0;
@@ -762,6 +778,7 @@
 
 <!-- ═══════════ HERO ═══════════ -->
 <section id="hero">
+  <canvas id="hero-particles"></canvas>
   <div class="hero-grid"></div>
   <!-- TSH watermark -->
   <div class="tsh-watermark-wrap" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:0;overflow:hidden;">
@@ -783,7 +800,7 @@
     <div class="hero-badge">Persönlicher IT-Support</div>
     <h1 class="hero-headline">
       Technik,<br>
-      <span class="hl">die funktioniert.</span>
+      <span class="hl">die funktioniert.</span><span class="type-cursor">|</span>
     </h1>
     <p class="hero-sub">
       Ich helfe im Alltag bei IT-Problemen und rund um Technik –
@@ -1516,6 +1533,62 @@
     const btn = document.querySelector('a[href="#footer"].btn-s');
     btn.href = '#';
     btn.addEventListener('click', e => { e.preventDefault(); openContact(); });
+  })();
+
+  // ── HERO PARTICLES ──
+  (function() {
+    const canvas = document.getElementById('hero-particles');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [];
+
+    function resize() {
+      W = canvas.width  = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    }
+
+    function mkP() {
+      return { x: Math.random()*W, y: H+5, r: Math.random()*1.1+0.3,
+               vx: (Math.random()-.5)*.4, vy: -(Math.random()*.525+0.21),
+               alpha: Math.random()*.45+0.12, life:0, max:.65+Math.random()*.35 };
+    }
+
+    resize();
+    for (let i=0; i<110; i++) { const p=mkP(); p.y=Math.random()*H; p.life=Math.random()*p.max; particles.push(p); }
+
+    function draw() {
+      ctx.clearRect(0,0,W,H);
+      particles.forEach((p,i) => {
+        p.x+=p.vx; p.y+=p.vy; p.life+=0.004;
+        if (p.life>=p.max || p.y<-5) { particles[i]=mkP(); return; }
+        const a = Math.sin(p.life/p.max*Math.PI)*p.alpha;
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle=`rgba(0,255,136,${a})`; ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+    window.addEventListener('resize', resize);
+  })();
+
+  // ── TYPEWRITER ──
+  (function() {
+    const hl     = document.querySelector('.hero-headline .hl');
+    const cursor = document.querySelector('.type-cursor');
+    if (!hl || !cursor) return;
+    const text = 'die funktioniert.';
+    hl.textContent = '';
+    setTimeout(() => {
+      cursor.style.opacity = '1';
+      let i = 0;
+      const iv = setInterval(() => {
+        hl.textContent += text[i++];
+        if (i >= text.length) {
+          clearInterval(iv);
+          cursor.style.animation='none'; cursor.style.opacity='0';
+        }
+      }, 72);
+    }, 1000);
   })();
 </script>
 </body>
