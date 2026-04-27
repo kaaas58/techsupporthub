@@ -247,13 +247,8 @@
     .btn-top:hover { border-color: rgba(0,200,255,.4); color: var(--neon-b); }
 
     /* ── THEME TOGGLE ── */
-    #theme-toggle { background:transparent; border:1px solid rgba(255,255,255,0.15); border-radius:1rem; color:#6b7a9e; width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:border-color .2s,color .2s; flex-shrink:0; }
     @media (hover: hover) {
-      #theme-toggle:hover { border-color:rgba(0,255,136,0.5); color:#00ff88; }
     }
-    #theme-toggle:active { border-color:rgba(0,255,136,0.5); color:#00ff88; }
-    #theme-toggle .icon-sun  { display:block; }
-    #theme-toggle .icon-moon { display:none; }
 
     /* ── LIGHT MODE ── */
     html.light { --bg:#d0daf0; --surface:#ffffff; --surface2:#f0f4fb; --border:rgba(0,25,90,0.22); --text:#111827; --muted:#3f506e; --neon-g:#00a060; --neon-b:#007fb5; --neon-p:#7c22d8; --neon-o:#c44a10; }
@@ -840,12 +835,18 @@
       </svg>
       Nach oben
     </a>
+    <a href="leistungen.html#support" class="btn-top">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
+        <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
+      </svg>
+      Leistungen ansehen
+    </a>
   </div>
 
 </div><!-- /page-content -->
 
 <script>
-  function toggleTheme() { const l=document.documentElement.classList.toggle('light'); localStorage.setItem('theme',l?'light':'dark'); }
 
   function smoothScroll(top) {
     const start = window.pageYOffset, dist = top - start, t0 = performance.now();

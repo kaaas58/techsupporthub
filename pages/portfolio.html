@@ -19,7 +19,14 @@
       --neon-g:  #00ff88;
     }
 
+    @keyframes pageEnter {
+      from { opacity:0; filter:blur(8px); transform:scale(.99); }
+      to   { opacity:1; filter:blur(0px); transform:scale(1); }
+    }
     body {
+      animation: pageEnter .4s cubic-bezier(.22,1,.36,1) both;
+      will-change: filter, opacity, transform;
+      transform-origin: center top;
       background: var(--bg);
       color: var(--text);
       font-family: 'Segoe UI', system-ui, sans-serif;
@@ -503,7 +510,7 @@
       <span class="t2">HUB</span>
     </div>
   </a>
-  <a href="../index.html#coding" class="nav-back">
+  <a href="../index.html#coding" class="nav-back" onclick="if(history.length>1){history.back();return false;}">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="10,3 5,8 10,13"/>
     </svg>
@@ -703,7 +710,7 @@
   </div>
 
   <div class="back-section">
-    <a href="../index.html#web-dev" class="btn-back">
+    <a href="../index.html#web-dev" class="btn-back" onclick="if(history.length>1){history.back();return false;}">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="10,3 5,8 10,13"/>
       </svg>
@@ -990,6 +997,14 @@
     if (cmModal.classList.contains('open')) closeCompare(true);
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCompare(); });
+
+  // Enter-Animation beim Zurück-Sprung (bfcache) überspringen
+  if (performance.getEntriesByType('navigation')[0]?.type === 'back_forward') {
+    document.body.style.animation = 'none';
+  }
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted) { document.body.style.animation = 'none'; }
+  });
 </script>
 </body>
 </html>

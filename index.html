@@ -1611,6 +1611,43 @@
       }, charDelay);
     }, startDelay);
   })();
+
+
+  // ── Page-exit transition for subpage links ──
+  (function() {
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes pageExit {
+        to { opacity:0; filter:blur(8px); transform:scale(1.02); }
+      }
+      body.is-leaving {
+        animation: pageExit .28s cubic-bezier(.4,0,1,1) forwards;
+        pointer-events: none;
+        will-change: filter, opacity, transform;
+        transform-origin: center center;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // bfcache fix: wenn der Browser die Seite aus dem Cache wiederherstellt
+    // (z.B. Zurück-Button), exit-Klasse und Inline-Styles sofort entfernen
+    window.addEventListener('pageshow', function(e) {
+      if (e.persisted || document.body.classList.contains('is-leaving')) {
+        document.body.classList.remove('is-leaving');
+        document.body.style.cssText = '';
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || link.target === '_blank') return;
+      e.preventDefault();
+      document.body.classList.add('is-leaving');
+      setTimeout(() => { window.location.href = href; }, 250);
+    });
+  })();
 </script>
 </body>
 </html>

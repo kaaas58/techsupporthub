@@ -216,13 +216,8 @@
     }
 
     /* ── THEME TOGGLE ── */
-    #theme-toggle { background:transparent; border:1px solid rgba(255,255,255,0.15); border-radius:1rem; color:#8b949e; width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:border-color .2s,color .2s; flex-shrink:0; }
     @media (hover: hover) {
-      #theme-toggle:hover { border-color:rgba(0,255,136,0.5); color:#00ff88; }
     }
-    #theme-toggle:active { border-color:rgba(0,255,136,0.5); color:#00ff88; }
-    #theme-toggle .icon-sun  { display:block; }
-    #theme-toggle .icon-moon { display:none; }
 
     /* ── LIGHT MODE ── */
     html.light { --bg-deep:#dde5f2; --bg-base:#d0daf0; --surface:#ffffff; --border:rgba(0,25,90,0.22); --text-1:#111827; --text-2:#4b5568; --text-3:#8896aa; --neon-green:#00a060; }
@@ -367,7 +362,6 @@
 </footer>
 
 <script>
-  function toggleTheme() { const l=document.documentElement.classList.toggle('light'); localStorage.setItem('theme',l?'light':'dark'); }
 </script>
 
 </body>

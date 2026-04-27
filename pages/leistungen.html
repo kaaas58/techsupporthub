@@ -25,6 +25,21 @@
       --glow-g:    0 0 18px rgba(0,255,136,.35);
     }
 
+    @keyframes pageEnter {
+      from { opacity:0; filter:blur(13px); }
+      to   { opacity:1; filter:blur(0px); }
+    }
+    @keyframes pageExit {
+      to { opacity:0; filter:blur(9px); transform:scale(1.02); }
+    }
+    .page-wrap {
+      animation: pageEnter .48s cubic-bezier(.22,1,.36,1) both;
+      will-change: filter, opacity;
+    }
+    .page-wrap.is-leaving {
+      animation: pageExit .28s cubic-bezier(.4,0,1,1) forwards;
+      pointer-events: none;
+    }
     body {
       background: var(--bg);
       color: var(--text);
@@ -172,13 +187,13 @@
       width: 3px;
       border-radius: 3px 0 0 3px;
     }
-    .service-row.cat-support::before { background: var(--neon-g); }
+    .service-row.cat-support::before { background: #00d4ff; }
     .service-row.cat-webdev::before  { background: #4080f0; }
     .service-row.cat-coding::before  { background: var(--neon-b); }
     .service-row.cat-bitcoin::before { background: var(--neon-o); }
     .service-row.cat-seminar::before { background: #00d4ff; }
 
-    .service-row.cat-support { border-color: rgba(0,255,136,.5); }
+    .service-row.cat-support { border-color: rgba(0,212,255,.5); }
     .service-row.cat-webdev  { border-color: rgba(64,128,240,.5); }
     .service-row.cat-coding  { border-color: rgba(0,200,255,.5); }
     .service-row.cat-bitcoin { border-color: rgba(255,140,0,.5); }
@@ -196,12 +211,17 @@
       transform:translateY(-2px) !important;
     }
     .service-row-chevron {
-      display:flex; align-items:center; padding-left:.4rem;
-      color:rgba(64,128,240,.45); transition:transform .2s, color .2s;
+      display:flex; align-items:center; padding-left:.5rem;
+      transition:transform .2s, color .2s;
     }
-    .service-row-link:hover .service-row-chevron { color:#4080f0; transform:translateX(4px); }
-    .cat-support.service-row-link:hover { border-color:rgba(0,255,136,.85) !important; box-shadow:0 8px 32px rgba(0,255,136,.15) !important; }
-    .cat-support.service-row-link:hover .service-row-chevron { color:#00ff88; }
+    /* Sektionsfarbe als Default-Chevronfarbe */
+    .cat-webdev  .service-row-chevron { color:rgba(64,128,240,.6); }
+    .cat-support .service-row-chevron { color:rgba(0,212,255,.55); }
+    /* Hover: heller/satter */
+    .service-row-link:hover .service-row-chevron { transform:translateX(5px); }
+    .cat-webdev.service-row-link:hover  .service-row-chevron { color:#4080f0; }
+    .cat-support.service-row-link:hover { border-color:rgba(0,212,255,.85) !important; box-shadow:0 8px 32px rgba(0,212,255,.15) !important; }
+    .cat-support.service-row-link:hover .service-row-chevron { color:#00d4ff; }
     @media (max-width:600px) { .service-row-chevron { display:none; } }
 
     @media (max-width: 600px) {
@@ -269,7 +289,7 @@
     .service-row.cat-seminar { text-decoration: none; display: grid; color: inherit; }
 
     /* accent color per category */
-    .cat-support .price { color: var(--neon-g); text-shadow: 0 0 12px rgba(0,255,136,.3); filter: none; }
+    .cat-support .price { color: #00d4ff; text-shadow: 0 0 12px rgba(0,212,255,.3); filter: none; }
     .cat-support .price-note.blurred { filter: none; }
     .cat-webdev  .price { color: #4080f0;       text-shadow: 0 0 12px rgba(64,128,240,.3); }
     .cat-coding  .price { color: var(--neon-b); text-shadow: 0 0 12px rgba(0,200,255,.3); }
@@ -453,13 +473,8 @@
     }
 
     /* ── THEME TOGGLE ── */
-    #theme-toggle { background:transparent; border:1px solid rgba(255,255,255,0.15); border-radius:1rem; color:#6b7a9e; width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:border-color .2s,color .2s; flex-shrink:0; }
     @media (hover: hover) {
-      #theme-toggle:hover { border-color:rgba(0,255,136,0.5); color:#00ff88; }
     }
-    #theme-toggle:active { border-color:rgba(0,255,136,0.5); color:#00ff88; }
-    #theme-toggle .icon-sun  { display:block; }
-    #theme-toggle .icon-moon { display:none; }
 
     /* ── LIGHT MODE ── */
     html.light { --bg:#d0daf0; --surface:#ffffff; --surface2:#f0f4fb; --border:rgba(0,25,90,0.22); --text:#111827; --muted:#3f506e; --neon-g:#00a060; --neon-b:#007fb5; --neon-p:#7c22d8; --neon-o:#c44a10; }
@@ -490,7 +505,7 @@
     html.light .btn-top:hover  { border-color:rgba(0,160,96,0.4); color:#00a060; }
 
     html.light .service-row { background:#ffffff; box-shadow:0 2px 12px rgba(0,20,80,0.1); }
-    html.light .service-row.cat-support { border-color: rgba(0,160,96,.55); }
+    html.light .service-row.cat-support { border-color: rgba(0,160,200,.55); }
     html.light .service-row.cat-webdev  { border-color: rgba(50,100,210,.55); }
     html.light .service-row.cat-coding  { border-color: rgba(0,130,180,.55); }
     html.light .service-row.cat-bitcoin { border-color: rgba(190,90,0,.55); }
@@ -523,6 +538,7 @@
   </style>
 </head>
 <body>
+<div class="page-wrap">
 
 <!-- ── Navbar ── -->
 <nav>
@@ -558,14 +574,14 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
 
   <!-- ═══ 01 USER SUPPORT ═══ -->
   <div class="sec-group" id="support">
-    <p class="sec-label" style="color:var(--neon-g);">01 — User Support</p>
-    <h2 class="sec-title">Anwender & <span style="color:var(--neon-g);">User Support</span></h2>
+    <p class="sec-label" style="color:#00d4ff;">01 — Anwender & User Support</p>
+    <h2 class="sec-title">Technik einfach <span style="color:#00d4ff;">erklärt.</span></h2>
   </div>
 
   <a href="pc-einfuehrung.html" class="service-row cat-support service-row-link">
     <div class="service-info">
       <h3 style="display:flex;align-items:center;gap:.4rem;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,255,136,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,212,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
         </svg>
         PC-Einführung für Einsteiger &amp; Senioren
@@ -590,7 +606,7 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
   <a href="android-einrichtung.html" class="service-row cat-support service-row-link">
     <div class="service-info">
       <h3 style="display:flex;align-items:center;gap:.4rem;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,255,136,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,212,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
         </svg>
         Android-Smartphone Einrichtung
@@ -614,7 +630,7 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
   <a href="it-support.html" class="service-row cat-support service-row-link">
     <div class="service-info">
       <h3 style="display:flex;align-items:center;gap:.4rem;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,255,136,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,212,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
         </svg>
         Geräteproblem &amp; Allgemeiner IT-Support
@@ -664,7 +680,7 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
       <div class="price-unit">60–90 Min.</div>
     </div>
     <div class="service-row-chevron">
-      <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="6,3 11,8 6,13"/>
       </svg>
     </div>
@@ -689,7 +705,7 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
       <div class="price" style="filter:none;font-size:.88rem;line-height:1.4;text-align:right;">Im Basic Paket<br>inklusive</div>
     </div>
     <div class="service-row-chevron">
-      <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="6,3 11,8 6,13"/>
       </svg>
     </div>
@@ -714,7 +730,7 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
       <div class="price" style="filter:none;font-size:.88rem;line-height:1.4;text-align:right;">Preise laut<br>Vertrag</div>
     </div>
     <div class="service-row-chevron">
-      <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="6,3 11,8 6,13"/>
       </svg>
     </div>
@@ -936,6 +952,7 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
     </span>
   </div>
 </footer>
+</div><!-- /.page-wrap -->
 
 <!-- ══ CONTACT MODAL ══ -->
 <div id="contactModal" aria-modal="true" role="dialog">
@@ -1082,7 +1099,27 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
     }
   }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContact(); });
-  function toggleTheme() { const l=document.documentElement.classList.toggle('light'); localStorage.setItem('theme',l?'light':'dark'); }
+
+  // Enter-Animation beim Zurück-Sprung (bfcache) überspringen
+  const _pw = document.querySelector('.page-wrap');
+  if (_pw && performance.getEntriesByType('navigation')[0]?.type === 'back_forward') {
+    _pw.style.animation = 'none';
+  }
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted && _pw) { _pw.classList.remove('is-leaving'); _pw.style.animation = 'none'; }
+  });
+
+  // Exit-Blur beim Klick auf Unterseiten-Kacheln
+  document.querySelectorAll('.service-row-link').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+      var href = link.getAttribute('href');
+      if (!href || href.startsWith('#')) return;
+      e.preventDefault();
+      if (_pw) _pw.classList.add('is-leaving');
+      setTimeout(function() { window.location.href = href; }, 260);
+    });
+  });
 </script>
 
 </body>
