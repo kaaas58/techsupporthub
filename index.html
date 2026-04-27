@@ -825,7 +825,7 @@
       verständlich erklärt, persönlich begleitet, auf den Punkt gebracht.
     </p>
     <div class="hero-cta">
-      <a href="#" onclick="openContact();return false;" class="btn-s">Kontakt aufnehmen</a>
+      <a href="#" onclick="openContact('Startseite – Erstkontakt (Hero)');return false;" class="btn-s">Kontakt aufnehmen</a>
     </div>
   </div>
 </section>
@@ -1333,7 +1333,7 @@
     </p>
     <div class="fi" style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;">
       <a href="pages/leistungen.html" class="btn-p">Leistungen entdecken</a>
-      <a href="#" onclick="openContact();return false;" class="btn-s">Kontakt aufnehmen</a>
+      <a href="#" onclick="openContact('Startseite – Kontakt CTA Bereich');return false;" class="btn-s">Kontakt aufnehmen</a>
     </div>
   </div>
 </section>
@@ -1384,7 +1384,7 @@
       <p>Ich melde mich in der Regel innerhalb von 24 Stunden.</p>
     </div>
     <form id="contactForm" onsubmit="submitContact(event)">
-      <input type="hidden" id="cf-source" value="General"/>
+      <input type="hidden" id="cf-source" value="Startseite – TSH"/>
       <div class="form-row">
         <label for="cf-name">Name</label>
         <input id="cf-name" type="text" placeholder="Dein Name" required autocomplete="name"/>
@@ -1483,7 +1483,8 @@
   // ── Contact modal ──
   const FORMSPREE_URL = 'https://formsubmit.co/ajax/info.tsh@gmx.de';
   const modal = document.getElementById('contactModal');
-  function openContact() {
+  function openContact(topic) {
+    if (topic) document.getElementById('cf-source').value = topic;
     modal.classList.add('is-open');
     document.getElementById('contactForm').style.display = '';
     document.getElementById('contactSuccess').style.display = 'none';

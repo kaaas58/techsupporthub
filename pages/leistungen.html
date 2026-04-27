@@ -189,13 +189,13 @@
     }
     .service-row.cat-support::before { background: #00d4ff; }
     .service-row.cat-webdev::before  { background: #4080f0; }
-    .service-row.cat-coding::before  { background: var(--neon-b); }
+    .service-row.cat-coding::before  { background: var(--neon-g); }
     .service-row.cat-bitcoin::before { background: var(--neon-o); }
     .service-row.cat-seminar::before { background: #00d4ff; }
 
     .service-row.cat-support { border-color: rgba(0,212,255,.5); }
     .service-row.cat-webdev  { border-color: rgba(64,128,240,.5); }
-    .service-row.cat-coding  { border-color: rgba(0,200,255,.5); }
+    .service-row.cat-coding  { border-color: rgba(0,255,136,.5); }
     .service-row.cat-bitcoin { border-color: rgba(255,140,0,.5); }
     .service-row.cat-seminar { border-color: rgba(0,212,255,.5); }
     .service-row:hover { box-shadow: none; transform: none; cursor: default; }
@@ -222,6 +222,9 @@
     .cat-webdev.service-row-link:hover  .service-row-chevron { color:#4080f0; }
     .cat-support.service-row-link:hover { border-color:rgba(0,212,255,.85) !important; box-shadow:0 8px 32px rgba(0,212,255,.15) !important; }
     .cat-support.service-row-link:hover .service-row-chevron { color:#00d4ff; }
+    .cat-bitcoin .service-row-chevron { color:rgba(255,140,0,.55); }
+    .cat-bitcoin.service-row-link:hover { border-color:rgba(255,140,0,.85) !important; box-shadow:0 8px 32px rgba(255,140,0,.15) !important; }
+    .cat-bitcoin.service-row-link:hover .service-row-chevron { color:#ff8c00; }
     @media (max-width:600px) { .service-row-chevron { display:none; } }
 
     @media (max-width: 600px) {
@@ -292,8 +295,9 @@
     .cat-support .price { color: #00d4ff; text-shadow: 0 0 12px rgba(0,212,255,.3); filter: none; }
     .cat-support .price-note.blurred { filter: none; }
     .cat-webdev  .price { color: #4080f0;       text-shadow: 0 0 12px rgba(64,128,240,.3); }
-    .cat-coding  .price { color: var(--neon-b); text-shadow: 0 0 12px rgba(0,200,255,.3); }
-    .cat-bitcoin .price { color: var(--neon-o); text-shadow: 0 0 12px rgba(255,140,0,.3); }
+    .cat-coding  .price { color: var(--neon-g); text-shadow: 0 0 12px rgba(0,255,136,.3); }
+    .cat-bitcoin .price { color: var(--neon-o); text-shadow: 0 0 12px rgba(255,140,0,.3); filter: none; }
+    .cat-bitcoin .price-note.blurred { filter: none; }
 
     /* ── Info note ── */
     .info-note {
@@ -507,7 +511,7 @@
     html.light .service-row { background:#ffffff; box-shadow:0 2px 12px rgba(0,20,80,0.1); }
     html.light .service-row.cat-support { border-color: rgba(0,160,200,.55); }
     html.light .service-row.cat-webdev  { border-color: rgba(50,100,210,.55); }
-    html.light .service-row.cat-coding  { border-color: rgba(0,130,180,.55); }
+    html.light .service-row.cat-coding  { border-color: rgba(0,160,80,.55); }
     html.light .service-row.cat-bitcoin { border-color: rgba(190,90,0,.55); }
     html.light .service-row.cat-seminar { border-color: rgba(0,130,180,.55); }
     html.light .service-info h3 { color:#1a2540; }
@@ -738,8 +742,8 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
 
   <!-- ═══ 03 CODING & BUGFIXING ═══ -->
   <div class="sec-group" id="coding">
-    <p class="sec-label" style="color:var(--neon-b);">03 — Coding</p>
-    <h2 class="sec-title">Coding & <span style="color:var(--neon-b);">Bugfixing</span></h2>
+    <p class="sec-label" style="color:var(--neon-g);">03 — Coding</p>
+    <h2 class="sec-title">Coding & <span style="color:var(--neon-g);">Bugfixing</span></h2>
   </div>
 
   <div class="service-row cat-coding">
@@ -794,9 +798,14 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
     <h2 class="sec-title">The <span style="color:var(--neon-o);">Bitcoin Journey</span></h2>
   </div>
 
-  <div class="service-row cat-bitcoin">
+  <a href="btc-grundlagen.html" class="service-row cat-bitcoin service-row-link">
     <div class="service-info">
-      <h3>Bitcoin Grundlagen & Onboarding</h3>
+      <h3 style="display:flex;align-items:center;gap:.4rem;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,140,0,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><path d="M9 8h5.5a2 2 0 0 1 0 4H9m0 0h6a2 2 0 0 1 0 4H9M9 8v8M12 6v2m0 8v2"/>
+        </svg>
+        Bitcoin Grundlagen &amp; Onboarding
+      </h3>
       <p>Was ist Bitcoin, wie funktioniert die Blockchain, was sind Private Keys und Wallets – fundiert und verständlich erklärt.</p>
       <div class="service-badges">
         <span class="badge badge-o">Remote</span>
@@ -808,11 +817,19 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
       <div class="price">65 €</div>
       <div class="price-unit">pro Stunde</div>
     </div>
-  </div>
+    <div class="service-row-chevron">
+      <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+    </div>
+  </a>
 
-  <div class="service-row cat-bitcoin">
+  <a href="btc-custody.html" class="service-row cat-bitcoin service-row-link">
     <div class="service-info">
-      <h3>Self-Custody & Cold Storage Einrichtung</h3>
+      <h3 style="display:flex;align-items:center;gap:.4rem;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,140,0,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        Self-Custody &amp; Cold Storage Einrichtung
+      </h3>
       <p>Hardware Wallet (Ledger, Trezor, Coldcard u. a.) einrichten, Seed-Phrase sicher verwahren, Coins von der Exchange transferieren.</p>
       <div class="service-badges">
         <span class="badge badge-o">Vor Ort</span>
@@ -825,11 +842,19 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
       <div class="price-unit">pro Stunde</div>
       <div class="price-note">mind. 1,5 Std.</div>
     </div>
-  </div>
+    <div class="service-row-chevron">
+      <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+    </div>
+  </a>
 
-  <div class="service-row cat-bitcoin">
+  <a href="btc-mining.html" class="service-row cat-bitcoin service-row-link">
     <div class="service-info">
-      <h3>Solo Mining Hardware Inbetriebnahme</h3>
+      <h3 style="display:flex;align-items:center;gap:.4rem;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,140,0,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2M8 11h.01M12 11h.01M16 11h.01"/>
+        </svg>
+        Solo Mining Hardware Inbetriebnahme
+      </h3>
       <p>ASIC-Miner konfigurieren, ans Netz bringen, Pool vs. Solo-Mining, Kalkulation und laufenden Betrieb verstehen.</p>
       <div class="service-badges">
         <span class="badge badge-o">Vor Ort</span>
@@ -840,11 +865,19 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
       <div class="price">90 €</div>
       <div class="price-unit">pro Stunde</div>
     </div>
-  </div>
+    <div class="service-row-chevron">
+      <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+    </div>
+  </a>
 
-  <div class="service-row cat-bitcoin">
+  <a href="btc-risiko.html" class="service-row cat-bitcoin service-row-link">
     <div class="service-info">
-      <h3>Risikomanagement & Stolpersteine-Beratung</h3>
+      <h3 style="display:flex;align-items:center;gap:.4rem;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,140,0,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        Risikomanagement &amp; Stolpersteine-Beratung
+      </h3>
       <p>Scams erkennen, Backup-Strategien, Erbfall-Szenarien, Sicherheitschecks und Protokoll-Überprüfung.</p>
       <div class="service-badges">
         <span class="badge badge-o">Remote</span>
@@ -855,7 +888,10 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
       <div class="price">70 €</div>
       <div class="price-unit">pro Stunde</div>
     </div>
-  </div>
+    <div class="service-row-chevron">
+      <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
+    </div>
+  </a>
 
   <!-- ═══ 05 SEMINARE ═══ -->
   <div class="sec-group" id="seminare">
@@ -920,7 +956,7 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
   <div class="cta-box">
     <h3>Bereit loszulegen?</h3>
     <p>Schreib mir kurz was du brauchst – ich melde mich in der Regel innerhalb von 24 Stunden.</p>
-    <button onclick="openContact()" class="btn btn-primary">Jetzt anfragen</button>
+    <button onclick="openContact('Leistungen & Preise – Erstgespräch anfragen')" class="btn btn-primary">Jetzt anfragen</button>
   </div>
 
 </div>
@@ -969,7 +1005,7 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
       <p>Ich melde mich in der Regel innerhalb von 24 Stunden.</p>
     </div>
     <form id="contactForm" onsubmit="submitContact(event)">
-      <input type="hidden" id="cf-source" value="General"/>
+      <input type="hidden" id="cf-source" value="Leistungen & Preise – TSH"/>
       <div class="form-row">
         <label for="cf-name">Name</label>
         <input id="cf-name" type="text" placeholder="Dein Name" required autocomplete="name"/>
@@ -1054,7 +1090,8 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
   const FORMSPREE_URL = 'https://formsubmit.co/ajax/info.tsh@gmx.de';
 
   const modal = document.getElementById('contactModal');
-  function openContact() {
+  function openContact(topic) {
+    if (topic) document.getElementById('cf-source').value = topic;
     modal.classList.add('is-open');
     document.getElementById('contactForm').style.display = '';
     document.getElementById('contactSuccess').style.display = 'none';

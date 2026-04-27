@@ -559,7 +559,7 @@
       <p>Ich melde mich in der Regel innerhalb von 24 Stunden.</p>
     </div>
     <form id="contactForm" onsubmit="submitContact(event)">
-      <input type="hidden" id="cf-source" value="General"/>
+      <input type="hidden" id="cf-source" value="Über mich – TSH"/>
       <div class="form-row">
         <label for="cf-name">Name</label>
         <input id="cf-name" type="text" placeholder="Dein Name" required autocomplete="name"/>
@@ -616,7 +616,8 @@
 <script>
   const FORMSPREE_URL = 'https://formsubmit.co/ajax/info.tsh@gmx.de';
   const modal = document.getElementById('contactModal');
-  function openContact() {
+  function openContact(topic) {
+    if (topic) document.getElementById('cf-source').value = topic;
     modal.classList.add('is-open');
     document.getElementById('contactForm').style.display = '';
     document.getElementById('contactSuccess').style.display = 'none';
