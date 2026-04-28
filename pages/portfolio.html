@@ -456,10 +456,10 @@
     .compare-card-hint { display: flex; align-items: center; gap: .3rem; font-size: .7rem; color: var(--neon-g); opacity: .75; }
 
     /* ══ COMPARE MODAL ══ */
-    .cm-overlay { display: none; position: fixed; inset: 0; z-index: 600; align-items: center; justify-content: center; padding: 1rem; touch-action: pan-y; }
+    .cm-overlay { display: none; position: fixed; inset: 0; z-index: 600; align-items: center; justify-content: center; padding: 1rem; }
     .cm-overlay.open { display: flex; }
     .cm-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.82); backdrop-filter: blur(8px); }
-    .cm-box { position: relative; z-index: 1; background: #13192a; border: 1.5px solid rgba(0,255,136,.3); border-radius: 16px; overflow-y: scroll; -webkit-overflow-scrolling: touch; overflow-x: hidden; width: 100%; max-width: 860px; max-height: 92vh; box-shadow: 0 32px 80px rgba(0,0,0,.7), 0 0 32px rgba(0,255,136,.08); animation: cmIn .22s cubic-bezier(.34,1.4,.64,1); touch-action: pan-y; overscroll-behavior: contain; }
+    .cm-box { position: relative; z-index: 1; background: #13192a; border: 1.5px solid rgba(0,255,136,.3); border-radius: 16px; overflow-y: scroll; -webkit-overflow-scrolling: touch; overflow-x: hidden; width: 100%; max-width: 860px; max-height: 92vh; box-shadow: 0 32px 80px rgba(0,0,0,.7), 0 0 32px rgba(0,255,136,.08); animation: cmIn .22s cubic-bezier(.34,1.4,.64,1); overscroll-behavior: contain; }
     .cm-box::-webkit-scrollbar { width: 8px; }
     .cm-box::-webkit-scrollbar-track { background: rgba(255,255,255,.04); border-radius: 4px; }
     .cm-box::-webkit-scrollbar-thumb { background: rgba(0,255,136,.45); border-radius: 4px; }
@@ -468,10 +468,10 @@
     .cm-close { position: absolute; top: .65rem; right: .65rem; z-index: 5; background: rgba(0,0,0,.5); border: 1px solid rgba(255,255,255,.6); border-radius: 8px; color: #ffffff; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: color .2s, transform .3s, border-color .2s; }
     .cm-close:hover { color: #e53e3e; border-color: rgba(229,62,62,.4); transform: rotate(90deg); }
     .cm-title { font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.55); padding: .7rem 1rem .5rem; display: block; }
-    .cm-pair { display: flex; touch-action: pan-y; }
-    .cm-side { flex: 1; min-width: 0; position: relative; touch-action: pan-y; }
+    .cm-pair { display: flex; }
+    .cm-side { flex: 1; min-width: 0; position: relative; overflow: hidden; }
     .cm-side + .cm-side { border-left: 2px solid rgba(255,255,255,.12); }
-    .cm-side img { width: 100%; height: auto; display: block; touch-action: pan-y; pointer-events: none; }
+    .cm-side img { width: 100%; height: auto; display: block; transform-origin: center center; user-select: none; -webkit-user-select: none; }
     .cm-side-label { display: block; text-align: center; font-size: .67rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .28rem .5rem; position: sticky; top: 0; z-index: 3; }
     .cm-side-label-before { background: rgba(190,25,25,.82); color: #fff; border-bottom: 1px solid rgba(220,38,38,.6); }
     .cm-side-label-after  { background: rgba(0,155,70,.72); color: #fff; border-bottom: 1px solid rgba(0,255,136,.5); }
@@ -878,6 +878,59 @@
   const cmBox       = document.getElementById('cmBox');
   const cmTitleEl   = document.getElementById('cmTitle');
   const cmSlidersEl = document.getElementById('cmSliders');
+
+  // ── Touch: scroll (1 finger) + pinch-zoom (2 fingers) ──
+  (function () {
+    let mode = null; // 'scroll' | 'zoom'
+    let scrollStartY = 0, scrollBoxTop = 0;
+    let pinchStart = 0, pinchBase = 1, pinchImg = null;
+    function pdist(t) { return Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY); }
+    function resetZoom(img) { img.style.transform = ''; img._scale = 1; }
+
+    cmBox.addEventListener('touchstart', function (e) {
+      if (e.touches.length >= 2) {
+        mode = 'zoom';
+        pinchStart = pdist(e.touches);
+        const side = e.target.closest('.cm-side');
+        pinchImg = side ? side.querySelector('img') : null;
+        pinchBase = (pinchImg && pinchImg._scale) || 1;
+        e.preventDefault();
+      } else {
+        mode = 'scroll';
+        scrollStartY = e.touches[0].clientY;
+        scrollBoxTop = cmBox.scrollTop;
+      }
+    }, { passive: false });
+
+    cmBox.addEventListener('touchmove', function (e) {
+      if (mode === 'zoom' && pinchImg && e.touches.length >= 2) {
+        const s = Math.min(5, Math.max(1, pinchBase * pdist(e.touches) / pinchStart));
+        pinchImg._scale = s;
+        pinchImg.style.transform = s > 1 ? `scale(${s})` : '';
+        e.preventDefault();
+      } else if (mode === 'scroll' && e.touches.length === 1) {
+        cmBox.scrollTop = scrollBoxTop + (scrollStartY - e.touches[0].clientY);
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    cmBox.addEventListener('touchend', function (e) {
+      if (e.touches.length === 0) mode = null;
+      if (pinchImg && (pinchImg._scale || 1) < 1.08) resetZoom(pinchImg);
+    });
+
+    // double-tap to reset zoom
+    let lastTap = 0;
+    cmBox.addEventListener('touchend', function (e) {
+      const now = Date.now();
+      if (now - lastTap < 300) {
+        const side = e.target.closest('.cm-side');
+        const img = side && side.querySelector('img');
+        if (img) resetZoom(img);
+      }
+      lastTap = now;
+    });
+  })();
 
   function buildPairs(pairs) {
     cmSlidersEl.innerHTML = '';
