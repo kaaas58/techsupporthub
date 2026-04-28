@@ -669,11 +669,23 @@
       .hero-content { padding: 1.5rem 1rem; }
     }
 
+    @keyframes heroEnterMobile {
+      from { opacity: 0; transform: translateY(-14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes btnFromDepthMobile {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 640px) {
-      .hero-badge    { animation-duration: 0.6s;  animation-delay: 0.08s; }
-      .hero-headline { animation-duration: 0.68s; animation-delay: 0.32s; }
-      .hero-sub      { animation-duration: 0.68s; animation-delay: 1.84s; }
-      .hero-cta      { animation-duration: 1.12s; animation-delay: 2.08s; }
+      .hero-badge    { animation-name: heroEnterMobile; animation-duration: 0.5s;  animation-delay: 0.08s; }
+      .hero-headline { animation-name: heroEnterMobile; animation-duration: 0.6s;  animation-delay: 0.28s; }
+      .hero-sub      { animation-name: heroEnterMobile; animation-duration: 0.6s;  animation-delay: 0.7s; }
+      .hero-cta      { animation-name: btnFromDepthMobile; animation-duration: 0.6s; animation-delay: 0.9s; }
+      .orb           { display: none; }
+      .btn-portfolio { animation: none !important; }
+      nav            { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(8,12,20,0.96); }
     }
 
     /* ── THEME TOGGLE ── */
@@ -772,6 +784,19 @@
     html:not([data-theme]) .btn-green:hover { border-color: rgba(0,160,96,0.45); color: #00a060; background: rgba(0,160,96,0.05); }
     html:not([data-theme]) .btn-purple:hover { border-color: rgba(124,34,216,0.45); color: #7c22d8; background: rgba(124,34,216,0.05); }
     html:not([data-theme]) .btn-cancel:hover { border-color: rgba(180,40,40,0.45); color: rgba(180,40,40,0.9); background: rgba(180,40,40,0.05); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .fi { opacity: 1; transform: none; }
+      .hero-badge, .hero-headline, .hero-sub, .hero-cta { opacity: 1; transform: none; animation: none; }
+      .orb { animation: none; }
+      .btn-portfolio { animation: none !important; }
+      #hero-particles { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -1583,7 +1608,8 @@
     const canvas = document.getElementById('hero-particles');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    let W, H, particles = [];
+    let W, H, particles = [], paused = false;
+    const COUNT = window.innerWidth <= 640 ? 22 : 110;
 
     function resize() {
       W = canvas.width  = canvas.offsetWidth;
@@ -1597,9 +1623,10 @@
     }
 
     resize();
-    for (let i=0; i<110; i++) { const p=mkP(); p.y=Math.random()*H; p.life=Math.random()*p.max; particles.push(p); }
+    for (let i=0; i<COUNT; i++) { const p=mkP(); p.y=Math.random()*H; p.life=Math.random()*p.max; particles.push(p); }
 
     function draw() {
+      if (paused) return;
       ctx.clearRect(0,0,W,H);
       particles.forEach((p,i) => {
         p.x+=p.vx; p.y+=p.vy; p.life+=0.004;
@@ -1612,6 +1639,10 @@
     }
     draw();
     window.addEventListener('resize', resize);
+    document.addEventListener('visibilitychange', () => {
+      paused = document.hidden;
+      if (!paused) draw();
+    });
   })();
 
   // ── TYPEWRITER ──
