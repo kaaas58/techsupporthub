@@ -467,16 +467,10 @@
     .cm-close { position: absolute; top: .65rem; right: .65rem; z-index: 5; background: rgba(0,0,0,.5); border: 1px solid rgba(255,255,255,.6); border-radius: 8px; color: #ffffff; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: color .2s, transform .3s, border-color .2s; }
     .cm-close:hover { color: #e53e3e; border-color: rgba(229,62,62,.4); transform: rotate(90deg); }
     .cm-title { font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.55); padding: .7rem 1rem .5rem; display: block; }
-    .cm-frame { width: 100%; overflow: hidden; position: relative; touch-action: none; user-select: none; -webkit-user-select: none; cursor: grab; border-bottom: 1px solid rgba(255,255,255,.08); }
-    .cm-frame:active { cursor: grabbing; }
-    .cm-frame:last-child { border-bottom: none; }
-    .cm-canvas { display: flex; align-items: flex-start; width: 100%; transform-origin: 0 0; will-change: transform; }
-    .cm-side { flex: 0 0 50%; min-width: 0; position: relative; }
-    .cm-side + .cm-side { border-left: 2px solid rgba(255,255,255,.12); }
+    .cm-pair { display: flex; flex-direction: column; gap: 1.1rem; padding: 1rem; }
+    .cm-side { border-radius: 14px; overflow: hidden; border: 2.5px solid #7d1a30; }
     .cm-side img { width: 100%; height: auto; display: block; pointer-events: none; user-select: none; -webkit-user-select: none; }
-    .cm-side-label { display: block; text-align: center; font-size: .67rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .28rem .5rem; background: rgba(0,0,0,.55); }
-    .cm-side-label-before { border-bottom: 2px solid rgba(220,38,38,.8); color: #ff8080; }
-    .cm-side-label-after  { border-bottom: 2px solid rgba(0,255,136,.8); color: #00ff88; }
+    .cm-side-label { display: block; text-align: center; font-size: .67rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .28rem .5rem; background: #7d1a30; color: #fff; }
 
     html.light .compare-card { background: #f0f4fb; border-color: rgba(0,160,96,.35); }
     html.light .compare-card:hover { border-color: rgba(0,160,96,.4); box-shadow: 0 0 18px rgba(0,160,96,.1), 0 8px 32px rgba(0,20,80,.08); }
@@ -487,10 +481,7 @@
     html.light .compare-card-foot { border-top-color: rgba(0,20,80,.08); }
     html.light .cm-box   { background: #fff; border-color: rgba(0,160,96,.35); }
     html.light .cm-close { background: rgba(0,20,80,.06); border-color: rgba(0,20,80,.12); color: #4b5568; }
-    html.light .cm-side + .cm-side { border-color: rgba(0,20,80,.15); }
     html.light .cm-title { color: rgba(0,20,80,.5); }
-    html.light .cm-frame { border-bottom-color: rgba(0,20,80,.1); }
-    html.light .cm-side-label { background: rgba(255,255,255,.7); }
   </style>
 </head>
 <body>
@@ -884,109 +875,21 @@
   const cmSlidersEl = document.getElementById('cmSliders');
 
   // ── Per-frame zoom + pan + scroll ──
-  function initFrameTouch(frame, canvas) {
-    let s = 1, tx = 0, ty = 0;
-    let mode = null; // 'pinch' | 'pan' | 'scroll'
-    let pinchD0 = 0, pinchS0 = 0, pinchTx0 = 0, pinchTy0 = 0, pinchCx = 0, pinchCy = 0;
-    let panX0 = 0, panY0 = 0, panTx0 = 0, panTy0 = 0;
-    let scrY0 = 0, scrTop0 = 0;
-    let lastTap = 0;
-
-    function apply() {
-      canvas.style.transform = s === 1 ? '' : `translate(${tx}px,${ty}px) scale(${s})`;
-    }
-    function clamp() {
-      const fw = frame.clientWidth, fh = frame.clientHeight;
-      const ch = canvas.offsetHeight;
-      const exW = fw * (s - 1), exH = ch * s - fh;
-      tx = Math.min(0, Math.max(-exW, tx));
-      ty = Math.min(0, Math.max(exH > 0 ? -exH : 0, ty));
-    }
-    function reset() { s = 1; tx = 0; ty = 0; canvas.style.transform = ''; }
-    function pdist(t) { return Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY); }
-    function localXY(touch) {
-      const r = frame.getBoundingClientRect();
-      return [touch.clientX - r.left, touch.clientY - r.top];
-    }
-
-    frame.addEventListener('touchstart', function (e) {
-      if (e.touches.length >= 2) {
-        mode = 'pinch';
-        pinchD0 = pdist(e.touches);
-        pinchS0 = s; pinchTx0 = tx; pinchTy0 = ty;
-        const [x1, y1] = localXY(e.touches[0]);
-        const [x2, y2] = localXY(e.touches[1]);
-        pinchCx = (x1 + x2) / 2; pinchCy = (y1 + y2) / 2;
-        e.preventDefault();
-      } else {
-        const now = Date.now();
-        if (now - lastTap < 280) { reset(); lastTap = 0; return; }
-        lastTap = now;
-        if (s > 1.05) {
-          mode = 'pan';
-          panX0 = e.touches[0].clientX; panY0 = e.touches[0].clientY;
-          panTx0 = tx; panTy0 = ty;
-        } else {
-          mode = 'scroll';
-          scrY0 = e.touches[0].clientY; scrTop0 = cmBox.scrollTop;
-        }
-      }
-    }, { passive: false });
-
-    frame.addEventListener('touchmove', function (e) {
-      if (mode === 'pinch' && e.touches.length >= 2) {
-        const ratio = pdist(e.touches) / pinchD0;
-        s = Math.min(6, Math.max(1, pinchS0 * ratio));
-        tx = pinchCx - (pinchCx - pinchTx0) * (s / pinchS0);
-        ty = pinchCy - (pinchCy - pinchTy0) * (s / pinchS0);
-        clamp(); apply();
-        e.preventDefault();
-      } else if (mode === 'pan') {
-        tx = panTx0 + e.touches[0].clientX - panX0;
-        ty = panTy0 + e.touches[0].clientY - panY0;
-        clamp(); apply();
-        e.preventDefault();
-      } else if (mode === 'scroll') {
-        cmBox.scrollTop = scrTop0 + (scrY0 - e.touches[0].clientY);
-        e.preventDefault();
-      }
-    }, { passive: false });
-
-    frame.addEventListener('touchend', function (e) {
-      if (e.touches.length === 0) {
-        if (s < 1.05) reset();
-        mode = null;
-      } else if (e.touches.length === 1 && mode === 'pinch') {
-        if (s > 1.05) {
-          mode = 'pan';
-          panX0 = e.touches[0].clientX; panY0 = e.touches[0].clientY;
-          panTx0 = tx; panTy0 = ty;
-        } else { reset(); mode = 'scroll'; }
-      }
-    });
-
-    frame._reset = reset;
-  }
-
   function buildPairs(pairs) {
     cmSlidersEl.innerHTML = '';
     pairs.forEach(pair => {
-      const frame = document.createElement('div');
-      frame.className = 'cm-frame';
-      const canvas = document.createElement('div');
-      canvas.className = 'cm-canvas';
-      canvas.innerHTML = `
+      const wrap = document.createElement('div');
+      wrap.className = 'cm-pair';
+      wrap.innerHTML = `
         <div class="cm-side">
-          <div class="cm-side-label cm-side-label-before">Vorher</div>
+          <div class="cm-side-label">Vorher</div>
           <img src="${pair.before}" alt="Vorher" draggable="false" />
         </div>
         <div class="cm-side">
-          <div class="cm-side-label cm-side-label-after">Nachher</div>
+          <div class="cm-side-label">Nachher</div>
           <img src="${pair.after}" alt="Nachher" draggable="false" />
         </div>`;
-      frame.appendChild(canvas);
-      cmSlidersEl.appendChild(frame);
-      initFrameTouch(frame, canvas);
+      cmSlidersEl.appendChild(wrap);
     });
   }
 
