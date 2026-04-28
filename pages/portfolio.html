@@ -470,7 +470,9 @@
     .cm-pair { display: flex; flex-direction: column; gap: 1.1rem; padding: 1rem; }
     .cm-side { border-radius: 14px; overflow: hidden; border: 2.5px solid #7d1a30; }
     .cm-side img { width: 100%; height: auto; display: block; pointer-events: none; user-select: none; -webkit-user-select: none; }
-    .cm-side-label { display: block; text-align: center; font-size: .67rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .28rem .5rem; background: #7d1a30; color: #fff; }
+    .cm-side-label { display: block; text-align: center; font-size: .67rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .28rem .5rem; color: #fff; }
+    .cm-side:first-child .cm-side-label { background: rgba(200,30,30,.85); }
+    .cm-side:last-child  .cm-side-label { background: rgba(0,160,70,.85); }
 
     html.light .compare-card { background: #f0f4fb; border-color: rgba(0,160,96,.35); }
     html.light .compare-card:hover { border-color: rgba(0,160,96,.4); box-shadow: 0 0 18px rgba(0,160,96,.1), 0 8px 32px rgba(0,20,80,.08); }

@@ -157,7 +157,8 @@
     .fi.vis{opacity:1;transform:translateY(0);}
     .fi-d2{transition-delay:.18s;}
     @media(max-width:1070px){.seminar-grid{flex:none !important;}}
-    @media(max-width:1250px){.nav-toggle{display:flex;} .nav-right{gap:.8rem;} .nav-links{display:none;flex-direction:column;position:absolute;top:62px;left:0;right:0;background:rgba(8,12,20,0.97);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:.5rem 2.5rem 1rem;gap:0;} .nav-links.open{display:flex;} html.light .nav-links{background:rgba(237,241,248,0.98);} html:not([data-theme]) .nav-links{background:rgba(237,241,248,0.98);} .nav-links li{border-bottom:1px solid rgba(255,255,255,.05);} .nav-links li:last-child{border-bottom:none;} .nav-links a{display:block;padding:.9rem 0;font-size:1rem;text-align:center;}}
+    #nav-theme-li{display:none;}
+    @media(max-width:1250px){.nav-toggle{display:flex;} .nav-right{gap:.8rem;} #theme-toggle{display:none !important;} #nav-theme-li{display:block;} .nav-links{display:none;flex-direction:column;position:absolute;top:62px;left:0;right:0;background:rgba(8,12,20,0.97);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:.5rem 2.5rem 1rem;gap:0;} .nav-links.open{display:flex;} html.light .nav-links{background:rgba(237,241,248,0.98);} html:not([data-theme]) .nav-links{background:rgba(237,241,248,0.98);} .nav-links li{border-bottom:1px solid rgba(255,255,255,.05);} .nav-links li:last-child{border-bottom:none;} .nav-links a{display:block;padding:.9rem 0;font-size:1rem;text-align:center;}}
     @media(max-width:855px){.two-col,.two-col.flip{grid-template-columns:1fr;direction:ltr;gap:2.5rem;} .btc-grid{grid-template-columns:1fr;gap:2.5rem;} .about-btn-wrap{display:flex;justify-content:center;margin-top:-3rem;} .btc-header{grid-column:1;grid-row:1;} .btc-cards{grid-column:1;grid-row:2;} .btc-svg{grid-column:1;grid-row:3;} .footer-top{grid-template-columns:1fr;}}
     @media(max-width:480px){section.content-sec{padding:4rem 1.25rem;} nav{padding:0 1.25rem 0 0.5rem;} .hero-content{padding:1.5rem 1rem;}}
     @media(max-width:640px){.hero-badge{animation-duration:.6s;animation-delay:.08s;} .hero-headline{animation-duration:.68s;animation-delay:.32s;} .hero-sub{animation-duration:.68s;animation-delay:1.84s;} .hero-cta{animation-duration:1.12s;animation-delay:2.08s;}}
@@ -246,6 +247,11 @@
       <li><a href="../pages/portfolio.html">Website Projects</a></li>
       <li><a href="services.html">Services</a></li>
       <li><a href="#" onclick="openContact('Navbar');return false;">Contact</a></li>
+      <li id="nav-theme-li">
+        <a href="#" onclick="toggleTheme();return false;">
+          <svg id="nav-theme-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:.4rem;"></svg><span id="nav-theme-label"></span>
+        </a>
+      </li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -772,11 +778,26 @@
   }
   document.addEventListener('keydown', e => { if(e.key==='Escape') closeContact(); });
 
+  function updateNavThemeEntry() {
+    const isDark = document.documentElement.hasAttribute('data-theme');
+    const icon  = document.getElementById('nav-theme-icon');
+    const label = document.getElementById('nav-theme-label');
+    if (!icon || !label) return;
+    if (isDark) {
+      icon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+      label.textContent = 'Day mode';
+    } else {
+      icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+      label.textContent = 'Night mode';
+    }
+  }
   function toggleTheme() {
     const hasDark = document.documentElement.hasAttribute('data-theme');
     if (hasDark) { document.documentElement.removeAttribute('data-theme'); localStorage.setItem('theme','light'); }
     else { document.documentElement.setAttribute('data-theme','dark'); localStorage.setItem('theme','dark'); }
+    updateNavThemeEntry();
   }
+  updateNavThemeEntry();
 
   (() => {
     const logo   = document.getElementById('logoToggle');
