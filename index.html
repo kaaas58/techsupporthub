@@ -4,6 +4,13 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
   <script>
+    if (!localStorage.getItem('lang-redirected')) {
+      const ul = (navigator.language || '').toLowerCase();
+      if (ul && !ul.startsWith('de')) {
+        localStorage.setItem('lang-redirected', '1');
+        window.location.replace('en/index.html');
+      }
+    }
     const urlParams = new URLSearchParams(window.location.search);
     const themeParam = urlParams.get('theme');
     if (themeParam === 'dark') {
@@ -110,6 +117,11 @@
     .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .nav-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .lang-switch { display:flex; align-items:center; gap:.35rem; font-size:.78rem; font-weight:700; letter-spacing:.08em; white-space:nowrap; }
+    .lang-switch .lsw-active { color:#00d4ff; }
+    .lang-switch .lsw-sep { color:rgba(255,255,255,.2); font-weight:400; }
+    .lang-switch a { color:#8090b8; text-decoration:none; transition:color .18s; }
+    .lang-switch a:hover { color:#f0f6fc; }
 
     /* ── HERO ── */
     #hero {
@@ -790,6 +802,7 @@
     <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
       <span></span><span></span><span></span>
     </button>
+    <div class="lang-switch"><span class="lsw-active">DE</span><span class="lsw-sep">|</span><a href="en/index.html">EN</a></div>
     <button id="theme-toggle" onclick="toggleTheme()" aria-label="Theme wechseln">
       <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
       <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -852,14 +865,14 @@
             <div class="card-ico" style="background:rgba(0,212,255,0.1);">💻</div>
             <div>
               <div class="card-title">PC-Nutzung für Anfänger &amp; Senioren</div>
-              <div class="card-text">Schritt für Schritt erkläre ich, wie ein Computer oder Laptop funktioniert – ohne Fachjargon, in Ihrem Tempo.</div>
+              <div class="card-text">Schritt für Schritt erkläre ich, wie ein Computer oder Laptop funktioniert – ohne Fachjargon, in deinem Tempo.</div>
             </div>
           </a>
           <a class="card" href="pages/onboarding-devices.html#android" style="text-decoration:none;color:inherit;cursor:pointer;">
             <div class="card-ico" style="background:rgba(0,212,255,0.1);">📱</div>
             <div>
               <div class="card-title">Android-Smartphones einrichten</div>
-              <div class="card-text">Grundeinstellungen, Apps installieren, E-Mails &amp; Fotos – ich richte Ihr Gerät ein und erkläre ihnen den Alltag damit.</div>
+              <div class="card-text">Grundeinstellungen, Apps installieren, E-Mails &amp; Fotos – ich richte dein Gerät ein und erkläre dir den Alltag damit.</div>
             </div>
           </a>
           <a class="card" href="pages/onboarding-devices.html#endgeraete" style="text-decoration:none;color:inherit;cursor:pointer;">
@@ -1400,6 +1413,10 @@
         <label for="cf-msg">Nachricht</label>
         <textarea id="cf-msg" rows="5" placeholder="Was kann ich für dich tun?" required></textarea>
       </div>
+      <label class="check-label">
+        <input type="checkbox" id="cf-privacy" required/>
+        <span>Ich habe die <a href="pages/impressum.html#datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und stimme zu.</span>
+      </label>
       <div class="form-actions">
         <button type="submit" class="btn-green" style="cursor:pointer;">Anfrage senden</button>
         <button type="button" class="btn-cancel" onclick="closeContact()">Abbrechen</button>
@@ -1435,6 +1452,10 @@
   .form-row input::placeholder, .form-row textarea::placeholder { color:#3d4a60; }
   .form-row input:focus, .form-row textarea:focus { border-color:#00ff88; box-shadow:0 0 0 3px rgba(0,255,136,.1); }
   .form-actions { display:flex; gap:.8rem; margin-top:1.4rem; flex-wrap:wrap; }
+  .check-label { display:flex; align-items:flex-start; gap:.55rem; cursor:pointer; font-size:.82rem; color:#8b949e; line-height:1.5; margin-top:.6rem; }
+  .check-label input[type="checkbox"] { flex-shrink:0; margin-top:.18rem; accent-color:#00ff88; width:14px; height:14px; cursor:pointer; }
+  .check-label a { color:#00ff88; text-decoration:none; }
+  .check-label a:hover { text-decoration:underline; }
   .form-error { background:rgba(255,80,80,.08); border:1px solid rgba(255,80,80,.3); border-radius:8px; padding:.7rem 1rem; font-size:.87rem; color:#ff8080; margin-top:.8rem; }
   .modal-success { text-align:center; padding:1.5rem 0 .5rem; display:flex; flex-direction:column; align-items:center; gap:1rem; }
   .modal-success p { color:#f0f6fc; font-size:.95rem; line-height:1.6; }

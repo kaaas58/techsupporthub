@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
-<html lang="de">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
   <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leistungen & Preise – TechSupport HUB</title>
+  <title>Services & Pricing – TechSupport HUB</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -90,11 +90,11 @@
       transition: color .2s;
     }
     .nav-back:hover { color: var(--neon-g); }
-  .lang-switch { display:flex; align-items:center; gap:.35rem; font-size:.78rem; font-weight:700; letter-spacing:.08em; white-space:nowrap; }
-  .lang-switch .lsw-active { color:#00d4ff; }
-  .lang-switch .lsw-sep { color:rgba(255,255,255,.2); font-weight:400; }
-  .lang-switch a { color:#8090b8; text-decoration:none; transition:color .18s; }
-  .lang-switch a:hover { color:#e8edf8; }
+    .lang-switch { display:flex; align-items:center; gap:.35rem; font-size:.78rem; font-weight:700; letter-spacing:.08em; white-space:nowrap; }
+    .lang-switch .lsw-active { color:#00d4ff; }
+    .lang-switch .lsw-sep { color:rgba(255,255,255,.2); font-weight:400; }
+    .lang-switch a { color:#8090b8; text-decoration:none; transition:color .18s; }
+    .lang-switch a:hover { color:#e8edf8; }
     .nav-back svg { width: 16px; height: 16px; }
 
     /* ── Page header ── */
@@ -205,7 +205,7 @@
     .service-row.cat-seminar { border-color: rgba(0,212,255,.55);  box-shadow: 0 4px 24px rgba(0,0,0,.35), 0 0 22px rgba(0,212,255,.10), 0 1px 0 rgba(255,255,255,.03) inset; }
     .service-row:hover { box-shadow: none; transform: none; cursor: default; }
 
-    /* ── Klickbare Service-Row (Link) ── */
+    /* ── Clickable Service Row ── */
     .service-row-link {
       text-decoration:none; color:inherit; cursor:pointer;
       grid-template-columns: 1fr auto auto;
@@ -219,10 +219,8 @@
       display:flex; align-items:center; padding-left:.5rem;
       transition:transform .2s, color .2s;
     }
-    /* Sektionsfarbe als Default-Chevronfarbe */
     .cat-webdev  .service-row-chevron { color:rgba(64,128,240,.6); }
     .cat-support .service-row-chevron { color:rgba(0,212,255,.55); }
-    /* Hover: heller/satter */
     .service-row-link:hover .service-row-chevron { transform:translateX(5px); }
     .cat-webdev.service-row-link:hover  .service-row-chevron { color:#4080f0; }
     .cat-support.service-row-link:hover { border-color:rgba(0,212,255,.85) !important; box-shadow:0 8px 32px rgba(0,212,255,.15) !important; }
@@ -300,7 +298,6 @@
     .cat-seminar.service-row-link:hover { border-color:rgba(0,212,255,.85) !important; box-shadow:0 8px 32px rgba(0,212,255,.15) !important; }
     .cat-seminar.service-row-link:hover .service-row-chevron { color:#00d4ff; }
 
-    /* accent color per category */
     .cat-support .price { color: #00d4ff; text-shadow: 0 0 12px rgba(0,212,255,.3); filter: none; }
     .cat-support .price-note.blurred { filter: none; }
     .cat-webdev  .price { color: #4080f0;       text-shadow: 0 0 12px rgba(64,128,240,.3); }
@@ -324,7 +321,7 @@
     .info-note .icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
     .info-note strong { color: var(--text); }
 
-    /* ── Erstgespräch Banner ── */
+    /* ── Free Call Banner ── */
     .free-call-banner {
       display:flex; align-items:center; gap:1.2rem;
       margin:1.4rem 0 0;
@@ -416,78 +413,6 @@
     }
     .footer-bottom a { color: var(--muted); text-decoration: none; }
     .footer-bottom a:hover { color: var(--neon-g); }
-    .footer-bottom a.hl-green { color: var(--neon-g); }
-    .footer-bottom a.hl-green:hover { color: var(--neon-g); text-decoration: underline; text-decoration-color: var(--neon-g); }
-
-    /* ── Konzeptvereinbarungen Button ── */
-    .konzept-section { margin-bottom:2rem; }
-    .konzept-toggle {
-      display:inline-flex; align-items:center; gap:.6rem;
-      padding:.8rem 1.5rem; border-radius:1rem;
-      background:linear-gradient(135deg, rgba(64,128,240,.22) 0%, rgba(64,128,240,.13) 100%);
-      border:1.5px solid rgba(64,128,240,.6);
-      color:#c8d4f0; font-size:.9rem; font-weight:600;
-      box-shadow:0 4px 18px rgba(64,128,240,.18);
-      transition:background .2s, border-color .2s, color .2s, box-shadow .2s, transform .18s;
-    }
-    .konzept-toggle svg { color:#6a9cf8; transition:transform .22s; }
-    .konzept-toggle:hover {
-      background:linear-gradient(135deg, rgba(64,128,240,.32) 0%, rgba(64,128,240,.2) 100%);
-      border-color:rgba(64,128,240,.9); color:#e0e8ff;
-      box-shadow:0 6px 26px rgba(64,128,240,.3); transform:translateY(-2px);
-    }
-    .konzept-toggle:hover svg { color:#8ab4ff; transform:translateX(3px); }
-    .konzept-body { display:none; padding-top:.85rem; }
-    .konzept-body.open { display:block; }
-    .konzept-disclaimer {
-      display:flex; gap:.8rem; align-items:flex-start;
-      background:var(--surface2); border:1.5px solid rgba(64,128,240,.28);
-      border-radius:10px; padding:1rem 1.4rem;
-      font-size:.84rem; color:var(--muted); margin-top:.85rem;
-    }
-    .konzept-disclaimer .ico { font-size:1rem; flex-shrink:0; margin-top:.05rem; }
-    .konzept-disclaimer strong { color:var(--text); }
-
-    /* ── Webdev PDF cards ── */
-    .webdev-docs { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; margin-bottom:2rem; }
-    .wdoc-card {
-      background:var(--surface); border:1.5px solid rgba(64,128,240,.45);
-      border-radius:var(--radius); overflow:hidden;
-      display:flex; align-items:center; gap:1rem; padding:1rem 1.25rem;
-    }
-    .wdoc-thumb-outer {
-      width:72px; height:95px; overflow:hidden; flex-shrink:0;
-      border-radius:5px; border:1px solid var(--border);
-      background:#0d1117; position:relative; cursor:pointer;
-    }
-    .wdoc-thumb-outer:hover { border-color:rgba(64,128,240,.55); }
-    .wdoc-thumb-frame {
-      width:860px; height:1200px;
-      transform:scale(0.0837); transform-origin:top left;
-      pointer-events:none; border:none;
-    }
-    .wdoc-info { flex:1; display:flex; flex-direction:column; gap:.55rem; min-width:0; }
-    .wdoc-label { font-size:.78rem; font-weight:700; color:#c8d4f0; }
-    .wdoc-sublabel { font-size:.72rem; color:var(--muted); }
-    .wdoc-btns { display:flex; gap:.45rem; flex-wrap:wrap; }
-    .wbtn-view, .wbtn-dl {
-      display:inline-flex; align-items:center; gap:.3rem;
-      padding:.42rem .85rem; border-radius:.65rem; font-size:.76rem; font-weight:600;
-      cursor:pointer; text-decoration:none; white-space:nowrap;
-    }
-    .wbtn-view { background:transparent; color:var(--text); border:1.5px solid rgba(255,255,255,.35); transition:border-color .2s,color .2s; }
-    .wbtn-view:hover { border-color:rgba(64,128,240,.65); color:#8ab0ff; }
-    .wbtn-dl { background:var(--neon-g); color:#060c08; border:none; box-shadow:0 3px 12px rgba(0,255,136,.22); transition:transform .18s,box-shadow .18s; }
-    .wbtn-dl:hover { transform:translateY(-1px); box-shadow:0 5px 18px rgba(0,255,136,.38); }
-    @media (max-width:640px) {
-      .webdev-docs { grid-template-columns:1fr; }
-      .wdoc-card { flex-direction:column; align-items:center; text-align:center; }
-      .wdoc-btns { justify-content:center; }
-    }
-
-    /* ── THEME TOGGLE ── */
-    @media (hover: hover) {
-    }
 
     /* ── LIGHT MODE ── */
     html.light { --bg:#d0daf0; --surface:#ffffff; --surface2:#f0f4fb; --border:rgba(0,25,90,0.22); --text:#111827; --muted:#3f506e; --neon-g:#00a060; --neon-b:#007fb5; --neon-p:#7c22d8; --neon-o:#c44a10; }
@@ -537,17 +462,6 @@
     html.light .cta-box { background:linear-gradient(135deg,rgba(0,160,90,.07) 0%,rgba(0,150,200,.05) 100%); border-color:rgba(0,160,90,.3); }
     html.light .page-tag { color:#1a2540; border-color:rgba(0,25,90,0.25); background:rgba(255,255,255,0.7); }
     html.light .sec-label { opacity:.85; }
-    html.light .konzept-toggle { background:linear-gradient(135deg,rgba(50,100,210,.1) 0%,rgba(50,100,210,.06) 100%); border-color:rgba(50,100,210,.55); color:#1e3270; box-shadow:0 4px 14px rgba(50,100,210,.12); }
-    html.light .konzept-toggle svg { color:rgba(50,100,210,.7); }
-    html.light .konzept-toggle:hover { background:linear-gradient(135deg,rgba(50,100,210,.18) 0%,rgba(50,100,210,.1) 100%); border-color:rgba(50,100,210,.85); color:#1a2a60; box-shadow:0 6px 22px rgba(50,100,210,.2); }
-    html.light .konzept-disclaimer { background:#edf1fb; border-color:rgba(50,100,210,.25); color:#3f506e; }
-    html.light .konzept-disclaimer strong { color:#1a2540; }
-    html.light .wdoc-card { background:#ffffff; border-color:rgba(50,100,210,.4); }
-    html.light .wdoc-thumb-outer { background:#dde5f0; border-color:rgba(0,25,90,0.2); }
-    html.light .wdoc-label { color:#1a2540; }
-    html.light .wdoc-sublabel { color:#3f506e; }
-    html.light .wbtn-view { border-color:rgba(0,25,90,0.25); color:#1a2540; }
-    html.light .wbtn-view:hover { border-color:rgba(50,100,210,.5); color:#2a50c0; }
   </style>
 </head>
 <body>
@@ -566,23 +480,23 @@
     </div>
   </a>
   <div style="display:flex;align-items:center;gap:1.2rem;">
-    <a href="../index.html" class="nav-back" onclick="if(history.length>1){history.back();return false;}">
+    <a href="index.html" class="nav-back" onclick="if(history.length>1){history.back();return false;}">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="10,3 5,8 10,13"/>
       </svg>
-      Zurück
+      Back
     </a>
-    <div class="lang-switch"><span class="lsw-active">DE</span><span class="lsw-sep">|</span><a href="../en/services.html">EN</a></div>
+    <div class="lang-switch"><a href="../pages/leistungen.html">DE</a><span class="lsw-sep">|</span><span class="lsw-active">EN</span></div>
   </div>
 </nav>
 
 <!-- ── Page Header ── -->
 <div class="page-header" id="top">
-  <div class="page-tag">Leistungen & Preise</div>
-  <h1>Was ich für dich tun kann – <span class="accent">transparent</span> bepreist.</h1>
-  <p class="page-sub">Alle Preise verstehen sich pro Stunde (60 Min.) inklusive Beratung, Dokumentation und Nachfragen per Nachricht.</p>
+  <div class="page-tag">Services &amp; Pricing</div>
+  <h1>What I can do for you – <span class="accent">transparent</span> pricing.</h1>
+  <p class="page-sub">All prices are per hour (60 min.) including consultation, documentation, and follow-up questions by message.</p>
   <p class="page-notice">
-Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informationszwecken. Eine verbindliche Buchung ist erst nach Abschluss der laufenden Gewerbeanmeldung möglich. Bei Interesse kannst du dich gerne unverbindlich vormerken lassen </br> — </br>ich melde mich, sobald der Start offiziell erfolgt ist.
+    Note: The packages and prices listed here are currently for information purposes only. Binding bookings will be available once the ongoing business registration is complete. Feel free to register your interest in the meantime &mdash; I'll get in touch as soon as everything is officially up and running.
   </p>
 </div>
 
@@ -590,53 +504,53 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
 
   <!-- ═══ 01 USER SUPPORT ═══ -->
   <div class="sec-group" id="support">
-    <p class="sec-label" style="color:#00d4ff;">01 — Anwender & User Support</p>
-    <h2 class="sec-title">Technik einfach <span style="color:#00d4ff;">erklärt.</span></h2>
+    <p class="sec-label" style="color:#00d4ff;">01 — User Support</p>
+    <h2 class="sec-title">Technology, <span style="color:#00d4ff;">explained simply.</span></h2>
   </div>
 
-  <a href="pc-einfuehrung.html" class="service-row cat-support service-row-link">
+  <a href="pc-intro.html" class="service-row cat-support service-row-link">
     <div class="service-info">
       <h3 style="display:flex;align-items:center;gap:.4rem;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,212,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
         </svg>
-        PC-Einführung für Einsteiger &amp; Senioren
+        PC Introduction for Beginners &amp; Seniors
       </h3>
-      <p>Grundlagen der PC-Bedienung, Windows-Oberfläche, Dateiverwaltung, Software installieren und bedienen, sicher surfen und E-Mails schreiben. Auf Wunsch kann per Reservierung auch Hardware angeschlossen, verkabelt und dabei fachkundig beraten werden.</p>
+      <p>PC basics, Windows navigation, file management, installing and using software, safe browsing and email. Hardware connection and setup available on request, with expert advice included.</p>
       <div class="service-badges">
-        <span class="badge badge-g">Vor Ort</span>
+        <span class="badge badge-g">On-site</span>
         <span class="badge badge-g">Remote</span>
-        <span class="badge badge-p">Anfänger</span>
+        <span class="badge badge-p">Beginners</span>
       </div>
     </div>
     <div class="price-block">
       <div class="price">45 €</div>
-      <div class="price-unit">pro Stunde</div>
-      <div class="price-note">mind. 1 Std.</div>
+      <div class="price-unit">per hour</div>
+      <div class="price-note">min. 1 hr.</div>
     </div>
     <div class="service-row-chevron">
       <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
     </div>
   </a>
 
-  <a href="android-einrichtung.html" class="service-row cat-support service-row-link">
+  <a href="android-setup.html" class="service-row cat-support service-row-link">
     <div class="service-info">
       <h3 style="display:flex;align-items:center;gap:.4rem;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,212,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
         </svg>
-        Android-Smartphone Einrichtung
+        Android Smartphone Setup
       </h3>
-      <p>Google-Konto, Grundeinstellungen, wichtige Apps installieren, Datenschutz-Tipps und Nutzungseinführung. Auf Wunsch auch Beratung zur Anschaffung eines passenden Smartphones oder Android-Geräts – inklusive Empfehlung zur Ersteinrichtung.</p>
+      <p>Google account, essential settings, key app installation, privacy tips, and a usage walkthrough. Purchase advice for a suitable smartphone or Android device available on request, including first-setup guidance.</p>
       <div class="service-badges">
-        <span class="badge badge-g">Vor Ort</span>
+        <span class="badge badge-g">On-site</span>
         <span class="badge badge-g">Remote</span>
       </div>
     </div>
     <div class="price-block">
       <div class="price">50 €</div>
-      <div class="price-unit">pro Stunde</div>
-      <div class="price-note">Pauschal ab 60 €</div>
+      <div class="price-unit">per hour</div>
+      <div class="price-note">Flat rate from 60 €</div>
     </div>
     <div class="service-row-chevron">
       <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
@@ -649,43 +563,43 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,212,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
         </svg>
-        Geräteproblem &amp; Allgemeiner IT-Support
+        Device Issues &amp; General IT Support
       </h3>
-      <p>Fehlersuche, Systemoptimierung, Drucker, WLAN, Passwörter, Updates und alles was im Alltag nervt.</p>
+      <p>Troubleshooting, system optimisation, printers, Wi-Fi, passwords, updates — everything that gets in the way of daily use.</p>
       <div class="service-badges">
-        <span class="badge badge-g">Vor Ort</span>
+        <span class="badge badge-g">On-site</span>
         <span class="badge badge-g">Remote</span>
-        <span class="badge badge-b">Alle Geräte</span>
+        <span class="badge badge-b">All devices</span>
       </div>
     </div>
     <div class="price-block">
       <div class="price">55 €</div>
-      <div class="price-unit">pro Stunde</div>
+      <div class="price-unit">per hour</div>
     </div>
     <div class="service-row-chevron">
       <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
     </div>
   </a>
 
-  <a href="linux-einrichtung.html" class="service-row cat-support service-row-link">
+  <a href="linux-setup.html" class="service-row cat-support service-row-link">
     <div class="service-info">
       <h3 style="display:flex;align-items:center;gap:.4rem;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,212,255,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
         </svg>
-        Linux installieren &amp; einrichten
+        Linux Installation &amp; Setup
       </h3>
-      <p>Installation einer Linux-Distribution (z. B. Ubuntu, Mint), Partitionierung, Dual-Boot-Einrichtung neben Windows, Grundkonfiguration, wichtige Software und erste Schritte im Terminal.</p>
+      <p>Installing a Linux distribution (e.g. Ubuntu, Mint), partitioning, dual-boot setup alongside Windows, basic configuration, essential software and first steps in the terminal.</p>
       <div class="service-badges">
-        <span class="badge badge-g">Vor Ort</span>
+        <span class="badge badge-g">On-site</span>
         <span class="badge badge-g">Remote</span>
-        <span class="badge badge-b">Anfänger &amp; Umsteiger</span>
+        <span class="badge badge-b">Beginners &amp; switchers</span>
       </div>
     </div>
     <div class="price-block">
       <div class="price">60 €</div>
-      <div class="price-unit">pro Stunde</div>
-      <div class="price-note">mind. 1 Std.</div>
+      <div class="price-unit">per hour</div>
+      <div class="price-note">min. 1 hr.</div>
     </div>
     <div class="service-row-chevron">
       <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
@@ -695,10 +609,10 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
   <!-- ═══ 02 WEBSITE DEVELOPMENT ═══ -->
   <div class="sec-group" id="webdev">
     <p class="sec-label" style="color:#4080f0;">02 — Website Development</p>
-    <h2 class="sec-title">Websites, die <span style="color:#4080f0;">begeistern.</span></h2>
+    <h2 class="sec-title">Websites that <span style="color:#4080f0;">impress.</span></h2>
   </div>
 
-  <a href="konzept.html" class="service-row cat-webdev service-row-link">
+  <a href="concept.html" class="service-row cat-webdev service-row-link">
     <div class="service-info">
       <h3 style="display:flex;align-items:center;gap:.4rem;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(64,128,240,.75)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
@@ -707,18 +621,18 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
           <line x1="16" y1="13" x2="8" y2="13"/>
           <line x1="16" y1="17" x2="8" y2="17"/>
         </svg>
-        Webdesign-Beratung &amp; Konzept
+        Web Design Consultation &amp; Concept
       </h3>
-      <p>Von der Idee zur fertigen Struktur – Zielgruppe, Inhalte, Seitenaufbau und Design besprechen, bevor die erste Zeile Code geschrieben wird.</p>
+      <p>From idea to finished structure — target audience, content, page layout and design, all figured out before the first line of code is written.</p>
       <div class="service-badges">
         <span class="badge badge-w">Remote</span>
-        <span class="badge badge-w">Vor Ort</span>
-        <span class="badge badge-p">Konzept</span>
+        <span class="badge badge-w">On-site</span>
+        <span class="badge badge-p">Concept</span>
       </div>
     </div>
     <div class="price-block">
-      <div class="price" style="filter:none;font-size:.88rem;line-height:1.4;text-align:right;">Im Basic Paket<br>inklusive</div>
-      <div class="price-unit">60–90 Min.</div>
+      <div class="price" style="filter:none;font-size:.88rem;line-height:1.4;text-align:right;">Included in<br>Basic Package</div>
+      <div class="price-unit">60–90 min.</div>
     </div>
     <div class="service-row-chevron">
       <svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -727,23 +641,23 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
     </div>
   </a>
 
-  <a href="onepage.html" class="service-row cat-webdev service-row-link">
+  <a href="../pages/onepage.html" class="service-row cat-webdev service-row-link">
     <div class="service-info">
       <h3 style="display:flex;align-items:center;gap:.4rem;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(64,128,240,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>
         </svg>
-        Statische Website – klassige One-Page mit Impressum &amp; Datenschutz
+        Static Website – One-Page with Legal Notice &amp; Privacy Policy
       </h3>
-      <p>Design und Umsetzung als einzelne HTML/CSS/JS-Datei – Hero-Bereich, Texte, Bilder, Kontaktbereich, mobil optimiert, inkl. Impressum & Datenschutzseite.</p>
+      <p>Design and build as a single HTML/CSS/JS file — hero section, text, images, contact area, mobile-optimised, including legal notice &amp; privacy page.</p>
       <div class="service-badges">
         <span class="badge badge-w">HTML/CSS/JS</span>
-        <span class="badge badge-w">Responsiv</span>
-        <span class="badge badge-g">Pauschal</span>
+        <span class="badge badge-w">Responsive</span>
+        <span class="badge badge-g">Flat rate</span>
       </div>
     </div>
     <div class="price-block">
-      <div class="price" style="filter:none;font-size:.88rem;line-height:1.4;text-align:right;">Im Basic Paket<br>inklusive</div>
+      <div class="price" style="filter:none;font-size:.88rem;line-height:1.4;text-align:right;">Included in<br>Basic Package</div>
     </div>
     <div class="service-row-chevron">
       <svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -752,23 +666,23 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
     </div>
   </a>
 
-  <a href="mehrseiter.html" class="service-row cat-webdev service-row-link">
+  <a href="../pages/mehrseiter.html" class="service-row cat-webdev service-row-link">
     <div class="service-info">
       <h3 style="display:flex;align-items:center;gap:.4rem;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(64,128,240,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
         </svg>
-        Mehrseiter Website mit Unterseiten
+        Multi-Page Website with Subpages
       </h3>
-      <p>Mehrere verlinkte HTML-Seiten, einheitliches Design, Navigation, Kontaktformular, Galerie und SEO-Grundstruktur.</p>
+      <p>Multiple linked HTML pages, consistent design, navigation, contact form, gallery and basic SEO structure.</p>
       <div class="service-badges">
         <span class="badge badge-w">HTML/CSS/JS</span>
-        <span class="badge badge-w">Mehrseiter</span>
-        <span class="badge badge-g">Pauschal</span>
+        <span class="badge badge-w">Multi-page</span>
+        <span class="badge badge-g">Flat rate</span>
       </div>
     </div>
     <div class="price-block">
-      <div class="price" style="filter:none;font-size:.88rem;line-height:1.4;text-align:right;">Preise laut<br>Vertrag</div>
+      <div class="price" style="filter:none;font-size:.88rem;line-height:1.4;text-align:right;">Pricing per<br>contract</div>
     </div>
     <div class="service-row-chevron">
       <svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -780,13 +694,13 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
   <!-- ═══ 03 CODING & BUGFIXING ═══ -->
   <div class="sec-group" id="coding">
     <p class="sec-label" style="color:var(--neon-g);">03 — Coding</p>
-    <h2 class="sec-title">Coding & <span style="color:var(--neon-g);">Bugfixing</span></h2>
+    <h2 class="sec-title">Coding &amp; <span style="color:var(--neon-g);">Bugfixing</span></h2>
   </div>
 
   <div class="service-row cat-coding">
     <div class="service-info">
-      <h3>Bugfixing & Fehlersuche</h3>
-      <p>Layout-Bugs, JavaScript-Fehler, mobile Darstellungsprobleme, Browser-Kompatibilität – einfacher bis mittlerer Bereich.</p>
+      <h3>Bugfixing &amp; Debugging</h3>
+      <p>Layout bugs, JavaScript errors, mobile rendering issues, browser compatibility — simple to medium complexity.</p>
       <div class="service-badges">
         <span class="badge badge-b">HTML/CSS/JS</span>
         <span class="badge badge-p">Debugging</span>
@@ -794,38 +708,38 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
     </div>
     <div class="price-block">
       <div class="price">80 €</div>
-      <div class="price-unit">pro Stunde</div>
+      <div class="price-unit">per hour</div>
     </div>
   </div>
 
   <div class="service-row cat-coding">
     <div class="service-info">
-      <h3>Code-Anpassungen & Erweiterungen</h3>
-      <p>Bestehenden Code verstehen, gezielt erweitern oder refaktorieren – sauber, wartbar und mit Erklärung was warum geändert wurde.</p>
+      <h3>Code Modifications &amp; Extensions</h3>
+      <p>Understanding existing code, extending or refactoring it — cleanly, maintainably, with an explanation of what was changed and why.</p>
       <div class="service-badges">
         <span class="badge badge-b">HTML/CSS/JS</span>
         <span class="badge badge-b">Remote</span>
-        <span class="badge badge-p">Alle Level</span>
+        <span class="badge badge-p">All levels</span>
       </div>
     </div>
     <div class="price-block">
       <div class="price">80 €</div>
-      <div class="price-unit">pro Stunde</div>
+      <div class="price-unit">per hour</div>
     </div>
   </div>
 
   <div class="service-row cat-coding">
     <div class="service-info">
-      <h3>Code-Review & Beratung</h3>
-      <p>Bestehenden Code durchleuchten, Schwachstellen aufzeigen, Verbesserungsvorschläge und direkte Erklärungen.</p>
+      <h3>Code Review &amp; Consultation</h3>
+      <p>In-depth review of existing code, identifying weaknesses, improvement suggestions, and direct explanations.</p>
       <div class="service-badges">
         <span class="badge badge-b">Remote</span>
-        <span class="badge badge-p">Alle Level</span>
+        <span class="badge badge-p">All levels</span>
       </div>
     </div>
     <div class="price-block">
       <div class="price">75 €</div>
-      <div class="price-unit">pro Stunde</div>
+      <div class="price-unit">per hour</div>
     </div>
   </div>
 
@@ -835,24 +749,24 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
     <h2 class="sec-title">The <span style="color:var(--neon-o);">Bitcoin Journey</span></h2>
   </div>
 
-  <a href="btc-grundlagen.html" class="service-row cat-bitcoin service-row-link">
+  <a href="btc-basics.html" class="service-row cat-bitcoin service-row-link">
     <div class="service-info">
       <h3 style="display:flex;align-items:center;gap:.4rem;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,140,0,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"/><path d="M9 8h5.5a2 2 0 0 1 0 4H9m0 0h6a2 2 0 0 1 0 4H9M9 8v8M12 6v2m0 8v2"/>
         </svg>
-        Bitcoin Grundlagen &amp; Onboarding
+        Bitcoin Basics &amp; Onboarding
       </h3>
-      <p>Was ist Bitcoin, wie funktioniert die Blockchain, was sind Private Keys und Wallets – fundiert und verständlich erklärt.</p>
+      <p>What is Bitcoin, how does the blockchain work, what are private keys and wallets — explained thoroughly and accessibly.</p>
       <div class="service-badges">
         <span class="badge badge-o">Remote</span>
-        <span class="badge badge-o">Vor Ort</span>
-        <span class="badge badge-p">Einsteiger</span>
+        <span class="badge badge-o">On-site</span>
+        <span class="badge badge-p">Beginners</span>
       </div>
     </div>
     <div class="price-block">
       <div class="price">65 €</div>
-      <div class="price-unit">pro Stunde</div>
+      <div class="price-unit">per hour</div>
     </div>
     <div class="service-row-chevron">
       <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
@@ -865,19 +779,19 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,140,0,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
         </svg>
-        Self-Custody &amp; Cold Storage Einrichtung
+        Self-Custody &amp; Cold Storage Setup
       </h3>
-      <p>Hardware Wallet (Ledger, Trezor, Coldcard u. a.) einrichten, Seed-Phrase sicher verwahren, Coins von der Exchange transferieren.</p>
+      <p>Setting up a hardware wallet (Ledger, Trezor, Coldcard etc.), securely storing a seed phrase, transferring coins from an exchange.</p>
       <div class="service-badges">
-        <span class="badge badge-o">Vor Ort</span>
+        <span class="badge badge-o">On-site</span>
         <span class="badge badge-o">Remote</span>
-        <span class="badge badge-b">Sicherheit</span>
+        <span class="badge badge-b">Security</span>
       </div>
     </div>
     <div class="price-block">
       <div class="price">75 €</div>
-      <div class="price-unit">pro Stunde</div>
-      <div class="price-note">mind. 1,5 Std.</div>
+      <div class="price-unit">per hour</div>
+      <div class="price-note">min. 1.5 hrs.</div>
     </div>
     <div class="service-row-chevron">
       <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
@@ -890,65 +804,65 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,140,0,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2M8 11h.01M12 11h.01M16 11h.01"/>
         </svg>
-        Solo Mining Hardware Inbetriebnahme
+        Solo Mining Hardware Setup
       </h3>
-      <p>ASIC-Miner konfigurieren, ans Netz bringen, Pool vs. Solo-Mining, Kalkulation und laufenden Betrieb verstehen.</p>
+      <p>Configuring and commissioning an ASIC miner, pool vs. solo mining, profitability calculations, and understanding ongoing operation.</p>
       <div class="service-badges">
-        <span class="badge badge-o">Vor Ort</span>
-        <span class="badge badge-p">Fortgeschritten</span>
+        <span class="badge badge-o">On-site</span>
+        <span class="badge badge-p">Advanced</span>
       </div>
     </div>
     <div class="price-block">
       <div class="price">90 €</div>
-      <div class="price-unit">pro Stunde</div>
+      <div class="price-unit">per hour</div>
     </div>
     <div class="service-row-chevron">
       <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
     </div>
   </a>
 
-  <a href="btc-risiko.html" class="service-row cat-bitcoin service-row-link">
+  <a href="btc-risk.html" class="service-row cat-bitcoin service-row-link">
     <div class="service-info">
       <h3 style="display:flex;align-items:center;gap:.4rem;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,140,0,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
         </svg>
-        Risikomanagement &amp; Stolpersteine-Beratung
+        Risk Management &amp; Pitfall Consultation
       </h3>
-      <p>Scams erkennen, Backup-Strategien, Erbfall-Szenarien, Sicherheitschecks und Protokoll-Überprüfung.</p>
+      <p>Spotting scams, backup strategies, inheritance scenarios, security checks and protocol reviews.</p>
       <div class="service-badges">
         <span class="badge badge-o">Remote</span>
-        <span class="badge badge-o">Vor Ort</span>
+        <span class="badge badge-o">On-site</span>
       </div>
     </div>
     <div class="price-block">
       <div class="price">70 €</div>
-      <div class="price-unit">pro Stunde</div>
+      <div class="price-unit">per hour</div>
     </div>
     <div class="service-row-chevron">
       <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
     </div>
   </a>
 
-  <!-- ═══ 05 SEMINARE ═══ -->
-  <div class="sec-group" id="seminare">
-    <p class="sec-label" style="color:#00d4ff;">05 — Seminare / Workshops</p>
-    <h2 class="sec-title">Seminare &amp; <span style="color:#00d4ff;">Workshops.</span></h2>
+  <!-- ═══ 05 SEMINARS ═══ -->
+  <div class="sec-group" id="seminars">
+    <p class="sec-label" style="color:#00d4ff;">05 — Seminars / Workshops</p>
+    <h2 class="sec-title">Seminars &amp; <span style="color:#00d4ff;">Workshops.</span></h2>
   </div>
 
-  <a href="keinenangst.html" class="service-row cat-seminar service-row-link">
+  <a href="no-fear-tech.html" class="service-row cat-seminar service-row-link">
     <div class="service-info">
-      <h3>Keine Angst vor Technik <span style="color:#00d4ff;font-weight:400;">(Seminar / Workshop)</span></h3>
-      <p>Seminar für Einsteiger & Senioren – Technik verstehen, Hemmungen abbauen, Alltagsgeräte sicher nutzen. Ideal für Seniorenstiftungen, 4–8 Personen.</p>
+      <h3>No Fear of Tech <span style="color:#00d4ff;font-weight:400;">(Seminar / Workshop)</span></h3>
+      <p>Seminar for beginners &amp; seniors — understanding technology, overcoming inhibitions, using everyday devices with confidence. Ideal for senior institutions, 4–8 participants.</p>
       <div class="service-badges">
-        <span class="badge badge-c">Vor Ort</span>
-        <span class="badge badge-c">Gruppe</span>
-        <span class="badge badge-p">Einsteiger</span>
+        <span class="badge badge-c">On-site</span>
+        <span class="badge badge-c">Group</span>
+        <span class="badge badge-p">Beginners</span>
       </div>
     </div>
     <div class="price-block">
-      <div class="price">auf Anfrage</div>
-      <div class="price-unit">pro Seminar / Workshop</div>
+      <div class="price">on request</div>
+      <div class="price-unit">per seminar / workshop</div>
     </div>
     <div class="service-row-chevron">
       <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
@@ -957,17 +871,17 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
 
   <a href="onboard.html" class="service-row cat-seminar service-row-link">
     <div class="service-info">
-      <h3>Onboard Yourself with me <span style="color:#00d4ff;font-weight:400;">(Seminar / Workshop)</span></h3>
-      <p>Workshop: Digital selbstständig werden – E-Mail, Video-Telefonie, sicheres Online-Banking und mehr. Für Senioren, die das Netz wirklich nutzen wollen.</p>
+      <h3>Onboard Yourself with Me <span style="color:#00d4ff;font-weight:400;">(Seminar / Workshop)</span></h3>
+      <p>Workshop: becoming digitally independent — email, video calls, secure online banking and more. For seniors who want to genuinely use the internet.</p>
       <div class="service-badges">
-        <span class="badge badge-c">Vor Ort</span>
+        <span class="badge badge-c">On-site</span>
         <span class="badge badge-c">Workshop</span>
-        <span class="badge badge-p">Einsteiger</span>
+        <span class="badge badge-p">Beginners</span>
       </div>
     </div>
     <div class="price-block">
-      <div class="price">auf Anfrage</div>
-      <div class="price-unit">pro Seminar / Workshop</div>
+      <div class="price">on request</div>
+      <div class="price-unit">per seminar / workshop</div>
     </div>
     <div class="service-row-chevron">
       <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,3 11,8 6,13"/></svg>
@@ -978,11 +892,11 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
   <div class="info-note">
     <span class="icon">ℹ️</span>
     <div>
-      <strong>Hinweis zu Preisen & Abrechnung:</strong> Alle genannten Preise sind Richtwerte und verstehen sich netto zzgl. MwSt. Fahrtkosten werden ab 10 km Entfernung mit 0,45 €/km berechnet. Auf Anfrage sind auch Pauschalpakete und Stundenblöcke (5 Std.) mit Rabatt möglich.
+      <strong>Note on prices &amp; billing:</strong> All prices listed are indicative and are net amounts, plus VAT. Travel costs are charged at €0.45/km for distances over 10 km. Flat-rate packages and hour blocks (5 hrs.) with a discount are available on request.
     </div>
   </div>
 
-  <!-- ── Erstgespräch Banner ── -->
+  <!-- ── Free Call Banner ── -->
   <div class="free-call-banner">
     <div class="free-call-icon">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -990,94 +904,94 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
       </svg>
     </div>
     <div class="free-call-text">
-      <span class="free-call-label">Kein Risiko – einfach melden</span>
-      <span class="free-call-main">Erstgespräch immer kostenlos <span class="free-call-pill">15 Min.</span></span>
+      <span class="free-call-label">No risk – just reach out</span>
+      <span class="free-call-main">First consultation always free <span class="free-call-pill">15 min.</span></span>
     </div>
   </div>
 
   <!-- ── CTA ── -->
   <div class="cta-box">
-    <h3>Bereit loszulegen?</h3>
-    <p>Schreib mir kurz was du brauchst – ich melde mich in der Regel innerhalb von 24 Stunden.</p>
-    <button onclick="openContact('Leistungen & Preise – Erstgespräch anfragen')" class="btn btn-primary">Jetzt anfragen</button>
+    <h3>Ready to get started?</h3>
+    <p>Send me a quick note about what you need — I usually get back within 24 hours.</p>
+    <button onclick="openContact('Services &amp; Pricing – Inquiry (EN)')" class="btn btn-primary">Get in touch</button>
   </div>
 
 </div>
 
 <div class="back-section">
-  <a href="../index.html" class="btn-back" onclick="if(history.length>1){history.back();return false;}">
+  <a href="index.html" class="btn-back" onclick="if(history.length>1){history.back();return false;}">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="10,3 5,8 10,13"/>
     </svg>
-    Zurück
+    Back
   </a>
   <a href="#top" class="btn-top">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="3,10 8,5 13,10"/>
     </svg>
-    Nach oben
+    Back to top
   </a>
 </div>
 
 <!-- ── Footer ── -->
 <footer>
   <div class="footer-bottom">
-    <span>&copy; <script>document.write(new Date().getFullYear())</script> TechSupport HUB – Alle Rechte vorbehalten.</span>
+    <span>&copy; <script>document.write(new Date().getFullYear())</script> TechSupport HUB – All rights reserved.</span>
     <span>
-      <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
-      <a href="impressum.html#datenschutz">Datenschutz</a> &nbsp;·&nbsp;
-      <a href="#" onclick="openContact();return false;">Kontakt</a>
+      <a href="../pages/impressum.html">Legal Notice</a> &nbsp;·&nbsp;
+      <a href="../pages/impressum.html#datenschutz">Privacy Policy</a> &nbsp;·&nbsp;
+      <a href="#" onclick="openContact();return false;">Contact</a>
     </span>
   </div>
 </footer>
 </div><!-- /.page-wrap -->
 
-<!-- ══ CONTACT MODAL ══ -->
+<!-- ── Contact Modal ── -->
 <div id="contactModal" aria-modal="true" role="dialog">
   <div class="modal-backdrop" onclick="closeContact()"></div>
   <div class="modal-box">
-    <button class="modal-close" onclick="closeContact()" aria-label="Schließen">
+    <button class="modal-close" onclick="closeContact()" aria-label="Close">
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
         <line x1="4" y1="4" x2="14" y2="14"/><line x1="14" y1="4" x2="4" y2="14"/>
       </svg>
     </button>
     <div class="modal-header">
-      <span class="modal-tag">Kontakt</span>
-      <h3>Schreib mir eine Nachricht</h3>
-      <p>Ich melde mich in der Regel innerhalb von 24 Stunden.</p>
+      <span class="modal-tag">Contact</span>
+      <h3>Send me a message</h3>
+      <p>I usually get back to you within 24 hours.</p>
     </div>
     <form id="contactForm" onsubmit="submitContact(event)">
-      <input type="hidden" id="cf-source" value="Leistungen & Preise – TSH"/>
+      <input type="hidden" id="cf-source" value="Services &amp; Pricing – TSH (EN)"/>
       <div class="form-row">
         <label for="cf-name">Name</label>
-        <input id="cf-name" type="text" placeholder="Dein Name" required autocomplete="name"/>
+        <input id="cf-name" type="text" placeholder="Your name" required autocomplete="name"/>
       </div>
       <div class="form-row">
-        <label for="cf-email">E-Mail</label>
-        <input id="cf-email" type="email" placeholder="deine@mail.de" required autocomplete="email"/>
+        <label for="cf-email">Email</label>
+        <input id="cf-email" type="email" placeholder="your@email.com" required autocomplete="email"/>
       </div>
       <div class="form-row">
-        <label for="cf-msg">Nachricht</label>
-        <textarea id="cf-msg" rows="5" placeholder="Was kann ich für dich tun?" required></textarea>
+        <label for="cf-msg">Message</label>
+        <textarea id="cf-msg" rows="5" placeholder="How can I help you?" required></textarea>
       </div>
       <label class="check-label">
         <input type="checkbox" id="cf-privacy" required/>
-        <span>Ich habe die <a href="impressum.html#datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und stimme zu.</span>
+        <span>I have read and agree to the <a href="../pages/impressum.html#datenschutz" target="_blank" rel="noopener">privacy policy</a>.</span>
       </label>
       <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Anfrage senden</button>
-        <button type="button" class="btn btn-ghost" onclick="closeContact()">Abbrechen</button>
+        <button type="submit" class="btn btn-primary">Send inquiry</button>
+        <button type="button" class="btn btn-ghost" onclick="closeContact()">Cancel</button>
       </div>
     </form>
     <div id="contactError" style="display:none" class="form-error">
-      Nachricht konnte nicht gesendet werden. Bitte versuche es erneut.
+      Message could not be sent. Please try again.
     </div>
     <div id="contactSuccess" style="display:none" class="modal-success">
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
         <circle cx="20" cy="20" r="18" stroke="#00ff88" stroke-width="2"/>
         <polyline points="12,20 18,26 28,14" stroke="#00ff88" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <p>Nachricht gesendet – ich melde mich<br>so schnell wie möglich bei dir!</p>
+      <p>Message sent — I'll get back to you<br>as soon as possible!</p>
     </div>
   </div>
 </div>
@@ -1160,7 +1074,7 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
     const errBox = document.getElementById('contactError');
     errBox.style.display = 'none';
     btn.disabled = true;
-    btn.textContent = 'Wird gesendet …';
+    btn.textContent = 'Sending…';
     try {
       const res = await fetch(FORMSPREE_URL, {
         method: 'POST',
@@ -1182,12 +1096,11 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
     } catch {
       errBox.style.display = '';
       btn.disabled = false;
-      btn.textContent = 'Anfrage senden';
+      btn.textContent = 'Send inquiry';
     }
   }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContact(); });
 
-  // Enter-Animation beim Zurück-Sprung (bfcache) überspringen
   const _pw = document.querySelector('.page-wrap');
   if (_pw && performance.getEntriesByType('navigation')[0]?.type === 'back_forward') {
     _pw.style.animation = 'none';
@@ -1196,7 +1109,6 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
     if (e.persisted && _pw) { _pw.classList.remove('is-leaving'); _pw.style.animation = 'none'; }
   });
 
-  // Exit-Blur beim Klick auf Unterseiten-Kacheln
   document.querySelectorAll('.service-row-link').forEach(function(link) {
     link.addEventListener('click', function(e) {
       if (e.ctrlKey || e.metaKey || e.shiftKey) return;

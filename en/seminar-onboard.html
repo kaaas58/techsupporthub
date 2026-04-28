@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
+  <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onboard Yourself – Detailed Programme (DE only) – TechSupport HUB</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#0d1117; --surface:#1a2235; --border:rgba(255,255,255,0.1); --text:#edf0f8; --muted:#9aabc8; --neon-g:#00ff88; --accent:#00d4ff; --radius:14px; }
+    body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; line-height:1.65; overflow-x:hidden; display:flex; flex-direction:column; min-height:100vh; }
+    nav { position:fixed; top:0; left:0; right:0; z-index:200; height:62px; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; background:rgba(13,17,23,0.82); backdrop-filter:blur(22px); border-bottom:1px solid var(--border); }
+    .nav-logo { display:flex; align-items:center; gap:.7rem; text-decoration:none; }
+    .nav-logo-text { display:flex; flex-direction:column; line-height:1.15; }
+    .nav-logo-text .t1 { font-size:1.1rem; font-weight:700; color:#e8edf8; }
+    .nav-logo-text .t2 { font-size:.88rem; font-weight:700; color:var(--neon-g); letter-spacing:.18em; }
+    .nav-right { display:flex; align-items:center; gap:.9rem; }
+    .nav-back { display:inline-flex; align-items:center; gap:.4rem; color:var(--muted); text-decoration:none; font-size:.87rem; font-weight:500; transition:color .2s; }
+    .nav-back:hover { color:var(--accent); }
+    .lang-switch { display:flex; align-items:center; gap:.35rem; font-size:.78rem; font-weight:700; letter-spacing:.08em; white-space:nowrap; }
+    .lang-switch .lsw-active { color:#00d4ff; }
+    .lang-switch .lsw-sep { color:rgba(255,255,255,.2); font-weight:400; }
+    .lang-switch a { color:#8090b8; text-decoration:none; transition:color .18s; }
+    .lang-switch a:hover { color:#e8edf8; }
+    .placeholder { flex:1; display:flex; align-items:center; justify-content:center; padding:8rem 2rem 4rem; text-align:center; }
+    .placeholder-box { max-width:480px; }
+    .placeholder-box .icon { font-size:3rem; margin-bottom:1.2rem; }
+    .placeholder-box h1 { font-size:1.6rem; font-weight:800; color:#e8edf8; margin-bottom:.8rem; }
+    .placeholder-box p { font-size:.97rem; color:var(--muted); line-height:1.7; margin-bottom:1.5rem; }
+    .btn-de { display:inline-flex; align-items:center; gap:.5rem; padding:.8rem 1.8rem; border-radius:1rem; font-size:.93rem; font-weight:600; text-decoration:none; background:var(--accent); color:#060c14; box-shadow:0 4px 20px rgba(0,212,255,.3); transition:transform .18s, box-shadow .18s; }
+    .btn-de:hover { transform:translateY(-2px); box-shadow:0 6px 28px rgba(0,212,255,.5); }
+    .btn-back-link { display:inline-flex; align-items:center; gap:.5rem; padding:.8rem 1.6rem; border-radius:1rem; font-size:.9rem; font-weight:600; text-decoration:none; color:var(--muted); border:1px solid rgba(255,255,255,.2); margin-left:.8rem; transition:border-color .2s,color .2s; }
+    .btn-back-link:hover { border-color:var(--accent); color:var(--accent); }
+    footer { background:var(--bg); border-top:1px solid var(--border); padding:2rem 1.5rem; }
+    .footer-inner { max-width:900px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.8rem; font-size:.82rem; color:var(--muted); }
+    .footer-inner a { color:var(--muted); text-decoration:none; }
+    .footer-inner a:hover { color:var(--neon-g); }
+    html.light { --bg:#d0daf0; --surface:#ffffff; --border:rgba(0,25,90,0.22); --text:#111827; --muted:#3f506e; --neon-g:#00a060; --accent:#007098; }
+    html.light body { background:var(--bg); color:var(--text); }
+    html.light nav { background:rgba(208,218,240,0.96) !important; border-color:rgba(0,25,90,0.22); }
+    html.light footer { background:var(--bg); }
+    html.light .nav-logo svg path { stroke:#00a060 !important; fill:rgba(0,160,96,0.1) !important; }
+    html.light .nav-logo svg text { fill:#00a060 !important; }
+    html.light .nav-logo-text .t1 { color:#1a2540 !important; }
+    html.light .nav-logo-text .t2 { color:#00a060 !important; }
+    html.light .placeholder-box h1 { color:#1a2540; }
+    html.light .btn-de { background:#007098; color:#ffffff; }
+    html.light .btn-back-link { border-color:rgba(0,25,90,0.22); color:#3f506e; }
+    html.light .btn-back-link:hover { border-color:rgba(0,110,140,.5); color:#007098; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 2 L36 11 L36 29 L20 38 L4 29 L4 11 Z" stroke="#00ff88" stroke-width="1.8" fill="rgba(0,255,136,0.07)"/>
+      <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="800" fill="#00ff88" font-family="'Segoe UI',system-ui,sans-serif">TSH</text>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="t1">TechSupport</span>
+      <span class="t2">HUB</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="onboard.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="10,3 5,8 10,13"/></svg>
+      Back
+    </a>
+    <div class="lang-switch"><a href="../pages/seminar-onboard.html">DE</a><span class="lsw-sep">|</span><span class="lsw-active">EN</span></div>
+  </div>
+</nav>
+
+<div class="placeholder">
+  <div class="placeholder-box">
+    <div class="icon">🇩🇪</div>
+    <h1>This page is available in German only.</h1>
+    <p>The detailed workshop programme for "Onboard Yourself with Me" is a document intended for senior institutions and care facilities in Germany — it is currently only available in German.</p>
+    <p>You're welcome to view the German version, or go back to the English overview page.</p>
+    <a href="../pages/seminar-onboard.html" class="btn-de">View in German</a>
+    <a href="onboard.html" class="btn-back-link">← Back to overview</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span>&copy; <script>document.write(new Date().getFullYear())</script> TechSupport HUB – All rights reserved.</span>
+    <span>
+      <a href="../pages/impressum.html">Legal Notice</a> &nbsp;·&nbsp;
+      <a href="../pages/impressum.html#datenschutz">Privacy Policy</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,66 +1,42 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
   <script>if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Keine Angst vor Technik – TechSupport HUB</title>
+  <title>No Fear of Tech – TechSupport HUB</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --bg: #0d1117; --surface: #1a2235; --surface2: #1e2840;
       --border: rgba(255,255,255,0.1); --text: #edf0f8; --muted: #9aabc8;
       --neon-g: #00ff88; --accent: #00d4ff; --radius: 14px;
     }
-
     body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; line-height:1.65; overflow-x:hidden; }
     @keyframes pageEnter { from { opacity:0; filter:blur(13px); } to { opacity:1; filter:blur(0px); } }
     .page-wrap { animation: pageEnter .48s cubic-bezier(.22,1,.36,1) both; will-change: filter, opacity; }
-
-    nav {
-      position:fixed; top:0; left:0; right:0; z-index:200; height:62px;
-      display:flex; align-items:center; justify-content:space-between;
-      padding:0 2rem;
-      background:rgba(13,17,23,0.82); backdrop-filter:blur(22px) saturate(160%);
-      border-bottom:1px solid var(--border);
-    }
+    nav { position:fixed; top:0; left:0; right:0; z-index:200; height:62px; display:flex; align-items:center; justify-content:space-between; padding:0 2rem; background:rgba(13,17,23,0.82); backdrop-filter:blur(22px) saturate(160%); border-bottom:1px solid var(--border); }
     .nav-logo { display:flex; align-items:center; gap:.7rem; text-decoration:none; white-space:nowrap; }
     .nav-logo-text { display:flex; flex-direction:column; line-height:1.15; }
     .nav-logo-text .t1 { font-size:1.1rem; font-weight:700; color:#e8edf8; letter-spacing:.02em; }
     .nav-logo-text .t2 { font-size:.88rem; font-weight:700; color:var(--neon-g); letter-spacing:.18em; text-shadow:0 0 8px rgba(0,255,136,.25); }
     .nav-back { display:inline-flex; align-items:center; gap:.4rem; color:var(--muted); text-decoration:none; font-size:.87rem; font-weight:500; transition:color .2s; }
     .nav-back:hover { color:var(--accent); }
-  .lang-switch { display:flex; align-items:center; gap:.35rem; font-size:.78rem; font-weight:700; letter-spacing:.08em; white-space:nowrap; }
-  .lang-switch .lsw-active { color:#00d4ff; }
-  .lang-switch .lsw-sep { color:rgba(255,255,255,.2); font-weight:400; }
-  .lang-switch a { color:#8090b8; text-decoration:none; transition:color .18s; }
-  .lang-switch a:hover { color:#e8edf8; }
+    .lang-switch { display:flex; align-items:center; gap:.35rem; font-size:.78rem; font-weight:700; letter-spacing:.08em; white-space:nowrap; }
+    .lang-switch .lsw-active { color:#00d4ff; }
+    .lang-switch .lsw-sep { color:rgba(255,255,255,.2); font-weight:400; }
+    .lang-switch a { color:#8090b8; text-decoration:none; transition:color .18s; }
+    .lang-switch a:hover { color:#e8edf8; }
     .nav-right { display:flex; align-items:center; gap:.9rem; }
-
     .page-header { padding:5.5rem 1.5rem 3rem; text-align:center; position:relative; overflow:hidden; }
-    .page-header::before {
-      content:''; position:absolute; inset:0;
-      background:radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,212,255,.07) 0%, transparent 70%);
-      pointer-events:none;
-    }
-    .page-tag {
-      display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:.12em;
-      text-transform:uppercase; color:var(--accent);
-      background:rgba(0,212,255,.082); border:1px solid rgba(0,212,255,.26);
-      border-radius:20px; padding:.3rem .9rem; margin-bottom:1.2rem;
-    }
+    .page-header::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,212,255,.07) 0%, transparent 70%); pointer-events:none; }
+    .page-tag { display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); background:rgba(0,212,255,.082); border:1px solid rgba(0,212,255,.26); border-radius:20px; padding:.3rem .9rem; margin-bottom:1.2rem; }
     .page-header h1 { font-size:clamp(2rem,5vw,3rem); font-weight:800; color:#e8edf8; letter-spacing:-.025em; line-height:1.2; margin-bottom:.8rem; }
     .page-header h1 span { color:var(--accent); }
     .page-header p { font-size:1.05rem; color:var(--muted); max-width:580px; margin:0 auto; }
-
     .container { max-width:900px; margin:0 auto; padding:0 1.5rem 5rem; }
-
-    .doc-card-why {
-      display:flex; gap:2.2rem; align-items:flex-start;
-      padding:2rem 2.2rem; border-bottom:1px solid rgba(0,212,255,.2);
-    }
+    .doc-card-why { display:flex; gap:2.2rem; align-items:flex-start; padding:2rem 2.2rem; border-bottom:1px solid rgba(0,212,255,.2); }
     .why-visual { flex-shrink:0; padding-top:.2rem; }
     .why-text h2 { font-size:1.08rem; font-weight:700; color:#dce8ff; margin-bottom:.65rem; }
     .why-text p { font-size:.88rem; color:var(--muted); line-height:1.72; margin-bottom:.9rem; }
@@ -68,59 +44,30 @@
     .check-list { list-style:none; display:flex; flex-direction:column; gap:.42rem; margin-bottom:1rem; }
     .check-list li { font-size:.86rem; color:var(--muted); display:flex; align-items:flex-start; gap:.5rem; line-height:1.5; }
     .check-list li::before { content:'✓'; color:var(--accent); font-weight:800; font-size:.82rem; margin-top:.1rem; flex-shrink:0; }
-    .why-highlight {
-      background:rgba(0,212,255,.05); border-left:3px solid var(--accent);
-      border-radius:0 8px 8px 0; padding:.75rem 1rem;
-      font-size:.84rem; color:var(--muted); margin-bottom:.9rem; line-height:1.65;
-    }
+    .why-highlight { background:rgba(0,212,255,.05); border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:.75rem 1rem; font-size:.84rem; color:var(--muted); margin-bottom:.9rem; line-height:1.65; }
     .why-highlight strong { color:var(--accent); font-weight:600; }
     .why-list { list-style:none; display:flex; flex-direction:column; gap:.4rem; margin-top:.85rem; }
     .why-list li { font-size:.85rem; color:var(--muted); display:flex; align-items:flex-start; gap:.55rem; line-height:1.5; }
     .why-list li::before { content:'✦'; color:var(--accent); font-size:.68rem; margin-top:.22rem; flex-shrink:0; }
-
-    .doc-card {
-      background:var(--surface); border:1.5px solid rgba(0,212,255,.46);
-      border-radius:var(--radius); overflow:hidden;
-      box-shadow:0 8px 40px rgba(0,0,0,.4);
-      margin-bottom:2rem;
-    }
+    .doc-card { background:var(--surface); border:1.5px solid rgba(0,212,255,.46); border-radius:var(--radius); overflow:hidden; box-shadow:0 8px 40px rgba(0,0,0,.4); margin-bottom:2rem; }
     .doc-card-cta { padding:1.6rem 2rem 2rem; display:flex; flex-direction:column; align-items:center; gap:.9rem; }
     .cta-buttons { display:flex; gap:.85rem; align-items:center; flex-wrap:wrap; justify-content:center; }
-    .btn-anfragen {
-      display:inline-flex; align-items:center; gap:.55rem;
-      padding:.9rem 2.2rem; border-radius:1rem; font-size:.97rem; font-weight:700;
-      cursor:pointer; border:none; font-family:inherit;
-      background:var(--accent); color:#060c14;
-      box-shadow:0 4px 22px rgba(0,212,255,.35);
-      transition:transform .18s, box-shadow .18s;
-    }
+    .btn-anfragen { display:inline-flex; align-items:center; gap:.55rem; padding:.9rem 2.2rem; border-radius:1rem; font-size:.97rem; font-weight:700; cursor:pointer; border:none; font-family:inherit; background:var(--accent); color:#060c14; box-shadow:0 4px 22px rgba(0,212,255,.35); transition:transform .18s, box-shadow .18s; }
     .btn-anfragen:hover { transform:translateY(-2px); box-shadow:0 7px 30px rgba(0,212,255,.52); }
-    .btn-pitch {
-      display:inline-flex; align-items:center; gap:.55rem;
-      padding:.88rem 1.6rem; border-radius:1rem; font-size:.9rem; font-weight:600;
-      cursor:pointer; font-family:inherit; text-decoration:none;
-      background:transparent; color:var(--muted);
-      border:1px solid rgba(154,171,200,.55);
-      transition:border-color .2s, color .2s, background .2s;
-    }
+    .btn-pitch { display:inline-flex; align-items:center; gap:.55rem; padding:.88rem 1.6rem; border-radius:1rem; font-size:.9rem; font-weight:600; cursor:pointer; font-family:inherit; text-decoration:none; background:transparent; color:var(--muted); border:1px solid rgba(154,171,200,.55); transition:border-color .2s, color .2s, background .2s; }
     .btn-pitch:hover { border-color:rgba(154,171,200,.9); color:var(--accent); background:rgba(0,212,255,.06); }
-
     .btn { display:inline-flex; align-items:center; gap:.5rem; padding:.75rem 1.7rem; border-radius:1rem; font-size:.93rem; font-weight:600; cursor:pointer; border:none; transition:transform .18s,box-shadow .18s; font-family:inherit; }
     .btn-primary { background:var(--neon-g); color:#0a0f0a; box-shadow:0 4px 20px rgba(0,255,136,.35); }
     .btn-primary:hover { transform:translateY(-2px); box-shadow:0 6px 30px rgba(0,255,136,.55); }
     .btn-ghost { background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.3); }
     .btn-ghost:hover { border-color:rgba(0,255,136,0.4); color:var(--neon-g); }
-
     .back-section { display:flex; justify-content:center; align-items:center; gap:1rem; flex-wrap:wrap; padding:2.5rem 1.5rem 4rem; }
     .btn-back { display:inline-flex; align-items:center; gap:.5rem; padding:.75rem 1.8rem; border-radius:1rem; font-size:.93rem; font-weight:600; text-decoration:none; color:var(--text); background:rgba(30,38,60,.88); border:1px solid rgba(255,255,255,.3); backdrop-filter:blur(8px); transition:border-color .2s,color .2s; }
     .btn-back:hover { border-color:var(--accent); color:var(--accent); }
-    .btn-back:visited { color:var(--text); border-color:rgba(255,255,255,.3); }
-
     footer { background:var(--bg); border-top:1px solid var(--border); padding:2rem 1.5rem; }
     .footer-inner { max-width:900px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.8rem; font-size:.82rem; color:var(--muted); }
     .footer-inner a { color:var(--muted); text-decoration:none; }
     .footer-inner a:hover { color:var(--neon-g); }
-
     html.light { --bg:#d0daf0; --surface:#ffffff; --surface2:#edf1fb; --border:rgba(0,25,90,0.22); --text:#111827; --muted:#3f506e; --neon-g:#00a060; --accent:#007098; }
     html.light body { background:var(--bg); color:var(--text); }
     html.light nav { background:rgba(208,218,240,0.96) !important; border-color:rgba(0,25,90,0.22); }
@@ -144,7 +91,6 @@
     html.light .btn-anfragen { background:#007098; color:#ffffff; box-shadow:0 4px 18px rgba(0,140,180,.39); }
     html.light .btn-pitch { color:#3f506e; border-color:rgba(63,80,110,.45); }
     html.light .btn-pitch:hover { color:#007098; border-color:rgba(0,110,140,.7); background:rgba(0,140,180,.05); }
-
     @media (max-width:640px) {
       nav { padding:0 1.25rem; }
       .page-header { padding:4rem 1.25rem 2.5rem; }
@@ -171,20 +117,20 @@
     </div>
   </a>
   <div class="nav-right">
-    <a href="leistungen.html#seminare" class="nav-back" onclick="if(history.length>1){history.back();return false;}">
+    <a href="services.html#seminars" class="nav-back" onclick="if(history.length>1){history.back();return false;}">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="10,3 5,8 10,13"/>
       </svg>
-      Zurück
+      Back
     </a>
-    <div class="lang-switch"><span class="lsw-active">DE</span><span class="lsw-sep">|</span><a href="../en/no-fear-tech.html">EN</a></div>
+    <div class="lang-switch"><a href="../pages/keinenangst.html">DE</a><span class="lsw-sep">|</span><span class="lsw-active">EN</span></div>
   </div>
 </nav>
 
 <div class="page-header" id="top">
   <div class="page-tag">Seminar / Workshop</div>
-  <h1>Keine Angst vor Technik – <span>Schritt für Schritt ins Digitale</span></h1>
-  <p>Seminar für Einsteiger und Senioren – Alltagsgeräte verstehen, Hemmungen abbauen und sicher im Netz bewegen.</p>
+  <h1>No Fear of Tech – <span>Step by Step into the Digital World</span></h1>
+  <p>Seminar for beginners and seniors — understanding everyday devices, overcoming inhibitions, and navigating the internet with confidence.</p>
 </div>
 
 <div class="container">
@@ -192,7 +138,6 @@
     <div class="doc-card-why">
       <div class="why-visual">
         <svg width="92" height="108" viewBox="0 0 92 108" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Smartphone -->
           <rect x="28" y="8" width="36" height="64" rx="7" fill="rgba(0,212,255,.06)" stroke="rgba(0,212,255,.35)" stroke-width="1.4"/>
           <rect x="28" y="8" width="36" height="11" rx="7" fill="rgba(0,212,255,.14)"/>
           <rect x="28" y="16" width="36" height="3" fill="rgba(0,212,255,.14)"/>
@@ -202,7 +147,6 @@
           <rect x="35" y="48" width="10" height="8" rx="2" fill="rgba(0,212,255,.1)" stroke="rgba(0,212,255,.28)" stroke-width="1"/>
           <rect x="49" y="48" width="10" height="8" rx="2" fill="rgba(0,212,255,.1)" stroke="rgba(0,212,255,.28)" stroke-width="1"/>
           <circle cx="46" cy="74" r="4" stroke="rgba(0,212,255,.3)" stroke-width="1.2"/>
-          <!-- People -->
           <circle cx="14" cy="94" r="5.5" fill="rgba(0,212,255,.12)" stroke="rgba(0,212,255,.42)" stroke-width="1.2"/>
           <path d="M5 107 Q14 100 23 107" stroke="rgba(0,212,255,.32)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
           <circle cx="46" cy="94" r="5.5" fill="rgba(0,212,255,.12)" stroke="rgba(0,212,255,.42)" stroke-width="1.2"/>
@@ -212,25 +156,25 @@
         </svg>
       </div>
       <div class="why-text">
-        <h2>Was beinhaltet das Seminar?</h2>
-        <p>Technik muss kein Rätsel sein. In diesem Seminar lernst du Schritt für Schritt, wie du Smartphone, Tablet oder PC im Alltag sicher und ohne Frust nutzt – in ruhigem Tempo, mit Zeit für deine Fragen.</p>
-        <p class="why-price-line">Typische Seminarinhalte:</p>
+        <h2>What does the seminar cover?</h2>
+        <p>Technology doesn't have to be a puzzle. In this seminar you'll learn step by step how to use a smartphone, tablet or PC in everyday life — safely and without frustration — at a relaxed pace with plenty of time for your questions.</p>
+        <p class="why-price-line">Typical seminar topics:</p>
         <ul class="check-list">
-          <li>Erste Schritte: Smartphone &amp; Tablet sicher bedienen</li>
-          <li>Apps installieren, Einstellungen verstehen &amp; anpassen</li>
-          <li>Sicher im Netz: Betrug erkennen, WLAN &amp; Passwörter</li>
-          <li>Fotos &amp; Videos – aufnehmen, teilen &amp; organisieren</li>
-          <li>Video-Telefonie: WhatsApp, FaceTime &amp; Co. Schritt für Schritt</li>
-          <li>Offene Übungsrunde &amp; Fragen aus der Gruppe</li>
+          <li>First steps: using a smartphone &amp; tablet safely</li>
+          <li>Installing apps, understanding &amp; adjusting settings</li>
+          <li>Safe online: recognising scams, Wi-Fi &amp; passwords</li>
+          <li>Photos &amp; videos — taking, sharing &amp; organising</li>
+          <li>Video calling: WhatsApp, FaceTime &amp; Co. step by step</li>
+          <li>Open practice round &amp; questions from the group</li>
         </ul>
         <div class="why-highlight">
-          Gruppenformat: <strong>4–8 Personen</strong>, Vor-Ort-Termin, Dauer nach Absprache. Besonders geeignet für Seniorenstiftungen, Vereine und Einrichtungen – <strong>Preis auf Anfrage</strong>.
+          Group format: <strong>4–8 participants</strong>, on-site session, duration by arrangement. Particularly suitable for senior institutions, clubs and care facilities — <strong>price on request</strong>.
         </div>
         <ul class="why-list">
-          <li>Ideal für Einsteiger ganz ohne Vorkenntnisse</li>
-          <li>Ruhiges Tempo – individuelle Fragen herzlich willkommen</li>
-          <li>Handout &amp; Unterlagen auf Wunsch inklusive</li>
-          <li>Auch als Einzelcoaching oder kleinere Gruppe buchbar</li>
+          <li>Ideal for absolute beginners with no prior experience</li>
+          <li>Relaxed pace — individual questions warmly welcomed</li>
+          <li>Handout &amp; supporting materials included on request</li>
+          <li>Also bookable as individual coaching or a smaller group</li>
         </ul>
       </div>
     </div>
@@ -241,15 +185,15 @@
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
             <polyline points="22,6 12,13 2,6"/>
           </svg>
-          Jetzt anfragen
+          Send enquiry
         </button>
-        <a href="seminar-keinenangst.html" class="btn-pitch">
+        <a href="seminar-no-fear.html" class="btn-pitch">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
             <polyline points="14 2 14 8 20 8"/>
             <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
           </svg>
-          Ausführlicherer Ablauf
+          Detailed programme
         </a>
       </div>
     </div>
@@ -257,20 +201,20 @@
 </div>
 
 <div class="back-section">
-  <a href="leistungen.html#seminare" class="btn-back" onclick="if(history.length>1){history.back();return false;}">
+  <a href="services.html#seminars" class="btn-back" onclick="if(history.length>1){history.back();return false;}">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="10,3 5,8 10,13"/>
     </svg>
-    Zurück
+    Back
   </a>
 </div>
 
 <footer>
   <div class="footer-inner">
-    <span>© <script>document.write(new Date().getFullYear())</script> TechSupport HUB – Alle Rechte vorbehalten.</span>
+    <span>&copy; <script>document.write(new Date().getFullYear())</script> TechSupport HUB – All rights reserved.</span>
     <span>
-      <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
-      <a href="impressum.html#datenschutz">Datenschutz</a>
+      <a href="../pages/impressum.html">Legal Notice</a> &nbsp;·&nbsp;
+      <a href="../pages/impressum.html#datenschutz">Privacy Policy</a>
     </span>
   </div>
 </footer>
@@ -280,46 +224,46 @@
 <div id="contactModal" aria-modal="true" role="dialog">
   <div class="modal-backdrop" onclick="closeContact()"></div>
   <div class="modal-box">
-    <button class="modal-close" onclick="closeContact()" aria-label="Schließen">
+    <button class="modal-close" onclick="closeContact()" aria-label="Close">
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
         <line x1="4" y1="4" x2="14" y2="14"/><line x1="14" y1="4" x2="4" y2="14"/>
       </svg>
     </button>
     <div class="modal-header">
-      <span class="modal-tag">Seminar Anfrage</span>
-      <h3>Schreib mir eine Nachricht</h3>
-      <p>Ich melde mich in der Regel innerhalb von 24 Stunden.</p>
+      <span class="modal-tag">Seminar Enquiry</span>
+      <h3>Send me a message</h3>
+      <p>I usually get back to you within 24 hours.</p>
     </div>
     <form id="contactForm" onsubmit="submitContact(event)">
-      <input type="hidden" id="cf-source" value="Seminar – Keine Angst vor Technik"/>
+      <input type="hidden" id="cf-source" value="Seminar – No Fear of Tech (EN)"/>
       <div class="form-row">
         <label for="cf-name">Name</label>
-        <input id="cf-name" type="text" placeholder="Dein Name" required autocomplete="name"/>
+        <input id="cf-name" type="text" placeholder="Your name" required autocomplete="name"/>
       </div>
       <div class="form-row">
-        <label for="cf-email">E-Mail</label>
-        <input id="cf-email" type="email" placeholder="deine@mail.de" required autocomplete="email"/>
+        <label for="cf-email">Email</label>
+        <input id="cf-email" type="email" placeholder="your@email.com" required autocomplete="email"/>
       </div>
       <div class="form-row">
-        <label for="cf-msg">Nachricht</label>
-        <textarea id="cf-msg" rows="5" placeholder="Was kann ich für dich tun?" required></textarea>
+        <label for="cf-msg">Message</label>
+        <textarea id="cf-msg" rows="5" placeholder="How can I help you?" required></textarea>
       </div>
       <label class="check-label">
         <input type="checkbox" id="cf-privacy" required/>
-        <span>Ich habe die <a href="impressum.html#datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und stimme zu.</span>
+        <span>I have read and agree to the <a href="../pages/impressum.html#datenschutz" target="_blank" rel="noopener">privacy policy</a>.</span>
       </label>
       <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Anfrage senden</button>
-        <button type="button" class="btn btn-ghost" onclick="closeContact()">Abbrechen</button>
+        <button type="submit" class="btn btn-primary">Send inquiry</button>
+        <button type="button" class="btn btn-ghost" onclick="closeContact()">Cancel</button>
       </div>
     </form>
-    <div id="contactError" style="display:none" class="form-error">Nachricht konnte nicht gesendet werden. Bitte versuche es erneut.</div>
+    <div id="contactError" style="display:none" class="form-error">Message could not be sent. Please try again.</div>
     <div id="contactSuccess" style="display:none" class="modal-success">
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
         <circle cx="20" cy="20" r="18" stroke="#00ff88" stroke-width="2"/>
         <polyline points="12,20 18,26 28,14" stroke="#00ff88" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <p>Nachricht gesendet – ich melde mich<br>so schnell wie möglich bei dir!</p>
+      <p>Message sent — I'll get back to you<br>as soon as possible!</p>
     </div>
   </div>
 </div>
@@ -357,7 +301,7 @@
   const FORMSPREE_URL = 'https://formsubmit.co/ajax/info.tsh@gmx.de';
   const modal = document.getElementById('contactModal');
   function openContact() {
-    document.getElementById('cf-source').value = 'Seminar – Keine Angst vor Technik';
+    document.getElementById('cf-source').value = 'Seminar – No Fear of Tech (EN)';
     modal.classList.add('is-open');
     document.getElementById('contactForm').style.display = '';
     document.getElementById('contactSuccess').style.display = 'none';
@@ -375,23 +319,15 @@
     const btn = document.querySelector('#contactForm [type="submit"]');
     const errBox = document.getElementById('contactError');
     errBox.style.display = 'none';
-    btn.disabled = true; btn.textContent = 'Wird gesendet …';
+    btn.disabled = true; btn.textContent = 'Sending…';
     try {
       const res = await fetch(FORMSPREE_URL, {
         method:'POST', headers:{'Accept':'application/json','Content-Type':'application/json'},
-        body: JSON.stringify({
-          name: document.getElementById('cf-name').value.trim(),
-          email: document.getElementById('cf-email').value.trim(),
-          message: document.getElementById('cf-msg').value.trim(),
-          source: document.getElementById('cf-source').value
-        })
+        body: JSON.stringify({ name: document.getElementById('cf-name').value.trim(), email: document.getElementById('cf-email').value.trim(), message: document.getElementById('cf-msg').value.trim(), source: document.getElementById('cf-source').value })
       });
-      if (res.ok) {
-        document.getElementById('contactForm').style.display = 'none';
-        document.getElementById('contactSuccess').style.display = '';
-        setTimeout(closeContact, 4000);
-      } else { throw new Error(); }
-    } catch { errBox.style.display=''; btn.disabled=false; btn.textContent='Anfrage senden'; }
+      if (res.ok) { document.getElementById('contactForm').style.display = 'none'; document.getElementById('contactSuccess').style.display = ''; setTimeout(closeContact, 4000); }
+      else { throw new Error(); }
+    } catch { errBox.style.display=''; btn.disabled=false; btn.textContent='Send inquiry'; }
   }
   document.addEventListener('keydown', e => { if(e.key==='Escape') closeContact(); });
   const _pw = document.querySelector('.page-wrap');

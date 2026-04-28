@@ -55,6 +55,11 @@
       transition: color .2s;
     }
     .nav-back:hover { color: var(--neon-g); }
+  .lang-switch { display:flex; align-items:center; gap:.35rem; font-size:.78rem; font-weight:700; letter-spacing:.08em; white-space:nowrap; }
+  .lang-switch .lsw-active { color:#00d4ff; }
+  .lang-switch .lsw-sep { color:rgba(255,255,255,.2); font-weight:400; }
+  .lang-switch a { color:#8090b8; text-decoration:none; transition:color .18s; }
+  .lang-switch a:hover { color:#e8edf8; }
 
     /* ══ BACKGROUND WATERMARK ══ */
     .bg-watermark {
@@ -243,12 +248,15 @@
       <span class="t2">HUB</span>
     </div>
   </a>
-  <a href="../index.html#web-dev" class="nav-back">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="10,3 5,8 10,13"/>
-    </svg>
-    Zurück
-  </a>
+  <div style="display:flex;align-items:center;gap:1.2rem;">
+    <a href="../index.html#web-dev" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="10,3 5,8 10,13"/>
+      </svg>
+      Zurück
+    </a>
+    <div class="lang-switch"><span class="lsw-active">DE</span><span class="lsw-sep">|</span><a href="../en/websites.html">EN</a></div>
+  </div>
 </nav>
 
 <!-- ══ BACKGROUND WATERMARK ══ -->
