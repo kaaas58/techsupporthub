@@ -60,20 +60,18 @@
     .nav-back:hover { color: var(--neon-g); }
     .nav-right { display: flex; align-items: center; gap: .8rem; }
     /* Burger */
-    .burger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px; }
-    .burger span { display: block; height: 2px; border-radius: 2px; background: #e8edf8; transition: transform .25s, opacity .2s; }
+    .burger { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 38px; height: 38px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 8px; cursor: pointer; padding: 0; flex-shrink: 0; }
+    .burger span { display: block; width: 20px; height: 2px; border-radius: 2px; background: #e8edf8; }
+    html.light .burger { background: rgba(0,25,90,.06); border-color: rgba(0,25,90,.15); }
     html.light .burger span { background: #1a2540; }
     /* Mobile menu dropdown */
-    .nav-menu { display: none; position: absolute; top: 62px; right: 1rem; min-width: 180px; background: rgba(15,17,23,.97); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: .5rem; box-shadow: 0 8px 32px rgba(0,0,0,.5); z-index: 300; }
-    html.light .nav-menu { background: rgba(245,247,252,.97); border-color: rgba(0,25,90,.15); }
+    .nav-menu { display: none; position: absolute; top: 66px; right: 1rem; min-width: 200px; background: rgba(13,15,22,.98); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; padding: .4rem; box-shadow: 0 8px 32px rgba(0,0,0,.6); z-index: 300; }
+    html.light .nav-menu { background: rgba(245,247,252,.99); border-color: rgba(0,25,90,.18); box-shadow: 0 8px 32px rgba(0,25,90,.12); }
     .nav-menu.open { display: block; }
-    .nav-theme-btn { display: flex; align-items: center; gap: .6rem; width: 100%; padding: .6rem .8rem; background: none; border: none; border-radius: 8px; color: #e8edf8; font-size: .88rem; font-weight: 500; cursor: pointer; transition: background .15s; white-space: nowrap; }
-    .nav-theme-btn:hover { background: rgba(255,255,255,.07); }
+    .nav-theme-btn { display: flex; align-items: center; gap: .65rem; width: 100%; padding: .65rem .9rem; background: none; border: none; border-radius: 8px; color: #e8edf8; font-size: .9rem; font-weight: 500; cursor: pointer; transition: background .15s; white-space: nowrap; }
+    .nav-theme-btn:active, .nav-theme-btn:hover { background: rgba(0,255,136,.1); }
     html.light .nav-theme-btn { color: #1a2540; }
-    html.light .nav-theme-btn:hover { background: rgba(0,25,90,.06); }
-    .nav-theme-btn .icon-sun, .nav-theme-btn .icon-moon { flex-shrink: 0; }
-    html.light .icon-moon { display: none; }
-    html:not(.light) .icon-sun { display: none; }
+    html.light .nav-theme-btn:active, html.light .nav-theme-btn:hover { background: rgba(0,120,80,.08); }
     @media (max-width: 768px) {
       .burger { display: flex; }
       .nav-back { display: none; }
@@ -530,10 +528,9 @@
       <span></span><span></span><span></span>
     </button>
     <div class="nav-menu" id="navMenu">
-      <button class="nav-theme-btn" onclick="toggleTheme()">
-        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        Tagmodus
+      <button class="nav-theme-btn" id="themeBtnMenu" onclick="toggleTheme()">
+        <svg id="themeIconMenu" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
+        <span id="themeLabelMenu">Tagmodus</span>
       </button>
     </div>
   </div>
@@ -972,10 +969,25 @@
   });
 
   // Theme toggle
+  function updateThemeBtn() {
+    const isLight = document.documentElement.classList.contains('light');
+    const icon = document.getElementById('themeIconMenu');
+    const label = document.getElementById('themeLabelMenu');
+    if (!icon || !label) return;
+    if (isLight) {
+      icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+      label.textContent = 'Nachtmodus';
+    } else {
+      icon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+      label.textContent = 'Tagmodus';
+    }
+  }
   function toggleTheme() {
     const isLight = document.documentElement.classList.toggle('light');
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    updateThemeBtn();
   }
+  updateThemeBtn();
 </script>
 </body>
 </html>
