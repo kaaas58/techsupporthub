@@ -1079,8 +1079,8 @@
     try {
       const res = await fetch(FORMSPREE_URL, {
         method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new URLSearchParams({
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           name:    document.getElementById('cf-name').value.trim(),
           email:   document.getElementById('cf-email').value.trim(),
           message: document.getElementById('cf-msg').value.trim(),
