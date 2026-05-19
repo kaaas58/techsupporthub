@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>FormSubmit Aktivierung</title>
+  <style>
+    body { font-family: sans-serif; max-width: 480px; margin: 4rem auto; padding: 1rem; }
+    input, textarea { width: 100%; padding: .5rem; margin: .4rem 0 1rem; box-sizing: border-box; }
+    button { padding: .6rem 1.4rem; background: #00a060; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; }
+    p { color: #555; font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <h2>FormSubmit Aktivierung</h2>
+  <p>Dieses Formular einmal absenden. FormSubmit schickt dann eine Bestätigungs-E-Mail an <strong>info.tsh@gmx.de</strong>. Nach dem Klick auf den Link in der E-Mail sind alle Formulare freigeschaltet.</p>
+  <p><strong>Diese Seite danach vom Server löschen.</strong></p>
+
+  <form action="https://formsubmit.co/info.tsh@gmx.de" method="POST">
+    <input type="hidden" name="_subject" value="FormSubmit Aktivierung">
+    <input type="hidden" name="_next" value="https://techsupporthub-tsh.de">
+    <input type="hidden" name="_captcha" value="false">
+    <label>Name</label>
+    <input type="text" name="name" value="Aktivierungstest" required>
+    <label>E-Mail</label>
+    <input type="email" name="email" value="info.tsh@gmx.de" required>
+    <label>Nachricht</label>
+    <textarea name="message" rows="3">Aktivierungstest für FormSubmit AJAX.</textarea>
+    <button type="submit">Aktivierung auslösen</button>
+  </form>
+</body>
+</html>

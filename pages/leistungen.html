@@ -1158,7 +1158,7 @@ Hinweis: Die hier aufgeführten Pakete und Preise dienen aktuell nur zu Informat
     try {
       const res = await fetch(FORMSPREE_URL, {
         method: 'POST',
-        headers: {'Accept':'application/json'},
+        headers: {'Content-Type':'application/json','Accept':'application/json'},
         body: JSON.stringify({
           name:    document.getElementById('cf-name').value.trim(),
           email:   document.getElementById('cf-email').value.trim(),
