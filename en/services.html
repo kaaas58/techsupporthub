@@ -1079,7 +1079,7 @@
     try {
       const res = await fetch(FORMSPREE_URL, {
         method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        headers: {'Accept':'application/json'},
         body: JSON.stringify({
           name:    document.getElementById('cf-name').value.trim(),
           email:   document.getElementById('cf-email').value.trim(),
