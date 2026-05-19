@@ -292,7 +292,7 @@
 </style>
 
 <script>
-  const FORMSPREE_URL = 'https://formsubmit.co/ajax/13696e1f37da429cad9bb6126c8ea74f';
+  const FORMSPREE_URL = 'https://api.web3forms.com/submit';
   const modal = document.getElementById('contactModal');
   function openContact() {
     document.getElementById('cf-source').value = 'Workshop – Onboard Yourself with Me (EN)';
@@ -317,7 +317,7 @@
     try {
       const res = await fetch(FORMSPREE_URL, {
         method:'POST', headers:{'Accept':'application/json','Content-Type':'application/json'},
-        body: JSON.stringify({ access_key:'DEIN_WEB3FORMS_KEY', name: document.getElementById('cf-name').value.trim(), email: document.getElementById('cf-email').value.trim(), message: document.getElementById('cf-msg').value.trim(), source: document.getElementById('cf-source').value, _replyto: document.getElementById('cf-email').value.trim(), _autoresponse: 'Vielen Dank für Ihre Nachricht! Wir melden uns in Kürze bei Ihnen. – TechSupport HUB', _autoresponse: 'Thank you for your message! We will get back to you shortly. – TechSupport HUB' })
+        body: JSON.stringify({ access_key:'12564a65-b390-44b7-88ff-061e7c4c1d5f', access_key:'12564a65-b390-44b7-88ff-061e7c4c1d5f', name: document.getElementById('cf-name').value.trim(), email: document.getElementById('cf-email').value.trim(), message: document.getElementById('cf-msg').value.trim(), source: document.getElementById('cf-source').value })
       });
       if (res.ok) { document.getElementById('contactForm').style.display = 'none'; document.getElementById('contactSuccess').style.display = ''; setTimeout(closeContact, 4000); }
       else { throw new Error(); }
